@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="aaX-vp-xO2">
+            <objects>
+                <viewController storyboardIdentifier="JLHomeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rP2-Ik-s7k" customClass="JLHomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NKn-PD-KaI"/>
+                        <viewControllerLayoutGuide type="bottom" id="fdt-dQ-o49"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lXF-87-tBg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VaC-oY-xSY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Lf-WD-2RO">
+                                        <rect key="frame" x="0.0" y="20" width="60" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="sgo-vE-YuN"/>
+                                        </constraints>
+                                        <state key="normal" title="未选择">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cityPicker:" destination="rP2-Ik-s7k" eventType="touchUpInside" id="DiO-gP-q8Q"/>
+                                        </connections>
+                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9J-dN-f3a">
+                                        <rect key="frame" x="93" y="27" width="215" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="8ko-T2-K0q"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.75686274509803919" green="0.21568627450980393" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="5Lf-WD-2RO" firstAttribute="leading" secondItem="VaC-oY-xSY" secondAttribute="leading" id="5s9-bg-4rs"/>
+                                    <constraint firstAttribute="bottom" secondItem="5Lf-WD-2RO" secondAttribute="bottom" id="A2H-2V-PQN"/>
+                                    <constraint firstAttribute="trailing" secondItem="b9J-dN-f3a" secondAttribute="trailing" constant="12" id="EZO-D9-7Mf"/>
+                                    <constraint firstItem="5Lf-WD-2RO" firstAttribute="centerY" secondItem="b9J-dN-f3a" secondAttribute="centerY" id="GOE-PR-u7Y"/>
+                                    <constraint firstAttribute="height" constant="64" id="Zfy-EF-V0V"/>
+                                    <constraint firstItem="b9J-dN-f3a" firstAttribute="leading" secondItem="5Lf-WD-2RO" secondAttribute="trailing" constant="33" id="pBS-je-AAK"/>
+                                    <constraint firstAttribute="bottom" secondItem="b9J-dN-f3a" secondAttribute="bottom" constant="7" id="zms-FQ-xZh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VaC-oY-xSY" firstAttribute="top" secondItem="lXF-87-tBg" secondAttribute="top" id="99I-IH-B3g"/>
+                            <constraint firstItem="VaC-oY-xSY" firstAttribute="leading" secondItem="lXF-87-tBg" secondAttribute="leading" id="EK8-2Z-eit"/>
+                            <constraint firstAttribute="trailing" secondItem="VaC-oY-xSY" secondAttribute="trailing" id="hVe-5f-kgl"/>
+                        </constraints>
+                    </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="cityPickerButton" destination="5Lf-WD-2RO" id="B0k-1o-5jK"/>
+                        <outlet property="topSearchView" destination="b9J-dN-f3a" id="fge-Jb-X8U"/>
+                        <outlet property="topView" destination="VaC-oY-xSY" id="Dn7-9J-Jtj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p2E-D7-fUw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="156" y="179"/>
+        </scene>
+    </scenes>
+</document>

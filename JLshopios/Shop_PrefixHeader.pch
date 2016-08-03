@@ -1,0 +1,95 @@
+//
+//  Shop_PrefixHeader.pch
+//  JLshopios
+//
+//  Created by 周玉玺 on 16/6/4.
+//  Copyright © 2016年 feng. All rights reserved.
+//
+
+#ifndef Shop_PrefixHeader_pch
+#define Shop_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "UIBarButtonItem+Extension.h"
+#import "UIView+Extension.h"
+#import "UIImage+Extension.h"
+#import "NSString+Extension.h"
+#import "UIButton+Extension.h"
+#import "Masonry.h"
+#import "UIImage+Image.h"
+#import "UIViewController+NMExtension.h"
+#import "UIBarButtonItem+Addition.h"
+#import "QSCNavigationController.h"
+#import "QSCHttpTool.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+
+#import <MJRefresh/MJRefresh.h>
+
+//常用宏定义·
+#define kDeviceWidth [UIScreen mainScreen].bounds.size.width
+#define kDeviceScale [UIScreen mainScreen].scale
+#define kDeviceWidthPoint (kDeviceWidth * kDeviceScale)
+#define KDeviceHeight [[[UIDevice currentDevice] systemVersion] floatValue] < 7.0?[UIScreen mainScreen].bounds.size.height - 20 : [UIScreen mainScreen].bounds.size.height
+#define RATE kDeviceWidth / 375.0
+
+#define isIOS8OrAbove [UIDevice currentDevice].systemVersion.floatValue >= 8.0
+
+/**	rgba颜色 */
+#define QSCTextColor RGB(67, 172, 67)
+#define QSCLineColor RGB(234,236,238)
+#define QSCRedColor RGB(242, 91, 75)
+
+#define QSCErrorText @"网络请求失败"
+#define QSCIsExistNetwork @"www.baidu.com"
+#define WEAKSELF  typeof(self) __weak weakSelf=self;
+
+#define RGB(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define RGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+#define WWMMakeSolodColorImage(color, size) [YQConfig solidColorImageWithColor:color andSize:size]
+
+/**	从16进制颜色值转换为UIColor */
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
+// 随机色
+#define QSCRandomColor HMColor(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+#define QSCNotificationCenter [NSNotificationCenter defaultCenter]
+#define QSCPopViewControllerNotification @"QSCPopViewControllerNotification"
+
+#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define iPhone6plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+
+#define iOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define iOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define iOS9 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 9.0)
+#define iOS71s ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.1)
+#define kNetworkStatusWiFi ([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi)
+#define kNetworkStatus3G ([AFNetworkReachabilityManager sharedManager].networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN)
+
+#define APPVERSION [NSBundle mainBundle].infoDictionary[@"CFBundleShortVersionString"]
+
+#endif
+
+#ifdef DEBUG // 调试状态, 打开LOG功能  pvxdm17jxalwr
+#define MYLog(...) NSLog(__VA_ARGS__)
+#else // 发布状态, 关闭LOG功能
+#define MYLog(...)
+#endif
+
+
+#if TARGET_IPHONE_SIMULATOR
+#define SIMULATOR 1        // 模拟器
+#elif TARGET_OS_IPHONE
+#define SIMULATOR 0       // 真机
+#endif
+
+
+
+
