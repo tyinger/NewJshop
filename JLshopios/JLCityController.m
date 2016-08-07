@@ -20,6 +20,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //适配ios7
+    self.title = @"切换城市";
+    
+    
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0))
     {
         self.navigationController.navigationBar.translucent = NO;

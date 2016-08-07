@@ -18,7 +18,7 @@
 
 #define JLHomeCell @"JLHomeViewShopingCell"
 //#define kDuration 0.3
-static const double kDuration = 0.3;
+//static const double kDuration = 0.3;
 
 
 @interface JLHomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,JLCityControllerDelegate>
