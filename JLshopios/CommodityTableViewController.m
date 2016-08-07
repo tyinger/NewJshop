@@ -18,6 +18,9 @@
 #import "ShopNextController.h"
 #import "JLFlowLayout.h"
 #import "JLCommdoityCollectionCell.h"
+#import "UIScrollView+MJRefresh.h"
+#import "DetailsViewController.h"
+
 @interface CommodityTableViewController ()<SearchBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
     UITableView *_tableView;
@@ -39,9 +42,23 @@
     [self setupNavigationItem];
     //初始化视图
     [self initView];
+    
+    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
+    
+    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
 }
 
+-(void)refresh
+{
+    NSLog(@"上啦刷新");
+    [_tableView.mj_header endRefreshing];
+}
 
+-(void)loadMore
+{
+    NSLog(@"下啦刷新");
+    [_tableView.mj_footer endRefreshing];
+}
 #pragma mark 加载数据
 -(void)initData{
 
@@ -56,7 +73,7 @@
  
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"back_bt_7" highBackgroudImageName:nil target:self action:@selector(backClick)];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"changeProductListGrid" highBackgroudImageName:nil target:self action:@selector(changeClick:)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"main_bottom_tab_cart_focus" highBackgroudImageName:nil target:self action:@selector(changeClick:)];
     //将搜索条放在一个UIView上
     SearchBarView *searchView = [[SearchBarView alloc]initWithFrame:CGRectMake(0, 0, 240 , 30)];
     searchView.delegate=self;
@@ -68,10 +85,9 @@
     PPiFlatSegmentedControl *segmented=[[PPiFlatSegmentedControl alloc]
                                         initWithFrame:CGRectMake(0, 0, self.view.width, 40)
                                         items:
-                                        @[@{@"text":@"综合",@"icon":@"icon-sort"},
+                                        @[
                                           @{@"text":@"销量"},
                                           @{@"text":@"价格",@"icon":@"icon-sort"},
-                                          @{@"text":@"筛选",@"icon":@"icon-glass"}
                                           ]
                                         iconPosition:IconPositionRight
                                         andSelectionBlock:^(NSUInteger segmentIndex) {
@@ -146,8 +162,8 @@
 - (void)changeClick:(UIButton*)rightButton{
 //    if (rightButton.selected) {
     rightButton.selected = !rightButton.selected;
-    _tableView.hidden = rightButton.selected;
-    _collectionView.hidden = !rightButton.selected;
+//    _tableView.hidden = rightButton.selected;//列表模式显示
+//    _collectionView.hidden = !rightButton.selected;//放歌模式显示
 //    }
     
 }
@@ -197,7 +213,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    DetailsViewController * detailsTVC = [[DetailsViewController alloc]init];
 //    [self.navigationController pushViewController:detailsTVC animated:YES];
-    ShopNextController *next = [[ShopNextController alloc] init];
+    DetailsViewController *next = [[DetailsViewController alloc] init];
     [self.navigationController pushViewController:next animated:YES];
 }
 
@@ -225,7 +241,9 @@
 #pragma mark 滑动事件
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     NSLog(@"scroll view did begin dragging");
+    
 }
+
 
 
 @end

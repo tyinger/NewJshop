@@ -89,6 +89,7 @@ typedef enum {
 @property (nonatomic, strong) NSArray *localizationImageNamesGroup;
 
 
+@property (nonatomic, assign) int indexPage;
 
 
 

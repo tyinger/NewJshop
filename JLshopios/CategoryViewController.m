@@ -15,6 +15,8 @@
 #import "REFrostedViewController.h"
 //#import "RightMenuTableViewController.h"
 //#import "JDNavigationController.h"
+#import "QSCHttpTool.h"
+#import "AFNetworking.h"
 
 @interface CategoryViewController ()<SearchBarViewDelegate>
 {
@@ -33,6 +35,7 @@
     [self initData];
     //初始化分类菜单
     [self initCategoryMenu];
+    
 }
 - (void)viewWillAppear:(BOOL)animated;
 {
@@ -66,7 +69,7 @@
 
      _list=[NSMutableArray arrayWithCapacity:0];
     
-    NSString *path=[[NSBundle mainBundle] pathForResource:@"Category" ofType:@"plist"];
+    NSString *path=[[NSBundle mainBundle] pathForResource:@"NewCategory" ofType:@"plist"];
     NSArray *array=[NSArray arrayWithContentsOfFile:path];
     /**
      *  构建需要数据 2层或者3层数据 (ps 2层也当作3层来处理)
@@ -76,32 +79,32 @@
       
         CategoryMeunModel * meun=[[CategoryMeunModel alloc] init];
         meun.menuName=[array objectAtIndex:i][@"menuName"];
-        meun.nextArray=[array objectAtIndex:i][@"topMenu"];
-        NSMutableArray * sub=[NSMutableArray arrayWithCapacity:0];
+        meun.nextArray=[array objectAtIndex:i][@"TypeMenu"];
+//        NSMutableArray * sub=[NSMutableArray arrayWithCapacity:0];
         
-        for ( int j=0; j <[meun.nextArray count]; j++) {
-            
-            CategoryMeunModel * meun1=[[CategoryMeunModel alloc] init];
-            meun1.menuName=[meun.nextArray objectAtIndex:j][@"topName"];
-            meun1.nextArray=[meun.nextArray objectAtIndex:j][@"typeMenu"];
+//        for ( int j=0; j <[meun.nextArray count]; j++) {
+//            
+//            CategoryMeunModel * meun1=[[CategoryMeunModel alloc] init];
+//            meun1.menuName=[meun.nextArray objectAtIndex:j][@"topName"];
+//            meun1.nextArray=[meun.nextArray objectAtIndex:j][@"TypeMenu"];
         
         
             
             NSMutableArray *zList=[NSMutableArray arrayWithCapacity:0];
-            for ( int k=0; k <[meun1.nextArray count]; k++) {
+            for ( int k=0; k <[meun.nextArray count]; k++) {
                 CategoryMeunModel * meun2=[[CategoryMeunModel alloc] init];
-                meun2.menuName=[meun1.nextArray objectAtIndex:k][@"typeName"];
-                meun2.urlName=[meun1.nextArray objectAtIndex:k][@"typeImg"];
+                meun2.menuName=[meun.nextArray objectAtIndex:k][@"typeName"];
+                meun2.urlName=[meun.nextArray objectAtIndex:k][@"typeImg"];
                 [zList addObject:meun2];
             }
             
             
-            meun1.nextArray=zList;
-            [sub addObject:meun1];
-        }
+            meun.nextArray=zList;
+//            [sub addObject:meun];
+//        }
         
         
-        meun.nextArray=sub;
+//        _list=zList;
         [_list addObject:meun];
     }
 }
