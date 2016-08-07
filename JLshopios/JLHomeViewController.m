@@ -15,6 +15,8 @@
 
 #import "JLCityController.h"
 
+#import "QSCHttpTool.h"
+
 
 #define JLHomeCell @"JLHomeViewShopingCell"
 //#define kDuration 0.3
@@ -38,8 +40,67 @@
 {
     UIView *citySelectWindow_;
 }
+
+-(void)netWorkTest{
+    //获取验证码的
+//    NSDictionary *dic = @{@"phoneNum":@"18643212316"};
+//    //loginName=18643212316 password=
+//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getRegisterYzm?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+//        NSLog(@"json = msg %@",json[@"msg"]);
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    
+    //注册接口
+    //123.56.192.182:8443/app/user/registNewUser?
+    
+    /**
+     *  phoneNum,checkCode
+     pwd(MD5大写),recommendCode
+     
+     手机号 验证码 md5  推荐码
+     */
+    
+//    NSDictionary *dic = @{@"phoneNum":@"13631564265",@"checkCode":@"123123",@"pwd":@"IUOIJIWJEIWJEWOEJOWIEJWOIEJIWJEWIEJIWEQQQQ",@"recommendCode":@""};
+//    //loginName=18643212316 password=
+//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/registNewUser?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+//        NSLog(@"json = msg %@",json[@"msg"]);
+//    } failure:^(NSError *error) {
+//        
+//    }];
+    
+//    //首页轮播的接口
+//    NSDictionary *dic = @{@"adType":@"1"};
+//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/ad/getAdResource?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+//    } failure:^(NSError *error) {
+//    }];
+
+    
+    
+    //推荐商品接口 //begin=0
+//    NSDictionary *dic = @{@"begin":@"0"};
+//    //https://123.56.192.182:8443/app/product/recommendGoods?
+//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/recommendGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+//        
+//            } failure:^(NSError *error) {
+//    }];
+    
+    //分类列表接口
+    //https://123.56.192.182:8443/app/product/listClass?arg0={"name":"","type":"1","id":"","level":"","firstSeplling":""}
+//    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
+//    NSLog(@" ------ %@ ------",dic[@"arg0"]);
+//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+//        
+//                    } failure:^(NSError *error) {
+//    }];
+    
+    
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self netWorkTest];
     self.topSearchView.layer.cornerRadius = 6;
     self.topSearchView.layer.borderColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1].CGColor;
     self.topSearchView.layer.borderWidth = 1;
@@ -87,8 +148,6 @@
     [self loadJLTypeListView];
 }
 
-
-
 -(void)loadSrollView{
     CGFloat creenWidth = [UIScreen mainScreen].bounds.size.width;
     self.cycleScrollview = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, creenWidth, 140) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
@@ -124,8 +183,7 @@
             make.height.mas_equalTo(130);
         }];
     }
-    
-    
+
 }
 
 
@@ -153,22 +211,16 @@
     [ctrl setDelegate:self];
     UINavigationController *na = [[UINavigationController alloc]initWithRootViewController:ctrl];
     [self presentViewController:na animated:YES completion:^{
-        
     }];
 }
-
 
 #pragma mark ----------------- citydelegate
 
 -(void)chooseCity:(NSString *)city{
     [_cityPickerButton setTitle:city forState:UIControlStateNormal];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:city forKey:@"SELECTEDCITY"];
 }
-
-
-
-
-
-
 
 
 #pragma mark - <<<<<<<<<<<<<<<  collectionViewDelegate  >>>>>>>>>>>>>>>
@@ -181,7 +233,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 20;
+    return 1;
     
 }
 
@@ -190,18 +242,16 @@
 {
     
     JLShopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JLHomeCell forIndexPath:indexPath];
-    
-    
-    
+
     return cell;
 }
 
 //定义每个UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat cellWidth = [UIScreen mainScreen].bounds.size.width/2;
+    CGFloat cellWidth = [UIScreen mainScreen].bounds.size.width;
     
-    CGSize bsize = CGSizeMake(cellWidth, 100);
+    CGSize bsize = CGSizeMake(cellWidth, 800);
     
     return bsize;
 }

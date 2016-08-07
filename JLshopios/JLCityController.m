@@ -22,17 +22,25 @@
     //适配ios7
     self.title = @"切换城市";
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backAction)];
     
     if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0))
     {
         self.navigationController.navigationBar.translucent = NO;
     }
+    
     BAddressPickerController *addressPickerController = [[BAddressPickerController alloc] initWithFrame:self.view.frame];
     addressPickerController.dataSource = self;
     addressPickerController.delegate = self;
     
     [self addChildViewController:addressPickerController];
     [self.view addSubview:addressPickerController.view];
+}
+
+-(void)backAction{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 
 
