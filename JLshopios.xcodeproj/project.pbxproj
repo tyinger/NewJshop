@@ -21,6 +21,7 @@
 		30312C2E1D5709E500E0D0BD /* LNLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C231D5709E500E0D0BD /* LNLocationManager.m */; };
 		30312C2F1D5709E500E0D0BD /* LNSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C251D5709E500E0D0BD /* LNSearchManager.m */; };
 		30312C301D5709E500E0D0BD /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 30312C261D5709E500E0D0BD /* README.md */; };
+		30312C331D570B7600E0D0BD /* JLCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C321D570B7600E0D0BD /* JLCityController.m */; };
 		3043B09D1D02C55B00E97B82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3043B09C1D02C55B00E97B82 /* main.m */; };
 		3043B0A01D02C55B00E97B82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3043B09F1D02C55B00E97B82 /* AppDelegate.m */; };
 		3043B0A31D02C55B00E97B82 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3043B0A21D02C55B00E97B82 /* ViewController.m */; };
@@ -166,6 +167,8 @@
 		30312C241D5709E500E0D0BD /* LNSearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNSearchManager.h; sourceTree = "<group>"; };
 		30312C251D5709E500E0D0BD /* LNSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNSearchManager.m; sourceTree = "<group>"; };
 		30312C261D5709E500E0D0BD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		30312C311D570B7600E0D0BD /* JLCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLCityController.h; sourceTree = "<group>"; };
+		30312C321D570B7600E0D0BD /* JLCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLCityController.m; sourceTree = "<group>"; };
 		3043B0981D02C55B00E97B82 /* JLshopios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JLshopios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3043B09C1D02C55B00E97B82 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3043B09E1D02C55B00E97B82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -632,6 +635,8 @@
 				3057831E1D0C1CA4007AED3C /* ShopHome.storyboard */,
 				8E2DE75B1D047B98003C077A /* JLHomeViewController.h */,
 				8E2DE75C1D047B98003C077A /* JLHomeViewController.m */,
+				30312C311D570B7600E0D0BD /* JLCityController.h */,
+				30312C321D570B7600E0D0BD /* JLCityController.m */,
 				8EA0FE101D0C727D00947433 /* JLTypeListView.h */,
 				8EA0FE111D0C727D00947433 /* JLTypeListView.m */,
 				305783381D0C29BD007AED3C /* JLShopCollectionViewCell.h */,
@@ -1113,6 +1118,7 @@
 				8E2DE75D1D047B98003C077A /* JLHomeViewController.m in Sources */,
 				E715ECF51D0526A3003A2D62 /* REFrostedContainerViewController.m in Sources */,
 				8E2DE7881D048A43003C077A /* UINavigationController+JZExtension.m in Sources */,
+				30312C331D570B7600E0D0BD /* JLCityController.m in Sources */,
 				E715ECBE1D052671003A2D62 /* UIButton+Extension.m in Sources */,
 				E715ECF81D0526A3003A2D62 /* UIView+REFrostedViewController.m in Sources */,
 				30312C2F1D5709E500E0D0BD /* LNSearchManager.m in Sources */,
