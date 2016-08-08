@@ -10,6 +10,29 @@
 
 @implementation JLShopModel
 
+//{
+//    adId = 6;
+//    id = 40;
+//    image = "http://123.56.192.182/http_resource/image/ad/201606132134556884753.jpg";
+//    info = 11;
+//    resourceType = 1;
+//    url = "";
+//},
+
++(instancetype)initWithDictionary:(NSDictionary *)dic{
+    
+    JLShopModel *model = [[JLShopModel alloc]init];
+    
+    model.adId = [dic[@"adId"] longLongValue];
+    model.userId = [dic[@"id"] longLongValue];
+    model.image = dic[@"image"];
+    model.info = dic[@"info"];
+    model.resourceType = [dic[@"resourceType"] longLongValue];
+    model.url = dic[@"url"];
+    model.infoDic = dic;
+    
+    return model;
+}
 
 
 

@@ -62,6 +62,7 @@
 		8E2DE7881D048A43003C077A /* UINavigationController+JZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE77E1D048A43003C077A /* UINavigationController+JZExtension.m */; };
 		8E2DE7891D048A43003C077A /* UIViewController+JZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7801D048A43003C077A /* UIViewController+JZExtension.m */; };
 		8E2DE78A1D048A43003C077A /* UIViewController+NMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7821D048A43003C077A /* UIViewController+NMExtension.m */; };
+		8E6EC3161D58EFA8008A03EF /* JLGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */; };
 		8EA0FE121D0C727D00947433 /* JLTypeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA0FE111D0C727D00947433 /* JLTypeListView.m */; };
 		975976C61D570AAC00B3B5CB /* NewCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 975976C51D570AAC00B3B5CB /* NewCategory.plist */; };
 		975976CF1D577ACE00B3B5CB /* CellConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 975976CC1D577ACE00B3B5CB /* CellConfig.m */; };
@@ -278,6 +279,8 @@
 		8E2DE7801D048A43003C077A /* UIViewController+JZExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+JZExtension.m"; sourceTree = "<group>"; };
 		8E2DE7811D048A43003C077A /* UIViewController+NMExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+NMExtension.h"; sourceTree = "<group>"; };
 		8E2DE7821D048A43003C077A /* UIViewController+NMExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+NMExtension.m"; sourceTree = "<group>"; };
+		8E6EC3141D58EFA8008A03EF /* JLGoodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLGoodModel.h; sourceTree = "<group>"; };
+		8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLGoodModel.m; sourceTree = "<group>"; };
 		8EA0FE101D0C727D00947433 /* JLTypeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLTypeListView.h; sourceTree = "<group>"; };
 		8EA0FE111D0C727D00947433 /* JLTypeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLTypeListView.m; sourceTree = "<group>"; };
 		975976C51D570AAC00B3B5CB /* NewCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewCategory.plist; sourceTree = "<group>"; };
@@ -1060,6 +1063,8 @@
 				978D3C0E1D44EF8B00C0C1BE /* Controller */,
 				308B96C41D572D2C008DD755 /* JLShopModel.h */,
 				308B96C51D572D2C008DD755 /* JLShopModel.m */,
+				8E6EC3141D58EFA8008A03EF /* JLGoodModel.h */,
+				8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1277,6 +1282,7 @@
 				975977151D57809900B3B5CB /* MasonyUtil.m in Sources */,
 				E715ECDD1D052696003A2D62 /* MASConstraintMaker.m in Sources */,
 				975976E91D577B4100B3B5CB /* CommodityAddressCell.m in Sources */,
+				8E6EC3161D58EFA8008A03EF /* JLGoodModel.m in Sources */,
 				C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */,
 				C5EE85761D45E17A005F905C /* ModifyViewController.m in Sources */,
 				E715ED191D052729003A2D62 /* CategoryViewController.m in Sources */,
