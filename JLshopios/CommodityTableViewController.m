@@ -61,7 +61,21 @@
 }
 #pragma mark 加载数据
 -(void)initData{
-
+//    <item>https://123.56.192.182:8443</item>
+//    <item>/app/product/</item>
+//    <item>listGoods?</item>
+    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"25\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"\",\"orderDes\":\"\",}"};
+    NSLog(@" ------ %@ ------",dic[@"arg0"]);
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+        NSLog(@"+++++%@",json);
+        NSString *path = @"/Users/chenlin/Desktop/";
+        NSString *fileName = [path stringByAppendingPathComponent:@"secondProduct.plist"];
+        NSFileManager *fm = [NSFileManager defaultManager];
+        [fm createFileAtPath:fileName contents:nil attributes:nil];
+         [json writeToFile:fileName atomically:YES];
+        } failure:^(NSError *error) {
+        NSLog(@"-----%@",error);
+    }];
     NSString *path=[[NSBundle mainBundle] pathForResource:@"Commodity" ofType:@"plist"];
     NSArray *array=[NSArray arrayWithContentsOfFile:path];
     _commodity=[[NSMutableArray alloc]init];

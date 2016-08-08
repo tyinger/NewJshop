@@ -322,8 +322,8 @@
     cell.imageView.layer.cornerRadius = 8;
     cell.imageView.image=[UIImage imageNamed:meun.urlName];
     //给一张默认图片，先使用默认图片，当图片加载完成后再替换
-//    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:meun.urlName]
-//                      placeholderImage:[UIImage imageNamed:meun.urlName]];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:meun.urlName]
+                      placeholderImage:[UIImage imageNamed:meun.urlName]];
     
     cell.imageView.backgroundColor = [UIColor blueColor];
     return cell;

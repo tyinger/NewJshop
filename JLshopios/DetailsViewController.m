@@ -37,16 +37,21 @@
     if (!_modelToShow) {
         _modelToShow = [DetailsMode new];
         // 假数据
-        _modelToShow.detailsName=@"苹果（Apple）iPhone 6 (A1586) 16GB 金色 移动联通电信4G手机";
-        _modelToShow.detailsActivity=@"初心未变，全场普惠，天天618.详情尽在iPhone天天618";
-        _modelToShow.detailsPrice=@"￥4783.00";
-        _modelToShow.detailsImgZX=@"ZX_Phone";
-        _modelToShow.detailsTxtZX=@"比电脑购买省5元";
-        _modelToShow.detailsSelect=@"金色 公开版 16GB 非合约机1个 可选延保";
-        _modelToShow.detailsAddress=@"辽宁 沈阳市 铁西区";
-        _modelToShow.detailsPraise=@"95%";
-        _modelToShow.detailsPerson=@"46331人评论";
-        
+//        _modelToShow.detailsName=@"苹果（Apple）iPhone 6 (A1586) 16GB 金色 移动联通电信4G手机";
+//        _modelToShow.detailsActivity=@"初心未变，全场普惠，天天618.详情尽在iPhone天天618";
+//        _modelToShow.detailsPrice=@"￥4783.00";
+//        _modelToShow.detailsImgZX=@"ZX_Phone";
+//        _modelToShow.detailsTxtZX=@"比电脑购买省5元";
+//        _modelToShow.detailsSelect=@"金色 公开版 16GB 非合约机1个 可选延保";
+//        _modelToShow.detailsAddress=@"辽宁 沈阳市 铁西区";
+//        _modelToShow.detailsPraise=@"95%";
+//        _modelToShow.detailsPerson=@"46331人评论";
+
+        _modelToShow.detailsName=@"蓝带超纯啤酒500ml/听";
+        _modelToShow.detailsActivity=@"规格参数\n产地：中国大陆 品牌：蓝带进口/国产：国产啤酒品种：黄啤酒精度数：中度麦汁浓度：中浓度生产工艺：生啤酒/鲜啤酒净含量（ml）：500包装：整箱储藏方法：常温避光处储藏";
+        _modelToShow.detailsPrice=@"￥3.90";
+
+
     }
     return _modelToShow;
 }
@@ -66,19 +71,19 @@
         // 购买信息
         CellConfig *comInfo = [CellConfig cellConfigWithClassName:NSStringFromClass([CommodityInfoCell class]) title:@"购买信息" showInfoMethod:@selector(showInfo:) heightOfCell:kHeightCommodityInfo cellType:NO];
         
-        CellConfig *comSelect = [CellConfig cellConfigWithClassName:@"CommoditySelectCell" title:@"已选" showInfoMethod:@selector(showInfo:) heightOfCell:80.0f cellType:YES];
+//        CellConfig *comSelect = [CellConfig cellConfigWithClassName:@"CommoditySelectCell" title:@"已选" showInfoMethod:@selector(showInfo:) heightOfCell:80.0f cellType:YES];
+//        
+//        CellConfig *comAddress = [CellConfig cellConfigWithClassName:@"CommodityAddressCell" title:@"地址" showInfoMethod:@selector(showInfo:) heightOfCell:180.0f cellType:YES];
         
-        CellConfig *comAddress = [CellConfig cellConfigWithClassName:@"CommodityAddressCell" title:@"地址" showInfoMethod:@selector(showInfo:) heightOfCell:180.0f cellType:YES];
+//        CellConfig *comPack = [CellConfig cellConfigWithClassName:@"CommodityPackCell" title:@"包装" showInfoMethod:@selector(showInfo:) heightOfCell:50.0f cellType:YES];
+//        
+//        CellConfig *comPraise = [CellConfig cellConfigWithClassName:@"CommodityPraiseCell" title:@"评价" showInfoMethod:@selector(showInfo:) heightOfCell:80.0f cellType:YES];
+//        
+//        CellConfig *comSection = [CellConfig cellConfigWithClassName:@"CommoditySectionCell" title:@"专区" showInfoMethod:@selector(showInfo:) heightOfCell:110.0f cellType:YES];
+//        
+//        CellConfig *comComponent = [CellConfig cellConfigWithClassName:@"CommodityComponentCell" title:@"配件" showInfoMethod:@selector(showInfo:) heightOfCell:50.0f cellType:YES];
         
-        CellConfig *comPack = [CellConfig cellConfigWithClassName:@"CommodityPackCell" title:@"包装" showInfoMethod:@selector(showInfo:) heightOfCell:50.0f cellType:YES];
-        
-        CellConfig *comPraise = [CellConfig cellConfigWithClassName:@"CommodityPraiseCell" title:@"评价" showInfoMethod:@selector(showInfo:) heightOfCell:80.0f cellType:YES];
-        
-        CellConfig *comSection = [CellConfig cellConfigWithClassName:@"CommoditySectionCell" title:@"专区" showInfoMethod:@selector(showInfo:) heightOfCell:110.0f cellType:YES];
-        
-        CellConfig *comComponent = [CellConfig cellConfigWithClassName:@"CommodityComponentCell" title:@"配件" showInfoMethod:@selector(showInfo:) heightOfCell:50.0f cellType:YES];
-        
-        [_dataArray addObject:@[comInfo,comSelect,comAddress,comPack,comPraise,comSection,comComponent]];
+        [_dataArray addObject:@[comInfo]];//,comSelect,comAddress,comPack,comPraise,comSection,comComponent]];
         // 注意，是self.dataArray二维数组，所以这里要套一层数组
         
     }

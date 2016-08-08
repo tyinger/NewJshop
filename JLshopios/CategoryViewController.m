@@ -69,6 +69,18 @@
 
      _list=[NSMutableArray arrayWithCapacity:0];
     
+//    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"2\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
+//    NSLog(@" ------ %@ ------",dic[@"arg0"]);
+//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+//        NSLog(@"%@",json);
+//        NSString *path = @"/Users/chenlin/Desktop/";
+//        NSString *fileName = [path stringByAppendingPathComponent:@"firstProduct.plist"];
+//        NSFileManager *fm = [NSFileManager defaultManager];
+//        [fm createFileAtPath:fileName contents:nil attributes:nil];
+//         [json writeToFile:fileName atomically:YES];
+//        } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//    }];
     NSString *path=[[NSBundle mainBundle] pathForResource:@"NewCategory" ofType:@"plist"];
     NSArray *array=[NSArray arrayWithContentsOfFile:path];
     /**
@@ -78,7 +90,7 @@
     for (int i=0; i<[array count]; i++) {
       
         CategoryMeunModel * meun=[[CategoryMeunModel alloc] init];
-        meun.menuName=[array objectAtIndex:i][@"menuName"];
+        meun.menuName=[array objectAtIndex:i][@"name"];
         meun.nextArray=[array objectAtIndex:i][@"TypeMenu"];
 //        NSMutableArray * sub=[NSMutableArray arrayWithCapacity:0];
         
@@ -93,8 +105,8 @@
             NSMutableArray *zList=[NSMutableArray arrayWithCapacity:0];
             for ( int k=0; k <[meun.nextArray count]; k++) {
                 CategoryMeunModel * meun2=[[CategoryMeunModel alloc] init];
-                meun2.menuName=[meun.nextArray objectAtIndex:k][@"typeName"];
-                meun2.urlName=[meun.nextArray objectAtIndex:k][@"typeImg"];
+                meun2.menuName=[meun.nextArray objectAtIndex:k][@"name"];
+                meun2.urlName=[meun.nextArray objectAtIndex:k][@"icon"];
                 [zList addObject:meun2];
             }
             
