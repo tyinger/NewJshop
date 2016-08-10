@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,43 +12,102 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="苹果（Apple）iPhone 6（A1586）16G 金色移动手机" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdD-cu-HYF">
-                        <rect key="frame" x="120" y="10" width="222" height="41"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="苹果（Apple）iPhone 6（A1586）16G 金色移动手机" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdD-cu-HYF">
+                        <rect key="frame" x="123" y="10" width="205" height="36"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="82" id="JuN-h3-DVN"/>
+                            <constraint firstAttribute="height" constant="44" id="LgH-XU-SJC"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.062745098039215685" green="0.062745098039215685" blue="0.062745098039215685" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="JuN-h3-DVN"/>
+                                <exclude reference="LgH-XU-SJC"/>
+                            </mask>
+                        </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vc7-ge-b4M">
-                        <rect key="frame" x="120" y="75" width="247" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 人" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vc7-ge-b4M">
+                        <rect key="frame" x="123" y="75" width="100" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="Ahk-nr-Aci"/>
+                            <constraint firstAttribute="width" constant="100" id="Dcn-1q-pjS"/>
+                            <constraint firstAttribute="height" constant="15" id="bz2-RU-kgu"/>
+                            <constraint firstAttribute="height" constant="15" id="v1d-P8-J3w"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.4823529411764706" green="0.49019607843137253" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Ahk-nr-Aci"/>
+                                <exclude reference="v1d-P8-J3w"/>
+                            </mask>
+                        </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="￥4783.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xz5-T4-3Z0">
-                        <rect key="frame" x="120" y="55" width="100" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C_0.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="mCe-Gw-7tO">
+                        <rect key="frame" x="13" y="10" width="80" height="80"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="GoL-xM-mZM"/>
+                            <constraint firstAttribute="width" constant="80" id="Zpf-jg-jPm"/>
+                            <constraint firstAttribute="height" constant="80" id="a2E-J8-AkN"/>
+                            <constraint firstAttribute="height" constant="80" id="yPL-Eg-SyA"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Zpf-jg-jPm"/>
+                                <exclude reference="yPL-Eg-SyA"/>
+                            </mask>
+                        </variation>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-aF-OWE">
+                        <rect key="frame" x="340" y="39" width="22" height="22"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥4783.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xz5-T4-3Z0">
+                        <rect key="frame" x="123" y="54" width="100" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="AqM-cI-msu"/>
+                            <constraint firstAttribute="width" constant="100" id="PeM-9d-PE7"/>
+                            <constraint firstAttribute="height" constant="20" id="h6J-w1-qG3"/>
+                            <constraint firstAttribute="width" constant="100" id="mez-oP-nfN"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.91764705882352937" green="0.11372549019607843" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="AqM-cI-msu"/>
+                                <exclude reference="PeM-9d-PE7"/>
+                            </mask>
+                        </variation>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="C_0.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="mCe-Gw-7tO">
-                        <rect key="frame" x="8" y="10" width="80" height="80"/>
-                    </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-aF-OWE">
-                        <rect key="frame" x="349" y="39" width="22" height="22"/>
-                    </button>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="bY4-aF-OWE" firstAttribute="centerY" secondItem="mCe-Gw-7tO" secondAttribute="centerY" id="1OT-LD-pI5"/>
+                    <constraint firstItem="mCe-Gw-7tO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7CX-yc-qIP"/>
+                    <constraint firstItem="Vc7-ge-b4M" firstAttribute="top" secondItem="xz5-T4-3Z0" secondAttribute="bottom" constant="1" id="AmZ-4l-BIL"/>
+                    <constraint firstItem="bY4-aF-OWE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jdD-cu-HYF" secondAttribute="trailing" id="Ikl-ng-qPd"/>
+                    <constraint firstItem="xz5-T4-3Z0" firstAttribute="leading" secondItem="mCe-Gw-7tO" secondAttribute="trailing" constant="30" id="NEi-4F-Ubc"/>
+                    <constraint firstItem="bY4-aF-OWE" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-5" id="U5e-d6-LI9"/>
+                    <constraint firstItem="mCe-Gw-7tO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="mv6-hV-e4b"/>
+                    <constraint firstItem="Vc7-ge-b4M" firstAttribute="leading" secondItem="mCe-Gw-7tO" secondAttribute="trailing" constant="30" id="ptd-fo-ASU"/>
+                    <constraint firstItem="jdD-cu-HYF" firstAttribute="leading" secondItem="mCe-Gw-7tO" secondAttribute="trailing" constant="30" id="qzX-fG-XHG"/>
+                    <constraint firstItem="Vc7-ge-b4M" firstAttribute="bottom" secondItem="mCe-Gw-7tO" secondAttribute="bottom" id="vGA-7X-AYo"/>
+                    <constraint firstItem="jdD-cu-HYF" firstAttribute="top" secondItem="mCe-Gw-7tO" secondAttribute="top" id="w66-EK-Em1"/>
+                </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="commodityImg" destination="mCe-Gw-7tO" id="pwF-4C-7Vj"/>
                 <outlet property="commodityName" destination="jdD-cu-HYF" id="tkj-7d-oJW"/>
                 <outlet property="commodityPraise" destination="Vc7-ge-b4M" id="ahd-jX-Bww"/>
                 <outlet property="commodityPrice" destination="xz5-T4-3Z0" id="VTR-WM-RDJ"/>
             </connections>
-            <point key="canvasLocation" x="267.5" y="272"/>
+            <point key="canvasLocation" x="421.5" y="344"/>
         </tableViewCell>
     </objects>
     <resources>

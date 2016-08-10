@@ -289,13 +289,13 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     CategoryMeunModel * title=self.allData[self.selectIndex];
-    CategoryMeunModel * meun=title.nextArray[indexPath.section];
+    CategoryMeunModel * meun=title.nextArray[indexPath.row];
     
-    if (meun.nextArray.count>0) {
-        meun=title.nextArray[indexPath.section];
-        NSArray * list=meun.nextArray;
-        meun=list[indexPath.row];
-    }
+//    if (meun.nextArray.count>0) {
+//        meun=title.nextArray[indexPath.section];
+//        NSArray * list=meun.nextArray;
+//        meun=list[indexPath.row];
+//    }
 
     void (^select)(NSInteger left,NSInteger right,id info) = self.block;
     select(self.selectIndex,indexPath.row,meun);

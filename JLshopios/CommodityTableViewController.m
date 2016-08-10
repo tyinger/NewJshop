@@ -20,6 +20,7 @@
 #import "JLCommdoityCollectionCell.h"
 #import "UIScrollView+MJRefresh.h"
 #import "DetailsViewController.h"
+#import <UIImageView+WebCache.h>
 
 @interface CommodityTableViewController ()<SearchBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 {
@@ -37,15 +38,13 @@
    
     self.view.backgroundColor = [UIColor whiteColor];
     //初始化数据
-    [self initData];
+    [self initData:self.secondMenuIDStr];
     //设置导航栏
     [self setupNavigationItem];
     //初始化视图
     [self initView];
     
-    _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
     
-    _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
 }
 
 -(void)refresh
@@ -60,28 +59,44 @@
     [_tableView.mj_footer endRefreshing];
 }
 #pragma mark 加载数据
--(void)initData{
-//    <item>https://123.56.192.182:8443</item>
-//    <item>/app/product/</item>
-//    <item>listGoods?</item>
-    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"25\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"\",\"orderDes\":\"\",}"};
+-(void)initData:(NSString *)menuID{
+
+    _commodity=[[NSMutableArray alloc]init];
+    
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"\",\"orderDes\":\"\"}",menuID];
+    NSDictionary *dic = @{@"arg0":parameterStr};
+
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-        NSLog(@"+++++%@",json);
-        NSString *path = @"/Users/chenlin/Desktop/";
-        NSString *fileName = [path stringByAppendingPathComponent:@"secondProduct.plist"];
-        NSFileManager *fm = [NSFileManager defaultManager];
-        [fm createFileAtPath:fileName contents:nil attributes:nil];
-         [json writeToFile:fileName atomically:YES];
+        
+//        NSArray *array=[NSArray arrayWithArray:json];
+//        
+//        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//            [_commodity addObject:[CommodityModel commodityWithDictionary:obj]];
+//        }];
+        NSLog(@"json---%@",json);
+        [_commodity setArray:json];
+            if (!_tableView) {
+                //创建一个分组样式的UITableView
+                _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-40) style:UITableViewStylePlain];
+                //设置数据源，注意必须实现对应的UITableViewDataSource协议
+                _tableView.dataSource=self;
+                //设置代理
+                _tableView.delegate=self;
+                _tableView.rowHeight = 90;
+                _tableView.backgroundColor=RGB(240, 243, 245);
+                [self.view addSubview:_tableView];
+                
+                [_tableView registerNib:[UINib nibWithNibName:@"CommodityTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+                _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
+                
+                _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+            }
+        
         } failure:^(NSError *error) {
         NSLog(@"-----%@",error);
     }];
-    NSString *path=[[NSBundle mainBundle] pathForResource:@"Commodity" ofType:@"plist"];
-    NSArray *array=[NSArray arrayWithContentsOfFile:path];
-    _commodity=[[NSMutableArray alloc]init];
-    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [_commodity addObject:[CommodityModel commodityWithDictionary:obj]];
-    }];
+//    NSString *path=[[NSBundle mainBundle] pathForResource:@"Commodity" ofType:@"plist"];
 }
 - (void)setupNavigationItem {
  
@@ -140,32 +155,6 @@
     
     [self.view addSubview:segmented];
     
-    
-    //创建一个分组样式的UITableView
-    _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40, self.view.width, self.view.height-64-40) style:UITableViewStylePlain];
-    
-    //设置数据源，注意必须实现对应的UITableViewDataSource协议
-    _tableView.dataSource=self;
-    //设置代理
-    _tableView.delegate=self;
-    _tableView.rowHeight = 120;
-    _tableView.backgroundColor=RGB(240, 243, 245);
-    [self.view addSubview:_tableView];
-    
-    _layout = [[JLFlowLayout alloc]init];
-    _layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    _layout.itemCount=_commodity.count;
-    _collectionView  = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 40, self.view.width, self.view.height-64-40) collectionViewLayout:_layout];
-    [_collectionView registerNib:[UINib nibWithNibName:@"JLCommdoityCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"JLColletionCell"];
-    _collectionView.backgroundColor=RGB(240, 243, 245);
-    _collectionView.delegate=self;
-    _collectionView.dataSource=self;
-    
-//    [_collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cellid"];
-    
-    [self.view addSubview:_collectionView];
-    _collectionView.hidden = YES;
-    
 }
 
 
@@ -196,6 +185,9 @@
 
 #pragma mark 返回每组行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (_commodity.count == 0) {
+        _tableView.hidden = YES;
+    }
     return _commodity.count;
 }
 
@@ -204,17 +196,17 @@
     
     static NSString *cellIdentifier=@"Cell";
      CommodityTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(cell==nil){
-           cell=[[NSBundle mainBundle] loadNibNamed:@"CommodityTableViewCell" owner:self options:nil][0];
-    }
+//    if(cell==nil){
+////           cell=[[NSBundle mainBundle] loadNibNamed:@"CommodityTableViewCell" owner:self options:nil][0];
+//    }
 
-    CommodityModel *commodity =_commodity[indexPath.row];
+    CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
     
-    cell.commodityImg.image=[UIImage imageNamed:commodity.commodityImageUrl];
+    [cell.commodityImg sd_setImageWithURL:[NSURL URLWithString:commodity.commodityImageUrl]];
     cell.commodityName.text=commodity.commodityName;
     cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
-    cell.commodityZX.image=[UIImage imageNamed:commodity.commodityZX];
-    cell.commodityPraise.text=commodity.praise;
+//    cell.commodityZX.image=[UIImage imageNamed:commodity.commodityZX];
+//    cell.commodityPraise.text=commodity.praise;
     
     return cell;
 }
@@ -227,30 +219,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    DetailsViewController * detailsTVC = [[DetailsViewController alloc]init];
 //    [self.navigationController pushViewController:detailsTVC animated:YES];
+    CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
     DetailsViewController *next = [[DetailsViewController alloc] init];
+    next.productIDStr = [NSString stringWithFormat:@"%lld",commodity.Id];
     [self.navigationController pushViewController:next animated:YES];
 }
 
-#pragma mark - UICollectionViewDelegate
--(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
-}
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return _commodity.count;
-}
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    JLCommdoityCollectionCell* cell  = [collectionView dequeueReusableCellWithReuseIdentifier:@"JLColletionCell" forIndexPath:indexPath];
-    CommodityModel *commodity =_commodity[indexPath.row];
-    
-    cell.productionImage.image=[UIImage imageNamed:commodity.commodityImageUrl];
-    cell.productionName.text=commodity.commodityName;
-    cell.productionPrise.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
-//    cell.commodityZX.image=[UIImage imageNamed:commodity.commodityZX];
-    cell.productionAppraise.text=commodity.praise;
-
-    cell.backgroundColor = [UIColor colorWithRed:arc4random()%255/255.0 green:arc4random()%255/255.0 blue:arc4random()%255/255.0 alpha:1];
-    return cell;
-}
 
 #pragma mark 滑动事件
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
@@ -258,6 +232,14 @@
     
 }
 
+#pragma mark 写入plist文件
 
+- (void)writeToLocalPlist:(id)json{
+    NSString *path = @"/Users/mymac/Desktop/";
+    NSString *fileName = [path stringByAppendingPathComponent:@"secondProduct.plist"];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [fm createFileAtPath:fileName contents:nil attributes:nil];
+    [json writeToFile:fileName atomically:YES];
+}
 
 @end

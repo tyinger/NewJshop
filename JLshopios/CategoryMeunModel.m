@@ -13,7 +13,7 @@
 #pragma mark 根据字典初始化对象
 -(CategoryMeunModel *)initWithDictionary:(NSDictionary *)dic{
     if (self==[self init]) {
-        self.Id=[dic[@"Id"] intValue];
+        self.Id=[dic[@"id"] intValue];
         self.menuName=dic[@"menuName"];
     }
     return self;

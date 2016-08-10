@@ -16,10 +16,11 @@
 #import "LoginViewController.h"
 #import "QSCNavigationController.h"
 #import "DetailsMode.h"
+@class QSCHttpTool;
 @interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate>
 {
 //    MBProgressHUD *HUD;
-    NSArray *_images;
+    NSMutableArray *_images;
     UILabel *_indexPage;
 }
 @property (nonatomic, strong) UITableView *tableView;
@@ -27,34 +28,21 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 /// 数据模型
 @property (nonatomic, strong) DetailsMode *modelToShow;
+
+@property (nonatomic, strong) NSDictionary *dataDic;
 @end
 
 @implementation DetailsViewController
 
 
-- (DetailsMode *)modelToShow
-{
-    if (!_modelToShow) {
-        _modelToShow = [DetailsMode new];
-        // 假数据
-//        _modelToShow.detailsName=@"苹果（Apple）iPhone 6 (A1586) 16GB 金色 移动联通电信4G手机";
-//        _modelToShow.detailsActivity=@"初心未变，全场普惠，天天618.详情尽在iPhone天天618";
-//        _modelToShow.detailsPrice=@"￥4783.00";
-//        _modelToShow.detailsImgZX=@"ZX_Phone";
-//        _modelToShow.detailsTxtZX=@"比电脑购买省5元";
-//        _modelToShow.detailsSelect=@"金色 公开版 16GB 非合约机1个 可选延保";
-//        _modelToShow.detailsAddress=@"辽宁 沈阳市 铁西区";
-//        _modelToShow.detailsPraise=@"95%";
-//        _modelToShow.detailsPerson=@"46331人评论";
-
-        _modelToShow.detailsName=@"蓝带超纯啤酒500ml/听";
-        _modelToShow.detailsActivity=@"规格参数\n产地：中国大陆 品牌：蓝带进口/国产：国产啤酒品种：黄啤酒精度数：中度麦汁浓度：中浓度生产工艺：生啤酒/鲜啤酒净含量（ml）：500包装：整箱储藏方法：常温避光处储藏";
-        _modelToShow.detailsPrice=@"￥3.90";
-
-
-    }
-    return _modelToShow;
-}
+//- (DetailsMode *)modelToShow
+//{
+//    if (!_modelToShow) {
+//        _modelToShow = [[DetailsMode alloc] initWithDictionary:self.dataDic];
+//        NSLog(@"modelToShow%@",_modelToShow);
+//    }
+//    return _modelToShow;
+//}
 /**
  *  改变不同类型cell的顺序、增删时，只需在此修改即可，
  *  无需在多个tableView代理方法中逐个修改
@@ -91,10 +79,31 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self getSourceData:self.productIDStr];
+    
     //设置导航栏
     [self setupNavigationItem];
-    //初始化视图
-    [self initView];
+    
+}
+
+
+- (void)getSourceData:(NSString *)productIDStr
+{
+        NSDictionary *dic = @{@"sellType":@"normal",@"id":productIDStr,@"userId":@""};
+        NSLog(@" ------ %@ ------",dic);
+        [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+            NSLog(@"正确返回%@",json);
+//            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
+//            NSLog(@"dataDic%@",self.dataDic);
+            
+            _modelToShow = [[DetailsMode alloc] initWithDictionary:json];
+            //初始化视图
+            [self initView];
+
+            } failure:^(NSError *error) {
+            NSLog(@"错误返回%@",error);
+        }];
 }
 
 - (void)setupNavigationItem {
@@ -113,7 +122,7 @@
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView =[self addHeaderView];
     
-    UIView * view =[[UIView alloc]initWithFrame:CGRectMake(0, self.view.height-124, self.view.width, 60)];
+    UIView * view =[[UIView alloc]initWithFrame:CGRectMake(0, self.view.height-60, self.view.width, 60)];
     view.backgroundColor=RGBA(0, 0, 0, 0.8);
     [self.view addSubview:view];
     
@@ -144,28 +153,37 @@
 }
 
 - (UIView*)addHeaderView{
-    _images = @[[UIImage imageNamed:@"h1.jpg"],
-                [UIImage imageNamed:@"h2.jpg"],
-                [UIImage imageNamed:@"h3.jpg"],
-                [UIImage imageNamed:@"h4.jpg"]
-                 ];
-    UIView * view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.height-280)];
-    SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, view.size.width, view.size.height) imageNamesGroup:_images];
 
-    cycleScrollView.autoScroll = NO;
-    cycleScrollView.infiniteLoop = NO;
-    cycleScrollView.delegate = self;
-    cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
-    [view addSubview:cycleScrollView];
-    UIImageView * imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circleBackground"]];
-    imageView.frame=CGRectMake(cycleScrollView.size.width-70, cycleScrollView.size.height-70, 50, 50);
-    [cycleScrollView addSubview:imageView];
-    _indexPage=[[UILabel alloc]initWithFrame:CGRectMake(0,0, imageView.size.width, imageView.size.height)];
-    _indexPage.textAlignment = NSTextAlignmentCenter;
-    _indexPage.font=[UIFont systemFontOfSize:24];
-    _indexPage.textColor=[UIColor whiteColor];
-    _indexPage.text=[NSString stringWithFormat:@"%i/%i",cycleScrollView.indexPage+1,(int)_images.count];
-    [imageView addSubview:_indexPage];
+//    _images = @[[UIImage imageNamed:@"h1.jpg"],
+//                [UIImage imageNamed:@"h2.jpg"],
+//                [UIImage imageNamed:@"h3.jpg"],
+//                [UIImage imageNamed:@"h4.jpg"]
+//                 ];
+    UIView * view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+    view.backgroundColor = [UIColor whiteColor];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+
+        _images = [NSMutableArray arrayWithCapacity:0];
+        for (int i = 0; i < _modelToShow.previewImgs.count; i++) {
+            [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.previewImgs[i][@"path"]]]]];
+        }
+        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, view.size.width, view.size.height) imageNamesGroup:_images];
+
+        cycleScrollView.autoScroll = NO;
+        cycleScrollView.infiniteLoop = NO;
+        cycleScrollView.delegate = self;
+        cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
+        [view addSubview:cycleScrollView];
+        UIImageView * imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circleBackground"]];
+        imageView.frame=CGRectMake(cycleScrollView.size.width-70, cycleScrollView.size.height-70, 50, 50);
+        [cycleScrollView addSubview:imageView];
+        _indexPage=[[UILabel alloc]initWithFrame:CGRectMake(0,0, imageView.size.width, imageView.size.height)];
+        _indexPage.textAlignment = NSTextAlignmentCenter;
+        _indexPage.font=[UIFont systemFontOfSize:24];
+        _indexPage.textColor=[UIColor whiteColor];
+        _indexPage.text=[NSString stringWithFormat:@"%i/%i",cycleScrollView.indexPage+1,(int)_images.count];
+        [imageView addSubview:_indexPage];
+    });
     return view;
 }
 - (void)didReceiveMemoryWarning {

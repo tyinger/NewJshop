@@ -107,6 +107,7 @@
                 CategoryMeunModel * meun2=[[CategoryMeunModel alloc] init];
                 meun2.menuName=[meun.nextArray objectAtIndex:k][@"name"];
                 meun2.urlName=[meun.nextArray objectAtIndex:k][@"icon"];
+                meun2.Id = [[meun.nextArray objectAtIndex:k][@"id"] intValue];
                 [zList addObject:meun2];
             }
             
@@ -125,7 +126,7 @@
 - (void)initCategoryMenu{
     
     
-      MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-49 - 64) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryMeunModel * info) {
+      MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryMeunModel * info) {
         
         NSLog(@"点击的 菜单%@",info.menuName);
 //         JDNavigationController *navigationController = [[JDNavigationController alloc] initWithRootViewController:[[CommodityTableViewController alloc] init]];
@@ -140,6 +141,7 @@
          //[self.navigationController pushViewController:frostedViewController animated:YES];
           
           CommodityTableViewController *commod = [[CommodityTableViewController alloc] init];
+          commod.secondMenuIDStr = [NSString stringWithFormat:@"%d",info.Id];
           [self.navigationController pushViewController:commod animated:YES];
     }];
     

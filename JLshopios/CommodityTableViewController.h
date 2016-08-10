@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CommodityTableViewController : UIViewController
-
+@property (nonatomic, copy) NSString *secondMenuIDStr;
 @end
