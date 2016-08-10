@@ -30,7 +30,35 @@
 
 @property (nonatomic,copy) NSString *name;
 
+@property (nonatomic,strong) NSDictionary *postage;
+
+/**
+ *  图片数组
+ */
+@property (nonatomic,strong) NSArray *previewImgs;
+
+//价格
+@property (nonatomic,assign) CGFloat price;
+
+@property (nonatomic,assign) long long recommendState;
+
+//商铺
+@property (nonatomic,strong) NSDictionary *shop;
+//出售号码
+@property (nonatomic,assign) long long soldNum;
+
+@property (nonatomic,assign) long long status;
+
+@property (nonatomic,assign) long long updateDate;
+
+@property (nonatomic,copy) NSString *video;
+
+
 @property (nonatomic,strong) NSDictionary *parent;
+
+
++(instancetype)initWithDictionary:(NSDictionary *)dic;
+
 
 
 @end
