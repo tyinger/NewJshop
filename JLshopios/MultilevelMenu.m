@@ -182,7 +182,6 @@
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     CategoryMeunModel * title=self.allData[indexPath.row];
-    NSLog(@"%@",self.allData);
     cell.titile.text=title.menuName;
     
     UILabel * line=(UILabel*)[cell viewWithTag:100];

@@ -22,12 +22,16 @@
 #import "DetailsViewController.h"
 #import <UIImageView+WebCache.h>
 
-@interface CommodityTableViewController ()<SearchBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface CommodityTableViewController ()<SearchBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate>
 {
     UITableView *_tableView;
     JLFlowLayout * _layout;
     UICollectionView * _collectionView;
     NSMutableArray *_commodity;
+    NSString *_OderTypeStr;
+    NSString *_OderDesStr;
+    BOOL _isOderTypeSoldNum;
+    BOOL _isOderDesUp;
 }
 @end
 
@@ -63,7 +67,7 @@
 
     _commodity=[[NSMutableArray alloc]init];
     
-    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"\",\"orderDes\":\"\"}",menuID];
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"soldNum\",\"orderDes\":\"\"}",menuID];
     NSDictionary *dic = @{@"arg0":parameterStr};
 
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
@@ -111,6 +115,8 @@
 }
 
 - (void)initView{
+    _isOderTypeSoldNum = YES;
+    _isOderDesUp = NO;
     PPiFlatSegmentedControl *segmented=[[PPiFlatSegmentedControl alloc]
                                         initWithFrame:CGRectMake(0, 0, self.view.width, 40)
                                         items:
@@ -126,10 +132,32 @@
                                                     
     
                                                 case 0:
+                                                {
+                                                    _isOderTypeSoldNum = !_isOderTypeSoldNum;
                                                     
+                                                    if (_isOderTypeSoldNum) {
+                                                         _OderTypeStr = @"soldNum";
+                                                        _OderDesStr = @"1";
+                                                    }else{
+                                                        
+                                                        _OderTypeStr = @"soldNum";
+                                                        _OderDesStr = @"0";
+                                                        
+                                                    }
+                                                    
+                                                }
                                                     break;
                                                 case 1:
-                                                    
+                                                {
+                                                    _isOderDesUp = !_isOderDesUp;
+                                                    if (_isOderDesUp) {
+                                                        _OderTypeStr = @"price";
+                                                        _OderDesStr = @"1";
+                                                    }else{
+                                                        _OderTypeStr = @"price";
+                                                        _OderDesStr = @"0";
+                                                    }
+                                                }
                                                     break;
                                                 case 2:
                                                     
@@ -142,8 +170,17 @@
                                                     
                                                 default:
                                                     break;
+                                                    
                                             }
-                                                                         }];
+                                            NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"%@\",\"orderDes\":\"%@\"}",self.secondMenuIDStr,_OderTypeStr,_OderDesStr];
+                                            NSDictionary *dic = @{@"arg0":parameterStr};
+                                            [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                                                [_commodity setArray:json];
+                                                [_tableView reloadData];
+                                            } failure:^(NSError *error) {
+                                                NSLog(@"-----%@",error);
+                                            }];
+                                        }];
     
 //    segmented.color=[UIColor colorWithPatternImage:[UIImage imageNamed:@"navigationbar_background"]];
     segmented.borderColor=[UIColor darkGrayColor];

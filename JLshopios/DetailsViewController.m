@@ -57,7 +57,7 @@
         _dataArray = [NSMutableArray array];
 
         // 购买信息
-        CellConfig *comInfo = [CellConfig cellConfigWithClassName:NSStringFromClass([CommodityInfoCell class]) title:@"购买信息" showInfoMethod:@selector(showInfo:) heightOfCell:kHeightCommodityInfo cellType:NO];
+        CellConfig *comInfo = [CellConfig cellConfigWithClassName:NSStringFromClass([CommodityInfoCell class]) title:@"购买信息" showInfoMethod:@selector(showInfo:) heightOfCell:_modelToShow.cellHeight cellType:NO];
         
 //        CellConfig *comSelect = [CellConfig cellConfigWithClassName:@"CommoditySelectCell" title:@"已选" showInfoMethod:@selector(showInfo:) heightOfCell:80.0f cellType:YES];
 //        
@@ -114,10 +114,11 @@
 }
 
 - (void)initView{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-100) style:UITableViewStyleGrouped];
     
     [self.view addSubview:self.tableView];
-    
+    self.tableView.bounces = NO;
+    self.tableView.backgroundColor = [UIColor whiteColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView =[self addHeaderView];
@@ -218,9 +219,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CellConfig *cellConfig = self.dataArray[indexPath.section][indexPath.row];
-    
-    return cellConfig.heightOfCell;
+//    CellConfig *cellConfig = self.dataArray[indexPath.section][indexPath.row];
+
+    return _modelToShow.cellHeight;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 100.f;
 }
 #pragma mark - TableView Delegate
 #pragma mark 选中cell

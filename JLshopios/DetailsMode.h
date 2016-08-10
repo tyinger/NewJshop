@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) NSArray *previewImgs;//人数
 
+@property (nonatomic, assign) CGFloat cellHeight;//cell的高度
+
 
 #pragma mark 根据字典初始化微博对象
 -(DetailsMode *)initWithDictionary:(NSDictionary *)dic;

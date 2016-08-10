@@ -26,14 +26,15 @@
     return _nameLabel;
 }
 
-- (TYAttributedLabel*)activityLabel
+- (UILabel *)activityLabel
 {
     if (!_activityLabel) {
-        _activityLabel = [[TYAttributedLabel alloc] initWithFrame:CGRectZero];
+        _activityLabel = [[UILabel alloc] initWithFrame:CGRectZero];
         [self.contentView addSubview:_activityLabel];
-        _activityLabel.textColor = [UIColor redColor];
-        _activityLabel.numberOfLines = 2;
-        _activityLabel.font = [UIFont systemFontOfSize:16];
+        _activityLabel.textColor = [UIColor lightGrayColor];
+        _activityLabel.numberOfLines = 0;
+        _activityLabel.font = [UIFont systemFontOfSize:14];
+        
     }
     return _activityLabel;
 }
@@ -78,24 +79,32 @@
     [super layoutSubviews];
     CGFloat nameX=10,nameY=10;
     self.nameLabel.frame=CGRectMake(nameX, nameY, self.contentView.frame.size.width-20, 60);
-    self.activityLabel.frame=CGRectMake(nameX, 70, self.contentView.frame.size.width-20, 45);
-    self.priceyLabel.frame=CGRectMake(nameX, 120, self.contentView.frame.size.width-20, 30);
+    CGSize size = CGSizeMake(320,2000);
+    //计算实际frame大小，并将label的frame变成实际大小
+    CGSize labelsize = [_activityLabel.text sizeWithFont:_activityLabel.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
+    _activityLabel.frame = CGRectMake(nameX,70, self.contentView.frame.size.width-20, labelsize.height);
+//    self.activityLabel.frame=CGRectMake(nameX, 70, self.contentView.frame.size.width-20, 45);
+    self.priceyLabel.frame=CGRectMake(nameX, CGRectGetMaxY(_activityLabel.frame), self.contentView.frame.size.width-20, 30);
     self.imgZXImageview.frame=CGRectMake(nameX, 150, 80, 20);
     self.txtZXLabel.frame=CGRectMake(100, 150, 140, 20);
+    self.cellHigh = CGRectGetMaxY(self.priceyLabel.frame) + nameY;
 }
 
 #pragma mark - 显示数据
 - (void)showInfo:(DetailsMode *)model
 {
-    
     self.nameLabel.text = model.detailsName;
-    TYLinkTextStorage *linkTextStorage = [[TYLinkTextStorage alloc]init];
+//    TYLinkTextStorage *linkTextStorage = [[TYLinkTextStorage alloc]init];
 //    linkTextStorage.range = [model.detailsActivity rangeOfString:@"详情尽在iPhone天天618"];
     self.activityLabel.text=model.detailsDescription;
+    
     self.priceyLabel.text=model.detailsPrice;
     self.imgZXImageview.image=[UIImage imageNamed:model.detailsImgZX];
     self.txtZXLabel.text=model.detailsTxtZX;
+    
     [self layoutSubviews];
+    model.cellHeight = self.cellHigh;
 }
+
 
 @end
