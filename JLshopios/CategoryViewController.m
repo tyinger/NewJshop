@@ -18,6 +18,7 @@
 #import "QSCHttpTool.h"
 #import "AFNetworking.h"
 
+
 @interface CategoryViewController ()<SearchBarViewDelegate>
 {
     NSMutableArray * _list;
@@ -28,13 +29,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
     [self setupNavigationItem];
     //初始化数据
     [self initData];
-    //初始化分类菜单
-    [self initCategoryMenu];
+    
     
 }
 - (void)viewWillAppear:(BOOL)animated;
@@ -69,66 +69,70 @@
 
      _list=[NSMutableArray arrayWithCapacity:0];
     
-//    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"2\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
-//    NSLog(@" ------ %@ ------",dic[@"arg0"]);
-//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"2\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
+    NSLog(@" ------ %@ ------",dic[@"arg0"]);
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
 //        NSLog(@"%@",json);
-//        NSString *path = @"/Users/chenlin/Desktop/";
-//        NSString *fileName = [path stringByAppendingPathComponent:@"firstProduct.plist"];
+//        NSString *path = @"/Users/mymac/Desktop/";
+//        NSString *fileName = [path stringByAppendingPathComponent:@"111Product.plist"];
 //        NSFileManager *fm = [NSFileManager defaultManager];
 //        [fm createFileAtPath:fileName contents:nil attributes:nil];
 //         [json writeToFile:fileName atomically:YES];
-//        } failure:^(NSError *error) {
-//        NSLog(@"%@",error);
-//    }];
-    NSString *path=[[NSBundle mainBundle] pathForResource:@"NewCategory" ofType:@"plist"];
-    NSArray *array=[NSArray arrayWithContentsOfFile:path];
-    /**
-     *  构建需要数据 2层或者3层数据 (ps 2层也当作3层来处理)
-     */
-   
-    for (int i=0; i<[array count]; i++) {
-      
-        CategoryMeunModel * meun=[[CategoryMeunModel alloc] init];
-        meun.menuName=[array objectAtIndex:i][@"name"];
-        meun.nextArray=[array objectAtIndex:i][@"TypeMenu"];
-//        NSMutableArray * sub=[NSMutableArray arrayWithCapacity:0];
         
-//        for ( int j=0; j <[meun.nextArray count]; j++) {
+        [self analizeData:json];
+        //初始化分类菜单
+        [self initCategoryMenu];
+        } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+//    NSString *path=[[NSBundle mainBundle] pathForResource:@"NewCategory" ofType:@"plist"];
+//    NSArray *array=[NSArray arrayWithContentsOfFile:path];
+//    /**
+//     *  构建需要数据 2层或者3层数据 (ps 2层也当作3层来处理)
+//     */
+//   
+//    for (int i=0; i<[array count]; i++) {
+//      
+//        CategoryMeunModel * meun=[[CategoryMeunModel alloc] init];
+//        meun.menuName=[array objectAtIndex:i][@"name"];
+//        meun.nextArray=[array objectAtIndex:i][@"TypeMenu"];
+////        NSMutableArray * sub=[NSMutableArray arrayWithCapacity:0];
+//        
+////        for ( int j=0; j <[meun.nextArray count]; j++) {
+////            
+////            CategoryMeunModel * meun1=[[CategoryMeunModel alloc] init];
+////            meun1.menuName=[meun.nextArray objectAtIndex:j][@"topName"];
+////            meun1.nextArray=[meun.nextArray objectAtIndex:j][@"TypeMenu"];
+//        
+//        
 //            
-//            CategoryMeunModel * meun1=[[CategoryMeunModel alloc] init];
-//            meun1.menuName=[meun.nextArray objectAtIndex:j][@"topName"];
-//            meun1.nextArray=[meun.nextArray objectAtIndex:j][@"TypeMenu"];
-        
-        
-            
-            NSMutableArray *zList=[NSMutableArray arrayWithCapacity:0];
-            for ( int k=0; k <[meun.nextArray count]; k++) {
-                CategoryMeunModel * meun2=[[CategoryMeunModel alloc] init];
-                meun2.menuName=[meun.nextArray objectAtIndex:k][@"name"];
-                meun2.urlName=[meun.nextArray objectAtIndex:k][@"icon"];
-                meun2.Id = [[meun.nextArray objectAtIndex:k][@"id"] intValue];
-                [zList addObject:meun2];
-            }
-            
-            
-            meun.nextArray=zList;
-//            [sub addObject:meun];
-//        }
-        
-        
-//        _list=zList;
-        [_list addObject:meun];
-    }
+//            NSMutableArray *zList=[NSMutableArray arrayWithCapacity:0];
+//            for ( int k=0; k <[meun.nextArray count]; k++) {
+//                CategoryMeunModel * meun2=[[CategoryMeunModel alloc] init];
+//                meun2.menuName=[meun.nextArray objectAtIndex:k][@"name"];
+//                meun2.urlName=[meun.nextArray objectAtIndex:k][@"icon"];
+//                meun2.Id = [[meun.nextArray objectAtIndex:k][@"id"] intValue];
+//                [zList addObject:meun2];
+//            }
+//            
+//            
+//            meun.nextArray=zList;
+////            [sub addObject:meun];
+////        }
+//        
+//        
+////        _list=zList;
+//        [_list addObject:meun];
+//    }
 }
 
 
 - (void)initCategoryMenu{
     
     
-      MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryMeunModel * info) {
+      MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryRightMeunModel * info) {
         
-        NSLog(@"点击的 菜单%@",info.menuName);
+        NSLog(@"点击的 菜单%@",info.menuNameOfRight);
 //         JDNavigationController *navigationController = [[JDNavigationController alloc] initWithRootViewController:[[CommodityTableViewController alloc] init]];
 //        
 //        JDNavigationController *menuController = [[JDNavigationController alloc]  initWithRootViewController:[[RightMenuTableViewController alloc] init]];
@@ -152,6 +156,81 @@
     [self.view addSubview:view];
 }
 
+- (void)analizeData:(NSArray *)Json
+{
+    NSMutableArray *secondArr = [NSMutableArray arrayWithCapacity:0];
+    NSMutableArray *firstArr = [NSMutableArray arrayWithCapacity:0];
+        [Json enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj[@"level"] isEqual: @2]) {
+                [secondArr addObject:obj];
+            }
+        }];
+        [Json enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj[@"level"] isEqual: @1]) {
+                 CategoryMeunModel * meun=[[CategoryMeunModel alloc] initWithDictionary:obj];
+                meun.nextArray = [[NSArray alloc] init];
+                [secondArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj[@"parent"][@"id"] isEqual:[NSNumber numberWithInt:meun.Id]]) {
+                        meun.nextArray  = [meun.nextArray arrayByAddingObject:obj];
+                    }
+//                    meun.nextArray = [self comparatorArray:meun.nextArray];//数组排序
+                }];
+                [_list addObject:meun];
+//                firstArr = [self comparatorArray:firstArr];
+            }
+        }];
+        //        NSMutableArray * sub=[NSMutableArray arrayWithCapacity:0];
+        
+        //        for ( int j=0; j <[meun.nextArray count]; j++) {
+        //
+        //            CategoryMeunModel * meun1=[[CategoryMeunModel alloc] init];
+        //            meun1.menuName=[meun.nextArray objectAtIndex:j][@"topName"];
+        //            meun1.nextArray=[meun.nextArray objectAtIndex:j][@"TypeMenu"];
+        
+        
+        
+//        NSMutableArray *zList=[NSMutableArray arrayWithCapacity:0];
+//        for ( int k=0; k <[meun.nextArray count]; k++) {
+//            CategoryMeunModel * meun2=[[CategoryMeunModel alloc] init];
+//            meun2.menuName=[meun.nextArray objectAtIndex:k][@"name"];
+//            meun2.urlName=[meun.nextArray objectAtIndex:k][@"icon"];
+//            meun2.Id = [[meun.nextArray objectAtIndex:k][@"id"] intValue];
+//            [zList addObject:meun2];
+//        }
+//        
+//        
+//        meun.nextArray=zList;
+        //            [sub addObject:meun];
+        //        }
+        
+        
+        //        _list=zList;
+//        [_list addObject:firstArr];
+}
+
+-(id)comparatorArray:(id)array
+{
+    NSArray *sortedArray = [array sortedArrayUsingComparator:^(NSNumber *number1,NSNumber *number2) {
+        
+        int val1 = [number1 intValue];
+        
+        int val2 = [number2 intValue];
+        
+        if (val1 > val2) {
+            
+            return NSOrderedAscending;
+            
+        } else {
+            
+            return NSOrderedDescending;
+            
+        }
+        
+    }];
+    
+    return sortedArray;
+}
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

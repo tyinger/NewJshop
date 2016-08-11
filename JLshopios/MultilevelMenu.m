@@ -74,7 +74,7 @@
         }
         self.leftTablew.separatorColor=self.leftSeparatorColor;
         
-        
+        [self.leftTablew selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
         /**
          右边的视图
          */
@@ -264,31 +264,14 @@
 #pragma mark---每一组有多少个cell
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     CategoryMeunModel * title=self.allData[self.selectIndex];
-    
-    if (title.nextArray.count>0) {
-    
-//        CategoryMeunModel *sub=title.nextArray[section];
-//    
-//        if (sub.nextArray.count==0){//没有下一级
-//    
-//            return 1;
-//
-//        }else{
-//            
-//            return sub.nextArray.count;
-//        }
-//        
-//    }else{
-    
-        return title.nextArray.count;
-    }
-    return 1;
+
+    return title.nextArray.count;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     CategoryMeunModel * title=self.allData[self.selectIndex];
-    CategoryMeunModel * meun=title.nextArray[indexPath.row];
+    CategoryRightMeunModel * meun=[[CategoryRightMeunModel alloc] initWithDictionary:title.nextArray[indexPath.row]];
     
 //    if (meun.nextArray.count>0) {
 //        meun=title.nextArray[indexPath.section];
@@ -306,23 +289,18 @@
     
     MultilevelCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:kMultilevelCollectionViewCell forIndexPath:indexPath];
     CategoryMeunModel * title=self.allData[self.selectIndex];
-    CategoryMeunModel * meun=title.nextArray[indexPath.row];
-
-    if (meun.nextArray.count>0) {
-        meun=title.nextArray[indexPath.section];
-        NSArray * list=meun.nextArray;
-        meun=list[indexPath.row];
-    }
     
-    cell.titile.text=meun.menuName;
+    CategoryRightMeunModel * meun=[[CategoryRightMeunModel alloc] initWithDictionary:title.nextArray[indexPath.row]];
+    
+    cell.titile.text=meun.menuNameOfRight;
     cell.backgroundColor=[UIColor clearColor];
     cell.imageView.backgroundColor=[UIColor whiteColor];
     cell.imageView.layer.masksToBounds = YES;
     cell.imageView.layer.cornerRadius = 8;
-    cell.imageView.image=[UIImage imageNamed:meun.urlName];
+    cell.imageView.image=[UIImage imageNamed:meun.urlNameOfRight];
     //给一张默认图片，先使用默认图片，当图片加载完成后再替换
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:meun.urlName]
-                      placeholderImage:[UIImage imageNamed:meun.urlName]];
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:meun.urlNameOfRight]
+                      placeholderImage:[UIImage imageNamed:meun.urlNameOfRight]];
     
     cell.imageView.backgroundColor = [UIColor blueColor];
     return cell;

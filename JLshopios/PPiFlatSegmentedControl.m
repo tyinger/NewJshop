@@ -127,17 +127,17 @@
             [segment setIconPosition:self.iconPosition];
         
         //Setting format depending on if it's selected or not
-        if([self.segments indexOfObject:segment]==self.currentSelected){
-            //Selected-one
-            if(self.selectedColor)[segment setBackgroundColor:self.selectedColor forUIControlState:UIControlStateNormal];
-            if(self.selectedTextAttributes)
-                [segment setTextAttributes:self.selectedTextAttributes forUIControlState:UIControlStateNormal];
-        }else{
+//        if([self.segments indexOfObject:segment]==self.currentSelected){
+//            //Selected-one
+//            if(self.selectedColor)[segment setBackgroundColor:self.selectedColor forUIControlState:UIControlStateNormal];
+//            if(self.selectedTextAttributes)
+//                [segment setTextAttributes:self.selectedTextAttributes forUIControlState:UIControlStateNormal];
+//        }else{
             //Non selected
             if(self.color)[segment setBackgroundColor:self.color forUIControlState:UIControlStateNormal];
             if(self.textAttributes)
                 [segment setTextAttributes:self.textAttributes forUIControlState:UIControlStateNormal];
-        }
+//        }
         segment.titleLabel.textAlignment = NSTextAlignmentCenter;
     }
 }

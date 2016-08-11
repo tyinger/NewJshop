@@ -95,8 +95,12 @@
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             NSLog(@"正确返回%@",json);
 //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
-//            NSLog(@"dataDic%@",self.dataDic);
-            
+//            NSLog(@"dataDic%@",json);
+//            NSString *path = @"/Users/mymac/Desktop/";
+//            NSString *fileName = [path stringByAppendingPathComponent:@"Product.plist"];
+//            NSFileManager *fm = [NSFileManager defaultManager];
+//            [fm createFileAtPath:fileName contents:nil attributes:nil];
+//            [json writeToFile:fileName atomically:YES];
             _modelToShow = [[DetailsMode alloc] initWithDictionary:json];
             //初始化视图
             [self initView];
@@ -241,7 +245,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section==5) {
-        return 15;;
+        return 15;
     }
     return 0.001;
 }

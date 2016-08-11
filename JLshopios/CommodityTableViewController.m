@@ -67,7 +67,7 @@
 
     _commodity=[[NSMutableArray alloc]init];
     
-    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"soldNum\",\"orderDes\":\"\"}",menuID];
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"soldNum\",\"orderDes\":\"1\"}",menuID];
     NSDictionary *dic = @{@"arg0":parameterStr};
 
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
@@ -117,7 +117,7 @@
 - (void)initView{
     _isOderTypeSoldNum = YES;
     _isOderDesUp = NO;
-    PPiFlatSegmentedControl *segmented=[[PPiFlatSegmentedControl alloc]
+    PPiFlatSegmentedControl *segmented = [[PPiFlatSegmentedControl alloc]
                                         initWithFrame:CGRectMake(0, 0, self.view.width, 40)
                                         items:
                                         @[
@@ -202,8 +202,6 @@
 - (void)changeClick:(UIButton*)rightButton{
 //    if (rightButton.selected) {
     rightButton.selected = !rightButton.selected;
-//    _tableView.hidden = rightButton.selected;//列表模式显示
-//    _collectionView.hidden = !rightButton.selected;//放歌模式显示
 //    }
     
 }

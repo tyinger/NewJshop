@@ -49,9 +49,7 @@
     [self.searchButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
     [self.searchButton setTitle:@"搜索商店/店铺" forState:UIControlStateNormal];
     [self.searchButton addTarget:self action:@selector(pressedSearch:) forControlEvents:UIControlEventTouchUpInside];
-    self.searchButton.backgroundColor = [UIColor yellowColor];
     [self addSubview:self.searchButton];
-    self.backgroundColor = [UIColor magentaColor];
     
     //Cancel Button
     self.audioButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, kIconSize, kIconSize)];
