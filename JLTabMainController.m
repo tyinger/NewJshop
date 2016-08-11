@@ -21,6 +21,16 @@
 
 @implementation JLTabMainController
 
++ (JLTabMainController *)shareJLTabVC{
+    static JLTabMainController *jlTabVC;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        jlTabVC = [[JLTabMainController alloc] init];
+    });
+    return jlTabVC;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -67,7 +77,7 @@
     [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_personal_normal"
             selectedImageName:@"main_bottom_tab_personal_focus" index:4];
     
-    [self loadBGview];
+    [self loadBGview:0];
 }
 
 
@@ -92,11 +102,11 @@
 
 
 
--(void)loadBGview{
+-(void)loadBGview:(NSInteger)index{
     UIView *sview = [[UIView alloc]init];
     [sview setFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, self.tabBar.frame.size.height)];
     [sview setBackgroundColor:[UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1]];
-    [self.tabBar insertSubview:sview atIndex:0];
+    [self.tabBar insertSubview:sview atIndex:index];
     
     
 }

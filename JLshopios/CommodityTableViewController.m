@@ -67,7 +67,7 @@
 
     _commodity=[[NSMutableArray alloc]init];
     
-    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"0\",\"orderType\":\"soldNum\",\"orderDes\":\"1\"}",menuID];
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\"}",menuID];
     NSDictionary *dic = @{@"arg0":parameterStr};
 
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
@@ -137,11 +137,11 @@
                                                     
                                                     if (_isOderTypeSoldNum) {
                                                          _OderTypeStr = @"soldNum";
-                                                        _OderDesStr = @"1";
+                                                        _OderDesStr = @"0";
                                                     }else{
                                                         
                                                         _OderTypeStr = @"soldNum";
-                                                        _OderDesStr = @"0";
+                                                        _OderDesStr = @"1";
                                                         
                                                     }
                                                     
@@ -260,6 +260,23 @@
     [self.navigationController pushViewController:next animated:YES];
 }
 
+//获取数据
+- (void)loadDataFromClientWithMenuID:(NSString *)menuID andPageno:(NSString *)pageno andOrderType:(NSString *)orderType andOrderDes:(NSString *)orderDes{
+    
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"%@\",\"pagesize\":\"10\",\"orderType\":\"%@\",\"orderDes\":\"%@\"}",menuID,pageno,orderType,orderDes];
+    NSDictionary *dic = @{@"arg0":parameterStr};
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+        
+        [_commodity setArray:json];
+        [_tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        
+        NSLog(@"-----%@",error);
+        
+    }];
+    
+}
 
 #pragma mark 滑动事件
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {

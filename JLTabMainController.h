@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface JLTabMainController : UITabBarController
-
++ (JLTabMainController *)shareJLTabVC;
 @end

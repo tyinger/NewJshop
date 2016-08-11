@@ -272,7 +272,6 @@
     
     CategoryMeunModel * title=self.allData[self.selectIndex];
     CategoryRightMeunModel * meun=[[CategoryRightMeunModel alloc] initWithDictionary:title.nextArray[indexPath.row]];
-    
 //    if (meun.nextArray.count>0) {
 //        meun=title.nextArray[indexPath.section];
 //        NSArray * list=meun.nextArray;
@@ -298,6 +297,7 @@
     cell.imageView.layer.masksToBounds = YES;
     cell.imageView.layer.cornerRadius = 8;
     cell.imageView.image=[UIImage imageNamed:meun.urlNameOfRight];
+    
     //给一张默认图片，先使用默认图片，当图片加载完成后再替换
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:meun.urlNameOfRight]
                       placeholderImage:[UIImage imageNamed:meun.urlNameOfRight]];

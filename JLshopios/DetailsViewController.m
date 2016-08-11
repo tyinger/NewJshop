@@ -8,8 +8,9 @@
 
 #import "DetailsViewController.h"
 #import "SDCycleScrollView.h"
+#import "AppDelegate.h"
 #import "CellConfig.h"
-
+#import "JLTabMainController.h"
 //#import "CartViewController.h"
 #import "CommodityInfoCell.h"
 #import "CommoditySelectCell.h"
@@ -17,9 +18,9 @@
 #import "QSCNavigationController.h"
 #import "DetailsMode.h"
 @class QSCHttpTool;
-@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate>
+@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate>
 {
-//    MBProgressHUD *HUD;
+    MBProgressHUD *HUD;
     NSMutableArray *_images;
     UILabel *_indexPage;
 }
@@ -261,30 +262,48 @@
     
     [self presentViewController:loginView animated:YES completion:nil];
 }
-//- (void)addCartClick{
-//    
+- (void)addCartClick{
+    
+    
 //    if ([UserDefaultsUtils getOwnID] == 0) {
 //        [self showLoginView];
 //        return;
 //    }
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+//    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"26x-Checkmark"]];
+    
+    // Set custom view mode
+    HUD.mode = MBProgressHUDModeCustomView;
+    
+    HUD.delegate = self;
+    HUD.labelText = @"请先登录";
+//    HUD.labelText = @"恭喜,已添加至购物车。";
+    
+    [HUD show:YES];
+    [HUD hide:YES afterDelay:2];
+}
+
+- (void)cartClick{
 //    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 //    [self.navigationController.view addSubview:HUD];
-//    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"26x-Checkmark"]];
 //    
-//    // Set custom view mode
 //    HUD.mode = MBProgressHUDModeCustomView;
 //    
 //    HUD.delegate = self;
-//    HUD.labelText = @"恭喜,已添加至购物车。";
+//    HUD.labelText = @"请先登录";
 //    
 //    [HUD show:YES];
 //    [HUD hide:YES afterDelay:2];
-//}
-//
-- (void)cartClick{
-    NSLog(@"wu yemian ");
 //    CartViewController * cartVC=[[CartViewController alloc]init];
 //    [self.navigationController pushViewController:cartVC animated:YES];
+    
+    
+    [JLTabMainController shareJLTabVC].selectedIndex = 3;
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.window.rootViewController = [JLTabMainController shareJLTabVC];
+//    jlTab.tabBarController.selectedIndex = 3;
+//    [self.navigationController pushViewController:jlTab animated:YES];
 
 }
 #pragma mark - SDCycleScrollViewDelegate
