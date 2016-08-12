@@ -17,6 +17,7 @@
 #import "LoginViewController.h"
 #import "QSCNavigationController.h"
 #import "DetailsMode.h"
+#import "ShopingCartController.h"
 @class QSCHttpTool;
 @interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate>
 {
@@ -179,16 +180,18 @@
         cycleScrollView.infiniteLoop = NO;
         cycleScrollView.delegate = self;
         cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
-        [view addSubview:cycleScrollView];
-        UIImageView * imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circleBackground"]];
-        imageView.frame=CGRectMake(cycleScrollView.size.width-70, cycleScrollView.size.height-70, 50, 50);
-        [cycleScrollView addSubview:imageView];
-        _indexPage=[[UILabel alloc]initWithFrame:CGRectMake(0,0, imageView.size.width, imageView.size.height)];
-        _indexPage.textAlignment = NSTextAlignmentCenter;
-        _indexPage.font=[UIFont systemFontOfSize:24];
-        _indexPage.textColor=[UIColor whiteColor];
-        _indexPage.text=[NSString stringWithFormat:@"%i/%i",cycleScrollView.indexPage+1,(int)_images.count];
-        [imageView addSubview:_indexPage];
+       dispatch_async(dispatch_get_main_queue(), ^{
+            [view addSubview:cycleScrollView];
+            UIImageView * imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circleBackground"]];
+            imageView.frame=CGRectMake(cycleScrollView.size.width-70, cycleScrollView.size.height-70, 50, 50);
+            [cycleScrollView addSubview:imageView];
+            _indexPage=[[UILabel alloc]initWithFrame:CGRectMake(0,0, imageView.size.width, imageView.size.height)];
+            _indexPage.textAlignment = NSTextAlignmentCenter;
+            _indexPage.font=[UIFont systemFontOfSize:24];
+            _indexPage.textColor=[UIColor whiteColor];
+            _indexPage.text=[NSString stringWithFormat:@"%i/%i",cycleScrollView.indexPage+1,(int)_images.count];
+            [imageView addSubview:_indexPage];
+           });
     });
     return view;
 }
@@ -298,13 +301,12 @@
 //    CartViewController * cartVC=[[CartViewController alloc]init];
 //    [self.navigationController pushViewController:cartVC animated:YES];
     
-    
-    [JLTabMainController shareJLTabVC].selectedIndex = 3;
+
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     app.window.rootViewController = [JLTabMainController shareJLTabVC];
-//    jlTab.tabBarController.selectedIndex = 3;
-//    [self.navigationController pushViewController:jlTab animated:YES];
-
+    [JLTabMainController shareJLTabVC].selectedIndex = 3;
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    
 }
 #pragma mark - SDCycleScrollViewDelegate
 

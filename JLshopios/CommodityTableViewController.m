@@ -200,9 +200,10 @@
 }
 
 - (void)changeClick:(UIButton*)rightButton{
-//    if (rightButton.selected) {
-    rightButton.selected = !rightButton.selected;
-//    }
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.window.rootViewController = [JLTabMainController shareJLTabVC];
+    [JLTabMainController shareJLTabVC].selectedIndex = 3;
+    [self.navigationController popToRootViewControllerAnimated:NO];
     
 }
 
