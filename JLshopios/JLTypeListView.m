@@ -7,14 +7,15 @@
 //
 
 #import "JLTypeListView.h"
+#import "JLShopTypeModel.h"
 
 
 static CGFloat TypeListButtonWidth = 50;
 
 @interface JLTypeListView ()
 
-@property (nonatomic,strong) NSArray *imageArray;
 
+@property (nonatomic,strong) NSArray *typeListArray;
 
 
 
@@ -27,36 +28,59 @@ static CGFloat TypeListButtonWidth = 50;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.imageArray = @[@"guide_page_1",@"guide_page_1",@"guide_page_1",@"guide_page_1",@"guide_page_1",@"guide_page_1",@"guide_page_1",@"guide_page_1",@"guide_page_1"];
-        
-        [self loadAllButtons];
+        [self setBackgroundColor:[UIColor whiteColor]];
+//        [self loadAllButtons];
+        [self loadTypeListInfo];
         
     }
     return self;
 }
 
+-(void)loadTypeListInfo{
+    
+    NSDictionary *dics = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
 
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dics isShowHUD:YES httpToolSuccess:^(id json) {
+        NSArray *jsonArray = json;
+        NSMutableArray *marray = [[NSMutableArray alloc]init];
+        for (NSDictionary *dics in jsonArray) {
+            JLShopTypeModel *model = [JLShopTypeModel initWithDictionary:dics];
+            [marray addObject:model];
+        }
+        self.typeListArray = [marray copy];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self loadAllButtons];
+        });
+        
+        
+    } failure:^(NSError *error) {
+    }];
+    
+}
 
 -(void)loadAllButtons{
     CGFloat swidth = [UIScreen mainScreen].bounds.size.width/4.0;
     CGFloat offsetX = (swidth - TypeListButtonWidth)/2.0;
     
-    for (int i = 0; i<self.imageArray.count; i++) {
+    for (int i = 0; i<self.typeListArray.count; i++) {
+        
+        JLShopTypeModel *model = self.typeListArray[i];
+        
         if (i<4) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*i+offsetX, 10, TypeListButtonWidth, TypeListButtonWidth)];
             [button setTag:i];
-            [button setBackgroundImage:[UIImage imageNamed:self.imageArray[i]] forState:UIControlStateNormal];
+            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
+            
             [self addSubview:button];
         }else if(4<=i && 8>i) {
             UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*2, TypeListButtonWidth, TypeListButtonWidth)];
             [button setTag:i];
-            [button setBackgroundImage:[UIImage imageNamed:self.imageArray[i]] forState:UIControlStateNormal];
+            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
             [self addSubview:button];
         }
        
-        
         
     }
 }

@@ -10,4 +10,7 @@
 
 @interface JLTypeListView : UIView
 
+@property (nonatomic,strong) NSArray *imageArray;
+-(void)loadAllButtons;
+
 @end
