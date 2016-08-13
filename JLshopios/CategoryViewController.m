@@ -15,6 +15,9 @@
 #import "REFrostedViewController.h"
 //#import "RightMenuTableViewController.h"
 //#import "JDNavigationController.h"
+#import "QSCHttpTool.h"
+#import "AFNetworking.h"
+
 
 @interface CategoryViewController ()<SearchBarViewDelegate>
 {
@@ -26,13 +29,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
     [self setupNavigationItem];
     //初始化数据
     [self initData];
-    //初始化分类菜单
-    [self initCategoryMenu];
+    
+    
 }
 - (void)viewWillAppear:(BOOL)animated;
 {
@@ -66,53 +69,27 @@
 
      _list=[NSMutableArray arrayWithCapacity:0];
     
-    NSString *path=[[NSBundle mainBundle] pathForResource:@"Category" ofType:@"plist"];
-    NSArray *array=[NSArray arrayWithContentsOfFile:path];
-    /**
-     *  构建需要数据 2层或者3层数据 (ps 2层也当作3层来处理)
-     */
-   
-    for (int i=0; i<[array count]; i++) {
-      
-        CategoryMeunModel * meun=[[CategoryMeunModel alloc] init];
-        meun.menuName=[array objectAtIndex:i][@"menuName"];
-        meun.nextArray=[array objectAtIndex:i][@"topMenu"];
-        NSMutableArray * sub=[NSMutableArray arrayWithCapacity:0];
+    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"2\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
+    NSLog(@" ------ %@ ------",dic[@"arg0"]);
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         
-        for ( int j=0; j <[meun.nextArray count]; j++) {
+        [self analizeData:json];
+        //初始化分类菜单
+        [self initCategoryMenu];
+        
+    } failure:^(NSError *error) {
             
-            CategoryMeunModel * meun1=[[CategoryMeunModel alloc] init];
-            meun1.menuName=[meun.nextArray objectAtIndex:j][@"topName"];
-            meun1.nextArray=[meun.nextArray objectAtIndex:j][@"typeMenu"];
-        
-        
-            
-            NSMutableArray *zList=[NSMutableArray arrayWithCapacity:0];
-            for ( int k=0; k <[meun1.nextArray count]; k++) {
-                CategoryMeunModel * meun2=[[CategoryMeunModel alloc] init];
-                meun2.menuName=[meun1.nextArray objectAtIndex:k][@"typeName"];
-                meun2.urlName=[meun1.nextArray objectAtIndex:k][@"typeImg"];
-                [zList addObject:meun2];
-            }
-            
-            
-            meun1.nextArray=zList;
-            [sub addObject:meun1];
-        }
-        
-        
-        meun.nextArray=sub;
-        [_list addObject:meun];
-    }
+        NSLog(@"%@",error);
+    }];
 }
 
 
 - (void)initCategoryMenu{
     
     
-      MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-49 - 64) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryMeunModel * info) {
+      MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-49) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryRightMeunModel * info) {
         
-        NSLog(@"点击的 菜单%@",info.menuName);
+        NSLog(@"点击的 菜单%@",info.menuNameOfRight);
 //         JDNavigationController *navigationController = [[JDNavigationController alloc] initWithRootViewController:[[CommodityTableViewController alloc] init]];
 //        
 //        JDNavigationController *menuController = [[JDNavigationController alloc]  initWithRootViewController:[[RightMenuTableViewController alloc] init]];
@@ -125,6 +102,7 @@
          //[self.navigationController pushViewController:frostedViewController animated:YES];
           
           CommodityTableViewController *commod = [[CommodityTableViewController alloc] init];
+          commod.secondMenuIDStr = [NSString stringWithFormat:@"%d",info.Id];
           [self.navigationController pushViewController:commod animated:YES];
     }];
     
@@ -135,6 +113,35 @@
     [self.view addSubview:view];
 }
 
+- (void)analizeData:(NSArray *)Json
+{
+    NSMutableArray *secondArr = [NSMutableArray arrayWithCapacity:0];
+    
+        [Json enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj[@"level"] isEqual: @2]) {
+                [secondArr addObject:obj];
+            }
+        }];
+        [Json enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            if ([obj[@"level"] isEqual: @1]) {
+                
+                 CategoryMeunModel * meun=[[CategoryMeunModel alloc] initWithDictionary:obj];
+                meun.nextArray = [[NSArray alloc] init];
+                [secondArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    if ([obj[@"parent"][@"id"] isEqual:[NSNumber numberWithInt:meun.Id]]) {
+                        meun.nextArray  = [meun.nextArray arrayByAddingObject:obj];
+                        
+                    }
+                
+                }];
+                
+                [_list addObject:meun];
+            }
+        }];
+}
+
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

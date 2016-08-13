@@ -20,6 +20,9 @@
 #import "NSString+Extension.h"
 #import "UIButton+Extension.h"
 #import "Masonry.h"
+#import "MasonyUtil.h"
+#import "AppDelegate.h"
+#import "JLTabMainController.h"
 #import "UIImage+Image.h"
 #import "UIViewController+NMExtension.h"
 #import "UIBarButtonItem+Addition.h"
@@ -27,6 +30,7 @@
 #import "QSCHttpTool.h"
 
 #import "FYTXHub.h"
+#import <MBProgressHUD.h>
 
 #import <SDWebImage/UIImageView+WebCache.h>
 

@@ -13,7 +13,11 @@
     // Initialization code
 }
 
-
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    self.contentView.width = [UIScreen mainScreen].bounds.size.width;
+}
 @end
 
 

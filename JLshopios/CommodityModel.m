@@ -14,13 +14,13 @@
 #pragma mark 根据字典初始化商品对象
 -(CommodityModel *)initWithDictionary:(NSDictionary *)dic{
     if(self=[super init]){
-        self.Id=[dic[@"Id"] longLongValue];
-        self.commodityImageUrl=dic[@"commodityImageUrl"];
-        self.commodityName=dic[@"commodityName"];
-        self.commodityPrice=dic[@"commodityPrice"];
-        self.commodityZX=dic[@"commodityZX"];
-        self.commodityPraise=dic[@"commodityPraise"];
-        self.commodityPerson=dic[@"commodityPerson"];
+        self.Id=[dic[@"id"] longLongValue];
+        self.commodityImageUrl=dic[@"icon"];
+        self.commodityName=dic[@"name"];
+        self.commodityPrice=dic[@"price"];
+//        self.commodityZX=dic[@"commodityZX"];
+//        self.commodityPraise=dic[@"commodityPraise"];
+//        self.commodityPerson=dic[@"commodityPerson"];
     }
     return self;
 }

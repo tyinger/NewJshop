@@ -18,7 +18,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor redColor];
-    MYLog(@"哈哈哈");
+    MYLog(@"物品详情");
 }
 
 - (void)didReceiveMemoryWarning {
