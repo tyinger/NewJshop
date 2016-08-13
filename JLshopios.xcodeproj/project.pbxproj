@@ -47,6 +47,7 @@
 		3057833B1D0C29BD007AED3C /* JLShopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 305783391D0C29BD007AED3C /* JLShopCollectionViewCell.m */; };
 		3057833C1D0C29BD007AED3C /* JLShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3057833A1D0C29BD007AED3C /* JLShopCollectionViewCell.xib */; };
 		308B96C61D572D2C008DD755 /* JLShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308B96C51D572D2C008DD755 /* JLShopModel.m */; };
+		308B98951D5F0C79008DD755 /* JLShopTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308B98941D5F0C79008DD755 /* JLShopTypeModel.m */; };
 		8E2DE74C1D0477BF003C077A /* AppDelegate+FYTXDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7471D0477BF003C077A /* AppDelegate+FYTXDataBase.m */; };
 		8E2DE74D1D0477BF003C077A /* AppDelegate+FYTXEntrance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7491D0477BF003C077A /* AppDelegate+FYTXEntrance.m */; };
 		8E2DE74E1D0477BF003C077A /* AppDelegate+FYTXUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE74B1D0477BF003C077A /* AppDelegate+FYTXUI.m */; };
@@ -245,6 +246,8 @@
 		3057833A1D0C29BD007AED3C /* JLShopCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JLShopCollectionViewCell.xib; sourceTree = "<group>"; };
 		308B96C41D572D2C008DD755 /* JLShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLShopModel.h; sourceTree = "<group>"; };
 		308B96C51D572D2C008DD755 /* JLShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLShopModel.m; sourceTree = "<group>"; };
+		308B98931D5F0C79008DD755 /* JLShopTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLShopTypeModel.h; sourceTree = "<group>"; };
+		308B98941D5F0C79008DD755 /* JLShopTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLShopTypeModel.m; sourceTree = "<group>"; };
 		59DB181FDF48FB21A3C8CB5C /* Pods-JLshopios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JLshopios.release.xcconfig"; path = "Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios.release.xcconfig"; sourceTree = "<group>"; };
 		8E2DE7451D0473E5003C077A /* Shop_PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shop_PrefixHeader.pch; path = JLshopios/Shop_PrefixHeader.pch; sourceTree = "<group>"; };
 		8E2DE7461D0477BF003C077A /* AppDelegate+FYTXDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+FYTXDataBase.h"; sourceTree = "<group>"; };
@@ -1065,6 +1068,8 @@
 				308B96C51D572D2C008DD755 /* JLShopModel.m */,
 				8E6EC3141D58EFA8008A03EF /* JLGoodModel.h */,
 				8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */,
+				308B98931D5F0C79008DD755 /* JLShopTypeModel.h */,
+				308B98941D5F0C79008DD755 /* JLShopTypeModel.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1293,6 +1298,7 @@
 				E715ECF61D0526A3003A2D62 /* REFrostedViewController.m in Sources */,
 				E715ECDE1D052696003A2D62 /* MASLayoutConstraint.m in Sources */,
 				8E2DE74D1D0477BF003C077A /* AppDelegate+FYTXEntrance.m in Sources */,
+				308B98951D5F0C79008DD755 /* JLShopTypeModel.m in Sources */,
 				975976D31D577AF200B3B5CB /* DetailsViewController.m in Sources */,
 				975977081D577C0E00B3B5CB /* NSMutableAttributedString+TY.m in Sources */,
 				E72893EF1D06A227006CAEBB /* QSCHttpTool.m in Sources */,

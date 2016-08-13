@@ -19,6 +19,10 @@
 
 #import "JLShopModel.h"
 
+#import "JLGoodModel.h"
+
+#import "JLShopTypeModel.h"
+
 #define JLHomeCell @"JLHomeViewShopingCell"
 //#define kDuration 0.3
 //static const double kDuration = 0.3;
@@ -40,6 +44,9 @@
 
 //推荐商品接口
 @property (nonatomic,strong) NSArray *hotGoodsArray;
+
+
+@property (nonatomic,strong) NSArray *typeListArray;
 
 @end
 
@@ -98,24 +105,24 @@
 
     
     
-    //推荐商品接口 //begin=0
-    NSDictionary *dic1 = @{@"begin":@"0"};
-    //https://123.56.192.182:8443/app/product/recommendGoods?
-    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/recommendGoods?" parameters:dic1 isShowHUD:YES httpToolSuccess:^(id json) {
-        self.hotGoodsArray = json;
-        
-        
-            } failure:^(NSError *error) {
-    }];
+//    //推荐商品接口 //begin=0
+//    NSDictionary *dic1 = @{@"begin":@"0"};
+//    //https://123.56.192.182:8443/app/product/recommendGoods?
+//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/recommendGoods?" parameters:dic1 isShowHUD:YES httpToolSuccess:^(id json) {
+//        NSArray *jsonArray = json;
+//        NSMutableArray *marray = [[NSMutableArray alloc]init];
+//        for (NSDictionary *dics in jsonArray) {
+//            JLGoodModel *model = [JLGoodModel initWithDictionary:dics];
+//            [marray addObject:model];
+//        }
+//        self.hotGoodsArray = [marray copy];
+//
+//            } failure:^(NSError *error) {
+//    }];
     
     //分类列表接口
-    //https://123.56.192.182:8443/app/product/listClass?arg0={"name":"","type":"1","id":"","level":"","firstSeplling":""}
-//    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
-//    NSLog(@" ------ %@ ------",dic[@"arg0"]);
-//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-//        
-//                    } failure:^(NSError *error) {
-//    }];
+//    https://123.56.192.182:8443/app/product/listClass?arg0={"name":"","type":"1","id":"","level":"","firstSeplling":""}
+
     
     
 }
@@ -139,7 +146,7 @@
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
     [layout setScrollDirection:UICollectionViewScrollDirectionVertical]; // 垂直滚动
-    [layout setHeaderReferenceSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 270)];
+    [layout setHeaderReferenceSize:CGSizeMake([UIScreen mainScreen].bounds.size.width, 260)];
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.backgroundColor = [UIColor colorWithRed:244/255.0 green:244/255.0 blue:247/255.0 alpha:1];
     self.collectionView.dataSource = self;
@@ -154,7 +161,7 @@
             make.top.mas_equalTo(self.topView.mas_bottom);
             make.left.mas_equalTo(pview);
             make.width.mas_equalTo(pview.mas_width);
-            make.height.mas_equalTo(pview.height - self.topView.height - self.tabBarController.tabBar.height);
+            make.height.mas_equalTo(pview.height - self.topView.height);
         }];
     }
     
@@ -176,7 +183,7 @@
     self.cycleScrollview = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, creenWidth, 140) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     _cycleScrollview.currentPageDotImage = [UIImage imageNamed:@"FYTXCategories_page_dot_press"];
-//    _cycleScrollview.imageURLStringsGroup = @[@"guide_page_1",@"guide_page_2",@"guide_page_3"];
+
     _cycleScrollview.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     [self.collectionView addSubview:_cycleScrollview];
     
@@ -274,7 +281,7 @@
 {
     CGFloat cellWidth = [UIScreen mainScreen].bounds.size.width;
     
-    CGSize bsize = CGSizeMake(cellWidth, 800);
+    CGSize bsize = CGSizeMake(cellWidth, 400);
     
     return bsize;
 }
