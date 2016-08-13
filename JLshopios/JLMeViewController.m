@@ -32,34 +32,54 @@
 }
 - (void)loadData{
     
-    NSArray *nameArr1 = @[@"我的订单",@"我的关注",@"我的收货地址"];
-    NSArray *nameArr2 = @[@"我是商家",@"修改密码"];
+    NSArray *nameArr1 = @[@"我的钱包",@"我的积分"];
+    NSArray *nameArr2 = @[@"我的关注",@"我的收货地址",@"我是商家"];
+    NSArray *nameArr3 = @[@"扫码注册",@"修改密码"];
     
-    NSArray *className1 = @[@"OderViewController",@"LikeViewController",@"AddressViewController"];
-    NSArray *className2 = @[@"BusinessViewController",@"ModifyViewController"];
+    NSArray *imageName1 = @[@"piaobao",@"wodejifen"];
+    NSArray *imageName2 = @[@"guanzhu",@"shouhuodizhi",@"woshishangjia"];
+    NSArray *imageName3 = @[@"saomazhuce",@"xiugaimima"];
+    
+    
+    
+    NSArray *className1 = @[@"PianbaoViewController",@"JifenViewController"];
+    NSArray *className2 = @[@"GuanzhuViewController",@"ShouhoudizhiViewController",@"ShangjiaViewController"];
+    NSArray *className3 = @[@"SaomazhuceViewController",@"XiugaimimaViewController"];
     
     NSMutableArray *arr1 = @[].mutableCopy;
     NSMutableArray *arr2 = @[].mutableCopy;
-    for (int i = 0; i<3; i++) {
+    NSMutableArray *arr3 = @[].mutableCopy;
+    
+    for (int i = 0; i<2; i++) {
         
         ItemModel *item = [[ItemModel alloc] init];
         item.titleStr = nameArr1[i];
-        item.imageStr = @"";
+        item.imageStr = imageName1[i];
         item.className = className1[i];
         [arr1 addObject:item];
+    }
+    
+    for (int i = 0; i<3; i++) {
+        
+        ItemModel *item = [[ItemModel alloc] init];
+        item.titleStr = nameArr2[i];
+        item.imageStr = imageName2[i];
+        item.className = className2[i];
+        [arr2 addObject:item];
     }
     
     for (int i = 0; i<2; i++) {
         
         ItemModel *item = [[ItemModel alloc] init];
-        item.titleStr = nameArr2[i];
-        item.imageStr = @"";
-        item.className = className2[i];
-        [arr2 addObject:item];
+        item.titleStr = nameArr3[i];
+        item.imageStr = imageName3[i];
+        item.className = className3[i];
+        [arr3 addObject:item];
     }
     
     [self.dataArr addObject:arr1];
     [self.dataArr addObject:arr2];
+    [self.dataArr addObject:arr3];
 }
 
 - (void)viewDidLoad {
@@ -88,19 +108,36 @@
         [self.navigationController pushViewController:ctrl animated:YES];
     }
 }
+- (void)gesAction: (UIGestureRecognizer *)ges{
+    
+    
+}
 
 //init
 - (UIView*)creatHeaderView{
     
-    UIView *b = [[UIView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 100)];
-    b.backgroundColor = [UIColor grayColor];
+    UIView *b = [[UIView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 180)];
+    b.backgroundColor = [UIColor whiteColor];
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width/ 5 - 20;
+    
+    UIImageView *topImage = [[UIImageView alloc] init];
+    topImage.image = [UIImage imageNamed:@"my_personal_not_login_bg.jpg"];
+    topImage.userInteractionEnabled = YES;
+    topImage.backgroundColor = [UIColor grayColor];
+    [b addSubview:topImage];
+    [topImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.left.right.offset(0);
+        make.bottom.offset(-width);
+    }];
     
     UILabel *titleLabel = [[UILabel alloc] init];
     titleLabel.text = @"欢迎来到用啥";
     titleLabel.textColor = [UIColor whiteColor];
     titleLabel.font = [UIFont systemFontOfSize:15];
     [titleLabel sizeToFit];
-    [b addSubview:titleLabel];
+    [topImage addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.offset(30);
@@ -109,15 +146,68 @@
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     button.backgroundColor = [UIColor whiteColor];
-    [button setTitle:@"登录" forState:UIControlStateNormal];
+    [button setTitle:@" 登录/注册 " forState:UIControlStateNormal];
+    button.layer.cornerRadius = 3;
     [button setTitleColor:[UIColor brownColor] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(logoAction:) forControlEvents:UIControlEventTouchUpInside];
-    [b addSubview:button];
+    [topImage addSubview:button];
     [button mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.equalTo(titleLabel.mas_bottom).offset(10);
         make.centerX.mas_equalTo(@0);
     }];
+    
+    NSArray *imageNarr = @[@"daifukuan",@"daishou",@"pingjia",@"",@"quanbudingdan"];
+    NSArray *iconName = @[@"代付款",@"待收货",@"待评价",@"返修/退换",@"全部订单"];
+    
+    UIView *lastView;
+    for (int i = 0; i<5; i++) {
+        
+        UIView *backView = [[UIView alloc] init];
+        backView.backgroundColor = [UIColor whiteColor];
+        [b addSubview:backView];
+        
+        backView.tag = 1000 + i;
+        
+        [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.width.height.mas_equalTo(width);
+            make.bottom.offset(0);
+            
+            if (lastView) {
+                
+                make.left.equalTo(lastView.mas_right).offset(20);
+            }else{
+                
+                make.left.offset(0);
+            }
+        }];
+        
+        lastView = backView;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageNarr[i]]];
+        [backView addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.offset(5);
+            make.width.height.mas_equalTo(@32);
+            make.centerX.offset(0);
+        }];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.text = iconName[i];
+        label.font = [UIFont systemFontOfSize:10];
+        label.textColor = [UIColor blackColor];
+        [backView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.bottom.offset(0);
+            make.centerX.offset(0);
+        }];
+        
+        UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gesAction:)];
+        [backView addGestureRecognizer:ges];
+    }
     
     return b;
 }
@@ -129,6 +219,9 @@
         _mainTableView.delegate = self;
         _mainTableView.dataSource = self;
         _mainTableView.tableHeaderView = [self creatHeaderView];
+        
+        _mainTableView.sectionHeaderHeight = 5;
+        _mainTableView.sectionFooterHeight = 0;
     }
     return _mainTableView;
 }
@@ -136,7 +229,7 @@
 //delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 2;
+    return 3;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
@@ -155,7 +248,7 @@
     ItemModel *item = arr[indexPath.row];
     
     cell.textLabel.text = item.titleStr;
-    cell.imageView.image = [UIImage createImageWithColor:[UIColor redColor]];
+    cell.imageView.image = [UIImage imageNamed:item.imageStr];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -173,6 +266,10 @@
         [self.navigationController pushViewController:ctrl animated:YES];
     }
     [self.mainTableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    
+    return 10;
 }
 
 @end

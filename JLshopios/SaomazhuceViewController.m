@@ -1,23 +1,22 @@
 //
-//  ModifyViewController.m
+//  SaomazhuceViewController.m
 //  JLshopios
 //
-//  Created by 洪彬 mu' y on 16/7/25.
+//  Created by 洪彬 mu' y on 16/8/13.
 //  Copyright © 2016年 feng. All rights reserved.
 //
 
-#import "ModifyViewController.h"
+#import "SaomazhuceViewController.h"
 
-@interface ModifyViewController ()
+@interface SaomazhuceViewController ()
 
 @end
 
-@implementation ModifyViewController
+@implementation SaomazhuceViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor redColor];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
