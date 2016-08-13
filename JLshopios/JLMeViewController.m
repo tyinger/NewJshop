@@ -85,7 +85,6 @@
     if (class) {
         
         UIViewController *ctrl = class.new;
-        ctrl.title = @"登录";
         [self.navigationController pushViewController:ctrl animated:YES];
     }
 }
