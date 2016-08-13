@@ -28,7 +28,7 @@
                                 <constraint firstAttribute="width" secondItem="hb0-m6-NjP" secondAttribute="height" multiplier="68:65" id="Ice-NT-h5T"/>
                             </constraints>
                         </imageView>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4u1-1k-yCl">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_top_bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="4u1-1k-yCl">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                             <color key="backgroundColor" red="1" green="0.194830460842637" blue="0.52654389754002739" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -175,6 +175,7 @@
         </view>
     </objects>
     <resources>
+        <image name="login_top_bg.jpg" width="20" height="20"/>
         <image name="morentouxiang" width="25" height="25"/>
     </resources>
 </document>

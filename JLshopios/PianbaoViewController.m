@@ -1,23 +1,22 @@
 //
-//  LikeViewController.m
+//  PianbaoViewController.m
 //  JLshopios
 //
-//  Created by 洪彬 mu' y on 16/7/25.
+//  Created by 洪彬 mu' y on 16/8/13.
 //  Copyright © 2016年 feng. All rights reserved.
 //
 
-#import "LikeViewController.h"
+#import "PianbaoViewController.h"
 
-@interface LikeViewController ()
+@interface PianbaoViewController ()
 
 @end
 
-@implementation LikeViewController
+@implementation PianbaoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor grayColor];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

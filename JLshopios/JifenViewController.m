@@ -1,23 +1,22 @@
 //
-//  OderViewController.m
+//  JifenViewController.m
 //  JLshopios
 //
-//  Created by 洪彬 mu' y on 16/7/25.
+//  Created by 洪彬 mu' y on 16/8/13.
 //  Copyright © 2016年 feng. All rights reserved.
 //
 
-#import "OderViewController.h"
+#import "JifenViewController.h"
 
-@interface OderViewController ()
+@interface JifenViewController ()
 
 @end
 
-@implementation OderViewController
+@implementation JifenViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor redColor];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

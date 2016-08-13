@@ -1,23 +1,22 @@
 //
-//  AddressViewController.m
+//  ShangjiaViewController.m
 //  JLshopios
 //
-//  Created by 洪彬 mu' y on 16/7/25.
+//  Created by 洪彬 mu' y on 16/8/13.
 //  Copyright © 2016年 feng. All rights reserved.
 //
 
-#import "AddressViewController.h"
+#import "ShangjiaViewController.h"
 
-@interface AddressViewController ()
+@interface ShangjiaViewController ()
 
 @end
 
-@implementation AddressViewController
+@implementation ShangjiaViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor greenColor];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
