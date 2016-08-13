@@ -25,9 +25,13 @@
 #import "UIBarButtonItem+Addition.h"
 #import "QSCNavigationController.h"
 #import "QSCHttpTool.h"
+
+#import "FYTXHub.h"
+
 #import <SDWebImage/UIImageView+WebCache.h>
 
 #import <MJRefresh/MJRefresh.h>
+#import <ReactiveCocoa/ReactiveCocoa.h>
 
 //常用宏定义·
 #define kDeviceWidth [UIScreen mainScreen].bounds.size.width

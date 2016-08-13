@@ -8,7 +8,6 @@
 
 #import "JLTabMainController.h"
 #import "JLHomeViewController.h"
-#import "JLLoginViewController.h"
 #import "JLMeViewController.h"
 #import "JLHomeViewController.h"
 #import "JLShopsViewController.h"
@@ -25,13 +24,6 @@
     [super viewDidLoad];
     
     [self loadControllers];
-    
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)loadControllers{

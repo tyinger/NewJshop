@@ -24,7 +24,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    self.navigationItem.title = @"登录";
+    self.navigationController.navigationBarHidden = NO;
 }
 - (IBAction)changePasswordTextFAction:(UIButton *)sender {
     
@@ -33,17 +34,7 @@
 }
 
 - (IBAction)loginAction:(id)sender {
-    
-    //123.56.192.182:8443/app/user/getLoginUser?
-    //loginName,password
-//    [QSCHttpTool post:@"http://123.56.192.182:8443/app/user/getLoginUser?" parameters:@{@"loginName":@"123456789",@"password":@"12346"} isShowHUD:NO httpToolSuccess:^(id json) {
-//        
-//        
-//    } failure:^(NSError *error) {
-//        
-//        
-//    }];
-    
+
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getLoginUser?loginName=1234556&password=12345" parameters:nil isShowHUD:NO httpToolSuccess:^(id json) {
         
         
@@ -55,7 +46,13 @@
 
 - (IBAction)registerAction:(id)sender {
     
-    
+    Class class = NSClassFromString(@"RegisterViewController");
+    if (class) {
+        
+        UIViewController *ctl = class.new;
+        ctl.title = @"手机快速注册";
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
 }
 - (IBAction)foundoutPassword:(id)sender {
     

@@ -41,7 +41,6 @@
 		8E2DE75A1D047B2E003C077A /* JLTabMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7591D047B2E003C077A /* JLTabMainController.m */; };
 		8E2DE75D1D047B98003C077A /* JLHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE75C1D047B98003C077A /* JLHomeViewController.m */; };
 		8E2DE7631D047BC8003C077A /* JLShopsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7621D047BC8003C077A /* JLShopsViewController.m */; };
-		8E2DE7691D047BEF003C077A /* JLLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7681D047BEF003C077A /* JLLoginViewController.m */; };
 		8E2DE7831D048A43003C077A /* _JZNavigationInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7741D048A43003C077A /* _JZNavigationInteractiveTransition.m */; };
 		8E2DE7841D048A43003C077A /* _JZValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7761D048A43003C077A /* _JZValue.m */; };
 		8E2DE7851D048A43003C077A /* NSNumber+JZExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7781D048A43003C077A /* NSNumber+JZExtension.m */; };
@@ -62,6 +61,10 @@
 		978D3C261D44F04800C0C1BE /* TSLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1A1D44F04800C0C1BE /* TSLocateView.m */; };
 		978D3C271D44F04800C0C1BE /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */; };
 		978D3C281D44F04800C0C1BE /* TSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1D1D44F04800C0C1BE /* TSLocation.m */; };
+		C5DEE9F71D57039900823ED8 /* LoginStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEE9F61D57039900823ED8 /* LoginStatus.m */; };
+		C5DEE9FC1D5715DC00823ED8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEE9FA1D5715DC00823ED8 /* RegisterViewController.m */; };
+		C5DEE9FD1D5715DC00823ED8 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DEE9FB1D5715DC00823ED8 /* RegisterViewController.xib */; };
+		C5DEEA051D57523A00823ED8 /* FYTXHub.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEEA041D57523A00823ED8 /* FYTXHub.m */; };
 		C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85611D45E11F005F905C /* JLMeViewController.m */; };
 		C5EE85661D45E134005F905C /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85651D45E134005F905C /* ItemModel.m */; };
 		C5EE856A1D45E14A005F905C /* OderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85691D45E14A005F905C /* OderViewController.m */; };
@@ -127,7 +130,6 @@
 		E7A189C61D02D17700E6F441 /* Me.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7A189C51D02D17700E6F441 /* Me.storyboard */; };
 		E7A189C81D02D18D00E6F441 /* Shops.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7A189C71D02D18D00E6F441 /* Shops.storyboard */; };
 		E7A189CA1D02D19B00E6F441 /* Category.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7A189C91D02D19B00E6F441 /* Category.storyboard */; };
-		E7A189CF1D02D3C000E6F441 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7A189CE1D02D3C000E6F441 /* Login.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -196,8 +198,6 @@
 		8E2DE75C1D047B98003C077A /* JLHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLHomeViewController.m; sourceTree = "<group>"; };
 		8E2DE7611D047BC8003C077A /* JLShopsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLShopsViewController.h; sourceTree = "<group>"; };
 		8E2DE7621D047BC8003C077A /* JLShopsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLShopsViewController.m; sourceTree = "<group>"; };
-		8E2DE7671D047BEF003C077A /* JLLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLLoginViewController.h; sourceTree = "<group>"; };
-		8E2DE7681D047BEF003C077A /* JLLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLLoginViewController.m; sourceTree = "<group>"; };
 		8E2DE7701D048A43003C077A /* JZNavigationExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZNavigationExtension.h; sourceTree = "<group>"; };
 		8E2DE7721D048A43003C077A /* _JZ-objc-internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "_JZ-objc-internal.h"; sourceTree = "<group>"; };
 		8E2DE7731D048A43003C077A /* _JZNavigationInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _JZNavigationInteractiveTransition.h; sourceTree = "<group>"; };
@@ -231,6 +231,13 @@
 		978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSLocateView.xib; sourceTree = "<group>"; };
 		978D3C1C1D44F04800C0C1BE /* TSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocation.h; sourceTree = "<group>"; };
 		978D3C1D1D44F04800C0C1BE /* TSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocation.m; sourceTree = "<group>"; };
+		C5DEE9F51D57039900823ED8 /* LoginStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatus.h; sourceTree = "<group>"; };
+		C5DEE9F61D57039900823ED8 /* LoginStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatus.m; sourceTree = "<group>"; };
+		C5DEE9F91D5715DC00823ED8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		C5DEE9FA1D5715DC00823ED8 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		C5DEE9FB1D5715DC00823ED8 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		C5DEEA031D57523A00823ED8 /* FYTXHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FYTXHub.h; sourceTree = "<group>"; };
+		C5DEEA041D57523A00823ED8 /* FYTXHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FYTXHub.m; sourceTree = "<group>"; };
 		C5EE85601D45E11F005F905C /* JLMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLMeViewController.h; sourceTree = "<group>"; };
 		C5EE85611D45E11F005F905C /* JLMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLMeViewController.m; sourceTree = "<group>"; };
 		C5EE85641D45E134005F905C /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
@@ -353,7 +360,6 @@
 		E7A189C51D02D17700E6F441 /* Me.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Me.storyboard; path = ../Me.storyboard; sourceTree = "<group>"; };
 		E7A189C71D02D18D00E6F441 /* Shops.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shops.storyboard; sourceTree = "<group>"; };
 		E7A189C91D02D19B00E6F441 /* Category.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Category.storyboard; sourceTree = "<group>"; };
-		E7A189CE1D02D3C000E6F441 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -371,6 +377,7 @@
 		3043B08F1D02C55B00E97B82 = {
 			isa = PBXGroup;
 			children = (
+				C5DEE9F41D57036A00823ED8 /* LoginStatus */,
 				305783041D0C0D51007AED3C /* Guide */,
 				E715ECAA1D052660003A2D62 /* Category */,
 				8E2DE76E1D048A43003C077A /* tools */,
@@ -493,6 +500,7 @@
 		8E2DE76E1D048A43003C077A /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				C5DEEA021D57522800823ED8 /* Hub */,
 				305783211D0C22FD007AED3C /* SDCycleScrollView */,
 				E72893F01D06A251006CAEBB /* kudou.cer */,
 				E72893ED1D06A227006CAEBB /* QSCHttpTool.h */,
@@ -613,6 +621,34 @@
 			path = img;
 			sourceTree = "<group>";
 		};
+		C5DEE9F41D57036A00823ED8 /* LoginStatus */ = {
+			isa = PBXGroup;
+			children = (
+				C5DEE9F51D57039900823ED8 /* LoginStatus.h */,
+				C5DEE9F61D57039900823ED8 /* LoginStatus.m */,
+			);
+			name = LoginStatus;
+			sourceTree = "<group>";
+		};
+		C5DEE9F81D5715B100823ED8 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				C5DEE9F91D5715DC00823ED8 /* RegisterViewController.h */,
+				C5DEE9FA1D5715DC00823ED8 /* RegisterViewController.m */,
+				C5DEE9FB1D5715DC00823ED8 /* RegisterViewController.xib */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		C5DEEA021D57522800823ED8 /* Hub */ = {
+			isa = PBXGroup;
+			children = (
+				C5DEEA031D57523A00823ED8 /* FYTXHub.h */,
+				C5DEEA041D57523A00823ED8 /* FYTXHub.m */,
+			);
+			name = Hub;
+			sourceTree = "<group>";
+		};
 		C5EE85631D45E123005F905C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -635,9 +671,6 @@
 				C5EE85721D45E16C005F905C /* BusinessViewController.m */,
 				C5EE85741D45E17A005F905C /* ModifyViewController.h */,
 				C5EE85751D45E17A005F905C /* ModifyViewController.m */,
-				C5EE85771D45E188005F905C /* LoginViewController.h */,
-				C5EE85781D45E188005F905C /* LoginViewController.m */,
-				C5EE85791D45E188005F905C /* LoginViewController.xib */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -860,6 +893,7 @@
 		E7A189BC1D02D03000E6F441 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				C5DEE9F81D5715B100823ED8 /* Register */,
 				C5EE85671D45E138005F905C /* Classes */,
 				C5EE85631D45E123005F905C /* Model */,
 				E7A189C51D02D17700E6F441 /* Me.storyboard */,
@@ -872,9 +906,9 @@
 		E7A189CD1D02D3B100E6F441 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				E7A189CE1D02D3C000E6F441 /* Login.storyboard */,
-				8E2DE7671D047BEF003C077A /* JLLoginViewController.h */,
-				8E2DE7681D047BEF003C077A /* JLLoginViewController.m */,
+				C5EE85771D45E188005F905C /* LoginViewController.h */,
+				C5EE85781D45E188005F905C /* LoginViewController.m */,
+				C5EE85791D45E188005F905C /* LoginViewController.xib */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -886,12 +920,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3043B0AF1D02C55B00E97B82 /* Build configuration list for PBXNativeTarget "JLshopios" */;
 			buildPhases = (
-				5B58A2ABBECD2B8FB1809FC3 /* 📦 Check Pods Manifest.lock */,
+				5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */,
 				3043B0941D02C55B00E97B82 /* Sources */,
 				3043B0951D02C55B00E97B82 /* Frameworks */,
 				3043B0961D02C55B00E97B82 /* Resources */,
-				B23FA89FD641C06DD7EE4C40 /* 📦 Embed Pods Frameworks */,
-				01C400B7A058D83DDBD757CB /* 📦 Copy Pods Resources */,
+				B23FA89FD641C06DD7EE4C40 /* [CP] Embed Pods Frameworks */,
+				01C400B7A058D83DDBD757CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -940,7 +974,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7A189CF1D02D3C000E6F441 /* Login.storyboard in Resources */,
 				978D3C241D44F04800C0C1BE /* btn_021@2x.png in Resources */,
 				E7A189CA1D02D19B00E6F441 /* Category.storyboard in Resources */,
 				978D3C251D44F04800C0C1BE /* ProvincesAndCities.plist in Resources */,
@@ -964,6 +997,7 @@
 				3057833C1D0C29BD007AED3C /* JLShopCollectionViewCell.xib in Resources */,
 				978D3C221D44F04800C0C1BE /* btn_021.disable@2x.png in Resources */,
 				978D3C211D44F04800C0C1BE /* btn_020@2x.png in Resources */,
+				C5DEE9FD1D5715DC00823ED8 /* RegisterViewController.xib in Resources */,
 				978D3C201D44F04800C0C1BE /* btn_020.press@2x.png in Resources */,
 				E715ED0F1D0526E5003A2D62 /* CommodityTableViewCell.xib in Resources */,
 				3057831F1D0C1CA5007AED3C /* ShopHome.storyboard in Resources */,
@@ -974,14 +1008,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01C400B7A058D83DDBD757CB /* 📦 Copy Pods Resources */ = {
+		01C400B7A058D83DDBD757CB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -989,14 +1023,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5B58A2ABBECD2B8FB1809FC3 /* 📦 Check Pods Manifest.lock */ = {
+		5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1004,14 +1038,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B23FA89FD641C06DD7EE4C40 /* 📦 Embed Pods Frameworks */ = {
+		B23FA89FD641C06DD7EE4C40 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1028,6 +1062,7 @@
 			files = (
 				1FACAE911D45C49A0049A4BC /* JLCommdoityCollectionCell.m in Sources */,
 				E715ECE31D052696003A2D62 /* View+MASAdditions.m in Sources */,
+				C5DEEA051D57523A00823ED8 /* FYTXHub.m in Sources */,
 				8E2DE74E1D0477BF003C077A /* AppDelegate+FYTXUI.m in Sources */,
 				E77EFEF01D05561C00E5113C /* PPiFlatSegmentedControl.m in Sources */,
 				305783161D0C0D51007AED3C /* FYTXGERecordModel.m in Sources */,
@@ -1039,6 +1074,7 @@
 				E715ECDB1D052696003A2D62 /* MASCompositeConstraint.m in Sources */,
 				E715ECDD1D052696003A2D62 /* MASConstraintMaker.m in Sources */,
 				C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */,
+				C5DEE9FC1D5715DC00823ED8 /* RegisterViewController.m in Sources */,
 				C5EE85761D45E17A005F905C /* ModifyViewController.m in Sources */,
 				E715ED191D052729003A2D62 /* CategoryViewController.m in Sources */,
 				3057833B1D0C29BD007AED3C /* JLShopCollectionViewCell.m in Sources */,
@@ -1060,7 +1096,6 @@
 				305783311D0C22FD007AED3C /* TAAbstractDotView.m in Sources */,
 				E77EFF041D05611600E5113C /* UIImage+Image.m in Sources */,
 				8E2DE7891D048A43003C077A /* UIViewController+JZExtension.m in Sources */,
-				8E2DE7691D047BEF003C077A /* JLLoginViewController.m in Sources */,
 				E77EFEF31D05565400E5113C /* UIButton+PPiAwesome.m in Sources */,
 				8E2DE78A1D048A43003C077A /* UIViewController+NMExtension.m in Sources */,
 				E77EFF121D05699C00E5113C /* ShopingCartController.m in Sources */,
@@ -1093,6 +1128,7 @@
 				305783191D0C0D51007AED3C /* FYTXGuideConst.m in Sources */,
 				E715ED111D0526E5003A2D62 /* CollectionHeader.m in Sources */,
 				E715ECE41D052696003A2D62 /* README.md in Sources */,
+				C5DEE9F71D57039900823ED8 /* LoginStatus.m in Sources */,
 				8E2DE75A1D047B2E003C077A /* JLTabMainController.m in Sources */,
 				3043B09D1D02C55B00E97B82 /* main.m in Sources */,
 				3057831A1D0C0D51007AED3C /* FYTXGuideFactory.m in Sources */,
