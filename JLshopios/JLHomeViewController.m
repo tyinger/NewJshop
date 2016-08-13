@@ -140,7 +140,6 @@
 }
 
 -(void)loadCollectionView{
-    //    self.collectionView = [[UICollectionView alloc]init];
     UICollectionViewFlowLayout *layout =[[UICollectionViewFlowLayout alloc] init];
     layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumInteritemSpacing = 0;
@@ -213,7 +212,6 @@
             make.height.mas_equalTo(130);
         }];
     }
-
 }
 
 
@@ -289,8 +287,7 @@
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    
-    
+
     return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
 }
 

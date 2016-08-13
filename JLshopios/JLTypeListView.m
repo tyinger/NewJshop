@@ -10,7 +10,7 @@
 #import "JLShopTypeModel.h"
 
 
-static CGFloat TypeListButtonWidth = 50;
+static CGFloat TypeListButtonWidth = 40;
 
 @interface JLTypeListView ()
 
@@ -65,21 +65,29 @@ static CGFloat TypeListButtonWidth = 50;
     for (int i = 0; i<self.typeListArray.count; i++) {
         
         JLShopTypeModel *model = self.typeListArray[i];
-        
+        UIButton *button;
         if (i<4) {
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*i+offsetX, 10, TypeListButtonWidth, TypeListButtonWidth)];
             [button setTag:i];
             [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
             
             [self addSubview:button];
+            
         }else if(4<=i && 8>i) {
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*2, TypeListButtonWidth, TypeListButtonWidth)];
             [button setTag:i];
             [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
             [self addSubview:button];
         }
+        
+        UILabel *typeText = [[UILabel alloc]init];
+        typeText.text = model.name;
+        
+        [self addSubview:typeText];
+        
+
        
         
     }

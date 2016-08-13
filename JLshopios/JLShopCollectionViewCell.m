@@ -55,10 +55,9 @@
 
 -(void)setHotGoodsValue{
     if (self.hotGoodsArray.count >= 2) {
-        
         {
             JLGoodModel *model = self.hotGoodsArray[0];
-            self.hotGoodsLeftText.text = model.description_Goods;
+            self.hotGoodsLeftText.text = model.name;
             NSArray *previewImage = model.previewImgs;
             NSDictionary *dic = [previewImage firstObject];
             NSString *imageURL_left = dic[@"path"];
@@ -67,11 +66,10 @@
                 [self.hotGoodsLeftImage sd_setImageWithURL:[NSURL URLWithString:imageURL_left]];
             }
         }
-
         
         {
             JLGoodModel *model = self.hotGoodsArray[1];
-            self.hotGoodsRightText.text = model.description_Goods;
+            self.hotGoodsRightText.text = model.name;
             NSArray *previewImage = model.previewImgs;
             NSDictionary *dic = [previewImage firstObject];
 
@@ -81,8 +79,6 @@
             }
         }
     }
-    
-    
 }
 
 
