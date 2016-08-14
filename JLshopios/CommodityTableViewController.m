@@ -109,11 +109,26 @@
 - (void)setupNavigationItem {
  
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"back_bt_7" highBackgroudImageName:nil target:self action:@selector(backClick)];
+
+    UIBarButtonItem *chooseBtn = [[UIBarButtonItem alloc]initWithTitle:@"666" style:UIBarButtonItemStyleDone target:self action:@selector(chooseBtnAction)];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"main_bottom_tab_cart_focus" highBackgroudImageName:nil target:self action:@selector(changeClick:)];
+    NSArray * arr = [[NSArray alloc] initWithObjects:self.navigationItem.leftBarButtonItem,chooseBtn, nil];
+    self.navigationItem.leftBarButtonItems = arr;
     //将搜索条放在一个UIView上
-    SearchBarView *searchView = [[SearchBarView alloc]initWithFrame:CGRectMake(0, 0, 240 , 30)];
+    SearchBarView *searchView;// = [[SearchBarView alloc]init];
+    
+    if (!_tabbarNum) {
+        self.navigationItem.rightBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"main_bottom_tab_cart_focus" highBackgroudImageName:nil target:self action:@selector(changeClick:)];
+        searchView = [[SearchBarView alloc] initWithFrame:CGRectMake(250, 0, 240 , 30)];
+    }else{
+        searchView = [[SearchBarView alloc] initWithFrame:CGRectMake(250,
+                                      0,
+                                      self.view.width - CGRectGetMaxX(self.navigationItem.backBarButtonItem.customView.frame)*2,
+                                      30)];
+    }
     searchView.delegate=self;
+    NSLog(@"%@",NSStringFromCGRect(searchView.frame));
+    searchView.backgroundColor = [UIColor redColor];
     self.navigationItem.titleView = searchView;
     self.navigationController.navigationBar.shadowImage=[[UIImage alloc]init];
 }
