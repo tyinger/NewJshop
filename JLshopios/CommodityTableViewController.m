@@ -32,23 +32,31 @@
     NSString *_OderDesStr;
     BOOL _isOderTypeSoldNum;
     BOOL _isOderDesUp;
+    NSInteger _tabbarNum;
 }
+@property (strong, nonatomic) UILabel *backGroundLabel;
 @end
 
 @implementation CommodityTableViewController
 
+- (instancetype)initWithType:(NSInteger)tabbarNum{
+    self = [super init];
+    if (self) {
+        _tabbarNum = tabbarNum;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGB(239, 243, 246);
     //初始化数据
     [self initData:self.secondMenuIDStr];
     //设置导航栏
     [self setupNavigationItem];
     //初始化视图
-    [self initView];
-    
-    
+    [self initView:_tabbarNum];
 }
 
 -(void)refresh
@@ -69,16 +77,10 @@
     
     NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\"}",menuID];
     NSDictionary *dic = @{@"arg0":parameterStr};
-
+    [FYTXHub progress:@"正在加载。。。"];
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-        
-//        NSArray *array=[NSArray arrayWithArray:json];
-//        
-//        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//            [_commodity addObject:[CommodityModel commodityWithDictionary:obj]];
-//        }];
-        NSLog(@"json---%@",json);
+        [FYTXHub dismiss];
         [_commodity setArray:json];
             if (!_tableView) {
                 //创建一个分组样式的UITableView
@@ -98,9 +100,11 @@
             }
         
         } failure:^(NSError *error) {
-        NSLog(@"-----%@",error);
+            [FYTXHub dismiss];
+            //添加提示信息
+            [self.view addSubview:[self backGroundLabel]];
+            NSLog(@"-----%@",error);
     }];
-//    NSString *path=[[NSBundle mainBundle] pathForResource:@"Commodity" ofType:@"plist"];
 }
 - (void)setupNavigationItem {
  
@@ -114,16 +118,16 @@
     self.navigationController.navigationBar.shadowImage=[[UIImage alloc]init];
 }
 
-- (void)initView{
+- (void)initView:(NSInteger)tabbNum{
+    NSArray *arr = [[NSArray alloc] init];
+    arr = tabbNum ? @[@{@"text":@"附近"},
+                    @{@"text":@"智能排序"}] : @[@{@"text":@"销量"},
+                                            @{@"text":@"价格",@"icon":@"icon-sort"}];
     _isOderTypeSoldNum = YES;
     _isOderDesUp = NO;
     PPiFlatSegmentedControl *segmented = [[PPiFlatSegmentedControl alloc]
                                         initWithFrame:CGRectMake(0, 0, self.view.width, 40)
-                                        items:
-                                        @[
-                                          @{@"text":@"销量"},
-                                          @{@"text":@"价格",@"icon":@"icon-sort"},
-                                          ]
+                                        items:arr
                                         iconPosition:IconPositionRight
                                         andSelectionBlock:^(NSUInteger segmentIndex) {
                                             
@@ -293,6 +297,17 @@
     NSFileManager *fm = [NSFileManager defaultManager];
     [fm createFileAtPath:fileName contents:nil attributes:nil];
     [json writeToFile:fileName atomically:YES];
+}
+
+- (UILabel *)backGroundLabel{
+    UILabel *backLabel = [[UILabel alloc] init];
+    backLabel.size = CGSizeMake(200, 30);
+    backLabel.centerX = self.view.centerX;
+    backLabel.centerY = self.view.centerY - 50;
+    backLabel.text = @"对不起，目前无更多信息";
+    backLabel.textColor = RGB(93, 93, 93);
+    backLabel.font = [UIFont boldSystemFontOfSize:17];
+    return backLabel;
 }
 
 @end

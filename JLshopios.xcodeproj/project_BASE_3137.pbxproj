@@ -47,7 +47,6 @@
 		3057833B1D0C29BD007AED3C /* JLShopCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 305783391D0C29BD007AED3C /* JLShopCollectionViewCell.m */; };
 		3057833C1D0C29BD007AED3C /* JLShopCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3057833A1D0C29BD007AED3C /* JLShopCollectionViewCell.xib */; };
 		308B96C61D572D2C008DD755 /* JLShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308B96C51D572D2C008DD755 /* JLShopModel.m */; };
-		308B98951D5F0C79008DD755 /* JLShopTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 308B98941D5F0C79008DD755 /* JLShopTypeModel.m */; };
 		8E2DE74C1D0477BF003C077A /* AppDelegate+FYTXDataBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7471D0477BF003C077A /* AppDelegate+FYTXDataBase.m */; };
 		8E2DE74D1D0477BF003C077A /* AppDelegate+FYTXEntrance.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7491D0477BF003C077A /* AppDelegate+FYTXEntrance.m */; };
 		8E2DE74E1D0477BF003C077A /* AppDelegate+FYTXUI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE74B1D0477BF003C077A /* AppDelegate+FYTXUI.m */; };
@@ -108,16 +107,13 @@
 		C5DEEA051D57523A00823ED8 /* FYTXHub.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEEA041D57523A00823ED8 /* FYTXHub.m */; };
 		C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85611D45E11F005F905C /* JLMeViewController.m */; };
 		C5EE85661D45E134005F905C /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85651D45E134005F905C /* ItemModel.m */; };
+		C5EE856A1D45E14A005F905C /* OderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85691D45E14A005F905C /* OderViewController.m */; };
+		C5EE856D1D45E154005F905C /* LikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE856C1D45E154005F905C /* LikeViewController.m */; };
+		C5EE85701D45E15E005F905C /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE856F1D45E15E005F905C /* AddressViewController.m */; };
+		C5EE85731D45E16C005F905C /* BusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85721D45E16C005F905C /* BusinessViewController.m */; };
+		C5EE85761D45E17A005F905C /* ModifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85751D45E17A005F905C /* ModifyViewController.m */; };
 		C5EE857A1D45E188005F905C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85781D45E188005F905C /* LoginViewController.m */; };
 		C5EE857B1D45E188005F905C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5EE85791D45E188005F905C /* LoginViewController.xib */; };
-		C5F63B211D5F1E7D0090F215 /* XieYiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B201D5F1E7D0090F215 /* XieYiViewController.m */; };
-		C5F63B241D5F2BBE0090F215 /* PianbaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B231D5F2BBE0090F215 /* PianbaoViewController.m */; };
-		C5F63B271D5F2BC90090F215 /* JifenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B261D5F2BC90090F215 /* JifenViewController.m */; };
-		C5F63B2A1D5F2BD50090F215 /* GuanzhuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B291D5F2BD50090F215 /* GuanzhuViewController.m */; };
-		C5F63B2D1D5F2BE50090F215 /* ShouhoudizhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B2C1D5F2BE50090F215 /* ShouhoudizhiViewController.m */; };
-		C5F63B301D5F2BF00090F215 /* ShangjiaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B2F1D5F2BF00090F215 /* ShangjiaViewController.m */; };
-		C5F63B331D5F2C010090F215 /* SaomazhuceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B321D5F2C010090F215 /* SaomazhuceViewController.m */; };
-		C5F63B361D5F2C0B0090F215 /* XiugaimimaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B351D5F2C0B0090F215 /* XiugaimimaViewController.m */; };
 		E715ECB81D052671003A2D62 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E715ECAC1D052671003A2D62 /* UIView+Extension.m */; };
 		E715ECB91D052671003A2D62 /* UIImage+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E715ECAE1D052671003A2D62 /* UIImage+Extension.m */; };
 		E715ECBA1D052671003A2D62 /* UIBarButtonItem+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E715ECB01D052671003A2D62 /* UIBarButtonItem+Extension.m */; };
@@ -251,8 +247,6 @@
 		3057833A1D0C29BD007AED3C /* JLShopCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JLShopCollectionViewCell.xib; sourceTree = "<group>"; };
 		308B96C41D572D2C008DD755 /* JLShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLShopModel.h; sourceTree = "<group>"; };
 		308B96C51D572D2C008DD755 /* JLShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLShopModel.m; sourceTree = "<group>"; };
-		308B98931D5F0C79008DD755 /* JLShopTypeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLShopTypeModel.h; sourceTree = "<group>"; };
-		308B98941D5F0C79008DD755 /* JLShopTypeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLShopTypeModel.m; sourceTree = "<group>"; };
 		59DB181FDF48FB21A3C8CB5C /* Pods-JLshopios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JLshopios.release.xcconfig"; path = "Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios.release.xcconfig"; sourceTree = "<group>"; };
 		8E2DE7451D0473E5003C077A /* Shop_PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shop_PrefixHeader.pch; path = JLshopios/Shop_PrefixHeader.pch; sourceTree = "<group>"; };
 		8E2DE7461D0477BF003C077A /* AppDelegate+FYTXDataBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+FYTXDataBase.h"; sourceTree = "<group>"; };
@@ -360,25 +354,19 @@
 		C5EE85611D45E11F005F905C /* JLMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLMeViewController.m; sourceTree = "<group>"; };
 		C5EE85641D45E134005F905C /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
 		C5EE85651D45E134005F905C /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
+		C5EE85681D45E14A005F905C /* OderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OderViewController.h; sourceTree = "<group>"; };
+		C5EE85691D45E14A005F905C /* OderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OderViewController.m; sourceTree = "<group>"; };
+		C5EE856B1D45E154005F905C /* LikeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeViewController.h; sourceTree = "<group>"; };
+		C5EE856C1D45E154005F905C /* LikeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeViewController.m; sourceTree = "<group>"; };
+		C5EE856E1D45E15E005F905C /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		C5EE856F1D45E15E005F905C /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		C5EE85711D45E16C005F905C /* BusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessViewController.h; sourceTree = "<group>"; };
+		C5EE85721D45E16C005F905C /* BusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessViewController.m; sourceTree = "<group>"; };
+		C5EE85741D45E17A005F905C /* ModifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyViewController.h; sourceTree = "<group>"; };
+		C5EE85751D45E17A005F905C /* ModifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyViewController.m; sourceTree = "<group>"; };
 		C5EE85771D45E188005F905C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C5EE85781D45E188005F905C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C5EE85791D45E188005F905C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		C5F63B1F1D5F1E7D0090F215 /* XieYiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieYiViewController.h; sourceTree = "<group>"; };
-		C5F63B201D5F1E7D0090F215 /* XieYiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieYiViewController.m; sourceTree = "<group>"; };
-		C5F63B221D5F2BBE0090F215 /* PianbaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianbaoViewController.h; sourceTree = "<group>"; };
-		C5F63B231D5F2BBE0090F215 /* PianbaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianbaoViewController.m; sourceTree = "<group>"; };
-		C5F63B251D5F2BC90090F215 /* JifenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JifenViewController.h; sourceTree = "<group>"; };
-		C5F63B261D5F2BC90090F215 /* JifenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JifenViewController.m; sourceTree = "<group>"; };
-		C5F63B281D5F2BD50090F215 /* GuanzhuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuanzhuViewController.h; sourceTree = "<group>"; };
-		C5F63B291D5F2BD50090F215 /* GuanzhuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuanzhuViewController.m; sourceTree = "<group>"; };
-		C5F63B2B1D5F2BE50090F215 /* ShouhoudizhiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouhoudizhiViewController.h; sourceTree = "<group>"; };
-		C5F63B2C1D5F2BE50090F215 /* ShouhoudizhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouhoudizhiViewController.m; sourceTree = "<group>"; };
-		C5F63B2E1D5F2BF00090F215 /* ShangjiaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShangjiaViewController.h; sourceTree = "<group>"; };
-		C5F63B2F1D5F2BF00090F215 /* ShangjiaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShangjiaViewController.m; sourceTree = "<group>"; };
-		C5F63B311D5F2C010090F215 /* SaomazhuceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaomazhuceViewController.h; sourceTree = "<group>"; };
-		C5F63B321D5F2C010090F215 /* SaomazhuceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaomazhuceViewController.m; sourceTree = "<group>"; };
-		C5F63B341D5F2C0B0090F215 /* XiugaimimaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XiugaimimaViewController.h; sourceTree = "<group>"; };
-		C5F63B351D5F2C0B0090F215 /* XiugaimimaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XiugaimimaViewController.m; sourceTree = "<group>"; };
 		D864B1384E019D4C842C5150 /* Pods-JLshopios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JLshopios.debug.xcconfig"; path = "Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios.debug.xcconfig"; sourceTree = "<group>"; };
 		E715ECAB1D052671003A2D62 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		E715ECAC1D052671003A2D62 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
@@ -897,31 +885,18 @@
 		C5EE85671D45E138005F905C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C5F63B221D5F2BBE0090F215 /* PianbaoViewController.h */,
-				C5F63B231D5F2BBE0090F215 /* PianbaoViewController.m */,
-				C5F63B251D5F2BC90090F215 /* JifenViewController.h */,
-				C5F63B261D5F2BC90090F215 /* JifenViewController.m */,
-				C5F63B281D5F2BD50090F215 /* GuanzhuViewController.h */,
-				C5F63B291D5F2BD50090F215 /* GuanzhuViewController.m */,
-				C5F63B2B1D5F2BE50090F215 /* ShouhoudizhiViewController.h */,
-				C5F63B2C1D5F2BE50090F215 /* ShouhoudizhiViewController.m */,
-				C5F63B2E1D5F2BF00090F215 /* ShangjiaViewController.h */,
-				C5F63B2F1D5F2BF00090F215 /* ShangjiaViewController.m */,
-				C5F63B311D5F2C010090F215 /* SaomazhuceViewController.h */,
-				C5F63B321D5F2C010090F215 /* SaomazhuceViewController.m */,
-				C5F63B341D5F2C0B0090F215 /* XiugaimimaViewController.h */,
-				C5F63B351D5F2C0B0090F215 /* XiugaimimaViewController.m */,
+				C5EE85681D45E14A005F905C /* OderViewController.h */,
+				C5EE85691D45E14A005F905C /* OderViewController.m */,
+				C5EE856B1D45E154005F905C /* LikeViewController.h */,
+				C5EE856C1D45E154005F905C /* LikeViewController.m */,
+				C5EE856E1D45E15E005F905C /* AddressViewController.h */,
+				C5EE856F1D45E15E005F905C /* AddressViewController.m */,
+				C5EE85711D45E16C005F905C /* BusinessViewController.h */,
+				C5EE85721D45E16C005F905C /* BusinessViewController.m */,
+				C5EE85741D45E17A005F905C /* ModifyViewController.h */,
+				C5EE85751D45E17A005F905C /* ModifyViewController.m */,
 			);
 			name = Classes;
-			sourceTree = "<group>";
-		};
-		C5F63B1E1D5F1E5C0090F215 /* xieyi */ = {
-			isa = PBXGroup;
-			children = (
-				C5F63B1F1D5F1E7D0090F215 /* XieYiViewController.h */,
-				C5F63B201D5F1E7D0090F215 /* XieYiViewController.m */,
-			);
-			name = xieyi;
 			sourceTree = "<group>";
 		};
 		E3C8D442DF5A0E204E057A71 /* Pods */ = {
@@ -1123,8 +1098,6 @@
 				308B96C51D572D2C008DD755 /* JLShopModel.m */,
 				8E6EC3141D58EFA8008A03EF /* JLGoodModel.h */,
 				8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */,
-				308B98931D5F0C79008DD755 /* JLShopTypeModel.h */,
-				308B98941D5F0C79008DD755 /* JLShopTypeModel.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -1152,7 +1125,6 @@
 		E7A189BC1D02D03000E6F441 /* Me */ = {
 			isa = PBXGroup;
 			children = (
-				C5F63B1E1D5F1E5C0090F215 /* xieyi */,
 				C5DEE9F81D5715B100823ED8 /* Register */,
 				C5EE85671D45E138005F905C /* Classes */,
 				C5EE85631D45E123005F905C /* Model */,
@@ -1180,15 +1152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3043B0AF1D02C55B00E97B82 /* Build configuration list for PBXNativeTarget "JLshopios" */;
 			buildPhases = (
-				3D3B8D3B47B8543D60717630 /* 📦 Check Pods Manifest.lock */,
 				5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */,
 				3043B0941D02C55B00E97B82 /* Sources */,
 				3043B0951D02C55B00E97B82 /* Frameworks */,
 				3043B0961D02C55B00E97B82 /* Resources */,
 				B23FA89FD641C06DD7EE4C40 /* [CP] Embed Pods Frameworks */,
 				01C400B7A058D83DDBD757CB /* [CP] Copy Pods Resources */,
-				9B810B73941DD43615D72A02 /* 📦 Embed Pods Frameworks */,
-				621D7A64BBF3FC95EFCD42CF /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1294,21 +1263,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3D3B8D3B47B8543D60717630 /* 📦 Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1322,37 +1276,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		621D7A64BBF3FC95EFCD42CF /* 📦 Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9B810B73941DD43615D72A02 /* 📦 Embed Pods Frameworks */ = {
-
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "📦 Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B23FA89FD641C06DD7EE4C40 /* [CP] Embed Pods Frameworks */ = {
@@ -1381,7 +1304,6 @@
 				E715ECE31D052696003A2D62 /* View+MASAdditions.m in Sources */,
 				C5DEEA051D57523A00823ED8 /* FYTXHub.m in Sources */,
 				8E2DE74E1D0477BF003C077A /* AppDelegate+FYTXUI.m in Sources */,
-				C5F63B331D5F2C010090F215 /* SaomazhuceViewController.m in Sources */,
 				30312C2E1D5709E500E0D0BD /* LNLocationManager.m in Sources */,
 				E77EFEF01D05561C00E5113C /* PPiFlatSegmentedControl.m in Sources */,
 				305783161D0C0D51007AED3C /* FYTXGERecordModel.m in Sources */,
@@ -1389,7 +1311,6 @@
 				1FACAE8D1D45BD6F0049A4BC /* JLFlowLayout.m in Sources */,
 				E7A189B71D02CEAA00E6F441 /* ShopBaseViewController.m in Sources */,
 				9759770C1D577C0E00B3B5CB /* TYLinkTextStorage.m in Sources */,
-				C5F63B2D1D5F2BE50090F215 /* ShouhoudizhiViewController.m in Sources */,
 				3057831B1D0C0D51007AED3C /* FYTXGuideImageName.m in Sources */,
 				E715ED1F1D05273D003A2D62 /* CommodityModel.m in Sources */,
 				E715ECDB1D052696003A2D62 /* MASCompositeConstraint.m in Sources */,
@@ -1399,6 +1320,7 @@
 				8E6EC3161D58EFA8008A03EF /* JLGoodModel.m in Sources */,
 				C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */,
 				C5DEE9FC1D5715DC00823ED8 /* RegisterViewController.m in Sources */,
+				C5EE85761D45E17A005F905C /* ModifyViewController.m in Sources */,
 				E715ED191D052729003A2D62 /* CategoryViewController.m in Sources */,
 				3057833B1D0C29BD007AED3C /* JLShopCollectionViewCell.m in Sources */,
 				305783171D0C0D51007AED3C /* FYTXGEView.m in Sources */,
@@ -1407,13 +1329,12 @@
 				E715ECF61D0526A3003A2D62 /* REFrostedViewController.m in Sources */,
 				E715ECDE1D052696003A2D62 /* MASLayoutConstraint.m in Sources */,
 				8E2DE74D1D0477BF003C077A /* AppDelegate+FYTXEntrance.m in Sources */,
-				308B98951D5F0C79008DD755 /* JLShopTypeModel.m in Sources */,
 				975976D31D577AF200B3B5CB /* DetailsViewController.m in Sources */,
 				975977081D577C0E00B3B5CB /* NSMutableAttributedString+TY.m in Sources */,
 				E72893EF1D06A227006CAEBB /* QSCHttpTool.m in Sources */,
-				C5F63B211D5F1E7D0090F215 /* XieYiViewController.m in Sources */,
 				8E2DE7841D048A43003C077A /* _JZValue.m in Sources */,
 				9759770B1D577C0E00B3B5CB /* TYImageStorage.m in Sources */,
+				C5EE85701D45E15E005F905C /* AddressViewController.m in Sources */,
 				C5EE857A1D45E188005F905C /* LoginViewController.m in Sources */,
 				8E2DE75D1D047B98003C077A /* JLHomeViewController.m in Sources */,
 				E715ECF51D0526A3003A2D62 /* REFrostedContainerViewController.m in Sources */,
@@ -1423,7 +1344,6 @@
 				E715ECBE1D052671003A2D62 /* UIButton+Extension.m in Sources */,
 				E715ECF81D0526A3003A2D62 /* UIView+REFrostedViewController.m in Sources */,
 				30312C2F1D5709E500E0D0BD /* LNSearchManager.m in Sources */,
-				C5F63B271D5F2BC90090F215 /* JifenViewController.m in Sources */,
 				8E2DE7831D048A43003C077A /* _JZNavigationInteractiveTransition.m in Sources */,
 				305783311D0C22FD007AED3C /* TAAbstractDotView.m in Sources */,
 				E77EFF041D05611600E5113C /* UIImage+Image.m in Sources */,
@@ -1432,6 +1352,7 @@
 				8E2DE78A1D048A43003C077A /* UIViewController+NMExtension.m in Sources */,
 				E77EFF121D05699C00E5113C /* ShopingCartController.m in Sources */,
 				975976EF1D577B4100B3B5CB /* CommodityPraiseCell.m in Sources */,
+				C5EE856D1D45E154005F905C /* LikeViewController.m in Sources */,
 				30312C281D5709E500E0D0BD /* BCurrentCityCell.m in Sources */,
 				978D3C261D44F04800C0C1BE /* TSLocateView.m in Sources */,
 				8E2DE7861D048A43003C077A /* UINavigationBar+JZExtension.m in Sources */,
@@ -1446,7 +1367,6 @@
 				E77EFEF61D05566700E5113C /* NSString+FontAwesome.m in Sources */,
 				E715ECDC1D052696003A2D62 /* MASConstraint.m in Sources */,
 				975976CF1D577ACE00B3B5CB /* CellConfig.m in Sources */,
-				C5F63B241D5F2BBE0090F215 /* PianbaoViewController.m in Sources */,
 				8EA0FE121D0C727D00947433 /* JLTypeListView.m in Sources */,
 				975976F11D577B4100B3B5CB /* CommoditySectionCell.m in Sources */,
 				8E2DE7871D048A43003C077A /* UIToolbar+JZExtension.m in Sources */,
@@ -1461,7 +1381,6 @@
 				3043B0A01D02C55B00E97B82 /* AppDelegate.m in Sources */,
 				8E2DE74C1D0477BF003C077A /* AppDelegate+FYTXDataBase.m in Sources */,
 				E715ECB81D052671003A2D62 /* UIView+Extension.m in Sources */,
-				C5F63B301D5F2BF00090F215 /* ShangjiaViewController.m in Sources */,
 				C5EE85661D45E134005F905C /* ItemModel.m in Sources */,
 				30312C2B1D5709E500E0D0BD /* ChineseToPinyin.m in Sources */,
 				9759770F1D577C0E00B3B5CB /* TYTextStorage.m in Sources */,
@@ -1488,19 +1407,19 @@
 				975976ED1D577B4100B3B5CB /* CommodityPackCell.m in Sources */,
 				E715ECE21D052696003A2D62 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				E715ECF41D0526A3003A2D62 /* RECommonFunctions.m in Sources */,
+				C5EE856A1D45E14A005F905C /* OderViewController.m in Sources */,
 				E715ED0E1D0526E5003A2D62 /* CommodityTableViewCell.m in Sources */,
 				E77EFF071D05613400E5113C /* NSString+File.m in Sources */,
 				30312C291D5709E500E0D0BD /* BHotCityCell.m in Sources */,
 				E715ECBA1D052671003A2D62 /* UIBarButtonItem+Extension.m in Sources */,
 				E715ED1E1D05273D003A2D62 /* CategoryMeunModel.m in Sources */,
-				C5F63B361D5F2C0B0090F215 /* XiugaimimaViewController.m in Sources */,
 				9759770A1D577C0E00B3B5CB /* TYDrawStorage.m in Sources */,
 				E715ECF91D0526A3003A2D62 /* UIViewController+REFrostedViewController.m in Sources */,
 				30312C2D1D5709E500E0D0BD /* LNLocationGeocoder.m in Sources */,
 				E715ED101D0526E5003A2D62 /* MultilevelMenu.m in Sources */,
 				305783321D0C22FD007AED3C /* TAAnimatedDotView.m in Sources */,
 				E715ED0D1D0526E5003A2D62 /* SearchBarView.m in Sources */,
-				C5F63B2A1D5F2BD50090F215 /* GuanzhuViewController.m in Sources */,
+				C5EE85731D45E16C005F905C /* BusinessViewController.m in Sources */,
 				E715ECBD1D052671003A2D62 /* NSString+Extension.m in Sources */,
 				3057831D1D0C0D51007AED3C /* JLGuideViewController.m in Sources */,
 				975976EB1D577B4100B3B5CB /* CommodityComponentCell.m in Sources */,

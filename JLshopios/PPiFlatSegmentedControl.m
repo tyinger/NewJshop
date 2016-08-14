@@ -34,7 +34,7 @@
         _selBlock=block;
         
         //Background Color
-        self.backgroundColor=[UIColor clearColor];
+        self.backgroundColor=[UIColor whiteColor];
         
         //Generating segments
         float buttonWith=frame.size.width/items.count;

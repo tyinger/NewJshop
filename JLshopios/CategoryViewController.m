@@ -101,7 +101,7 @@
 //        
          //[self.navigationController pushViewController:frostedViewController animated:YES];
           
-          CommodityTableViewController *commod = [[CommodityTableViewController alloc] init];
+          CommodityTableViewController *commod = [[CommodityTableViewController alloc] initWithType:0];
           commod.secondMenuIDStr = [NSString stringWithFormat:@"%d",info.Id];
           [self.navigationController pushViewController:commod animated:YES];
     }];
