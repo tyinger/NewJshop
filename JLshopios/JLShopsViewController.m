@@ -100,7 +100,7 @@
         //
         //[self.navigationController pushViewController:frostedViewController animated:YES];
         
-        CommodityTableViewController *commod = [[CommodityTableViewController alloc] init];
+        CommodityTableViewController *commod = [[CommodityTableViewController alloc] initWithType:1];
         [self.navigationController pushViewController:commod animated:YES];
     }];
     

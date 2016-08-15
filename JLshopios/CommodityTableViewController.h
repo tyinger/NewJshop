@@ -10,4 +10,6 @@
 
 @interface CommodityTableViewController : UIViewController
 @property (nonatomic, copy) NSString *secondMenuIDStr;
+
+- (instancetype)initWithType:(NSInteger)tabbarNum;
 @end

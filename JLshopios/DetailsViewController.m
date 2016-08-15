@@ -272,19 +272,11 @@
 //        [self showLoginView];
 //        return;
 //    }
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-//    HUD.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"26x-Checkmark"]];
+    [FYTXHub toast:@"请先登录"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [FYTXHub dismiss];
+    });
     
-    // Set custom view mode
-    HUD.mode = MBProgressHUDModeCustomView;
-    
-    HUD.delegate = self;
-    HUD.labelText = @"请先登录";
-//    HUD.labelText = @"恭喜,已添加至购物车。";
-    
-    [HUD show:YES];
-    [HUD hide:YES afterDelay:2];
 }
 
 - (void)cartClick{
@@ -301,7 +293,13 @@
 //    CartViewController * cartVC=[[CartViewController alloc]init];
 //    [self.navigationController pushViewController:cartVC animated:YES];
     
-
+    [FYTXHub toast:@"请先登录"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [FYTXHub dismiss];
+    });
+    return;
+    
+    //TODO:要做登录判断
     AppDelegate *app = [UIApplication sharedApplication].delegate;
     app.window.rootViewController = [JLTabMainController shareJLTabVC];
     [JLTabMainController shareJLTabVC].selectedIndex = 3;

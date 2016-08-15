@@ -1180,15 +1180,24 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3043B0AF1D02C55B00E97B82 /* Build configuration list for PBXNativeTarget "JLshopios" */;
 			buildPhases = (
+<<<<<<< Updated upstream
 				3D3B8D3B47B8543D60717630 /* 📦 Check Pods Manifest.lock */,
+=======
+				0A708A41AC8FE9078168D0B2 /* 📦 Check Pods Manifest.lock */,
+>>>>>>> Stashed changes
 				5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */,
 				3043B0941D02C55B00E97B82 /* Sources */,
 				3043B0951D02C55B00E97B82 /* Frameworks */,
 				3043B0961D02C55B00E97B82 /* Resources */,
 				B23FA89FD641C06DD7EE4C40 /* [CP] Embed Pods Frameworks */,
 				01C400B7A058D83DDBD757CB /* [CP] Copy Pods Resources */,
+<<<<<<< Updated upstream
 				9B810B73941DD43615D72A02 /* 📦 Embed Pods Frameworks */,
 				621D7A64BBF3FC95EFCD42CF /* 📦 Copy Pods Resources */,
+=======
+				7AFE0DAA18A5D4EBB3030D05 /* 📦 Embed Pods Frameworks */,
+				220EB0BAB602071C3FCCBB10 /* 📦 Copy Pods Resources */,
+>>>>>>> Stashed changes
 			);
 			buildRules = (
 			);
@@ -1294,7 +1303,11 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+<<<<<<< Updated upstream
 		3D3B8D3B47B8543D60717630 /* 📦 Check Pods Manifest.lock */ = {
+=======
+		0A708A41AC8FE9078168D0B2 /* 📦 Check Pods Manifest.lock */ = {
+>>>>>>> Stashed changes
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1309,6 +1322,24 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+<<<<<<< Updated upstream
+=======
+		220EB0BAB602071C3FCCBB10 /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+>>>>>>> Stashed changes
 		5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1324,6 +1355,7 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+<<<<<<< Updated upstream
 		621D7A64BBF3FC95EFCD42CF /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1340,7 +1372,9 @@
 			showEnvVarsInLog = 0;
 		};
 		9B810B73941DD43615D72A02 /* 📦 Embed Pods Frameworks */ = {
-
+=======
+		7AFE0DAA18A5D4EBB3030D05 /* 📦 Embed Pods Frameworks */ = {
+>>>>>>> Stashed changes
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
