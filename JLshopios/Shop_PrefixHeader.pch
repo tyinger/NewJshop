@@ -18,6 +18,7 @@
 #import "UIView+Extension.h"
 #import "UIImage+Extension.h"
 #import "NSString+Extension.h"
+#import "NSString+File.h"
 #import "UIButton+Extension.h"
 #import "Masonry.h"
 #import "MasonyUtil.h"

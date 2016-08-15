@@ -8,8 +8,6 @@
 
 #import "RegisterViewController.h"
 
-#import <CommonCrypto/CommonDigest.h>
-
 #import <JKCountDownButton/JKCountDownButton.h>
 
 @interface RegisterViewController ()<UITextFieldDelegate>
@@ -145,7 +143,7 @@
         tuijian = self.tuijianCode.text;
     }
     
-    NSDictionary *dic = @{@"phoneNum":self.phoneNumTextF.text,@"checkCode":@"123123",@"pwd":[[self class] md5: self.passwordTextF.text],@"recommendCode":tuijian};
+    NSDictionary *dic = @{@"phoneNum":self.phoneNumTextF.text,@"checkCode":@"123123",@"pwd":[NSString changemd:self.passwordTextF.text],@"recommendCode":tuijian};
         //loginName=18643212316 password=
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/registNewUser?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             
@@ -282,14 +280,6 @@
     }
     return YES;
 }
-+ (NSString *)md5:(NSString *)str
-{
-     const char *cStr = [str UTF8String];
-     unsigned char result[16];
-     CC_MD5( cStr, strlen(cStr), result );
-     return [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",result[0], result[1], result[2], result[3],result[4], result[5], result[6], result[7],result[8], result[9], result[10], result[11],result[12], result[13], result[14], result[15]];
-}
-
 
 
 

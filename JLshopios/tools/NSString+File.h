@@ -14,4 +14,7 @@
 - (NSString *)filenameAppend:(NSString *)append;
 + (int)lengthToHanZi:(NSString *)strtemp;
 -(id)JSONValue;
+
++ (NSString *)changemd:(NSString *)str;
+
 @end

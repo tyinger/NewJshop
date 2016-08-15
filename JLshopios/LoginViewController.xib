@@ -9,6 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
                 <outlet property="passwordTextF" destination="6ai-kg-2VN" id="Z9q-EZ-GhY"/>
+                <outlet property="sureButton" destination="2z8-YQ-rGo" id="jLh-F4-838"/>
                 <outlet property="userImageView" destination="K3n-Kg-ahH" id="IsE-YH-Vqt"/>
                 <outlet property="userNameTextF" destination="Fmy-gP-ewn" id="qWS-3A-AXu"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -116,24 +117,6 @@
                         <constraint firstItem="6ai-kg-2VN" firstAttribute="top" secondItem="Fmy-gP-ewn" secondAttribute="bottom" constant="19" id="uvK-eb-Nh5"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z8-YQ-rGo">
-                    <rect key="frame" x="8" y="222" width="304" height="35"/>
-                    <color key="backgroundColor" white="0.90298784025784196" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="Ngg-zn-pq8"/>
-                    </constraints>
-                    <state key="normal" title="登录">
-                        <color key="titleColor" white="0.39112369685337461" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="6"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="6hH-Ai-MhK"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sc3-Mg-YAr">
                     <rect key="frame" x="8" y="277" width="84" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -152,6 +135,24 @@
                     </state>
                     <connections>
                         <action selector="foundoutPassword:" destination="-1" eventType="touchUpInside" id="BvV-4L-xlF"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2z8-YQ-rGo">
+                    <rect key="frame" x="8" y="222" width="304" height="35"/>
+                    <color key="backgroundColor" white="0.90298784025784196" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Ngg-zn-pq8"/>
+                    </constraints>
+                    <state key="normal" title="登录">
+                        <color key="titleColor" white="0.39112369685337461" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="6hH-Ai-MhK"/>
                     </connections>
                 </button>
             </subviews>
