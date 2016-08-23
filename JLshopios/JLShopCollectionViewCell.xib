@@ -16,7 +16,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yph-4X-eP6">
                         <rect key="frame" x="0.0" y="39" width="300" height="105"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="5cH-1f-ygm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worth_to_buy" translatesAutoresizingMaskIntoConstraints="NO" id="5cH-1f-ygm">
                                 <rect key="frame" x="8" y="8" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="6aq-Bu-HGz"/>
@@ -60,7 +60,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1q-af-phZ">
                         <rect key="frame" x="300" y="39" width="300" height="105"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radar_icon_hot_selected" translatesAutoresizingMaskIntoConstraints="NO" id="p8M-VW-wgl">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goods_recom" translatesAutoresizingMaskIntoConstraints="NO" id="p8M-VW-wgl">
                                 <rect key="frame" x="8" y="8" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="IYL-jk-ttW"/>
@@ -129,7 +129,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhM-0s-OI1">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="vUH-ze-h01">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worth_to_buy" translatesAutoresizingMaskIntoConstraints="NO" id="vUH-ze-h01">
                                         <rect key="frame" x="8" y="2" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="CR0-18-kUg"/>
@@ -146,7 +146,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide_page_3" translatesAutoresizingMaskIntoConstraints="NO" id="JvH-Nk-X86">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuangou" translatesAutoresizingMaskIntoConstraints="NO" id="JvH-Nk-X86">
                                         <rect key="frame" x="120" y="36" width="80" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="Yby-5d-6bE"/>
@@ -183,7 +183,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide_page_3" translatesAutoresizingMaskIntoConstraints="NO" id="Mbw-9s-yyD">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shangou" translatesAutoresizingMaskIntoConstraints="NO" id="Mbw-9s-yyD">
                                         <rect key="frame" x="120" y="36" width="80" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="IHv-h9-xlZ"/>
@@ -225,7 +225,7 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide_page_3" translatesAutoresizingMaskIntoConstraints="NO" id="lAz-N9-RXc">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jdzhongchou" translatesAutoresizingMaskIntoConstraints="NO" id="lAz-N9-RXc">
                                         <rect key="frame" x="120" y="36" width="80" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="lF5-Zq-RTI"/>
@@ -296,6 +296,22 @@
                                 <color key="textColor" red="0.21161912747114089" green="0.92941176469999998" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgr-OK-2SO">
+                                <rect key="frame" x="19" y="29" width="40" height="40"/>
+                                <state key="normal" backgroundImage="home_center_menu_cz"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWC-jN-qyq">
+                                <rect key="frame" x="93" y="29" width="40" height="40"/>
+                                <state key="normal" backgroundImage="home_center_menu_dyp"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5a-1F-chE">
+                                <rect key="frame" x="171" y="29" width="40" height="40"/>
+                                <state key="normal" backgroundImage="home_center_menu_wdgz"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bZ-Gq-nGh">
+                                <rect key="frame" x="249" y="29" width="40" height="40"/>
+                                <state key="normal" backgroundImage="home_center_menu_wlcx"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -350,9 +366,17 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="goods_recom" width="15" height="18"/>
         <image name="guide_page_2" width="375" height="667"/>
-        <image name="guide_page_3" width="375" height="667"/>
+        <image name="home_center_menu_cz" width="38" height="38"/>
+        <image name="home_center_menu_dyp" width="38" height="37"/>
+        <image name="home_center_menu_wdgz" width="38" height="37"/>
+        <image name="home_center_menu_wlcx" width="37" height="37"/>
+        <image name="jdzhongchou" width="54" height="86"/>
         <image name="more_icon_like" width="57" height="57"/>
         <image name="radar_icon_hot_selected" width="28" height="28"/>
+        <image name="shangou" width="62" height="86"/>
+        <image name="tuangou" width="90" height="83"/>
+        <image name="worth_to_buy" width="15" height="18"/>
     </resources>
 </document>

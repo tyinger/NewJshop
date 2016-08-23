@@ -57,13 +57,13 @@
 
 -(void)netWorkTest{
     //获取验证码的
-//    NSDictionary *dic = @{@"phoneNum":@"18643212316"};
-//    //loginName=18643212316 password=
-//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getRegisterYzm?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-//        NSLog(@"json = msg %@",json[@"msg"]);
-//    } failure:^(NSError *error) {
-//        
-//    }];
+    //    NSDictionary *dic = @{@"phoneNum":@"18643212316"};
+    //    //loginName=18643212316 password=
+    //    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getRegisterYzm?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+    //        NSLog(@"json = msg %@",json[@"msg"]);
+    //    } failure:^(NSError *error) {
+    //
+    //    }];
     
     //注册接口
     //123.56.192.182:8443/app/user/registNewUser?
@@ -75,15 +75,15 @@
      手机号 验证码 md5  推荐码
      */
     
-//    NSDictionary *dic = @{@"phoneNum":@"13631564265",@"checkCode":@"123123",@"pwd":@"IUOIJIWJEIWJEWOEJOWIEJWOIEJIWJEWIEJIWEQQQQ",@"recommendCode":@""};
-//    //loginName=18643212316 password=
-//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/registNewUser?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-//        NSLog(@"json = msg %@",json[@"msg"]);
-//    } failure:^(NSError *error) {
-//        
-//    }];
+    //    NSDictionary *dic = @{@"phoneNum":@"13631564265",@"checkCode":@"123123",@"pwd":@"IUOIJIWJEIWJEWOEJOWIEJWOIEJIWJEWIEJIWEQQQQ",@"recommendCode":@""};
+    //    //loginName=18643212316 password=
+    //    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/registNewUser?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+    //        NSLog(@"json = msg %@",json[@"msg"]);
+    //    } failure:^(NSError *error) {
+    //
+    //    }];
     
-//    //首页轮播的接口
+    //    //首页轮播的接口
     NSDictionary *dic = @{@"adType":@"1"};
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/ad/getAdResource?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -102,27 +102,27 @@
         });
     } failure:^(NSError *error) {
     }];
-
     
     
-//    //推荐商品接口 //begin=0
-//    NSDictionary *dic1 = @{@"begin":@"0"};
-//    //https://123.56.192.182:8443/app/product/recommendGoods?
-//    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/recommendGoods?" parameters:dic1 isShowHUD:YES httpToolSuccess:^(id json) {
-//        NSArray *jsonArray = json;
-//        NSMutableArray *marray = [[NSMutableArray alloc]init];
-//        for (NSDictionary *dics in jsonArray) {
-//            JLGoodModel *model = [JLGoodModel initWithDictionary:dics];
-//            [marray addObject:model];
-//        }
-//        self.hotGoodsArray = [marray copy];
-//
-//            } failure:^(NSError *error) {
-//    }];
+    
+    //    //推荐商品接口 //begin=0
+    //    NSDictionary *dic1 = @{@"begin":@"0"};
+    //    //https://123.56.192.182:8443/app/product/recommendGoods?
+    //    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/recommendGoods?" parameters:dic1 isShowHUD:YES httpToolSuccess:^(id json) {
+    //        NSArray *jsonArray = json;
+    //        NSMutableArray *marray = [[NSMutableArray alloc]init];
+    //        for (NSDictionary *dics in jsonArray) {
+    //            JLGoodModel *model = [JLGoodModel initWithDictionary:dics];
+    //            [marray addObject:model];
+    //        }
+    //        self.hotGoodsArray = [marray copy];
+    //
+    //            } failure:^(NSError *error) {
+    //    }];
     
     //分类列表接口
-//    https://123.56.192.182:8443/app/product/listClass?arg0={"name":"","type":"1","id":"","level":"","firstSeplling":""}
-
+    //    https://123.56.192.182:8443/app/product/listClass?arg0={"name":"","type":"1","id":"","level":"","firstSeplling":""}
+    
     
     
 }
@@ -182,7 +182,7 @@
     self.cycleScrollview = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, creenWidth, 140) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     _cycleScrollview.currentPageDotImage = [UIImage imageNamed:@"FYTXCategories_page_dot_press"];
-
+    _cycleScrollview.autoScrollTimeInterval = 5.0f;
     _cycleScrollview.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     [self.collectionView addSubview:_cycleScrollview];
     
@@ -209,7 +209,7 @@
             make.left.mas_equalTo(pview);
             make.top.mas_equalTo(self.cycleScrollview.mas_bottom);
             make.width.mas_equalTo(pview);
-            make.height.mas_equalTo(130);
+            make.height.mas_equalTo(140);
         }];
     }
 }
@@ -270,7 +270,7 @@
 {
     
     JLShopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JLHomeCell forIndexPath:indexPath];
-
+    
     return cell;
 }
 
@@ -287,7 +287,7 @@
 //定义每个Section 的 margin
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-
+    
     return UIEdgeInsetsMake(0, 0, 0, 0);//分别为上、左、下、右
 }
 

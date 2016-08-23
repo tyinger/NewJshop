@@ -29,7 +29,7 @@ static CGFloat TypeListButtonWidth = 40;
     self = [super initWithFrame:frame];
     if (self) {
         [self setBackgroundColor:[UIColor whiteColor]];
-//        [self loadAllButtons];
+        //        [self loadAllButtons];
         [self loadTypeListInfo];
         
     }
@@ -39,7 +39,7 @@ static CGFloat TypeListButtonWidth = 40;
 -(void)loadTypeListInfo{
     
     NSDictionary *dics = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
-
+    
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dics isShowHUD:YES httpToolSuccess:^(id json) {
         NSArray *jsonArray = json;
         NSMutableArray *marray = [[NSMutableArray alloc]init];
@@ -74,21 +74,35 @@ static CGFloat TypeListButtonWidth = 40;
             
             [self addSubview:button];
             
-        }else if(4<=i && 8>i) {
+        }else if(4<=i && 7>i) {
             button = [UIButton buttonWithType:UIButtonTypeCustom];
-            [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*2, TypeListButtonWidth, TypeListButtonWidth)];
+            [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*3, TypeListButtonWidth, TypeListButtonWidth)];
             [button setTag:i];
             [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
+            [self addSubview:button];
+        }else if(7 == i){
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*3, TypeListButtonWidth, TypeListButtonWidth)];
+            [button setTag:i];
+            
+            [button setBackgroundImage:[UIImage imageNamed:@"home_center_menu_gd"] forState:UIControlStateNormal];
+            
             [self addSubview:button];
         }
         
         UILabel *typeText = [[UILabel alloc]init];
         typeText.text = model.name;
+        if (7 == i) {
+            typeText.text = @"更多";
+            
+        }
         
-        [self addSubview:typeText];
         
-
-       
+        [typeText setTextColor:[UIColor darkGrayColor]];
+        [typeText setTextAlignment:NSTextAlignmentCenter];
+        [typeText setFrame:CGRectMake(-10, TypeListButtonWidth, TypeListButtonWidth+10*2, 15)];
+        [typeText setFont:[UIFont systemFontOfSize:12]];
+        [button addSubview:typeText];
         
     }
 }

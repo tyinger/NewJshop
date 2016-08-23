@@ -58,16 +58,16 @@
 
     self.selectedIndex = 0;
     
-    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_home_normal"
-            selectedImageName:@"main_bottom_tab_home_focus" index:0];
-    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_category_normal"
-            selectedImageName:@"main_bottom_tab_category_focus" index:1];
-    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_faxian_normal"
-            selectedImageName:@"main_bottom_tab_faxian_focus" index:2];
-    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_cart_normal"
-            selectedImageName:@"main_bottom_tab_cart_focus" index:3];
-    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_personal_normal"
-            selectedImageName:@"main_bottom_tab_personal_focus" index:4];
+    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_home_focus"
+            selectedImageName:@"main_bottom_tab_home_normal" index:0];
+    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_category_focus"
+            selectedImageName:@"main_bottom_tab_category_normal" index:1];
+    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_faxian_focus"
+            selectedImageName:@"main_bottom_tab_faxian_normal" index:2];
+    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_cart_focus"
+            selectedImageName:@"main_bottom_tab_cart_normal" index:3];
+    [self tabBarItemWithTitle:@"" imageName:@"main_bottom_tab_personal_focus"
+            selectedImageName:@"main_bottom_tab_personal_normal" index:4];
     
     [self loadBGview:0];
 }
