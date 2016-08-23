@@ -33,6 +33,8 @@
     BOOL _isOderTypeSoldNum;
     BOOL _isOderDesUp;
     NSInteger _tabbarNum;
+    NSInteger _pangoNum;
+    NSInteger _jsonCount;//请求回来的数组的总数
 }
 @property (strong, nonatomic) UILabel *backGroundLabel;
 @end
@@ -49,7 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+   _commodity = [[NSMutableArray alloc]init];
     self.view.backgroundColor = RGB(239, 243, 246);
     //初始化数据
     [self initData:self.secondMenuIDStr];
@@ -62,26 +64,40 @@
 -(void)refresh
 {
     NSLog(@"上啦刷新");
+    _pangoNum = 0;
+    [_tableView.mj_footer setState:MJRefreshStateIdle];
+    [self loadDataFromClientWithMenuID:self.secondMenuIDStr andPageno:@"0" andOrderType:@"soldNum" andOrderDes:@"0" andIsMJRefleshHead:YES];
     [_tableView.mj_header endRefreshing];
 }
 
 -(void)loadMore
 {
     NSLog(@"下啦刷新");
+    _pangoNum += 10;
+    [self loadDataFromClientWithMenuID:self.secondMenuIDStr andPageno:[NSString stringWithFormat:@"%ld",(long)_pangoNum] andOrderType:_OderTypeStr andOrderDes:_OderDesStr andIsMJRefleshHead:NO];
     [_tableView.mj_footer endRefreshing];
 }
 #pragma mark 加载数据
 -(void)initData:(NSString *)menuID{
 
-    _commodity=[[NSMutableArray alloc]init];
-    
+    _pangoNum = 0;
     NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\"}",menuID];
     NSDictionary *dic = @{@"arg0":parameterStr};
     [FYTXHub progress:@"正在加载。。。"];
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         [FYTXHub dismiss];
+        
         [_commodity setArray:json];
+        _jsonCount = _commodity.count;
+        if (_jsonCount >= 10) {
+            [_commodity removeAllObjects];
+            for (int i = 0; i < 10; i++) {
+                [_commodity addObject:json[i]];
+            }
+        }else{
+            [_tableView.mj_footer setState:MJRefreshStateNoMoreData];
+        }
             if (!_tableView) {
                 //创建一个分组样式的UITableView
                 _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-40) style:UITableViewStylePlain];
@@ -110,8 +126,7 @@
  
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"back_bt_7" highBackgroudImageName:nil target:self action:@selector(backClick)];
 
-    UIBarButtonItem *chooseBtn = [[UIBarButtonItem alloc]initWithTitle:@"666" style:UIBarButtonItemStyleDone target:self action:@selector(chooseBtnAction)];
-    
+    UIBarButtonItem *chooseBtn = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"guanzhu" highBackgroudImageName:nil target:self action:@selector(selectModel:)];
     NSArray * arr = [[NSArray alloc] initWithObjects:self.navigationItem.leftBarButtonItem,chooseBtn, nil];
     self.navigationItem.leftBarButtonItems = arr;
     //将搜索条放在一个UIView上
@@ -128,7 +143,6 @@
     }
     searchView.delegate=self;
     NSLog(@"%@",NSStringFromCGRect(searchView.frame));
-    searchView.backgroundColor = [UIColor redColor];
     self.navigationItem.titleView = searchView;
     self.navigationController.navigationBar.shadowImage=[[UIImage alloc]init];
 }
@@ -226,6 +240,11 @@
     
 }
 
+- (void)selectModel:(UIButton *)chooseBtn
+{
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -281,13 +300,18 @@
 }
 
 //获取数据
-- (void)loadDataFromClientWithMenuID:(NSString *)menuID andPageno:(NSString *)pageno andOrderType:(NSString *)orderType andOrderDes:(NSString *)orderDes{
+- (void)loadDataFromClientWithMenuID:(NSString *)menuID andPageno:(NSString *)pageno andOrderType:(NSString *)orderType andOrderDes:(NSString *)orderDes andIsMJRefleshHead:(BOOL)isMJRefleshHead{
     
     NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"%@\",\"pagesize\":\"10\",\"orderType\":\"%@\",\"orderDes\":\"%@\"}",menuID,pageno,orderType,orderDes];
     NSDictionary *dic = @{@"arg0":parameterStr};
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-        
-        [_commodity setArray:json];
+        if (isMJRefleshHead) {
+            [_commodity removeAllObjects];
+        }
+        [_commodity addObjectsFromArray:json];
+        if ([(NSMutableArray *)json count]<10) {
+            [_tableView.mj_footer setState:MJRefreshStateNoMoreData];
+        }
         [_tableView reloadData];
         
     } failure:^(NSError *error) {
