@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Masonry.h"
 @interface MasonyUtil : NSObject
-
+void TTAlert(NSString* message);
 
 //居中显示
 + (void)centerView:(UIView *)view size:(CGSize)size;

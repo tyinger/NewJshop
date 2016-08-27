@@ -8,8 +8,37 @@
 
 #import "UIView+Extension.h"
 #import "Masonry.h"
-
+static char actionKey;
 @implementation UIView (Extension)
+
+- (void)setBorderColor:(UIColor*)borderColor{
+    self.layer.borderColor = borderColor.CGColor;
+    self.layer.masksToBounds = YES;
+}
+- (void)setCornerRadius:(CGFloat)cornerRadius{
+    self.layer.cornerRadius = cornerRadius;
+    self.layer.masksToBounds = YES;
+}
+- (void)setBorderWidth:(CGFloat)borderWidth{
+    self.layer.borderWidth = borderWidth;
+    self.layer.masksToBounds = YES;
+}
+
+- (UIColor *)borderColor {
+    return [UIColor colorWithCGColor:self.layer.borderColor];
+}
+
+- (CGFloat)cornerRadius {
+    return self.layer.cornerRadius;
+}
+
+- (CGFloat)borderWidth {
+    return self.layer.borderWidth;
+}
+
+
+
+
 
 - (void)setX:(CGFloat)x
 {
@@ -192,4 +221,17 @@
         make.bottom.equalTo(ws.mas_bottom);
     }];
 }
+
+- (void)sx_addAction:(void (^)(void))action{
+    objc_setAssociatedObject(self, &actionKey, action, OBJC_ASSOCIATION_COPY);
+    self.userInteractionEnabled = YES;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    [self addGestureRecognizer:tap];
+    
+}
+- (void)tap{
+    void(^action)(void) = objc_getAssociatedObject(self, &actionKey);
+    action();
+}
+
 @end

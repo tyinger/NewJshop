@@ -9,7 +9,14 @@
 #import "MasonyUtil.h"
 
 @implementation MasonyUtil
-
+void TTAlert(NSString* message) {
+    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 + (void)centerView:(UIView *)view size:(CGSize)size {
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {

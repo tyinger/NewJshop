@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="110" id="KGk-i7-Jjw" customClass="CartCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="35m-BO-gqj">
+                        <rect key="frame" x="0.0" y="0.0" width="35" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="X8p-rY-U0c"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" image="xn_circle_normal"/>
+                        <state key="selected" image="xn_circle_select"/>
+                    </button>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cdl-zL-esg">
+                        <rect key="frame" x="50" y="8" width="84" height="84"/>
+                        <color key="backgroundColor" red="0.82352941180000006" green="0.82352941180000006" blue="0.82352941180000006" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="84" id="9h4-Dq-B8I"/>
+                            <constraint firstAttribute="width" constant="84" id="o6P-2B-4zE"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hd6-gf-hiP">
+                        <rect key="frame" x="148" y="8" width="24.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥1.0" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wSt-b3-Asl">
+                        <rect key="frame" x="148" y="42" width="25.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LhH-RS-DcA" customClass="ChartNumberCountView">
+                        <rect key="frame" x="148" y="67" width="90" height="25"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="B91-SE-izr"/>
+                            <constraint firstAttribute="height" constant="25" id="UnO-M9-4F0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" red="0.95686274509803915" green="0.95686274509803915" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="LhH-RS-DcA" firstAttribute="leading" secondItem="wSt-b3-Asl" secondAttribute="leading" id="2Dy-iA-Pf9"/>
+                    <constraint firstItem="wSt-b3-Asl" firstAttribute="leading" secondItem="hd6-gf-hiP" secondAttribute="leading" id="35S-s0-bJb"/>
+                    <constraint firstAttribute="bottom" secondItem="Cdl-zL-esg" secondAttribute="bottom" constant="7.5" id="6XQ-6e-dMr"/>
+                    <constraint firstItem="hd6-gf-hiP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="C5f-Rq-lz1"/>
+                    <constraint firstItem="35m-BO-gqj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="GWg-z4-6YF"/>
+                    <constraint firstItem="Cdl-zL-esg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="LxU-K0-s4u"/>
+                    <constraint firstItem="wSt-b3-Asl" firstAttribute="centerY" secondItem="Cdl-zL-esg" secondAttribute="centerY" id="PZZ-No-hUz"/>
+                    <constraint firstItem="35m-BO-gqj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="YLl-Ms-qqP"/>
+                    <constraint firstItem="Cdl-zL-esg" firstAttribute="leading" secondItem="35m-BO-gqj" secondAttribute="trailing" constant="15" id="Z5d-tv-72r"/>
+                    <constraint firstItem="LhH-RS-DcA" firstAttribute="bottom" secondItem="Cdl-zL-esg" secondAttribute="bottom" id="ffu-am-HCb"/>
+                    <constraint firstAttribute="bottom" secondItem="35m-BO-gqj" secondAttribute="bottom" id="te6-nd-KdT"/>
+                    <constraint firstItem="hd6-gf-hiP" firstAttribute="leading" secondItem="Cdl-zL-esg" secondAttribute="trailing" constant="14" id="uTz-3E-EO5"/>
+                    <constraint firstItem="wSt-b3-Asl" firstAttribute="top" secondItem="hd6-gf-hiP" secondAttribute="bottom" constant="2" id="x4S-k8-9m1"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="x4S-k8-9m1"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="GoodsPricesLabel" destination="wSt-b3-Asl" id="mRm-jf-LFV"/>
+                <outlet property="goodsImageView" destination="Cdl-zL-esg" id="7KM-O7-HYF"/>
+                <outlet property="goodsNameLabel" destination="hd6-gf-hiP" id="9yV-Pe-gMT"/>
+                <outlet property="nummberCount" destination="LhH-RS-DcA" id="bbs-ei-Nc4"/>
+                <outlet property="selectShopGoodsButton" destination="35m-BO-gqj" id="uLl-5E-xKe"/>
+            </connections>
+            <point key="canvasLocation" x="245" y="187"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="xn_circle_normal" width="20" height="20"/>
+        <image name="xn_circle_select" width="20" height="20"/>
+    </resources>
+</document>

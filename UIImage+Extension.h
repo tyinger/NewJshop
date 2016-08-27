@@ -12,4 +12,5 @@
 + (UIImage*) imageWithName:(NSString *) imageName;
 + (UIImage*) resizableImageWithName:(NSString *)imageName;
 - (UIImage*) scaleImageWithSize:(CGSize)size;
++ (UIImage *)imageWithColor:(UIColor *)color ;
 @end
