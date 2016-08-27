@@ -26,4 +26,11 @@
 - (void)getCartGoodCount;
 //加入购物车方法
 - (void)addGood:(GoodModel*)modelToCart;
+//删除整个商品
+- (void)deleteWholeGoodWith:(NSString *)ID;
+//根据ID删除某一个商品
+- (void)deleteGoodWithID:(NSString *)goodId;
+
+
+
 @end
