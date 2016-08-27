@@ -103,6 +103,7 @@
 		978D3C271D44F04800C0C1BE /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */; };
 		978D3C281D44F04800C0C1BE /* TSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1D1D44F04800C0C1BE /* TSLocation.m */; };
 		B529A39C1D7018D200A1A3B1 /* CartBarEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */; };
+		B58E8F3E1D716C8C006C21CD /* ToolClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B58E8F3D1D716C8C006C21CD /* ToolClass.m */; };
 		B5F3C8321D6F4B730010D199 /* CartPlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F3C8311D6F4B730010D199 /* CartPlaceHolderView.m */; };
 		B5F3C8341D6F4B9D0010D199 /* CartPlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F3C8331D6F4B9D0010D199 /* CartPlaceHolderView.xib */; };
 		B5FDB21F1D6C35930042D9EC /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FDB21D1D6C35930042D9EC /* CartCell.m */; };
@@ -361,6 +362,8 @@
 		978D3C1D1D44F04800C0C1BE /* TSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocation.m; sourceTree = "<group>"; };
 		B529A39A1D7018D200A1A3B1 /* CartBarEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartBarEdit.h; sourceTree = "<group>"; };
 		B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartBarEdit.m; sourceTree = "<group>"; };
+		B58E8F3C1D716C8C006C21CD /* ToolClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolClass.h; sourceTree = "<group>"; };
+		B58E8F3D1D716C8C006C21CD /* ToolClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolClass.m; sourceTree = "<group>"; };
 		B5F3C8301D6F4B730010D199 /* CartPlaceHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartPlaceHolderView.h; sourceTree = "<group>"; };
 		B5F3C8311D6F4B730010D199 /* CartPlaceHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartPlaceHolderView.m; sourceTree = "<group>"; };
 		B5F3C8331D6F4B9D0010D199 /* CartPlaceHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartPlaceHolderView.xib; sourceTree = "<group>"; };
@@ -688,6 +691,8 @@
 				E72893F01D06A251006CAEBB /* kudou.cer */,
 				E72893ED1D06A227006CAEBB /* QSCHttpTool.h */,
 				E72893EE1D06A227006CAEBB /* QSCHttpTool.m */,
+				B58E8F3C1D716C8C006C21CD /* ToolClass.h */,
+				B58E8F3D1D716C8C006C21CD /* ToolClass.m */,
 				E77EFF051D05613400E5113C /* NSString+File.h */,
 				E77EFF061D05613400E5113C /* NSString+File.m */,
 				E77EFEF41D05566700E5113C /* NSString+FontAwesome.h */,
@@ -1475,6 +1480,7 @@
 				E715ECDB1D052696003A2D62 /* MASCompositeConstraint.m in Sources */,
 				975977151D57809900B3B5CB /* MasonyUtil.m in Sources */,
 				E715ECDD1D052696003A2D62 /* MASConstraintMaker.m in Sources */,
+				B58E8F3E1D716C8C006C21CD /* ToolClass.m in Sources */,
 				975976E91D577B4100B3B5CB /* CommodityAddressCell.m in Sources */,
 				8E6EC3161D58EFA8008A03EF /* JLGoodModel.m in Sources */,
 				C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */,

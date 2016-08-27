@@ -9,6 +9,7 @@
 #import "CartManager.h"
 
 @implementation CartManager
+
 + (CartManager *)sharedManager{
     
     static CartManager *sharedManager = nil;
@@ -19,5 +20,24 @@
     });
     
     return sharedManager;
+}
+- (void)getCartGoodCount{
+    /*
+     https://123.56.192.182:8443</item>
+     <item>/app/shopCart/</item>
+     <item>countShopCartNum?
+     */
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/countShopCartNum?" parameters:@{@"userId":[LoginStatus sharedManager].userId} isShowHUD:YES httpToolSuccess:^(id json) {
+        if ([json[@"status"] boolValue]) {
+            
+            self.totalNum = @([json[@"count"] integerValue]);
+        }
+        
+} failure:^(NSError *error) {
+        
+    }];
+}
+- (void)addGood:(GoodModel *)modelToCart{
+    
 }
 @end

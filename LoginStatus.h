@@ -32,5 +32,5 @@
  *  YES为已经登录状态
  */
 @property (nonatomic,readonly,getter=isLogin) BOOL login;
-
+@property (nonatomic, copy) NSString * userId;
 @end

@@ -33,6 +33,8 @@
     if (self) {
         
         self.login = NO;
+        
+        self.userId = @"37";
     }
     return self;
 }

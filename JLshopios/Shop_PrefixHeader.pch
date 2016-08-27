@@ -33,7 +33,7 @@
 
 #import "FYTXHub.h"
 #import "MBProgressHUD.h"
-
+#import "ToolClass.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/UIButton+WebCache.h>
 

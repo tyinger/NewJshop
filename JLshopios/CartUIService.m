@@ -13,7 +13,7 @@
 #import "GoodModel.h"
 #import "ChartNumberCountView.h"
 #import "CartManager.h"
-@interface CartUIService ()
+@interface CartUIService ()<UIAlertViewDelegate>
 
 @end
 @implementation CartUIService
@@ -125,7 +125,19 @@
 }
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
-    [self.viewModel deleteAction];
+    
+//    UIAlertView *alret = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否确定删除" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+//    [alret show];
+//    [[self rac_signalForSelector:@selector(alertView:clickedButtonAtIndex:) fromProtocol:@protocol(UIAlertViewDelegate)] subscribeNext:^(RACTuple* x) {
+//        
+//        
+//    }];
+//    [ToolClass showMSG:@"是否确定删除" :^{
+//        [self.viewModel rowSelect:YES IndexPath:indexPath];
+//        [self.viewModel deleteAction];
+//    }];
+    
+   
     
 }
 //
@@ -150,8 +162,10 @@
 {
 //    NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
-    GoodModel *model = self.viewModel.cartData[row];
+    GoodModel *model;
+    if (self.viewModel.cartData.count) {
+        model = self.viewModel.cartData[row];
+    }
     //cell 选中
     SX_WEAK
     [[[cell.selectShopGoodsButton rac_signalForControlEvents:UIControlEventTouchUpInside] takeUntil:cell.rac_prepareForReuseSignal] subscribeNext:^(UIButton *x) {
