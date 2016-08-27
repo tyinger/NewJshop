@@ -20,7 +20,7 @@
 #import "JLCommdoityCollectionCell.h"
 #import "UIScrollView+MJRefresh.h"
 #import "DetailsViewController.h"
-#import <UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
 
 @interface CommodityTableViewController ()<SearchBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate>
 {

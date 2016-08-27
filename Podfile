@@ -1,5 +1,6 @@
 platform :ios, '7.0'
 inhibit_all_warnings!
+use_frameworks!
 
 target "JLshopios” do
 pod 'AFNetworking', '~> 3.1.0'
@@ -13,7 +14,7 @@ pod 'SVProgressHUD'
 pod 'JKCountDownButton'
 
 #pod 'ShareSDK3'
-#pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo'
+#pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo’
 #pod 'ShareSDK3/ShareSDKPlatforms/QQ'
 #pod 'ShareSDK3/ShareSDKPlatforms/WeChat'
 end
