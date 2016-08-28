@@ -39,7 +39,6 @@
  */
 @property (nonatomic,assign) BOOL login;
 
-
 @property (nonatomic,strong) NSString *age;
 @property (nonatomic,strong) NSString *birthday;
 @property (nonatomic,strong) NSString *createDate;

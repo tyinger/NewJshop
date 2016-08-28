@@ -23,27 +23,30 @@
 @end
 
 @implementation ShopingCartController
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.viewModel selectAll:NO];
+}
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
     
-//    [self.viewModel getDataSuccess:^{
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//               [self.cartTableView reloadData];
-//        });
-//     
-//    }];
+    [self.viewModel getDataSuccess:^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+               [self.cartTableView reloadData];
+        });
+//
+    }];
     //假装X秒以后 出现数据
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)),dispatch_get_global_queue(0, 0), ^{
-//        [CartManager sharedManager].cartGoodNum = @10;
-        [self.viewModel getLocalDataSuccess:^{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.cartTableView reloadData];
-            });
-        }];
-        
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)),dispatch_get_global_queue(0, 0), ^{
+////        [CartManager sharedManager].cartGoodNum = @10;
+//        [self.viewModel getLocalDataSuccess:^{
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.cartTableView reloadData];
+//            });
+//        }];
+//        
+//    });
 }
 - (void)edit:(UIButton*)btn{
      btn.selected = !btn.selected;

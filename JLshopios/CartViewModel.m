@@ -92,37 +92,24 @@
 - (void)getDataSuccess:(void (^)(void))finish{
 //    NSMutableArray *storeArray = [NSMutableArray array];
 //    NSMutableArray *shopSelectAarry = [NSMutableArray array];
+    [self.cartData removeAllObjects];
     //https://123.56.192.182:8443/app/shopCart/listShopCart?&userid=37
     NSString *  urlString = @"https://123.56.192.182:8443/app/shopCart/listShopCart?";
-    [QSCHttpTool get:urlString parameters:@{@"userid":@"37"} isShowHUD:YES httpToolSuccess:^(id json) {
+    [QSCHttpTool get:urlString parameters:@{@"userid":[LoginStatus sharedManager].userId} isShowHUD:YES httpToolSuccess:^(id json) {
         
+        __block NSInteger totalCount = 0;
         NSMutableArray * arr =[[[((NSArray*)json).rac_sequence map:^id(id value) {
-            return [[GoodModel alloc] initWithData:value];
+           GoodModel* model =  [[GoodModel alloc] initWithData:value];
+            totalCount += [model.num integerValue];
+            return model;
         }] array] mutableCopy];
         
         self.cartData = arr;
+        [CartManager sharedManager].totalNum = @(totalCount);
+        //计算数量
+        
         finish?finish():nil;
-//        [((NSArray*)json).rac_sequence.signal subscribeNext:^(id x) {
-//            GoodModel * model =[[GoodModel alloc] initWithData:x];
-//            [storeArray addObject:model];
-//            [shopSelectAarry addObject:@(NO)];
-//
-//        } completed:^{
-//            [self.cartData addObject:storeArray];
-//            self.shopSelectArray = shopSelectAarry;
-//            finish?finish():nil;
-//        }];
-//        for (NSDictionary * dic in json) {
-//            GoodModel * model =[[GoodModel alloc] init];
-//            [model setValuesForKeysWithDictionary:dic];
-//            [storeArray addObject:model];
-//            [shopSelectAarry addObject:@(NO)];
-//        }
-//        [self.cartData addObject:storeArray];
-//        self.shopSelectArray = shopSelectAarry;
-//        if (finish) {
-//            finish();
-//        }
+        
     } failure:^(NSError *error) {
         
     }];
@@ -201,8 +188,69 @@
 - (void)followAction{
     TTAlert(@"FollowClick");
 }
+- (void)deleteRow:(NSInteger)row{
+    GoodModel * model = self.cartData[row];
+    [self deleteWithID:model.Id :^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.cartTableView reloadData];
+        });
+        
+    }];
+}
 - (void)deleteAction{
-     TTAlert(@"DeleteClick");
+   NSArray * deleteIDArr = [[self.selectArray.rac_sequence map:^id(GoodModel* value) {
+        
+        return value.Id;
+    }] array];
+    SX_WEAK
+//     TTAlert([NSString stringWithFormat:@"%@",deleteIDArr]);
+    
+   NSArray <RACSignal*>* singalArr =  [[deleteIDArr.rac_sequence map:^id(NSString* value) {
+       return  [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+           SX_STRONG
+           [self deleteWithID:value :^{
+               [subscriber sendNext:nil];
+               [subscriber sendCompleted];
+           }];
+        
+           return nil;
+       }] ;
+        
+    }] array];
+  
+    
+    [[RACSignal combineLatest:singalArr] subscribeNext:^(id x) {
+        TTAlert(@"删除成功");
+        
+    }];
+    
+ /*
+    @weakify(self);
+    [[[[[deleteIDArr.rac_sequence.signal deliverOnMainThread] flattenMap:^RACStream *(NSString * value) {
+
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            
+            [subscriber sendNext:@(YES)];
+            [subscriber sendCompleted];
+            return nil;
+        }];
+//            return nil;
+//        }];
+    }] filter:^BOOL(id value) {
+        
+        return [value boolValue];
+    }] take:1] subscribeNext:^(id x) {
+        TTAlert(@"删除成功");
+        
+    }];
+    */
+}
+- (void)deleteWithID:(NSString *)ID :(void(^)(void))success{
+    NSLog(@"%@",ID);
+    if (success) {
+        success();
+    }
+    
 }
 - (void)payAction{
      TTAlert(@"PayClick");

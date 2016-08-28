@@ -62,6 +62,7 @@ static CGFloat const Wd = 28;
     
     /************************** 内容 ****************************/
     self.numberTT = [[UITextField alloc]init];
+    self.numberTT.userInteractionEnabled = NO;
     self.numberTT.frame = CGRectMake(CGRectGetMaxX(_subButton.frame), 0, Wd*1.5, _subButton.frame.size.height);
     self.numberTT.keyboardType=UIKeyboardTypeNumberPad;
     self.numberTT.text=[NSString stringWithFormat:@"%@",@(0)];

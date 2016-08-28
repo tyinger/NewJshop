@@ -54,7 +54,8 @@
  */
 - (void)followAction;
 - (void)deleteAction;
-
+//删除某一行
+- (void)deleteRow:(NSInteger)row;
 //row change quantity
 - (void)rowChangeQuantity:(NSInteger)quantity indexPath:(NSIndexPath *)indexPath;
 //获取价格
