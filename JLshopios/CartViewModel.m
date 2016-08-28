@@ -95,7 +95,7 @@
     [self.cartData removeAllObjects];
     //https://123.56.192.182:8443/app/shopCart/listShopCart?&userid=37
     NSString *  urlString = @"https://123.56.192.182:8443/app/shopCart/listShopCart?";
-    [QSCHttpTool get:urlString parameters:@{@"userid":[LoginStatus sharedManager].userId} isShowHUD:YES httpToolSuccess:^(id json) {
+    [QSCHttpTool get:urlString parameters:@{@"userid":[LoginStatus sharedManager].idStr} isShowHUD:YES httpToolSuccess:^(id json) {
         
         __block NSInteger totalCount = 0;
         NSMutableArray * arr =[[[((NSArray*)json).rac_sequence map:^id(id value) {

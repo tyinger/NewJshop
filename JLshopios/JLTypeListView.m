@@ -9,7 +9,6 @@
 #import "JLTypeListView.h"
 #import "JLShopTypeModel.h"
 
-
 static CGFloat TypeListButtonWidth = 40;
 
 @interface JLTypeListView ()
@@ -97,6 +96,7 @@ static CGFloat TypeListButtonWidth = 40;
             
         }
         
+        [button addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
         
         [typeText setTextColor:[UIColor darkGrayColor]];
         [typeText setTextAlignment:NSTextAlignmentCenter];
@@ -105,6 +105,13 @@ static CGFloat TypeListButtonWidth = 40;
         [button addSubview:typeText];
         
     }
+}
+
+-(void) btnAction:(UIButton *)btn
+{
+        
+    self.listBtnBlock(btn.tag);
+   
 }
 
 @end

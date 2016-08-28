@@ -98,7 +98,7 @@
 //    linkTextStorage.range = [model.detailsActivity rangeOfString:@"详情尽在iPhone天天618"];
     self.activityLabel.text=model.detailsDescription;
     
-    self.priceyLabel.text=model.detailsPrice;
+    self.priceyLabel.text= [NSString stringWithFormat:@"¥ %@", model.detailsPrice];
     self.imgZXImageview.image=[UIImage imageNamed:model.detailsImgZX];
     self.txtZXLabel.text=model.detailsTxtZX;
     

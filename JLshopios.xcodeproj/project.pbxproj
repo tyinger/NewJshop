@@ -91,6 +91,11 @@
 		976BC90B1D57AB0700BDEF01 /* CommodityPackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 976BC90A1D57AB0700BDEF01 /* CommodityPackCell.xib */; };
 		976BC90D1D57AB1600BDEF01 /* CommodityComponentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 976BC90C1D57AB1600BDEF01 /* CommodityComponentCell.xib */; };
 		976BC90F1D57AB3000BDEF01 /* CommodityAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 976BC90E1D57AB3000BDEF01 /* CommodityAddressCell.xib */; };
+		9780EBD71D72D45300E804C4 /* OtherListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780EBD61D72D45300E804C4 /* OtherListViewController.m */; };
+		9780EBDA1D72F6F000E804C4 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780EBD91D72F6F000E804C4 /* UIBarButtonItem+Badge.m */; };
+		9780EBE11D7341E800E804C4 /* ButtonWithBadgeValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780EBE01D7341E800E804C4 /* ButtonWithBadgeValue.m */; };
+		9780EBE71D7343CA00E804C4 /* CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780EBE41D7343CA00E804C4 /* CustomBadge.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		9780EBE81D7343CA00E804C4 /* UIButton+CustomBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 9780EBE61D7343CA00E804C4 /* UIButton+CustomBadge.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		978D3C1E1D44F04800C0C1BE /* bg_023@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 978D3C111D44F04800C0C1BE /* bg_023@2x.png */; };
 		978D3C1F1D44F04800C0C1BE /* btn_020.disable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 978D3C121D44F04800C0C1BE /* btn_020.disable@2x.png */; };
 		978D3C201D44F04800C0C1BE /* btn_020.press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 978D3C131D44F04800C0C1BE /* btn_020.press@2x.png */; };
@@ -347,6 +352,16 @@
 		976BC90A1D57AB0700BDEF01 /* CommodityPackCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommodityPackCell.xib; sourceTree = "<group>"; };
 		976BC90C1D57AB1600BDEF01 /* CommodityComponentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommodityComponentCell.xib; sourceTree = "<group>"; };
 		976BC90E1D57AB3000BDEF01 /* CommodityAddressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommodityAddressCell.xib; sourceTree = "<group>"; };
+		9780EBD51D72D45300E804C4 /* OtherListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherListViewController.h; sourceTree = "<group>"; };
+		9780EBD61D72D45300E804C4 /* OtherListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherListViewController.m; sourceTree = "<group>"; };
+		9780EBD81D72F6F000E804C4 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
+		9780EBD91D72F6F000E804C4 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
+		9780EBDF1D7341E800E804C4 /* ButtonWithBadgeValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonWithBadgeValue.h; sourceTree = "<group>"; };
+		9780EBE01D7341E800E804C4 /* ButtonWithBadgeValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonWithBadgeValue.m; sourceTree = "<group>"; };
+		9780EBE31D7343CA00E804C4 /* CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomBadge.h; sourceTree = "<group>"; };
+		9780EBE41D7343CA00E804C4 /* CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomBadge.m; sourceTree = "<group>"; };
+		9780EBE51D7343CA00E804C4 /* UIButton+CustomBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+CustomBadge.h"; sourceTree = "<group>"; };
+		9780EBE61D7343CA00E804C4 /* UIButton+CustomBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+CustomBadge.m"; sourceTree = "<group>"; };
 		978D3C111D44F04800C0C1BE /* bg_023@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg_023@2x.png"; sourceTree = "<group>"; };
 		978D3C121D44F04800C0C1BE /* btn_020.disable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_020.disable@2x.png"; sourceTree = "<group>"; };
 		978D3C131D44F04800C0C1BE /* btn_020.press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_020.press@2x.png"; sourceTree = "<group>"; };
@@ -793,6 +808,11 @@
 			children = (
 				975976D11D577AF200B3B5CB /* DetailsViewController.h */,
 				975976D21D577AF200B3B5CB /* DetailsViewController.m */,
+				9780EBD81D72F6F000E804C4 /* UIBarButtonItem+Badge.h */,
+				9780EBD91D72F6F000E804C4 /* UIBarButtonItem+Badge.m */,
+				9780EBDF1D7341E800E804C4 /* ButtonWithBadgeValue.h */,
+				9780EBE01D7341E800E804C4 /* ButtonWithBadgeValue.m */,
+				9780EBE21D7343CA00E804C4 /* CustomBadge */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -833,6 +853,17 @@
 			path = TYAttributedLabel;
 			sourceTree = "<group>";
 		};
+		9780EBE21D7343CA00E804C4 /* CustomBadge */ = {
+			isa = PBXGroup;
+			children = (
+				9780EBE31D7343CA00E804C4 /* CustomBadge.h */,
+				9780EBE41D7343CA00E804C4 /* CustomBadge.m */,
+				9780EBE51D7343CA00E804C4 /* UIButton+CustomBadge.h */,
+				9780EBE61D7343CA00E804C4 /* UIButton+CustomBadge.m */,
+			);
+			path = CustomBadge;
+			sourceTree = "<group>";
+		};
 		978D3C0C1D44EF7000C0C1BE /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -861,6 +892,8 @@
 				305783381D0C29BD007AED3C /* JLShopCollectionViewCell.h */,
 				305783391D0C29BD007AED3C /* JLShopCollectionViewCell.m */,
 				3057833A1D0C29BD007AED3C /* JLShopCollectionViewCell.xib */,
+				9780EBD51D72D45300E804C4 /* OtherListViewController.h */,
+				9780EBD61D72D45300E804C4 /* OtherListViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1260,6 +1293,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3043B0AF1D02C55B00E97B82 /* Build configuration list for PBXNativeTarget "JLshopios" */;
 			buildPhases = (
+				8EC028755B83B67C08A72677 /* 📦 Check Pods Manifest.lock */,
 				3D3B8D3B47B8543D60717630 /* [CP] Check Pods Manifest.lock */,
 				5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */,
 				3043B0941D02C55B00E97B82 /* Sources */,
@@ -1421,6 +1455,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8EC028755B83B67C08A72677 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		9B810B73941DD43615D72A02 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1463,11 +1512,13 @@
 				E715ECE31D052696003A2D62 /* View+MASAdditions.m in Sources */,
 				C5DEEA051D57523A00823ED8 /* FYTXHub.m in Sources */,
 				8E2DE74E1D0477BF003C077A /* AppDelegate+FYTXUI.m in Sources */,
+				9780EBE11D7341E800E804C4 /* ButtonWithBadgeValue.m in Sources */,
 				C5F63B331D5F2C010090F215 /* SaomazhuceViewController.m in Sources */,
 				30312C2E1D5709E500E0D0BD /* LNLocationManager.m in Sources */,
 				E77EFEF01D05561C00E5113C /* PPiFlatSegmentedControl.m in Sources */,
 				305783161D0C0D51007AED3C /* FYTXGERecordModel.m in Sources */,
 				8E2DE7851D048A43003C077A /* NSNumber+JZExtension.m in Sources */,
+				9780EBE81D7343CA00E804C4 /* UIButton+CustomBadge.m in Sources */,
 				1FACAE8D1D45BD6F0049A4BC /* JLFlowLayout.m in Sources */,
 				E7A189B71D02CEAA00E6F441 /* ShopBaseViewController.m in Sources */,
 				B529A39C1D7018D200A1A3B1 /* CartBarEdit.m in Sources */,
@@ -1476,6 +1527,8 @@
 				C5F63B2D1D5F2BE50090F215 /* ShouhoudizhiViewController.m in Sources */,
 				3057831B1D0C0D51007AED3C /* FYTXGuideImageName.m in Sources */,
 				E715ED1F1D05273D003A2D62 /* CommodityModel.m in Sources */,
+				9780EBDA1D72F6F000E804C4 /* UIBarButtonItem+Badge.m in Sources */,
+				9780EBD71D72D45300E804C4 /* OtherListViewController.m in Sources */,
 				B5FDB2261D6C36490042D9EC /* CartBar.m in Sources */,
 				E715ECDB1D052696003A2D62 /* MASCompositeConstraint.m in Sources */,
 				975977151D57809900B3B5CB /* MasonyUtil.m in Sources */,
@@ -1541,6 +1594,7 @@
 				975976F11D577B4100B3B5CB /* CommoditySectionCell.m in Sources */,
 				8E2DE7871D048A43003C077A /* UIToolbar+JZExtension.m in Sources */,
 				E715ECF71D0526A3003A2D62 /* UIImage+REFrostedViewController.m in Sources */,
+				9780EBE71D7343CA00E804C4 /* CustomBadge.m in Sources */,
 				3043B0A31D02C55B00E97B82 /* ViewController.m in Sources */,
 				305783361D0C22FD007AED3C /* SDCycleScrollView.m in Sources */,
 				E715ED151D0526E5003A2D62 /* MultilevelTableViewCell.m in Sources */,
