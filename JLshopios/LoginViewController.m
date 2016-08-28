@@ -54,19 +54,28 @@
 - (IBAction)changePasswordTextFAction:(UIButton *)sender {
     
     sender.selected = !sender.selected;
-    self.passwordTextF.secureTextEntry = sender.selected;
+    self.passwordTextF.secureTextEntry = !sender.selected;
 }
 
 - (IBAction)loginAction:(id)sender {
 
-    NSDictionary *d = @{@"loginName":self.userNameTextF.text,@"password":[NSString changemd:self.passwordTextF.text]};
+    NSDictionary *d = @{@"loginName":@"18643212316",@"password":[NSString changemd:self.passwordTextF.text]};
     
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getLoginUser?" parameters:d isShowHUD:NO httpToolSuccess:^(id json) {
         
+        [LoginStatus sharedManager].login = YES;
+        [[LoginStatus sharedManager] setJson:json];
+        [FYTXHub success:@"登录成功" delayClose:1 compelete:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            });
+        }];
         
     } failure:^(NSError *error) {
         
-        
+        [FYTXHub toast:@"登录失败"];
     }];
 }
 

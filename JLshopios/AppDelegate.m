@@ -98,6 +98,8 @@
 //
     [self loadAppGuide];
     
+    [[LoginStatus sharedManager] start];
+    
     return YES;
 }
 

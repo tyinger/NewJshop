@@ -113,14 +113,14 @@
 		B5FDB22C1D6C37130042D9EC /* CartViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FDB22B1D6C37130042D9EC /* CartViewModel.m */; };
 		B5FDB22F1D6C404D0042D9EC /* CartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FDB22E1D6C404D0042D9EC /* CartManager.m */; };
 		B5FDB2321D6C42D00042D9EC /* GoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FDB2311D6C42D00042D9EC /* GoodModel.m */; };
+		C5478B0C1D7144A0006CFBFB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5478B091D714274006CFBFB /* LoginViewController.xib */; };
+		C5478B0D1D7144AA006CFBFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5478B081D714274006CFBFB /* LoginViewController.m */; };
 		C5DEE9F71D57039900823ED8 /* LoginStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEE9F61D57039900823ED8 /* LoginStatus.m */; };
 		C5DEE9FC1D5715DC00823ED8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEE9FA1D5715DC00823ED8 /* RegisterViewController.m */; };
 		C5DEE9FD1D5715DC00823ED8 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DEE9FB1D5715DC00823ED8 /* RegisterViewController.xib */; };
 		C5DEEA051D57523A00823ED8 /* FYTXHub.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEEA041D57523A00823ED8 /* FYTXHub.m */; };
 		C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85611D45E11F005F905C /* JLMeViewController.m */; };
 		C5EE85661D45E134005F905C /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85651D45E134005F905C /* ItemModel.m */; };
-		C5EE857A1D45E188005F905C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85781D45E188005F905C /* LoginViewController.m */; };
-		C5EE857B1D45E188005F905C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5EE85791D45E188005F905C /* LoginViewController.xib */; };
 		C5F63B211D5F1E7D0090F215 /* XieYiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B201D5F1E7D0090F215 /* XieYiViewController.m */; };
 		C5F63B241D5F2BBE0090F215 /* PianbaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B231D5F2BBE0090F215 /* PianbaoViewController.m */; };
 		C5F63B271D5F2BC90090F215 /* JifenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B261D5F2BC90090F215 /* JifenViewController.m */; };
@@ -380,6 +380,9 @@
 		B5FDB2301D6C42D00042D9EC /* GoodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodModel.h; sourceTree = "<group>"; };
 		B5FDB2311D6C42D00042D9EC /* GoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodModel.m; sourceTree = "<group>"; };
 		B95FAD02B3B6B9BB49738E14 /* Pods_JLshopios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JLshopios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5478B071D714274006CFBFB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C5478B081D714274006CFBFB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C5478B091D714274006CFBFB /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		C5DEE9F51D57039900823ED8 /* LoginStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatus.h; sourceTree = "<group>"; };
 		C5DEE9F61D57039900823ED8 /* LoginStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatus.m; sourceTree = "<group>"; };
 		C5DEE9F91D5715DC00823ED8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -391,9 +394,6 @@
 		C5EE85611D45E11F005F905C /* JLMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLMeViewController.m; sourceTree = "<group>"; };
 		C5EE85641D45E134005F905C /* ItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemModel.h; sourceTree = "<group>"; };
 		C5EE85651D45E134005F905C /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
-		C5EE85771D45E188005F905C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		C5EE85781D45E188005F905C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		C5EE85791D45E188005F905C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		C5F63B1F1D5F1E7D0090F215 /* XieYiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieYiViewController.h; sourceTree = "<group>"; };
 		C5F63B201D5F1E7D0090F215 /* XieYiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieYiViewController.m; sourceTree = "<group>"; };
 		C5F63B221D5F2BBE0090F215 /* PianbaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianbaoViewController.h; sourceTree = "<group>"; };
@@ -1241,9 +1241,9 @@
 		E7A189CD1D02D3B100E6F441 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				C5EE85771D45E188005F905C /* LoginViewController.h */,
-				C5EE85781D45E188005F905C /* LoginViewController.m */,
-				C5EE85791D45E188005F905C /* LoginViewController.xib */,
+				C5478B071D714274006CFBFB /* LoginViewController.h */,
+				C5478B081D714274006CFBFB /* LoginViewController.m */,
+				C5478B091D714274006CFBFB /* LoginViewController.xib */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1327,7 +1327,6 @@
 				E715ED211D05289C003A2D62 /* Category.plist in Resources */,
 				978D3C1E1D44F04800C0C1BE /* bg_023@2x.png in Resources */,
 				E715ECDA1D052696003A2D62 /* LICENSE in Resources */,
-				C5EE857B1D45E188005F905C /* LoginViewController.xib in Resources */,
 				978D3C231D44F04800C0C1BE /* btn_021.press@2x.png in Resources */,
 				975976F21D577B4100B3B5CB /* CommoditySectionCell.xib in Resources */,
 				B5F3C8341D6F4B9D0010D199 /* CartPlaceHolderView.xib in Resources */,
@@ -1335,6 +1334,7 @@
 				976BC90D1D57AB1600BDEF01 /* CommodityComponentCell.xib in Resources */,
 				978D3C1F1D44F04800C0C1BE /* btn_020.disable@2x.png in Resources */,
 				E7A189C61D02D17700E6F441 /* Me.storyboard in Resources */,
+				C5478B0C1D7144A0006CFBFB /* LoginViewController.xib in Resources */,
 				975976C61D570AAC00B3B5CB /* NewCategory.plist in Resources */,
 				E715ED161D0526E5003A2D62 /* MultilevelTableViewCell.xib in Resources */,
 				3043B0A61D02C55B00E97B82 /* Main.storyboard in Resources */,
@@ -1496,7 +1496,6 @@
 				8E2DE7841D048A43003C077A /* _JZValue.m in Sources */,
 				9759770B1D577C0E00B3B5CB /* TYImageStorage.m in Sources */,
 				B5FDB2321D6C42D00042D9EC /* GoodModel.m in Sources */,
-				C5EE857A1D45E188005F905C /* LoginViewController.m in Sources */,
 				B5FDB22C1D6C37130042D9EC /* CartViewModel.m in Sources */,
 				8E2DE75D1D047B98003C077A /* JLHomeViewController.m in Sources */,
 				E715ECF51D0526A3003A2D62 /* REFrostedContainerViewController.m in Sources */,
@@ -1517,6 +1516,7 @@
 				975976EF1D577B4100B3B5CB /* CommodityPraiseCell.m in Sources */,
 				30312C281D5709E500E0D0BD /* BCurrentCityCell.m in Sources */,
 				978D3C261D44F04800C0C1BE /* TSLocateView.m in Sources */,
+				C5478B0D1D7144AA006CFBFB /* LoginViewController.m in Sources */,
 				8E2DE7861D048A43003C077A /* UINavigationBar+JZExtension.m in Sources */,
 				E715ECBC1D052671003A2D62 /* NSDate+Estension.m in Sources */,
 				E77EFF011D0560E900E5113C /* QSCNavigationController.m in Sources */,

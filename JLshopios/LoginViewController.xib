@@ -63,32 +63,25 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="账号：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wra-f0-SyA">
                             <rect key="frame" x="8" y="15" width="45" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="密码：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBi-LV-En6">
                             <rect key="frame" x="8" y="64" width="45" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ai-kg-2VN">
-                            <rect key="frame" x="76" y="58" width="179" height="30"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="30" id="TEl-Il-ygi"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                        </textField>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dub-ui-vrh">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dub-ui-vrh">
                             <rect key="frame" x="257" y="58" width="46" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="46" id="0uA-yU-f5v"/>
                                 <constraint firstAttribute="height" constant="30" id="40Y-4G-2fc"/>
                             </constraints>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" title="Button" image="button_nol"/>
+                            <state key="selected" image="button_pres"/>
                             <connections>
-                                <action selector="changePasswordTextFAction:" destination="-1" eventType="touchUpInside" id="JaO-ht-eor"/>
+                                <action selector="changePasswordTextFAction:" destination="-1" eventType="touchUpInside" id="N0Q-83-WRd"/>
                             </connections>
                         </button>
                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Fmy-gP-ewn">
@@ -98,6 +91,14 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6ai-kg-2VN">
+                            <rect key="frame" x="76" y="58" width="179" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="TEl-Il-ygi"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -176,6 +177,8 @@
         </view>
     </objects>
     <resources>
+        <image name="button_nol" width="68" height="38"/>
+        <image name="button_pres" width="68" height="39"/>
         <image name="login_top_bg.jpg" width="20" height="20"/>
         <image name="morentouxiang" width="25" height="25"/>
     </resources>

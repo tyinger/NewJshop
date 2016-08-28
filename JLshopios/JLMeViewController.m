@@ -10,6 +10,8 @@
 
 #import "ItemModel.h"
 
+#import "LoginViewController.h"
+
 @interface JLMeViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *mainTableView;
@@ -82,12 +84,36 @@
     [self.dataArr addObject:arr3];
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"我的";
     
     [self creatUI];
+    
+    [[RACObserve([LoginStatus sharedManager], login) deliverOnMainThread] subscribeNext:^(NSNumber *x) {
+        
+        if ([x boolValue] == YES) {
+            
+            self.mainTableView.tableFooterView = [self creatFootView];
+        }else{
+            
+            self.mainTableView.tableFooterView = nil;
+        }
+    }];
 }
 
 - (void)creatUI{
@@ -97,6 +123,35 @@
         
         make.edges.offset(0);
     }];
+}
+- (UIView *)creatFootView{
+    
+    UIView *mainView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 80)];
+    
+    UIButton *tuichuButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [tuichuButton setBackgroundColor:[UIColor redColor]];
+    [tuichuButton setTitle:@"退出当前账号" forState:UIControlStateNormal];
+    tuichuButton.layer.cornerRadius = 5;
+    [[[tuichuButton rac_signalForControlEvents:UIControlEventTouchUpInside] deliverOnMainThread] subscribeNext:^(id x) {
+        
+        [FYTXHub success:@"退出成功" delayClose:1 compelete:^{
+            
+           dispatch_async(dispatch_get_main_queue(), ^{
+               
+               [LoginStatus sharedManager].login = NO;
+               [[LoginStatus sharedManager] end];
+           });
+        }];
+    }];
+    [mainView addSubview:tuichuButton];
+    [tuichuButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerX.centerY.offset(0);
+        make.height.mas_equalTo(@30);
+        make.width.mas_equalTo(@180);
+    }];
+    
+    return mainView;
 }
 
 - (void)logoAction:(UIButton*)btn{
@@ -256,14 +311,21 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    NSArray *arr = self.dataArr[indexPath.section];
-    ItemModel *item = arr[indexPath.row];
-    
-    Class class = NSClassFromString(item.className);
-    if (class) {
-        UIViewController *ctrl = class.new;
-        ctrl.title = item.titleStr;
-        [self.navigationController pushViewController:ctrl animated:YES];
+    if ([LoginStatus sharedManager].login == NO) {
+        
+        
+        [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+    }else{
+        
+        NSArray *arr = self.dataArr[indexPath.section];
+        ItemModel *item = arr[indexPath.row];
+        
+        Class class = NSClassFromString(item.className);
+        if (class) {
+            UIViewController *ctrl = class.new;
+            ctrl.title = item.titleStr;
+            [self.navigationController pushViewController:ctrl animated:YES];
+        }
     }
     [self.mainTableView deselectRowAtIndexPath:indexPath animated:YES];
 }
