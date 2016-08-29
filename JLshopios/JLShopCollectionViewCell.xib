@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -296,21 +296,33 @@
                                 <color key="textColor" red="0.21161912747114089" green="0.92941176469999998" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgr-OK-2SO">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgr-OK-2SO">
                                 <rect key="frame" x="19" y="29" width="40" height="40"/>
                                 <state key="normal" backgroundImage="home_center_menu_cz"/>
+                                <connections>
+                                    <action selector="testAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Ly4-Xj-XH8"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWC-jN-qyq">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWC-jN-qyq">
                                 <rect key="frame" x="93" y="29" width="40" height="40"/>
                                 <state key="normal" backgroundImage="home_center_menu_dyp"/>
+                                <connections>
+                                    <action selector="testAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="CpG-qQ-jRC"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5a-1F-chE">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5a-1F-chE">
                                 <rect key="frame" x="171" y="29" width="40" height="40"/>
                                 <state key="normal" backgroundImage="home_center_menu_wdgz"/>
+                                <connections>
+                                    <action selector="testAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Mqk-0z-Q6T"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bZ-Gq-nGh">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3bZ-Gq-nGh">
                                 <rect key="frame" x="249" y="29" width="40" height="40"/>
                                 <state key="normal" backgroundImage="home_center_menu_wlcx"/>
+                                <connections>
+                                    <action selector="testAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="2Xi-p1-PPM"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -361,8 +373,9 @@
                 <outlet property="hotGoodsLeftText" destination="JFu-h2-PS4" id="xm1-pj-ODp"/>
                 <outlet property="hotGoodsRightImage" destination="PUg-V8-llT" id="BfH-MX-MOR"/>
                 <outlet property="hotGoodsRightText" destination="9BD-d8-ab1" id="11w-QX-ft5"/>
+                <outlet property="yuShouGoods" destination="qhM-0s-OI1" id="ps9-N4-OpT"/>
             </connections>
-            <point key="canvasLocation" x="247" y="234.5"/>
+            <point key="canvasLocation" x="49" y="211.5"/>
         </collectionViewCell>
     </objects>
     <resources>

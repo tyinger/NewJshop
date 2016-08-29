@@ -75,7 +75,7 @@
     NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-        NSLog(@"%@",json);
+//        NSLog(@"%@",json);
         [self analizeData:json];
         //初始化分类菜单
         [self initCategoryMenu];
@@ -108,17 +108,17 @@
         }];
     }
     
-    _mutiview.needToScorllerIndex=0; //默认是 选中第一行
+    _mutiview.needToScorllerIndex=_numRow; //默认是 选中第一行
     _mutiview.leftSelectColor=[UIColor redColor];
     _mutiview.leftSelectBgColor=[UIColor whiteColor];//选中背景颜色
     _mutiview.isRecordLastScroll=YES;//是否记住当前位置
     [self.view addSubview:_mutiview];
 }
 
-- (void)setNumRow:(NSInteger)numRow{
-    _numRow = numRow;
-    _mutiview.needToScorllerIndex = _numRow;
-}
+//- (void)setNumRow:(NSInteger)numRow{
+//    _numRow = numRow;
+//    _mutiview.needToScorllerIndex = _numRow;
+//}
 
 - (void)analizeData:(NSArray *)Json
 {
