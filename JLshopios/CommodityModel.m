@@ -31,8 +31,8 @@
     return commodity;
 }
 
--(NSString *)praise{
-    return [NSString stringWithFormat:@"好评%@ %@人",_commodityPraise,_commodityPerson];
-}
+//-(NSString *)praise{
+//    return [NSString stringWithFormat:@"好评%@ %@人",_commodityPraise,_commodityPerson];
+//}
 
 @end

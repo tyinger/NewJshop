@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
+typedef void(^ListBtnBlock)(NSInteger btnTag);
+
 @interface JLTypeListView : UIView
 
+/** 按钮传值 */
+@property (nonatomic, copy) ListBtnBlock listBtnBlock;
 @property (nonatomic,strong) NSArray *imageArray;
 -(void)loadAllButtons;
 

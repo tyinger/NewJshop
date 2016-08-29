@@ -21,6 +21,7 @@
 #import "UIScrollView+MJRefresh.h"
 #import "DetailsViewController.h"
 #import "UIImageView+WebCache.h"
+#import "UIBarButtonItem+Badge.h"
 
 @interface CommodityTableViewController ()<SearchBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate>
 {
@@ -126,15 +127,23 @@
  
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"back_bt_7" highBackgroudImageName:nil target:self action:@selector(backClick)];
 
-    UIBarButtonItem *chooseBtn = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"guanzhu" highBackgroudImageName:nil target:self action:@selector(selectModel:)];
-    NSArray * arr = [[NSArray alloc] initWithObjects:self.navigationItem.leftBarButtonItem,chooseBtn, nil];
-    self.navigationItem.leftBarButtonItems = arr;
+//    UIBarButtonItem *chooseBtn = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"guanzhu" highBackgroudImageName:nil target:self action:@selector(selectModel:)];
+//    NSArray * arr = [[NSArray alloc] initWithObjects:self.navigationItem.leftBarButtonItem,chooseBtn, nil];
+//    self.navigationItem.leftBarButtonItems = arr;
     //将搜索条放在一个UIView上
     SearchBarView *searchView;// = [[SearchBarView alloc]init];
     
     if (!_tabbarNum) {
         self.navigationItem.rightBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"main_bottom_tab_cart_focus" highBackgroudImageName:nil target:self action:@selector(changeClick:)];
+        
+        self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor redColor];
         searchView = [[SearchBarView alloc] initWithFrame:CGRectMake(250, 0, 240 , 30)];
+        [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
+            if (x) {
+                self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%@",x];
+            }
+            
+        }];
     }else{
         searchView = [[SearchBarView alloc] initWithFrame:CGRectMake(250,
                                       0,
@@ -296,6 +305,7 @@
     CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
     DetailsViewController *next = [[DetailsViewController alloc] init];
     next.productIDStr = [NSString stringWithFormat:@"%lld",commodity.Id];
+    next.productIconStr = commodity.commodityImageUrl;
     [self.navigationController pushViewController:next animated:YES];
 }
 

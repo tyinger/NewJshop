@@ -52,6 +52,16 @@
     [self xieyiAction];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    
+}
+
+- (void)dealloc{
+
+    
+}
 
 #pragma mark - action
 - (void)gesAction:(UIGestureRecognizer*)ges{

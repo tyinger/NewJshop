@@ -9,4 +9,5 @@
 #import "ShopBaseViewController.h"
 @interface DetailsViewController : ShopBaseViewController
 @property (nonatomic, copy) NSString *productIDStr;
+@property (nonatomic, copy) NSString *productIconStr;
 @end

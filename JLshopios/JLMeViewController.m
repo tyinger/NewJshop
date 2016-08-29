@@ -299,6 +299,7 @@
 - (void)logoAction:(UIButton*)btn{
     
     Class class = NSClassFromString(@"LoginViewController");
+    
     if (class) {
         
         UIViewController *ctrl = class.new;
