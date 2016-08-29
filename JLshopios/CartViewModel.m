@@ -35,6 +35,7 @@
 - (NSMutableArray<GoodModel *> *)selectArray{
     if (!_selectArray) {
         _selectArray = [NSMutableArray array];
+        
     }
     return _selectArray;
 }
@@ -95,7 +96,9 @@
     [self.cartData removeAllObjects];
     //https://123.56.192.182:8443/app/shopCart/listShopCart?&userid=37
     NSString *  urlString = @"https://123.56.192.182:8443/app/shopCart/listShopCart?";
-    [QSCHttpTool get:urlString parameters:@{@"userid":[LoginStatus sharedManager].idStr} isShowHUD:YES httpToolSuccess:^(id json) {
+    NSString * idStr = [LoginStatus sharedManager].idStr;
+//     NSString * idStr =@"37";
+    [QSCHttpTool get:urlString parameters:@{@"userid":idStr} isShowHUD:YES httpToolSuccess:^(id json) {
         
         __block NSInteger totalCount = 0;
         NSMutableArray * arr =[[[((NSArray*)json).rac_sequence map:^id(id value) {
@@ -111,7 +114,7 @@
         finish?finish():nil;
         
     } failure:^(NSError *error) {
-        
+        TTAlert(@"网络请求出错");
     }];
 }
 
@@ -129,6 +132,8 @@
     if (isSelect) {
         self.selectArray = self.cartData.mutableCopy;
     }else{
+       
+        
         [self.selectArray removeAllObjects];
     }
    self.selectArray =  [[[self.selectArray.rac_sequence map:^id(GoodModel* value) {
@@ -175,6 +180,11 @@
     NSInteger row = indexPath.row;
     GoodModel *model = self.cartData[row];
     [model setValue:@(quantity) forKey:@"num"];
+    [[CartManager sharedManager] updateCartGoodNum:[@(quantity) stringValue] ID:self.cartData[indexPath.row].Id :^{
+        NSLog(@"操作成功");
+    } :^{
+        NSLog(@"操作失败");
+    }];
     [self.cartTableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     self.allPrices = [self getAllPrices];
 }
@@ -190,27 +200,37 @@
 }
 - (void)deleteRow:(NSInteger)row{
     GoodModel * model = self.cartData[row];
+    SX_WEAK
     [self deleteWithID:model.Id :^{
         dispatch_async(dispatch_get_main_queue(), ^{
+            SX_STRONG
+            [self.cartData removeObject:model];
+            [self.selectArray removeAllObjects];
+             self.cartVC.cartBar.seletedCount = 0;
+            self.cartVC.cartBar.money = 0;
             [self.cartTableView reloadData];
         });
         
     }];
 }
 - (void)deleteAction{
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:TTKeyWindow() animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.labelText = @"请求中";
+ 
    NSArray * deleteIDArr = [[self.selectArray.rac_sequence map:^id(GoodModel* value) {
-        
-        return value.Id;
+        return value;
     }] array];
     SX_WEAK
 //     TTAlert([NSString stringWithFormat:@"%@",deleteIDArr]);
     
-   NSArray <RACSignal*>* singalArr =  [[deleteIDArr.rac_sequence map:^id(NSString* value) {
+   NSArray <RACSignal*>* singalArr =  [[deleteIDArr.rac_sequence map:^id(GoodModel* value) {
        return  [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
            SX_STRONG
-           [self deleteWithID:value :^{
-               [subscriber sendNext:nil];
+           [self deleteWithID:value.Id :^{
+               [subscriber sendNext:value];
                [subscriber sendCompleted];
+               
            }];
         
            return nil;
@@ -219,9 +239,22 @@
     }] array];
   
     
-    [[RACSignal combineLatest:singalArr] subscribeNext:^(id x) {
-        TTAlert(@"删除成功");
+    [[RACSignal combineLatest:singalArr] subscribeNext:^(RACTuple* x) {
+//        TTAlert(@"删除成功");
+        for (int i = 0; i < x.count; i++) {
+//             RACTupleUnpack(GoodModel * obj) = ;
+            GoodModel * model = x[i];
+           
+            [self.cartData removeObject:model];
+            [self.selectArray removeAllObjects];
+             self.cartVC.cartBar.seletedCount = 0;
+             self.cartVC.cartBar.money = 0;
+        }
         
+        
+        
+        [self.cartTableView reloadData];
+        [MBProgressHUD hideHUDForView:TTKeyWindow() animated:YES];
     }];
     
  /*
@@ -247,15 +280,22 @@
 }
 - (void)deleteWithID:(NSString *)ID :(void(^)(void))success{
     NSLog(@"%@",ID);
-    if (success) {
-        success();
-    }
+    [[CartManager sharedManager] deleteWholeGoodWith:ID :^{
+        if (success) {
+            success();
+        }
+    } :^{
+        
+    }];
+   
     
 }
 - (void)payAction{
      TTAlert(@"PayClick");
 }
 - (void)loginAction{
-    TTAlert(@"login");
+    [((UIViewController*)self.cartVC).navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];
+    
+//    TTAlert(@"login");
 }
 @end

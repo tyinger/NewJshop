@@ -36,7 +36,7 @@
 #import "ToolClass.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <SDWebImage/UIButton+WebCache.h>
-
+#import "LoginViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import <ReactiveCocoa/ReactiveCocoa.h>
 

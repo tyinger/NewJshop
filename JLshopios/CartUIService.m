@@ -132,9 +132,19 @@
 //        
 //        
 //    }];
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否确定删除" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [[av rac_buttonClickedSignal] subscribeNext:^(NSNumber* index) {
+        if ([index isEqualToNumber:@(1)]) {
+            //点击了确定
+            [self.viewModel rowSelect:YES IndexPath:indexPath];
+            [self.viewModel deleteRow:indexPath.row];
+        }
+    }];
+    [av show];
+    
 //    [ToolClass showMSG:@"是否确定删除" :^{
 //        [self.viewModel rowSelect:YES IndexPath:indexPath];
-//        [self.viewModel deleteAction];
+//        [self.viewModel deleteRow:indexPath.row];
 //    }];
     
    

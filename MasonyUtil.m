@@ -17,6 +17,10 @@ void TTAlert(NSString* message) {
                                           otherButtonTitles:nil];
     [alert show];
 }
+UIWindow* TTKeyWindow()
+{
+    return [[UIApplication sharedApplication] keyWindow];
+}
 + (void)centerView:(UIView *)view size:(CGSize)size {
     
     [view mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -36,14 +36,13 @@
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您可以在登录后同步电脑与手机购物车中的商品" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kw-Fa-SJX">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您可以在登录后同步电脑与手机购物车中的商品" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9kw-Fa-SJX">
                             <rect key="frame" x="71" y="6" width="219" height="29"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="9kw-Fa-SJX" firstAttribute="leading" secondItem="X7e-N5-Dh7" secondAttribute="trailing" constant="10" id="224-C6-bN6"/>
                         <constraint firstItem="X7e-N5-Dh7" firstAttribute="leading" secondItem="G1q-ra-tsC" secondAttribute="leading" constant="15" id="DK1-QT-X1R"/>
@@ -52,6 +51,14 @@
                         <constraint firstAttribute="trailing" secondItem="9kw-Fa-SJX" secondAttribute="trailing" constant="30" id="hwg-pA-74T"/>
                         <constraint firstAttribute="height" constant="40" id="mxC-mr-bb7"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ogk-Ls-y1R">
                     <rect key="frame" x="100" y="82" width="120" height="128"/>
@@ -66,7 +73,7 @@
                         <constraint firstAttribute="height" constant="32" id="rtO-v2-VN3"/>
                         <constraint firstAttribute="width" constant="117" id="wgG-GM-NaY"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -76,7 +83,7 @@
                         <constraint firstAttribute="height" constant="30" id="lFu-Xy-UaJ"/>
                         <constraint firstAttribute="width" constant="75" id="nUX-zi-bio"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <state key="normal" title="去 秒 杀">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
@@ -98,7 +105,7 @@
                         <constraint firstAttribute="width" constant="117" id="ERa-jt-Ug1"/>
                         <constraint firstAttribute="height" constant="32" id="ios-cf-jnD"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>

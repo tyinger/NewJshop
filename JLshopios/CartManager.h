@@ -27,10 +27,11 @@
 //加入购物车方法
 - (void)addGood:(GoodModel*)modelToCart;
 //删除整个商品
-- (void)deleteWholeGoodWith:(NSString *)ID;
+- (void)deleteWholeGoodWith:(NSString *)ID :(void(^)(void))success :(void(^)(void))faile;
 //根据ID删除某一个商品
 - (void)deleteGoodWithID:(NSString *)goodId;
-
+//更新购物车中的商品数量
+- (void)updateCartGoodNum:(NSString *)number ID:(NSString*)ID :(void(^)(void))success :(void(^)(void))faile ;
 
 
 @end

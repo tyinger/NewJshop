@@ -7,7 +7,8 @@
 //
 
 #import "ShopBaseViewController.h"
-
+#import "CartBar.h"
 @interface ShopingCartController : ShopBaseViewController
-
+//外面用一下
+@property (nonatomic, strong) CartBar       *cartBar;
 @end

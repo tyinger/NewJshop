@@ -9,14 +9,14 @@
 #import "ShopingCartController.h"
 #import "CartUIService.h"
 #import "CartViewModel.h"
-#import "CartBar.h"
+
 #import "CartPlaceHolderView.h"
 #import "CartBarEdit.h"
 @interface ShopingCartController ()
 @property (nonatomic, strong) CartUIService *service; //UI SERVICE
 @property (nonatomic, strong) CartViewModel *viewModel;
 @property (nonatomic, strong) UITableView     *cartTableView;
-@property (nonatomic, strong) CartBar       *cartBar;
+
 @property (nonatomic, strong) CartBarEdit   *cartEditBar;//编辑状态的bar
 @property (nonatomic, strong) CartPlaceHolderView   *cartPlaceholder;
 
@@ -31,12 +31,21 @@
     
     [super viewWillAppear:animated];
     
-    [self.viewModel getDataSuccess:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-               [self.cartTableView reloadData];
-        });
-//
-    }];
+    if ([[LoginStatus sharedManager] login]) {
+        [self.viewModel getDataSuccess:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.cartTableView reloadData];
+            });
+            //
+        }];
+    }
+//    [self.viewModel getDataSuccess:^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.cartTableView reloadData];
+//        });
+//        //
+//    }];
+   
     //假装X秒以后 出现数据
 //    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)),dispatch_get_global_queue(0, 0), ^{
 ////        [CartManager sharedManager].cartGoodNum = @10;
@@ -66,13 +75,32 @@
     [self.view addSubview:self.cartPlaceholder];
     
     UIButton * edit = [UIButton createButtonWithFrame:CGRectMake(0, 0, 60, 40) Title:@"编辑" Target:self Selector:@selector(edit:)];
+//    edit.hidden = ![LoginStatus sharedManager].login;
+   
     edit.titleLabel.font = SXFont(15);
     [edit setTitleColor:[UIColor blackColor] forState:0|UIControlStateSelected];
     [edit setTitle:@"编辑" forState:0];
     [edit setTitle:@"完成" forState:UIControlStateSelected];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:edit];
-  
-    //所有操作
+    UIBarButtonItem * right = [[UIBarButtonItem alloc] initWithCustomView:edit];
+    [RACObserve([LoginStatus sharedManager], login) subscribeNext:^(id x) {
+       
+        if ([x boolValue]) {
+            self.navigationItem.rightBarButtonItem = right;
+        }else
+        {
+            self.navigationItem.rightBarButtonItem = nil;
+        }
+    }];
+    [RACObserve([CartManager sharedManager], cartGoodNum) subscribeNext:^(NSNumber* x) {
+        if (x&&![x isEqualToNumber:@(0)]) {
+        //有数量 按钮显示
+            self.navigationItem.rightBarButtonItem = right;
+        }else{
+            self.navigationItem.rightBarButtonItem = nil;
+        }
+        
+    }];
+  //所有操作
     //全选
     [[self.cartBar.selectAllButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton *x) {
         x.selected = !x.selected;

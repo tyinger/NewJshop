@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GoodModel.h"
+#import "ShopingCartController.h"
 #import "CartPlaceHolderView.h"
 @class ShopingCartController;
 @interface CartViewModel : NSObject
