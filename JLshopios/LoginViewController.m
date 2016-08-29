@@ -63,8 +63,8 @@
     
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getLoginUser?" parameters:d isShowHUD:NO httpToolSuccess:^(id json) {
         
-        [LoginStatus sharedManager].login = YES;
         [[LoginStatus sharedManager] setJson:json];
+        [LoginStatus sharedManager].login = YES;
         [FYTXHub success:@"登录成功" delayClose:1 compelete:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{

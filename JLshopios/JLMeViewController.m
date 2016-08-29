@@ -114,6 +114,16 @@
             self.mainTableView.tableFooterView = nil;
         }
     }];
+    [[RACObserve([LoginStatus sharedManager], login) deliverOnMainThread] subscribeNext:^(id x) {
+        
+        if ([x boolValue] == NO) {
+            
+            self.mainTableView.tableHeaderView = [self creatHeaderView];
+        }else{
+            
+            self.mainTableView.tableHeaderView = [self creatHeaderLoginView];
+        }
+    }];
 }
 
 - (void)creatUI{
@@ -138,8 +148,8 @@
             
            dispatch_async(dispatch_get_main_queue(), ^{
                
-               [LoginStatus sharedManager].login = NO;
                [[LoginStatus sharedManager] end];
+               [LoginStatus sharedManager].login = NO;
            });
         }];
     }];
@@ -152,6 +162,138 @@
     }];
     
     return mainView;
+}
+- (UIView *)creatHeaderLoginView{
+    
+    UIView *b = [[UIView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 180)];
+    b.backgroundColor = [UIColor whiteColor];
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width/ 5 - 20;
+    
+    UIImageView *topImage = [[UIImageView alloc] init];
+    topImage.image = [UIImage imageNamed:@"personel_user_head_bg.jpg"];
+    topImage.userInteractionEnabled = YES;
+    topImage.backgroundColor = [UIColor grayColor];
+    [b addSubview:topImage];
+    [topImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.left.right.offset(0);
+        make.bottom.offset(-width);
+    }];
+    
+    UIImageView *userImage = [[UIImageView alloc] init];
+    [userImage sd_setImageWithURL:[NSURL URLWithString:[LoginStatus sharedManager].headPic]];
+    userImage.layer.masksToBounds = YES;
+    userImage.layer.borderWidth = 2;
+    userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    [b addSubview:userImage];
+    [userImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.left.mas_equalTo(@20);
+        make.width.height.offset(180 - width - 36);;
+    }];
+    
+    UILabel *name = [[UILabel alloc] init];
+    name.textColor = [UIColor whiteColor];
+    name.font = [UIFont systemFontOfSize:16];
+    name.text = [LoginStatus sharedManager].name;
+    [name sizeToFit];
+    [b addSubview:name];
+    [name mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(userImage.mas_top).offset(0);
+        make.left.equalTo(userImage.mas_right).offset(15);
+    }];
+    
+    UILabel *phone = [[UILabel alloc] init];
+    phone.textColor = [UIColor whiteColor];
+    phone.font = [UIFont systemFontOfSize:16];
+    phone.text = [LoginStatus sharedManager].loginName;
+    [phone sizeToFit];
+    [b addSubview:phone];
+    [phone mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(userImage.mas_right).offset(15);
+        make.centerY.equalTo(userImage.mas_centerY).offset(0);
+    }];
+    
+    UILabel *code = [[UILabel alloc] init];
+    code.textColor = [UIColor whiteColor];
+    code.font = [UIFont systemFontOfSize:16];
+    code.text = [LoginStatus sharedManager].recommendCode;
+    [code sizeToFit];
+    [b addSubview:code];
+    [code mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(userImage.mas_right).offset(15);
+        make.bottom.equalTo(userImage.mas_bottom).offset(0);
+    }];
+    
+    UIImageView *codeImage = [[UIImageView alloc] init];
+    codeImage.layer.masksToBounds = YES;
+    codeImage.contentMode = UIViewContentModeScaleAspectFill;
+    [codeImage sd_setImageWithURL:[NSURL URLWithString:[LoginStatus sharedManager].recommendCodePic]];
+    [b addSubview:codeImage];
+    [codeImage mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.centerY.equalTo(userImage.mas_centerY).offset(0);
+        make.width.height.mas_equalTo(@35);
+        make.right.offset(-20);
+    }];
+    
+    NSArray *imageNarr = @[@"daifukuan",@"daishou",@"pingjia",@"",@"quanbudingdan"];
+    NSArray *iconName = @[@"代付款",@"待收货",@"待评价",@"返修/退换",@"全部订单"];
+    
+    UIView *lastView;
+    for (int i = 0; i<5; i++) {
+        
+        UIView *backView = [[UIView alloc] init];
+        backView.backgroundColor = [UIColor whiteColor];
+        [b addSubview:backView];
+        
+        backView.tag = 1000 + i;
+        
+        [backView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.width.height.mas_equalTo(width);
+            make.bottom.offset(0);
+            
+            if (lastView) {
+                
+                make.left.equalTo(lastView.mas_right).offset(20);
+            }else{
+                
+                make.left.offset(0);
+            }
+        }];
+        
+        lastView = backView;
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageNarr[i]]];
+        [backView addSubview:imageView];
+        [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.offset(5);
+            make.width.height.mas_equalTo(@32);
+            make.centerX.offset(0);
+        }];
+        
+        UILabel *label = [[UILabel alloc] init];
+        label.text = iconName[i];
+        label.font = [UIFont systemFontOfSize:10];
+        label.textColor = [UIColor blackColor];
+        [backView addSubview:label];
+        [label mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.bottom.offset(0);
+            make.centerX.offset(0);
+        }];
+        
+        UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gesAction:)];
+        [backView addGestureRecognizer:ges];
+    }
+    
+    return b;
 }
 
 - (void)logoAction:(UIButton*)btn{
@@ -313,8 +455,13 @@
     
     if ([LoginStatus sharedManager].login == NO) {
         
-        
-        [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        [FYTXHub toast:@"请先登录"];
+        @weakify(self);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            @strongify(self);
+            [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        });
     }else{
         
         NSArray *arr = self.dataArr[indexPath.section];

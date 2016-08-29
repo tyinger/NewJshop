@@ -90,6 +90,24 @@
     
     NSString *filePath = [documentDirectory stringByAppendingPathComponent:@"LoginStatus.plist"];
     [fileManager removeItemAtPath:filePath error:nil];
+    
+    //清楚数据 就这样子吧
+    self.age = nil;
+    self.birthday = nil;
+    self.createDate = nil;
+    self.headPic = nil;
+    self.idStr = nil;
+    self.lockScore = nil;
+    self.loginName = nil;
+    self.name = nil;
+    self.password = nil;
+    self.phone = nil;
+    self.rank = nil;
+    self.recommendCode = nil;
+    self.recommendCodePic = nil;
+    self.score = nil;
+    self.sex = nil;
+    self.status = nil;
 }
 
 - (void)setJson:(NSDictionary *)json{
@@ -100,6 +118,23 @@
     NSString *filePath = [documentDirectory stringByAppendingPathComponent:@"LoginStatus.plist"];
     
     [json writeToFile:filePath atomically:YES];
+    
+    self.age = [json valueForKey:@"age"];
+    self.birthday = [json valueForKey:@"birthday"];
+    self.createDate = [json valueForKey:@"createDate"];
+    self.headPic = [json valueForKey:@"headPic"];
+    self.idStr = [json valueForKey:@"id"];
+    self.lockScore = [json valueForKey:@"lockScore"];
+    self.loginName = [json valueForKey:@"loginName"];
+    self.name = [json valueForKey:@"name"];
+    self.password = [json valueForKey:@"password"];
+    self.phone = [json valueForKey:@"phone"];
+    self.rank = [json valueForKey:@"rank"];
+    self.recommendCode = [json valueForKey:@"recommendCode"];
+    self.recommendCodePic = [json valueForKey:@"recommendCodePic"];
+    self.score = [json valueForKey:@"score"];
+    self.sex = [json valueForKey:@"sex"];
+    self.status = [json valueForKey:@"status"];
 }
 
 @end
