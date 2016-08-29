@@ -80,7 +80,6 @@ static char const * const CustomBadgeTagKey = "ObjectTag";
                                                withScale:1.0
                                              withShining:YES];
     }
-    
     [self setBadge:customBadge];
 }
 

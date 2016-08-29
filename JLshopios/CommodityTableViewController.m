@@ -290,6 +290,43 @@
     cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
 //    cell.commodityZX.image=[UIImage imageNamed:commodity.commodityZX];
 //    cell.commodityPraise.text=commodity.praise;
+   __weak typeof(cell) weakCell = cell;
+    cell.addGoodsBtnAction = ^(NSInteger numberOne){
+        [weakCell.commodityGoodNumer setTitle:[NSString stringWithFormat:@"%ld",[cell.commodityGoodNumer.titleLabel.text integerValue] + numberOne] forState:UIControlStateNormal];
+        if (numberOne == 1) {
+            
+            NSDictionary *dic = @{
+                                  @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
+                                  @"num":@"1",
+                                  @"jsFlag":@"0",
+                                  @"Price":commodity.commodityPrice,
+                                  @"userid":[LoginStatus sharedManager].idStr,
+                                  @"goodName":commodity.commodityName,
+                                  @"goodImg":commodity.commodityImageUrl,
+                                  @"shopid":@"-1"
+                                  };
+            
+            [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                MYLog(@"5555%@",json);
+                [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+            } failure:^(NSError *error) {
+                MYLog(@"4444%@",error);
+            }];
+        }else{
+            NSDictionary *dic = @{
+                                  @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
+                                  @"userid":[LoginStatus sharedManager].idStr
+                                  };
+            [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/deleteShopCartByGoodId?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                MYLog(@"删除成功%@",json);
+                [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+                
+            } failure:^(NSError *error) {
+                MYLog(@"删除商品失败%@",error);
+            }];
+        }
+        
+    };
     
     return cell;
 }

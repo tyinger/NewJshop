@@ -103,6 +103,8 @@
             
             self.bannerArray = [marray copy];
             self.cycleScrollview.imageURLStringsGroup = imageArray;
+            if ([LoginStatus sharedManager].status)
+                [[CartManager sharedManager] getCartGoodCount];
         });
     } failure:^(NSError *error) {
     }];

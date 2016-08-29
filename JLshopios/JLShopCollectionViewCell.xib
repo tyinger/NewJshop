@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -129,14 +129,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhM-0s-OI1">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worth_to_buy" translatesAutoresizingMaskIntoConstraints="NO" id="vUH-ze-h01">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worth_to_buy" translatesAutoresizingMaskIntoConstraints="NO" id="vUH-ze-h01">
                                         <rect key="frame" x="8" y="2" width="16" height="16"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="16" id="CR0-18-kUg"/>
                                             <constraint firstAttribute="width" constant="16" id="gQc-J5-HWX"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预售" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDW-La-AE9">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预售" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDW-La-AE9">
                                         <rect key="frame" x="27" y="0.0" width="61" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="61" id="8bo-HH-G8s"/>
@@ -146,14 +146,14 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuangou" translatesAutoresizingMaskIntoConstraints="NO" id="JvH-Nk-X86">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuangou" translatesAutoresizingMaskIntoConstraints="NO" id="JvH-Nk-X86">
                                         <rect key="frame" x="120" y="36" width="80" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="Yby-5d-6bE"/>
                                             <constraint firstAttribute="width" constant="80" id="y1R-Qw-0eQ"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="开春拍新款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgj-iJ-OEQ">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="开春拍新款" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mgj-iJ-OEQ">
                                         <rect key="frame" x="9" y="17" width="79" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -173,7 +173,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IMK-wr-xUN">
                                 <rect key="frame" x="200" y="0.0" width="200" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预售" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDQ-2X-YTv">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预售" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDQ-2X-YTv">
                                         <rect key="frame" x="32" y="0.0" width="61" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="61" id="Jf4-0f-GO4"/>
@@ -183,14 +183,14 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shangou" translatesAutoresizingMaskIntoConstraints="NO" id="Mbw-9s-yyD">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shangou" translatesAutoresizingMaskIntoConstraints="NO" id="Mbw-9s-yyD">
                                         <rect key="frame" x="120" y="36" width="80" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="IHv-h9-xlZ"/>
                                             <constraint firstAttribute="width" constant="80" id="vRl-Om-DTq"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="爆款超低价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ba-bE-Dbh">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="爆款超低价" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ba-bE-Dbh">
                                         <rect key="frame" x="8" y="15" width="79" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -205,7 +205,7 @@
                                     <constraint firstAttribute="bottom" secondItem="Mbw-9s-yyD" secondAttribute="bottom" id="vo3-rA-L8L"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="17N-uv-HYQ">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="more_icon_like" translatesAutoresizingMaskIntoConstraints="NO" id="17N-uv-HYQ">
                                 <rect key="frame" x="208" y="2" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="I5w-Ks-Qms"/>
@@ -215,7 +215,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="moH-fo-QcG">
                                 <rect key="frame" x="400" y="0.0" width="200" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预售" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3J-Pm-Wer">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="预售" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3J-Pm-Wer">
                                         <rect key="frame" x="32" y="0.0" width="61" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="21" id="dVK-Z4-tCh"/>
@@ -225,14 +225,14 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jdzhongchou" translatesAutoresizingMaskIntoConstraints="NO" id="lAz-N9-RXc">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jdzhongchou" translatesAutoresizingMaskIntoConstraints="NO" id="lAz-N9-RXc">
                                         <rect key="frame" x="120" y="36" width="80" height="64"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="lF5-Zq-RTI"/>
                                             <constraint firstAttribute="height" constant="64" id="wkV-fL-iMp"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="499八核手机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAh-2M-Oc6">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="499八核手机" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAh-2M-Oc6">
                                         <rect key="frame" x="8" y="16" width="79" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -247,7 +247,7 @@
                                     <constraint firstItem="f3J-Pm-Wer" firstAttribute="leading" secondItem="moH-fo-QcG" secondAttribute="leading" constant="32" id="z9l-Hy-Tlh"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radar_icon_hot_selected" translatesAutoresizingMaskIntoConstraints="NO" id="qBE-NW-ZRR">
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radar_icon_hot_selected" translatesAutoresizingMaskIntoConstraints="NO" id="qBE-NW-ZRR">
                                 <rect key="frame" x="408" y="2" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="6kS-SF-tfy"/>
@@ -373,7 +373,7 @@
                 <outlet property="hotGoodsLeftText" destination="JFu-h2-PS4" id="xm1-pj-ODp"/>
                 <outlet property="hotGoodsRightImage" destination="PUg-V8-llT" id="BfH-MX-MOR"/>
                 <outlet property="hotGoodsRightText" destination="9BD-d8-ab1" id="11w-QX-ft5"/>
-                <outlet property="yuShouGoods" destination="qhM-0s-OI1" id="ps9-N4-OpT"/>
+                <outlet property="yuShouGoods" destination="dso-Kh-kjg" id="ReS-Qo-OrX"/>
             </connections>
             <point key="canvasLocation" x="49" y="211.5"/>
         </collectionViewCell>

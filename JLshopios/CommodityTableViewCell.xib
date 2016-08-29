@@ -102,6 +102,9 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteGoods:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WNr-8M-Gah"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-b8-ocS">
                                 <rect key="frame" x="50" y="0.0" width="20" height="26"/>
@@ -119,6 +122,9 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addGoods:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="f3L-x0-eq4"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6S-Nt-XLx">
                                 <rect key="frame" x="20" y="0.0" width="30" height="26"/>
@@ -177,12 +183,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="commodityGoodNumer" destination="z6S-Nt-XLx" id="uBh-S0-drK"/>
                 <outlet property="commodityImg" destination="mCe-Gw-7tO" id="pwF-4C-7Vj"/>
                 <outlet property="commodityName" destination="jdD-cu-HYF" id="tkj-7d-oJW"/>
                 <outlet property="commodityPraise" destination="Vc7-ge-b4M" id="ahd-jX-Bww"/>
                 <outlet property="commodityPrice" destination="xz5-T4-3Z0" id="VTR-WM-RDJ"/>
             </connections>
-            <point key="canvasLocation" x="242.5" y="305"/>
+            <point key="canvasLocation" x="-40.5" y="202"/>
         </tableViewCell>
     </objects>
     <resources>

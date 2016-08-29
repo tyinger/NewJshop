@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+
+typedef void (^AddGoodsBtnAction)(NSInteger numberOne);
 @interface CommodityTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *commodityImg;
 
@@ -15,6 +17,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *commodityZX;
 @property (strong, nonatomic) IBOutlet UILabel *commodityPraise;
 
+@property (weak, nonatomic) IBOutlet UIButton *commodityGoodNumer;
+
+@property (copy, nonatomic) AddGoodsBtnAction addGoodsBtnAction;
 @end
 
 
