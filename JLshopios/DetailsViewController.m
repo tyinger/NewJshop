@@ -18,12 +18,16 @@
 #import "QSCNavigationController.h"
 #import "DetailsMode.h"
 #import "ShopingCartController.h"
+#import "CustomBadge.h"
+#import "UIButton+CustomBadge.h"
+
 @class QSCHttpTool;
 @interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate>
 {
     MBProgressHUD *HUD;
     NSMutableArray *_images;
     UILabel *_indexPage;
+    UIButton * _cart;
 }
 @property (nonatomic, strong) UITableView *tableView;
 /// cellConfig数据源
@@ -148,15 +152,19 @@
     focus.titleEdgeInsets = UIEdgeInsetsMake(40,-35, 0, 0);
     [view1 addSubview:focus];
     
-    UIButton * cart =[UIButton createButtonWithImage:@"btn_ware_buy_h" Title:@"购物车" Target:self Selector:@selector(cartClick)];
-    [cart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    cart.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 20, 0);
-    cart.titleEdgeInsets = UIEdgeInsetsMake(40,-35, 0, 0);
-    [view1 addSubview:cart];
-    [MasonyUtil equalSpacingView:@[focus,cart]
+    _cart =[UIButton createButtonWithImage:@"btn_ware_buy_h" Title:@"购物车" Target:self Selector:@selector(cartClick)];
+    [_cart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _cart.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 20, 0);
+    _cart.titleEdgeInsets = UIEdgeInsetsMake(40,-35, 0, 0);
+//    [_cart setBadgeWithNumber:@5];
+    [view1 addSubview:_cart];
+    [MasonyUtil equalSpacingView:@[focus,_cart]
                        viewWidth:view1.size.width/2
                       viewHeight:view1.size.height
                   superViewWidth:view1.size.width];
+    [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
+        [_cart setBadgeWithNumber:x];
+    }];
 }
 
 - (UIView*)addHeaderView{
@@ -267,43 +275,56 @@
 }
 - (void)addCartClick{
     
+//    post方式提交
+//    goodid,num,jsFlag=0,Price,userid,goodName,goodImg,shopid=-1
+//    说明:goodid是商品id，num=1，price是商品价格，userid是用户id，goodName是商品名，goodImg是商品logo
+    if ([LoginStatus sharedManager].status) {
+
+        NSDictionary *dic = @{@"goodid":[NSString stringWithFormat:@"%lld",_modelToShow.Id],
+                              @"num":@"1",
+                              @"jsFlag":@"0",
+                              @"Price":_modelToShow.detailsPrice,
+                              @"userid":[LoginStatus sharedManager].idStr,
+                              @"goodName":_modelToShow.detailsName,
+                              @"goodImg":_productIconStr,
+                              @"shopid":@"-1"};
+        
+        [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+            MYLog(@"加入购物车%@",json);
+            [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue]+1];
+//            [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
+//                [_cart setBadgeWithNumber:x];
+//            }];
+            
+        } failure:^(NSError *error) {
+            MYLog(@"加入购物车失败%@",error);
+        }];
+    }else{
     
-//    if ([UserDefaultsUtils getOwnID] == 0) {
-//        [self showLoginView];
-//        return;
-//    }
-    [FYTXHub toast:@"请先登录"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [FYTXHub dismiss];
-    });
-    
+        [FYTXHub toast:@"请先登录"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [FYTXHub dismiss];
+        });
+    }
 }
 
 - (void)cartClick{
-//    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-//    [self.navigationController.view addSubview:HUD];
-//    
-//    HUD.mode = MBProgressHUDModeCustomView;
-//    
-//    HUD.delegate = self;
-//    HUD.labelText = @"请先登录";
-//    
-//    [HUD show:YES];
-//    [HUD hide:YES afterDelay:2];
-//    CartViewController * cartVC=[[CartViewController alloc]init];
-//    [self.navigationController pushViewController:cartVC animated:YES];
     
-    [FYTXHub toast:@"请先登录"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [FYTXHub dismiss];
-    });
-    return;
+    if (![LoginStatus sharedManager].status){
+        
+        [FYTXHub toast:@"请先登录"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [FYTXHub dismiss];
+        });
+        
+    }else{
     
     //TODO:要做登录判断
-    AppDelegate *app = [UIApplication sharedApplication].delegate;
-    app.window.rootViewController = [JLTabMainController shareJLTabVC];
-    [JLTabMainController shareJLTabVC].selectedIndex = 3;
-    [self.navigationController popToRootViewControllerAnimated:NO];
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        app.window.rootViewController = [JLTabMainController shareJLTabVC];
+        [JLTabMainController shareJLTabVC].selectedIndex = 3;
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
     
 }
 #pragma mark - SDCycleScrollViewDelegate

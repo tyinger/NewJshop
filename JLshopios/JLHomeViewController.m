@@ -8,6 +8,7 @@
 
 #import "JLHomeViewController.h"
 #import "JLShopCollectionViewCell.h"
+#import "JLShopsViewController.h"
 #import "SDCycleScrollView.h"
 #import "JLTypeListView.h"
 
@@ -21,9 +22,12 @@
 
 #import "JLGoodModel.h"
 
+#import "MultilevelMenu.h"
 #import "JLShopTypeModel.h"
 
 #define JLHomeCell @"JLHomeViewShopingCell"
+
+#import "OtherListViewController.h"
 //#define kDuration 0.3
 //static const double kDuration = 0.3;
 
@@ -99,6 +103,8 @@
             
             self.bannerArray = [marray copy];
             self.cycleScrollview.imageURLStringsGroup = imageArray;
+            if ([LoginStatus sharedManager].status)
+                [[CartManager sharedManager] getCartGoodCount];
         });
     } failure:^(NSError *error) {
     }];
@@ -201,19 +207,41 @@
 
 -(void)loadJLTypeListView{
     self.typeListView = [[JLTypeListView alloc]init];
-    {
-        UIView *sview = self.typeListView;
-        UICollectionView *pview = self.collectionView;
-        [pview addSubview:sview];
-        [sview mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(pview);
-            make.top.mas_equalTo(self.cycleScrollview.mas_bottom);
-            make.width.mas_equalTo(pview);
-            make.height.mas_equalTo(140);
-        }];
-    }
+    
+    UIView *sview = self.typeListView;
+    UICollectionView *pview = self.collectionView;
+    [pview addSubview:sview];
+    [sview mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(pview);
+        make.top.mas_equalTo(self.cycleScrollview.mas_bottom);
+        make.width.mas_equalTo(pview);
+        make.height.mas_equalTo(140);
+    }];
+    __weak typeof(self) weakSelf = self;
+    self.typeListView.listBtnBlock = ^(NSInteger btnTag){
+        MYLog(@"btnTag = %ld",btnTag);
+        [weakSelf listViewBtnAction:btnTag];
+        
+    };
 }
 
+
+
+- (void)listViewBtnAction:(NSInteger )btnTag{
+    if (btnTag != 7) {
+        
+        [self.tabBarController setSelectedIndex:2];
+        
+        QSCNavigationController *s = [self.tabBarController.viewControllers objectAtIndex:2];
+        JLShopsViewController *q = s.viewControllers.lastObject;
+        q.numRow = btnTag;
+//        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld",(long)btnTag] forKey:@"btntag"];
+    }else{
+        OtherListViewController *otherListVC = [[OtherListViewController alloc] init];
+        [self.navigationController pushViewController:otherListVC animated:YES];
+    }
+    
+}
 
 - (void)isSelectedCity
 {

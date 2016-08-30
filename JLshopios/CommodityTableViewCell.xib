@@ -65,9 +65,6 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bY4-aF-OWE">
-                        <rect key="frame" x="340" y="39" width="22" height="22"/>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥4783.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xz5-T4-3Z0">
                         <rect key="frame" x="123" y="54" width="100" height="20"/>
                         <constraints>
@@ -86,28 +83,113 @@
                             </mask>
                         </variation>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpL-B2-vQF">
+                        <rect key="frame" x="287" y="51" width="70" height="26"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edf-CP-mUZ">
+                                <rect key="frame" x="0.0" y="0.0" width="20" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="vCr-Ee-Te1"/>
+                                </constraints>
+                                <state key="normal" title="-">
+                                    <color key="titleColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="deleteGoods:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WNr-8M-Gah"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk4-b8-ocS">
+                                <rect key="frame" x="50" y="0.0" width="20" height="26"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="ful-5v-mDP"/>
+                                </constraints>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addGoods:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="f3L-x0-eq4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6S-Nt-XLx">
+                                <rect key="frame" x="20" y="0.0" width="30" height="26"/>
+                                <state key="normal" title="0">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.098039217293262482" green="0.098039217293262482" blue="0.098039217293262482" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Edf-CP-mUZ" firstAttribute="top" secondItem="zpL-B2-vQF" secondAttribute="top" id="05g-zP-zry"/>
+                            <constraint firstItem="z6S-Nt-XLx" firstAttribute="top" secondItem="zpL-B2-vQF" secondAttribute="top" id="3cb-Ej-oV3"/>
+                            <constraint firstAttribute="bottom" secondItem="tk4-b8-ocS" secondAttribute="bottom" id="4Gw-ep-BbH"/>
+                            <constraint firstAttribute="width" constant="70" id="B7O-H0-Lyb"/>
+                            <constraint firstItem="tk4-b8-ocS" firstAttribute="top" secondItem="zpL-B2-vQF" secondAttribute="top" id="Bpc-SI-TQt"/>
+                            <constraint firstItem="z6S-Nt-XLx" firstAttribute="leading" secondItem="Edf-CP-mUZ" secondAttribute="trailing" id="JlQ-1f-ZiL"/>
+                            <constraint firstAttribute="height" constant="26" id="OZk-ND-v0b"/>
+                            <constraint firstAttribute="bottom" secondItem="Edf-CP-mUZ" secondAttribute="bottom" id="Om1-co-SzU"/>
+                            <constraint firstItem="tk4-b8-ocS" firstAttribute="leading" secondItem="z6S-Nt-XLx" secondAttribute="trailing" id="Zbe-4j-WyG"/>
+                            <constraint firstItem="Edf-CP-mUZ" firstAttribute="leading" secondItem="zpL-B2-vQF" secondAttribute="leading" id="dwi-RM-RfO"/>
+                            <constraint firstAttribute="bottom" secondItem="z6S-Nt-XLx" secondAttribute="bottom" id="mxA-dX-bKf"/>
+                            <constraint firstAttribute="trailing" secondItem="tk4-b8-ocS" secondAttribute="trailing" id="zMM-av-qMm"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bY4-aF-OWE" firstAttribute="centerY" secondItem="mCe-Gw-7tO" secondAttribute="centerY" id="1OT-LD-pI5"/>
                     <constraint firstItem="mCe-Gw-7tO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7CX-yc-qIP"/>
                     <constraint firstItem="Vc7-ge-b4M" firstAttribute="top" secondItem="xz5-T4-3Z0" secondAttribute="bottom" constant="1" id="AmZ-4l-BIL"/>
-                    <constraint firstItem="bY4-aF-OWE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jdD-cu-HYF" secondAttribute="trailing" id="Ikl-ng-qPd"/>
+                    <constraint firstItem="zpL-B2-vQF" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-10" id="BUw-CD-wTL"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zpL-B2-vQF" secondAttribute="bottom" constant="15" id="DLB-ci-2Tk"/>
                     <constraint firstItem="xz5-T4-3Z0" firstAttribute="leading" secondItem="mCe-Gw-7tO" secondAttribute="trailing" constant="30" id="NEi-4F-Ubc"/>
-                    <constraint firstItem="bY4-aF-OWE" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="-5" id="U5e-d6-LI9"/>
+                    <constraint firstItem="jdD-cu-HYF" firstAttribute="leading" secondItem="xz5-T4-3Z0" secondAttribute="leading" id="R8W-Hf-ef5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="jdD-cu-HYF" secondAttribute="trailing" constant="39" id="Zrm-HI-LOZ"/>
+                    <constraint firstItem="jdD-cu-HYF" firstAttribute="top" secondItem="mCe-Gw-7tO" secondAttribute="top" id="fzX-ak-2gU"/>
                     <constraint firstItem="mCe-Gw-7tO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="mv6-hV-e4b"/>
                     <constraint firstItem="Vc7-ge-b4M" firstAttribute="leading" secondItem="mCe-Gw-7tO" secondAttribute="trailing" constant="30" id="ptd-fo-ASU"/>
-                    <constraint firstItem="jdD-cu-HYF" firstAttribute="leading" secondItem="mCe-Gw-7tO" secondAttribute="trailing" constant="30" id="qzX-fG-XHG"/>
                     <constraint firstItem="Vc7-ge-b4M" firstAttribute="bottom" secondItem="mCe-Gw-7tO" secondAttribute="bottom" id="vGA-7X-AYo"/>
-                    <constraint firstItem="jdD-cu-HYF" firstAttribute="top" secondItem="mCe-Gw-7tO" secondAttribute="top" id="w66-EK-Em1"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="commodityGoodNumer" destination="z6S-Nt-XLx" id="uBh-S0-drK"/>
                 <outlet property="commodityImg" destination="mCe-Gw-7tO" id="pwF-4C-7Vj"/>
                 <outlet property="commodityName" destination="jdD-cu-HYF" id="tkj-7d-oJW"/>
                 <outlet property="commodityPraise" destination="Vc7-ge-b4M" id="ahd-jX-Bww"/>
                 <outlet property="commodityPrice" destination="xz5-T4-3Z0" id="VTR-WM-RDJ"/>
             </connections>
-            <point key="canvasLocation" x="421.5" y="344"/>
+            <point key="canvasLocation" x="-40.5" y="202"/>
         </tableViewCell>
     </objects>
     <resources>

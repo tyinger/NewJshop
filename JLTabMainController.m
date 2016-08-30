@@ -15,10 +15,25 @@
 #import "ShopingCartController.h"
 
 @interface JLTabMainController ()
+{
+    CartManager * manager ;
+}
+
+@property (nonatomic,strong) CartManager *manager;
 
 @end
 
 @implementation JLTabMainController
+
+
+- (CartManager*)manager{
+    
+    if (!_manager) {
+        
+        _manager = [CartManager sharedManager];
+    }
+    return _manager;
+}
 
 + (JLTabMainController *)shareJLTabVC{
     static JLTabMainController *jlTabVC;
@@ -90,6 +105,14 @@
         [tabBarItem setImage: [unselectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
         [tabBarItem setSelectedImage:[selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
     }
+    if(index == 3){
+        [RACObserve(self.manager, totalNum) subscribeNext:^(NSNumber *x) {
+            tabBarItem.badgeValue = [x stringValue];
+        
+        }];
+    }
+    
+    
 }
 
 

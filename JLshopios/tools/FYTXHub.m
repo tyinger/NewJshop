@@ -65,7 +65,16 @@ static UIImage *defaultInfoImage;
         [SVProgressHUD dismiss];
     });
 }
-
++(void)successDarkStyle:(NSString *)message delayClose:(NSInteger)second{
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD showSuccessWithStatus:message];
+//    [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, second * NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
+}
 
 +(void)success:(NSString *)message delayClose:(NSInteger)section compelete:(void(^)())compelete{
     

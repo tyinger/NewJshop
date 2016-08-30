@@ -21,7 +21,9 @@
 @interface JLShopsViewController ()<SearchBarViewDelegate>
 {
     NSMutableArray * _list;
+    MultilevelMenu * _mutiview;
 }
+
 @end
 
 @implementation JLShopsViewController
@@ -31,14 +33,15 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
     [self setupNavigationItem];
-    //初始化数据
-    [self initData];
+    
 //    //初始化分类菜单
 //    [self initCategoryMenu];
     
 }
 - (void)viewWillAppear:(BOOL)animated;
 {
+    //初始化数据
+    [self initData];
     //     (( AppDelegate *) [UIApplication sharedApplication].delegate).avatar.hidden=YES;
 }
 
@@ -72,7 +75,7 @@
     NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-        NSLog(@"%@",json);
+//        NSLog(@"%@",json);
         [self analizeData:json];
         //初始化分类菜单
         [self initCategoryMenu];
@@ -85,32 +88,37 @@
 
 - (void)initCategoryMenu{
     
+    if (!_mutiview) {
+        _mutiview = [[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-49) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryRightMeunModel * info) {
+            
+            NSLog(@"点击的 菜单%@",info.menuNameOfRight);
+            //         JDNavigationController *navigationController = [[JDNavigationController alloc] initWithRootViewController:[[CommodityTableViewController alloc] init]];
+            //
+            //        JDNavigationController *menuController = [[JDNavigationController alloc]  initWithRootViewController:[[RightMenuTableViewController alloc] init]];
+            //        REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
+            //        frostedViewController.direction = REFrostedViewControllerDirectionRight;
+            //        frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+            //           [frostedViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
+            //        [self presentViewController:frostedViewController animated:YES completion:nil];
+            //
+            //[self.navigationController pushViewController:frostedViewController animated:YES];
+            
+            CommodityTableViewController *commod = [[CommodityTableViewController alloc] initWithType:1];
+            [self.navigationController pushViewController:commod animated:YES];
+        }];
+    }
     
-    MultilevelMenu * view=[[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-49) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryRightMeunModel * info) {
-        
-        NSLog(@"点击的 菜单%@",info.menuNameOfRight);
-        //         JDNavigationController *navigationController = [[JDNavigationController alloc] initWithRootViewController:[[CommodityTableViewController alloc] init]];
-        //
-        //        JDNavigationController *menuController = [[JDNavigationController alloc]  initWithRootViewController:[[RightMenuTableViewController alloc] init]];
-        //        REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:navigationController menuViewController:menuController];
-        //        frostedViewController.direction = REFrostedViewControllerDirectionRight;
-        //        frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
-        //           [frostedViewController setModalTransitionStyle:UIModalTransitionStyleFlipHorizontal];
-        //        [self presentViewController:frostedViewController animated:YES completion:nil];
-        //
-        //[self.navigationController pushViewController:frostedViewController animated:YES];
-        
-        CommodityTableViewController *commod = [[CommodityTableViewController alloc] initWithType:1];
-        [self.navigationController pushViewController:commod animated:YES];
-    }];
-    
-    view.needToScorllerIndex=0; //默认是 选中第一行
-    view.leftSelectColor=[UIColor redColor];
-    view.leftSelectBgColor=[UIColor whiteColor];//选中背景颜色
-    view.isRecordLastScroll=NO;//是否记住当前位置
-    [self.view addSubview:view];
+    _mutiview.needToScorllerIndex=_numRow; //默认是 选中第一行
+    _mutiview.leftSelectColor=[UIColor redColor];
+    _mutiview.leftSelectBgColor=[UIColor whiteColor];//选中背景颜色
+    _mutiview.isRecordLastScroll=YES;//是否记住当前位置
+    [self.view addSubview:_mutiview];
 }
 
+//- (void)setNumRow:(NSInteger)numRow{
+//    _numRow = numRow;
+//    _mutiview.needToScorllerIndex = _numRow;
+//}
 
 - (void)analizeData:(NSArray *)Json
 {

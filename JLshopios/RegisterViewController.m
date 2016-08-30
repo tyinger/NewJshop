@@ -52,6 +52,16 @@
     [self xieyiAction];
 }
 
+- (void)viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
+    
+}
+
+- (void)dealloc{
+
+    
+}
 
 #pragma mark - action
 - (void)gesAction:(UIGestureRecognizer*)ges{
@@ -102,21 +112,39 @@
     
     if ([self youxiaodianhua:self.phoneNumTextF.text]) {
         
-        [self requestCode];
+        NSLog(@"%@",self.phoneNumTextF.text);
         
-        btn.enabled = NO;
-        [btn startCountDownWithSecond:60];
+        //获取验证码的
+        NSDictionary *dic = @{@"phoneNum":self.phoneNumTextF.text};
+        [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getRegisterYzm?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+            NSLog(@"json = msg %@",json[@"msg"]);
+            
+            if (![json[@"msg"] isEqualToString:@""] && json[@"msg"] != nil) {
+                
+                [FYTXHub toast:json[@"msg"]];
+            }else{
+                
+                btn.enabled = NO;
+                [btn startCountDownWithSecond:60];
+                
+                [btn countDownChanging:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+                    
+                    NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
+                    return title;
+                }];
+                [btn countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+                    
+                    countDownButton.enabled = YES;
+                    return @"重新获取";
+                }];
+                
+                self.registerYzm = json[@"registerYzm"];
+            }
+        } failure:^(NSError *error) {
+            
+            [FYTXHub toast:@"获取验证码失败"];
+        }];
         
-        [btn countDownChanging:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-            
-            NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
-            return title;
-        }];
-        [btn countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
-            
-            countDownButton.enabled = YES;
-            return @"重新获取";
-        }];
     }else{
         
         [FYTXHub toast:@"请输入正确的手机号码"];
@@ -147,52 +175,15 @@
         //loginName=18643212316 password=
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/registNewUser?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             
-            if (json[@"success"] != nil) {
+            if (json[@"msg"] != nil) {
                 
-                
-            }
-            if (json[@"repeatTel"] != nil) {
-                
-                [FYTXHub toast:@"此手机号已经是注册用户"];
-            }
-            if (json[@"timeout"] != nil) {
-                
-                [FYTXHub toast:@"验证码超时，请重新填写"];
-            }
-            if (json[@"errorCode"] != nil) {
-                
-                [FYTXHub toast:@"验证码错误，请重新填写"];
-            }
-            if (json[@"false"] != nil) {
-                
-                [FYTXHub toast:@"注册失败，请重新尝试"];
+                [FYTXHub toast:[NSString stringWithFormat:@"%@",json[@"msg"]]];
             }
             
         } failure:^(NSError *error) {
             
             [FYTXHub toast:@"网络请求失败"];
         }];
-}
-- (void)requestCode{
-    
-    NSLog(@"%@",self.phoneNumTextF.text);
-    
-    //获取验证码的
-    NSDictionary *dic = @{@"phoneNum":self.phoneNumTextF.text};
-    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getRegisterYzm?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-        NSLog(@"json = msg %@",json[@"msg"]);
-        
-        if (![json[@"msg"] isEqualToString:@""] && json[@"msg"] != nil) {
-            
-            [FYTXHub toast:json[@"msg"]];
-        }else{
-            
-            self.registerYzm = json[@"registerYzm"];
-        }
-    } failure:^(NSError *error) {
-    
-        [FYTXHub toast:@"获取失败"];
-    }];
 }
 
 

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface JLShopsViewController : UIViewController
-
+/** s */
+@property (nonatomic , assign) NSInteger numRow;
 @end

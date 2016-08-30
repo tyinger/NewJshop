@@ -20,7 +20,8 @@
 #import "JLCommdoityCollectionCell.h"
 #import "UIScrollView+MJRefresh.h"
 #import "DetailsViewController.h"
-#import <UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
+#import "UIBarButtonItem+Badge.h"
 
 @interface CommodityTableViewController ()<SearchBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate>
 {
@@ -126,15 +127,23 @@
  
 //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"back_bt_7" highBackgroudImageName:nil target:self action:@selector(backClick)];
 
-    UIBarButtonItem *chooseBtn = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"guanzhu" highBackgroudImageName:nil target:self action:@selector(selectModel:)];
-    NSArray * arr = [[NSArray alloc] initWithObjects:self.navigationItem.leftBarButtonItem,chooseBtn, nil];
-    self.navigationItem.leftBarButtonItems = arr;
+//    UIBarButtonItem *chooseBtn = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"guanzhu" highBackgroudImageName:nil target:self action:@selector(selectModel:)];
+//    NSArray * arr = [[NSArray alloc] initWithObjects:self.navigationItem.leftBarButtonItem,chooseBtn, nil];
+//    self.navigationItem.leftBarButtonItems = arr;
     //将搜索条放在一个UIView上
     SearchBarView *searchView;// = [[SearchBarView alloc]init];
     
     if (!_tabbarNum) {
         self.navigationItem.rightBarButtonItem = [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"main_bottom_tab_cart_focus" highBackgroudImageName:nil target:self action:@selector(changeClick:)];
+        
+        self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor redColor];
         searchView = [[SearchBarView alloc] initWithFrame:CGRectMake(250, 0, 240 , 30)];
+        [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
+            if (x) {
+                self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%@",x];
+            }
+            
+        }];
     }else{
         searchView = [[SearchBarView alloc] initWithFrame:CGRectMake(250,
                                       0,
@@ -281,6 +290,43 @@
     cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
 //    cell.commodityZX.image=[UIImage imageNamed:commodity.commodityZX];
 //    cell.commodityPraise.text=commodity.praise;
+   __weak typeof(cell) weakCell = cell;
+    cell.addGoodsBtnAction = ^(NSInteger numberOne){
+        [weakCell.commodityGoodNumer setTitle:[NSString stringWithFormat:@"%ld",[cell.commodityGoodNumer.titleLabel.text integerValue] + numberOne] forState:UIControlStateNormal];
+        if (numberOne == 1) {
+            
+            NSDictionary *dic = @{
+                                  @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
+                                  @"num":@"1",
+                                  @"jsFlag":@"0",
+                                  @"Price":commodity.commodityPrice,
+                                  @"userid":[LoginStatus sharedManager].idStr,
+                                  @"goodName":commodity.commodityName,
+                                  @"goodImg":commodity.commodityImageUrl,
+                                  @"shopid":@"-1"
+                                  };
+            
+            [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                MYLog(@"5555%@",json);
+                [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+            } failure:^(NSError *error) {
+                MYLog(@"4444%@",error);
+            }];
+        }else{
+            NSDictionary *dic = @{
+                                  @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
+                                  @"userid":[LoginStatus sharedManager].idStr
+                                  };
+            [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/deleteShopCartByGoodId?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                MYLog(@"删除成功%@",json);
+                [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+                
+            } failure:^(NSError *error) {
+                MYLog(@"删除商品失败%@",error);
+            }];
+        }
+        
+    };
     
     return cell;
 }
@@ -296,6 +342,7 @@
     CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
     DetailsViewController *next = [[DetailsViewController alloc] init];
     next.productIDStr = [NSString stringWithFormat:@"%lld",commodity.Id];
+    next.productIconStr = commodity.commodityImageUrl;
     [self.navigationController pushViewController:next animated:YES];
 }
 

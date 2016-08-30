@@ -9,6 +9,7 @@
 #import "MultilevelMenu.h"
 #import "MultilevelTableViewCell.h"
 #import "MultilevelCollectionViewCell.h"
+
 #import "CategoryMeunModel.h"
 //#import "UIImageView+WebCache.h"
 #define kImageDefaultName @"tempShop"
@@ -74,7 +75,7 @@
         }
         self.leftTablew.separatorColor=self.leftSeparatorColor;
         
-        [self.leftTablew selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        [self.leftTablew selectRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
         /**
          右边的视图
          */
@@ -103,7 +104,7 @@
 
         self.backgroundColor=self.leftSelectBgColor;
         
-
+        
         
     }
     return self;
@@ -123,12 +124,21 @@
         line.backgroundColor=cell.backgroundColor;
         cell.titile.textColor=self.leftSelectColor;
         cell.backgroundColor=self.leftSelectBgColor;
+        
+        [self.leftTablew deselectRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0] animated:NO];
+        cell=(MultilevelTableViewCell*)[self.leftTablew cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]];
+        line=(UILabel*)[cell viewWithTag:100];
+        line.backgroundColor=cell.backgroundColor;
+        cell.titile.textColor=self.leftUnSelectColor;
+        cell.backgroundColor=self.leftUnSelectBgColor;
+        
         _selectIndex=needToScorllerIndex;
         
         [self.rightCollection reloadData];
 
     }
-    _needToScorllerIndex=needToScorllerIndex;
+//    _needToScorllerIndex=needToScorllerIndex;
+    MYLog(@"假装来一下");
 }
 -(void)setLeftBgColor:(UIColor *)leftBgColor{
     _leftBgColor=leftBgColor;
@@ -235,6 +245,7 @@
         
          [self.rightCollection scrollRectToVisible:CGRectMake(0, 0, self.rightCollection.frame.size.width, self.rightCollection.frame.size.height) animated:NO];
     }
+    MYLog(@"我来了");
 }
 
 
@@ -245,6 +256,7 @@
     line.backgroundColor=tableView.separatorColor;
 
     cell.backgroundColor=self.leftUnSelectBgColor;
+    MYLog(@"又走了");
 }
 
 #pragma mark---imageCollectionView--------------------------

@@ -29,7 +29,7 @@
 }
 
 -(NSString *)detailsPrice{
-    return [NSString stringWithFormat:@"¥ %@",_detailsPrice];
+    return [NSString stringWithFormat:@"%@",_detailsPrice];
 }
 
 @end

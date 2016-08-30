@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *hotGoodsRightImage;
 
 @property (nonatomic,strong) NSArray *hotGoodsArray;
+@property (weak, nonatomic) IBOutlet UIView *yuShouGoods;
 
 
 
@@ -28,7 +29,9 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    
+    UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testAction:)];
+    self.yuShouGoods.userInteractionEnabled = YES;
+    [self.yuShouGoods addGestureRecognizer:ges];
     [self loadHotGoodsInfo];
 }
 
@@ -81,5 +84,16 @@
     }
 }
 
+- (IBAction)testAction:(id)sender {
+    MYLog(@"xxxx");
+    [FYTXHub toast:@"敬请期待"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [FYTXHub dismiss];
+    });
+}
+
+- (void)testAction1:(UIGestureRecognizer *)ges{
+    MYLog(@"fffff");
+}
 
 @end

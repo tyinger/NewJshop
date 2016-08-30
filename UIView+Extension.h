@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+//IB_DESIGNABLE
 @interface UIView (Extension)
 @property (nonatomic, assign) CGFloat x;
 @property (nonatomic, assign) CGFloat y;
@@ -17,5 +17,11 @@
 @property (nonatomic, assign) CGFloat centerX;
 @property (nonatomic, assign) CGFloat centerY;
 
+@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;
+@property (nonatomic, assign) IBInspectable CGFloat borderWidth;
+@property (nonatomic, strong) IBInspectable UIColor* borderColor;
+
 - (void) distributeSpacingVerticallyWith:(NSArray*)views;
+
+- (void) sx_addAction:(void(^)(void))action;
 @end
