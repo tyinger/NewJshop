@@ -65,6 +65,8 @@
         
         [[LoginStatus sharedManager] setJson:json];
         [LoginStatus sharedManager].login = YES;
+        [[CartManager sharedManager] getCartGoodCount];
+        
         [FYTXHub success:@"登录成功" delayClose:1 compelete:^{
             
             dispatch_async(dispatch_get_main_queue(), ^{

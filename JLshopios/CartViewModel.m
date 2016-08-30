@@ -114,7 +114,7 @@
         finish?finish():nil;
         
     } failure:^(NSError *error) {
-        TTAlert(@"网络请求出错");
+//        TTAlert(@"网络请求出错");
     }];
 }
 
@@ -196,7 +196,33 @@
     [((UIViewController*)self.cartVC).navigationController pushViewController:detail animated:YES];
 }
 - (void)followAction{
-    TTAlert(@"FollowClick");
+//    TTAlert(@"FollowClick");
+    
+    NSArray * followArrayID = [[self.selectArray.rac_sequence map:^id(GoodModel* value) {
+        return value.goodid;
+    }] array];
+    NSArray <RACSignal *>* signalArray = [[followArrayID.rac_sequence map:^id(id value) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            [[CartManager sharedManager] followActionType:FollowTypeGood ID:value isFollow:YES :^{
+                [subscriber sendNext:@(YES)];
+                [subscriber sendCompleted];
+            } :^{
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+            }];
+          
+            return nil;
+        }];
+    }] array];
+    
+    [[RACSignal combineLatest:signalArray] subscribeNext:^(RACTuple *x) {
+        if ([[x last] isEqualToValue:@(YES)]) {
+            [FYTXHub successDarkStyle:@"关注成功" delayClose:1];
+        }else{
+             [FYTXHub toast:@"关注失败"];   
+        }
+        
+    }];
 }
 - (void)deleteRow:(NSInteger)row{
     GoodModel * model = self.cartData[row];
