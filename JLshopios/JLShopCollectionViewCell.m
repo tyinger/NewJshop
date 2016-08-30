@@ -29,7 +29,7 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    UIGestureRecognizer *ges = [[UIGestureRecognizer alloc] initWithTarget:self action:@selector(testAction:)];
+    UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testAction:)];
     self.yuShouGoods.userInteractionEnabled = YES;
     [self.yuShouGoods addGestureRecognizer:ges];
     [self loadHotGoodsInfo];
@@ -84,7 +84,7 @@
     }
 }
 
-- (IBAction)testAction:(UIButton *)sender {
+- (IBAction)testAction:(id)sender {
     MYLog(@"xxxx");
     [FYTXHub toast:@"敬请期待"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -92,5 +92,8 @@
     });
 }
 
+- (void)testAction1:(UIGestureRecognizer *)ges{
+    MYLog(@"fffff");
+}
 
 @end

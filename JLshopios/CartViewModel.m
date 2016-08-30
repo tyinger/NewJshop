@@ -93,13 +93,14 @@
 - (void)getDataSuccess:(void (^)(void))finish{
 //    NSMutableArray *storeArray = [NSMutableArray array];
 //    NSMutableArray *shopSelectAarry = [NSMutableArray array];
+    [FYTXHub progress:@"正在加载"];
     [self.cartData removeAllObjects];
     //https://123.56.192.182:8443/app/shopCart/listShopCart?&userid=37
     NSString *  urlString = @"https://123.56.192.182:8443/app/shopCart/listShopCart?";
     NSString * idStr = [LoginStatus sharedManager].idStr;
 //     NSString * idStr =@"37";
     [QSCHttpTool get:urlString parameters:@{@"userid":idStr} isShowHUD:YES httpToolSuccess:^(id json) {
-        
+        [FYTXHub dismiss];
         __block NSInteger totalCount = 0;
         NSMutableArray * arr =[[[((NSArray*)json).rac_sequence map:^id(id value) {
            GoodModel* model =  [[GoodModel alloc] initWithData:value];
@@ -114,7 +115,8 @@
         finish?finish():nil;
         
     } failure:^(NSError *error) {
-        TTAlert(@"网络请求出错");
+         [FYTXHub dismiss];
+//        TTAlert(@"网络请求出错");
     }];
 }
 
@@ -196,7 +198,34 @@
     [((UIViewController*)self.cartVC).navigationController pushViewController:detail animated:YES];
 }
 - (void)followAction{
-    TTAlert(@"FollowClick");
+//    TTAlert(@"FollowClick");
+    
+    NSArray * followArrayID = [[self.selectArray.rac_sequence map:^id(GoodModel* value) {
+        return value.goodid;
+    }] array];
+    NSArray <RACSignal *>* signalArray = [[followArrayID.rac_sequence map:^id(id value) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+
+            [[CartManager sharedManager] followActionType:FollowTypeGood ID:value isFollow:YES :^(id obj){
+                [subscriber sendNext:@(YES)];
+                [subscriber sendCompleted];
+            } :^(id error){
+                [subscriber sendNext:@(NO)];
+                [subscriber sendCompleted];
+            }];
+          
+            return nil;
+        }];
+    }] array];
+    
+    [[RACSignal combineLatest:signalArray] subscribeNext:^(RACTuple *x) {
+        if ([[x last] isEqualToValue:@(YES)]) {
+            [FYTXHub successDarkStyle:@"关注成功" delayClose:1];
+        }else{
+             [FYTXHub toast:@"关注失败"];   
+        }
+        
+    }];
 }
 - (void)deleteRow:(NSInteger)row{
     GoodModel * model = self.cartData[row];
@@ -216,7 +245,7 @@
 - (void)deleteAction{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:TTKeyWindow() animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"请求中";
+//    hud.labelText = @"请求中";
  
    NSArray * deleteIDArr = [[self.selectArray.rac_sequence map:^id(GoodModel* value) {
         return value;

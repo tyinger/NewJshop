@@ -103,6 +103,8 @@
             
             self.bannerArray = [marray copy];
             self.cycleScrollview.imageURLStringsGroup = imageArray;
+            if ([LoginStatus sharedManager].status)
+                [[CartManager sharedManager] getCartGoodCount];
         });
     } failure:^(NSError *error) {
     }];
@@ -183,7 +185,7 @@
 
 -(void)loadSrollView{
     CGFloat creenWidth = [UIScreen mainScreen].bounds.size.width;
-    self.cycleScrollview = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, creenWidth, 140) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    self.cycleScrollview = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, creenWidth, 125) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     _cycleScrollview.currentPageDotImage = [UIImage imageNamed:@"FYTXCategories_page_dot_press"];
     _cycleScrollview.autoScrollTimeInterval = 5.0f;

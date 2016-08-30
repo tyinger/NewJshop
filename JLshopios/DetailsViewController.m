@@ -163,7 +163,6 @@
                       viewHeight:view1.size.height
                   superViewWidth:view1.size.width];
     [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
-        //x为按钮的角标
         [_cart setBadgeWithNumber:x];
     }];
 }
@@ -288,10 +287,15 @@
                               @"userid":[LoginStatus sharedManager].idStr,
                               @"goodName":_modelToShow.detailsName,
                               @"goodImg":_productIconStr,
-                              @"shopid":_productIDStr};
+                              @"shopid":@"-1"};
         
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             MYLog(@"加入购物车%@",json);
+            [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue]+1];
+//            [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
+//                [_cart setBadgeWithNumber:x];
+//            }];
+            
         } failure:^(NSError *error) {
             MYLog(@"加入购物车失败%@",error);
         }];

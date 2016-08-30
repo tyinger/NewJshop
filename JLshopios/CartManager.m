@@ -22,6 +22,7 @@
     return sharedManager;
 }
 - (void)getCartGoodCount{
+
     /*
      https://123.56.192.182:8443</item>
      <item>/app/shopCart/</item>
@@ -36,13 +37,14 @@
         }
         
 } failure:^(NSError *error) {
-    TTAlert(@"网络请求失败");
+//    TTAlert(@"网络请求失败");
+    [FYTXHub toast:@"网络请求失败"];
     }];
 }
 - (void)addGood:(GoodModel *)modelToCart{
     
 }
-- (void)updateCartGoodNum:(NSString *)number ID:(NSString *)ID :(void(^)(void))success :(void(^)(void))faile{
+- (void)updateCartGoodNum:(NSString *)number ID:(NSString *)ID :(void(^)(void))success :(void(^)(void))failure{
     /*
      <item>https://123.56.192.182:8443</item>
      <item>/app/shopCart/</item>
@@ -54,7 +56,7 @@
      */
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:TTKeyWindow() animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"请求中";
+//    hud.labelText = @"请求中";
     NSDictionary * para = @{@"id":ID,@"num":number};
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/updateShopCartNum?" parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
         [self getCartGoodCount];
@@ -63,12 +65,12 @@
         }
           [MBProgressHUD hideHUDForView:TTKeyWindow() animated:YES];
     } failure:^(NSError *error) {
-        if (faile) {
-            faile();
+        if (failure) {
+            failure();
         }
     }];
 }
-- (void)deleteWholeGoodWith:(NSString *)ID :(void(^)(void))success :(void(^)(void))faile{
+- (void)deleteWholeGoodWith:(NSString *)ID :(void(^)(void))success :(void(^)(void))failure{
     /*
      <item>https://123.56.192.182:8443</item>
      <item>/app/shopCart/</item>
@@ -84,9 +86,62 @@
         }
       
     } failure:^(NSError *error) {
-        if (faile) {
-            faile();
+        if (failure) {
+            failure();
         }
     }];
+}
+
+- (void)followActionType:(FollowType)type ID:(NSString *)Id isFollow:(BOOL)isFollow :(void(^)(id))success :(void(^)(id))failure{
+    /*
+     关注商品   goodsId，userId
+     <item>https://123.56.192.182:8443</item>
+     <item>/app/favorite/</item>
+     <item>saveFavoriteGoods?</item>
+     取消关注 商品
+     <item>https://123.56.192.182:8443</item>
+     <item>/app/favorite/</item>
+     <item>deleteFavoriteGoods?</item>
+     
+     
+     关注shop   shopId，userId
+     <item>https://123.56.192.182:8443</item>
+     <item>/app/favorite/</item>
+     <item>saveFavoriteShop?</item>
+     取消关注 shop
+     <item>https://123.56.192.182:8443</item>
+     <item>/app/favorite/</item>
+     <item>deleteFavoriteShop?</item>
+     */
+    NSString         * urlString;
+    NSDictionary     * parameter;
+    NSString * userID = [LoginStatus sharedManager].idStr;
+//    NSString * userID = @"37";
+    if (type == FollowTypeGood) {
+        parameter = @{@"goodsId":Id,@"userId":userID};
+        urlString =isFollow? @"https://123.56.192.182:8443/app/favorite/saveFavoriteGoods?":@"https://123.56.192.182:8443/app/favorite/deleteFavoriteGoods?";
+        
+    }else{
+         parameter = @{@"shopId":Id,@"userId":userID};
+         urlString =isFollow? @"https://123.56.192.182:8443/app/favorite/saveFavoriteShop?":@"https://123.56.192.182:8443/app/favorite/deleteFavoriteShop?";
+    }
+    
+    
+    [QSCHttpTool get:urlString parameters:parameter isShowHUD:YES httpToolSuccess:^(id json) {
+        if (success) {
+            success(json);
+        }
+//        [FYTXHub success:@"关注成功" delayClose:1.5];
+    } failure:^(NSError *error) {
+//           [FYTXHub toast:@"关注失败"];
+        if (failure) {
+            failure(error);
+        }
+        
+    }];
+}
+//暂不实现
+- (void)deleteGoodWithID:(NSString *)goodId{
+    
 }
 @end

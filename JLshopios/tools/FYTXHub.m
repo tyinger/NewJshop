@@ -58,18 +58,27 @@ static UIImage *defaultInfoImage;
 
 +(void)success:(NSString *)message delayClose:(NSInteger)section{
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD showSuccessWithStatus:message];
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, section * NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{
         [SVProgressHUD dismiss];
     });
 }
-
++(void)successDarkStyle:(NSString *)message delayClose:(NSInteger)second{
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD showSuccessWithStatus:message];
+//    [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, second * NSEC_PER_SEC);
+    dispatch_after(time, dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
+}
 
 +(void)success:(NSString *)message delayClose:(NSInteger)section compelete:(void(^)())compelete{
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     [SVProgressHUD showSuccessWithStatus:message];
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, section * NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{

@@ -11,7 +11,7 @@
 #import <SVProgressHUD/SVProgressHUD.h>
 
 @interface FYTXHub : NSObject
-
++(void)successDarkStyle:(NSString *)message delayClose:(NSInteger)second;
 +(void)progress:(NSString *)message;
 +(void)toast:(NSString *)message;
 +(void)success:(NSString *)message delayClose:(NSInteger)section;

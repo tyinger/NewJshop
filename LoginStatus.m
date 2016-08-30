@@ -108,6 +108,8 @@
     self.score = nil;
     self.sex = nil;
     self.status = nil;
+    
+    [CartManager sharedManager].totalNum = 0;
 }
 
 - (void)setJson:(NSDictionary *)json{

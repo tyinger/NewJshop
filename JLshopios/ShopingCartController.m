@@ -38,6 +38,9 @@
             });
             //
         }];
+    }else{
+        [self.viewModel.cartData removeAllObjects];
+           [self.cartTableView reloadData];
     }
 //    [self.viewModel getDataSuccess:^{
 //        dispatch_async(dispatch_get_main_queue(), ^{

@@ -27,6 +27,8 @@
 @interface UIButton (CustomBadge)
 
 @property (nonatomic, strong) CustomBadge * customBadge;
+/** 记录当前的角标 */
+@property (nonatomic , assign) NSInteger currentBadge;
 
 - (void)setBadge:(CustomBadge *)badge;
 - (void)setBadgeWithNumber:(NSNumber *)number;
