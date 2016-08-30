@@ -84,7 +84,8 @@
 -(void)initData:(NSString *)menuID{
 
     _pangoNum = 0;
-    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",menuID,[LoginStatus sharedManager].idStr];
+    NSString *userid = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr :@"";
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",menuID,userid];
     NSDictionary *dic = @{@"arg0":parameterStr};
     [FYTXHub progress:@"正在加载。。。"];
     NSLog(@" ------ %@ ------",dic[@"arg0"]);

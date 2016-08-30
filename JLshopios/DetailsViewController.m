@@ -272,6 +272,14 @@
 
 
 - (void)wareMoreClick:(UIButton *)btn {
+    
+    if (![LoginStatus sharedManager].status) {
+        [FYTXHub toast:@"请先登录"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [FYTXHub dismiss];
+        });
+        return;
+    }
     btn.selected = !btn.selected;
     [[CartManager sharedManager] followActionType:0 ID:[NSString stringWithFormat:@"%lld",_modelToShow.Id] isFollow:btn.selected :^(id obj) {
         
