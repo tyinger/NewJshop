@@ -56,7 +56,7 @@
      */
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:TTKeyWindow() animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"请求中";
+//    hud.labelText = @"请求中";
     NSDictionary * para = @{@"id":ID,@"num":number};
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/updateShopCartNum?" parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
         [self getCartGoodCount];

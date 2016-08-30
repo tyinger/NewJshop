@@ -93,13 +93,14 @@
 - (void)getDataSuccess:(void (^)(void))finish{
 //    NSMutableArray *storeArray = [NSMutableArray array];
 //    NSMutableArray *shopSelectAarry = [NSMutableArray array];
+    [FYTXHub progress:@"正在加载"];
     [self.cartData removeAllObjects];
     //https://123.56.192.182:8443/app/shopCart/listShopCart?&userid=37
     NSString *  urlString = @"https://123.56.192.182:8443/app/shopCart/listShopCart?";
     NSString * idStr = [LoginStatus sharedManager].idStr;
 //     NSString * idStr =@"37";
     [QSCHttpTool get:urlString parameters:@{@"userid":idStr} isShowHUD:YES httpToolSuccess:^(id json) {
-        
+        [FYTXHub dismiss];
         __block NSInteger totalCount = 0;
         NSMutableArray * arr =[[[((NSArray*)json).rac_sequence map:^id(id value) {
            GoodModel* model =  [[GoodModel alloc] initWithData:value];
@@ -114,6 +115,7 @@
         finish?finish():nil;
         
     } failure:^(NSError *error) {
+         [FYTXHub dismiss];
 //        TTAlert(@"网络请求出错");
     }];
 }
@@ -243,7 +245,7 @@
 - (void)deleteAction{
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:TTKeyWindow() animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
-    hud.labelText = @"请求中";
+//    hud.labelText = @"请求中";
  
    NSArray * deleteIDArr = [[self.selectArray.rac_sequence map:^id(GoodModel* value) {
         return value;
