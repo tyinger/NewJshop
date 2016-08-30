@@ -93,8 +93,8 @@
     //4.1设置导航栏barButtonItem的文字在普通状态下的属性
     [barButtonItem setTitleTextAttributes:@{
                                             
-                                            NSFontAttributeName : [UIFont systemFontOfSize:iOS7? 17 : 13],
-                                            UITextAttributeTextColor : [UIColor whiteColor],
+                                            NSFontAttributeName : [UIFont systemFontOfSize:iOS7? 15 : 13],
+                                            UITextAttributeTextColor : [UIColor blackColor],
                                             UITextAttributeTextShadowOffset : [NSValue valueWithUIOffset:UIOffsetZero]
                                             
                                             } forState:UIControlStateNormal];

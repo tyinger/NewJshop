@@ -9,6 +9,7 @@
 #import "CommodityTableViewController.h"
 #import "PPiFlatSegmentedControl.h"
 #import "NSString+FontAwesome.h"
+#import "SearchController.h"
 #import "SearchBarView.h"
 //#import "JDNavigationController.h"
 #import "UIViewController+REFrostedViewController.h"
@@ -55,7 +56,7 @@
    _commodity = [[NSMutableArray alloc]init];
     self.view.backgroundColor = RGB(239, 243, 246);
     //初始化数据
-    [self initData:self.secondMenuIDStr];
+    [self initData:self.secondMenuIDStr searchName:self.searchNameStr];
     //设置导航栏
     [self setupNavigationItem];
     //初始化视图
@@ -81,11 +82,11 @@
     [_tableView.mj_footer endRefreshing];
 }
 #pragma mark 加载数据
--(void)initData:(NSString *)menuID{
+-(void)initData:(NSString *)menuID searchName:(NSString *)name{
 
     _pangoNum = 0;
     NSString *userid = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr :@"";
-    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",menuID,userid];
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"%@\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",name,menuID,userid];
     NSDictionary *dic = @{@"arg0":parameterStr};
     [FYTXHub progress:@"正在加载。。。"];
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
@@ -373,6 +374,16 @@
 #pragma mark 滑动事件
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     NSLog(@"scroll view did begin dragging");
+    
+}
+
+#pragma mark - 🔌 SearchBarViewDelegate Method
+- (void)searchBarSearchButtonClicked:(SearchBarView *)searchBarView {
+    MYLog(@"搜索");
+    [self.navigationController pushViewController:[SearchController new] animated:YES];
+}
+
+- (void)searchBarAudioButtonClicked:(SearchBarView *)searchBarView {
     
 }
 

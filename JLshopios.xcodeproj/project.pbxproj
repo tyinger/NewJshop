@@ -107,6 +107,7 @@
 		978D3C261D44F04800C0C1BE /* TSLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1A1D44F04800C0C1BE /* TSLocateView.m */; };
 		978D3C271D44F04800C0C1BE /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */; };
 		978D3C281D44F04800C0C1BE /* TSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1D1D44F04800C0C1BE /* TSLocation.m */; };
+		979EAE5D1D75C7D30027EAE4 /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 979EAE5C1D75C7D30027EAE4 /* SearchController.m */; };
 		B529A39C1D7018D200A1A3B1 /* CartBarEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */; };
 		B58E8F3E1D716C8C006C21CD /* ToolClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B58E8F3D1D716C8C006C21CD /* ToolClass.m */; };
 		B5F3C8321D6F4B730010D199 /* CartPlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F3C8311D6F4B730010D199 /* CartPlaceHolderView.m */; };
@@ -375,6 +376,8 @@
 		978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSLocateView.xib; sourceTree = "<group>"; };
 		978D3C1C1D44F04800C0C1BE /* TSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocation.h; sourceTree = "<group>"; };
 		978D3C1D1D44F04800C0C1BE /* TSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocation.m; sourceTree = "<group>"; };
+		979EAE5B1D75C7D30027EAE4 /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchController.h; sourceTree = "<group>"; };
+		979EAE5C1D75C7D30027EAE4 /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchController.m; sourceTree = "<group>"; };
 		B529A39A1D7018D200A1A3B1 /* CartBarEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartBarEdit.h; sourceTree = "<group>"; };
 		B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartBarEdit.m; sourceTree = "<group>"; };
 		B58E8F3C1D716C8C006C21CD /* ToolClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolClass.h; sourceTree = "<group>"; };
@@ -926,6 +929,15 @@
 			path = img;
 			sourceTree = "<group>";
 		};
+		979EAE5A1D75C77A0027EAE4 /* Searcher */ = {
+			isa = PBXGroup;
+			children = (
+				979EAE5B1D75C7D30027EAE4 /* SearchController.h */,
+				979EAE5C1D75C7D30027EAE4 /* SearchController.m */,
+			);
+			name = Searcher;
+			sourceTree = "<group>";
+		};
 		B5FDB2191D6C35100042D9EC /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1149,6 +1161,7 @@
 				E715ED011D0526E5003A2D62 /* CommodityTableViewCell.xib */,
 				E715ED021D0526E5003A2D62 /* MultilevelMenu.h */,
 				E715ED031D0526E5003A2D62 /* MultilevelMenu.m */,
+				1FACAE8B1D45BD6F0049A4BC /* JLFlowLayout.h */,
 				E715ED041D0526E5003A2D62 /* CollectionHeader.h */,
 				E715ED051D0526E5003A2D62 /* CollectionHeader.m */,
 				E715ED061D0526E5003A2D62 /* CollectionHeader.xib */,
@@ -1158,7 +1171,6 @@
 				E715ED0A1D0526E5003A2D62 /* MultilevelTableViewCell.h */,
 				E715ED0B1D0526E5003A2D62 /* MultilevelTableViewCell.m */,
 				E715ED0C1D0526E5003A2D62 /* MultilevelTableViewCell.xib */,
-				1FACAE8B1D45BD6F0049A4BC /* JLFlowLayout.h */,
 				1FACAE8C1D45BD6F0049A4BC /* JLFlowLayout.m */,
 				1FACAE8E1D45C4990049A4BC /* JLCommdoityCollectionCell.h */,
 				1FACAE8F1D45C4990049A4BC /* JLCommdoityCollectionCell.m */,
@@ -1222,6 +1234,7 @@
 				E7A189BB1D02D01700E6F441 /* Shops */,
 				E7A189BA1D02D00100E6F441 /* ShopCategory */,
 				975976C71D577A5C00B3B5CB /* product */,
+				979EAE5A1D75C77A0027EAE4 /* Searcher */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1293,6 +1306,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3043B0AF1D02C55B00E97B82 /* Build configuration list for PBXNativeTarget "JLshopios" */;
 			buildPhases = (
+				1C95A1C7F3FE5824FF849F6D /* 📦 Check Pods Manifest.lock */,
 				8EC028755B83B67C08A72677 /* [CP] Check Pods Manifest.lock */,
 				3D3B8D3B47B8543D60717630 /* [CP] Check Pods Manifest.lock */,
 				5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */,
@@ -1408,6 +1422,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1C95A1C7F3FE5824FF849F6D /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		3D3B8D3B47B8543D60717630 /* [CP] Check Pods Manifest.lock */ = {
@@ -1622,6 +1651,7 @@
 				3057831A1D0C0D51007AED3C /* FYTXGuideFactory.m in Sources */,
 				30312C2A1D5709E500E0D0BD /* BRecentCityCell.m in Sources */,
 				305783181D0C0D51007AED3C /* FYTXGuide.m in Sources */,
+				979EAE5D1D75C7D30027EAE4 /* SearchController.m in Sources */,
 				9759770D1D577C0E00B3B5CB /* TYTextContainer+Extended.m in Sources */,
 				E715ECBB1D052671003A2D62 /* Foundation+Log.m in Sources */,
 				308B96C61D572D2C008DD755 /* JLShopModel.m in Sources */,
@@ -1766,7 +1796,6 @@
 			baseConfigurationReference = D864B1384E019D4C842C5150 /* Pods-JLshopios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1787,8 +1816,6 @@
 			baseConfigurationReference = 59DB181FDF48FB21A3C8CB5C /* Pods-JLshopios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yu Li Tao (8H6SV3756Q)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yu Li Tao (8H6SV3756Q)";
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

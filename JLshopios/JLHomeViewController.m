@@ -11,7 +11,7 @@
 #import "JLShopsViewController.h"
 #import "SDCycleScrollView.h"
 #import "JLTypeListView.h"
-
+#import "SearchController.h"
 #import "BAddressPickerController.h"
 
 #import "JLCityController.h"
@@ -140,6 +140,8 @@
     self.topSearchView.layer.cornerRadius = 6;
     self.topSearchView.layer.borderColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1].CGColor;
     self.topSearchView.layer.borderWidth = 1;
+    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction:)];
+    [self.topSearchView addGestureRecognizer:tap];
     [self loadCollectionView];
     //判断是否有选择过城市，有就加载之前的，没有就弹出选择器
     [self isSelectedCity];
@@ -256,6 +258,10 @@
     }
 }
 
+- (void)searchAction:(UITapGestureRecognizer *)tap
+{
+    [self.navigationController pushViewController:[SearchController new] animated:YES];
+}
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
@@ -301,7 +307,9 @@
 {
     
     JLShopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JLHomeCell forIndexPath:indexPath];
-    
+    cell.tuiJianBlock = ^(JLGoodModel *goodModel){
+        MYLog(@"打我啊");
+    };
     return cell;
 }
 

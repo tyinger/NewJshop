@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="600" height="379"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yph-4X-eP6">
+                    <view tag="111" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yph-4X-eP6">
                         <rect key="frame" x="0.0" y="55" width="300" height="105"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worth_to_buy" translatesAutoresizingMaskIntoConstraints="NO" id="5cH-1f-ygm">
@@ -57,7 +57,7 @@
                             <constraint firstItem="5cH-1f-ygm" firstAttribute="top" secondItem="yph-4X-eP6" secondAttribute="top" constant="8" id="vqJ-vK-4Rd"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1q-af-phZ">
+                    <view tag="222" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1q-af-phZ">
                         <rect key="frame" x="300" y="55" width="300" height="105"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goods_recom" translatesAutoresizingMaskIntoConstraints="NO" id="p8M-VW-wgl">
@@ -373,9 +373,11 @@
                 <outlet property="hotGoodsLeftText" destination="JFu-h2-PS4" id="xm1-pj-ODp"/>
                 <outlet property="hotGoodsRightImage" destination="PUg-V8-llT" id="BfH-MX-MOR"/>
                 <outlet property="hotGoodsRightText" destination="9BD-d8-ab1" id="11w-QX-ft5"/>
+                <outlet property="jingxuantuijian" destination="G1q-af-phZ" id="s8D-gK-JE1"/>
                 <outlet property="yuShouGoods" destination="dso-Kh-kjg" id="ReS-Qo-OrX"/>
+                <outlet property="zhidemai" destination="yph-4X-eP6" id="csG-Ei-54Z"/>
             </connections>
-            <point key="canvasLocation" x="49" y="211.5"/>
+            <point key="canvasLocation" x="167" y="210.5"/>
         </collectionViewCell>
     </objects>
     <resources>
