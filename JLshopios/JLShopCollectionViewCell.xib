@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="600" height="379"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yph-4X-eP6">
-                        <rect key="frame" x="0.0" y="39" width="300" height="105"/>
+                        <rect key="frame" x="0.0" y="55" width="300" height="105"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worth_to_buy" translatesAutoresizingMaskIntoConstraints="NO" id="5cH-1f-ygm">
                                 <rect key="frame" x="8" y="8" width="20" height="20"/>
@@ -58,7 +58,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G1q-af-phZ">
-                        <rect key="frame" x="300" y="39" width="300" height="105"/>
+                        <rect key="frame" x="300" y="55" width="300" height="105"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="goods_recom" translatesAutoresizingMaskIntoConstraints="NO" id="p8M-VW-wgl">
                                 <rect key="frame" x="8" y="8" width="20" height="20"/>
@@ -108,14 +108,14 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7S1-G9-GTx">
-                        <rect key="frame" x="0.0" y="143" width="600" height="1"/>
+                        <rect key="frame" x="0.0" y="159" width="600" height="1"/>
                         <color key="backgroundColor" red="0.86218889821029066" green="0.86365701901565983" blue="0.86247727908277394" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="z2Z-KO-R4v"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品预售" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUi-JC-oEr">
-                        <rect key="frame" x="8" y="148" width="524" height="21"/>
+                        <rect key="frame" x="8" y="164" width="524" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="JTa-to-Dpr"/>
                         </constraints>
@@ -124,7 +124,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dso-Kh-kjg">
-                        <rect key="frame" x="0.0" y="174" width="600" height="100"/>
+                        <rect key="frame" x="0.0" y="190" width="600" height="100"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhM-0s-OI1">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="100"/>
@@ -281,14 +281,14 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GSf-ua-qYw">
-                        <rect key="frame" x="0.0" y="277" width="600" height="1"/>
+                        <rect key="frame" x="0.0" y="293" width="600" height="1"/>
                         <color key="backgroundColor" red="0.91559179250559275" green="0.89724028243847864" blue="0.89139401565995513" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="U2w-0K-mwv"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QmC-RM-6GQ">
-                        <rect key="frame" x="0.0" y="279" width="600" height="100"/>
+                        <rect key="frame" x="0.0" y="295" width="600" height="84"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="生活板块" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xTM-gK-YPA">
                                 <rect key="frame" x="8" y="0.0" width="257" height="21"/>
@@ -316,7 +316,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好货推荐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhG-Gx-AJL">
-                        <rect key="frame" x="8" y="16" width="324" height="17"/>
+                        <rect key="frame" x="8" y="32" width="324" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="8aR-Yd-x5N"/>
                             <constraint firstAttribute="width" constant="324" id="RhT-HQ-0th"/>
@@ -353,7 +353,7 @@
                 <constraint firstItem="G1q-af-phZ" firstAttribute="top" secondItem="YhG-Gx-AJL" secondAttribute="bottom" constant="6" id="tcq-4f-0OT"/>
                 <constraint firstItem="QmC-RM-6GQ" firstAttribute="top" secondItem="GSf-ua-qYw" secondAttribute="bottom" constant="1" id="wXc-gy-CEc"/>
                 <constraint firstItem="dso-Kh-kjg" firstAttribute="top" secondItem="xUi-JC-oEr" secondAttribute="bottom" constant="5" id="zAi-g9-Uge"/>
-                <constraint firstItem="YhG-Gx-AJL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="16" id="zWz-3l-Zge"/>
+                <constraint firstItem="YhG-Gx-AJL" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="32" id="zWz-3l-Zge"/>
             </constraints>
             <size key="customSize" width="466" height="395"/>
             <connections>

@@ -1340,7 +1340,6 @@
 			showEnvVarsInLog = 0;
 		};
 		9B810B73941DD43615D72A02 /* 📦 Embed Pods Frameworks */ = {
-
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1621,8 +1620,8 @@
 			baseConfigurationReference = D864B1384E019D4C842C5150 /* Pods-JLshopios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yu Li Tao (8H6SV3756Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yu Li Tao (8H6SV3756Q)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JLshopios/Shop_PrefixHeader.pch";
 				INFOPLIST_FILE = JLshopios/Info.plist;
@@ -1640,8 +1639,8 @@
 			baseConfigurationReference = 59DB181FDF48FB21A3C8CB5C /* Pods-JLshopios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yu Li Tao (8H6SV3756Q)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yu Li Tao (8H6SV3756Q)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/JLshopios/Shop_PrefixHeader.pch";
 				INFOPLIST_FILE = JLshopios/Info.plist;
