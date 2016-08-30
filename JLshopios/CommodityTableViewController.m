@@ -60,6 +60,8 @@
     [self setupNavigationItem];
     //初始化视图
     [self initView:_tabbarNum];
+    //添加提示信息
+    [self.view addSubview:[self backGroundLabel]];
 }
 
 -(void)refresh
@@ -82,7 +84,7 @@
 -(void)initData:(NSString *)menuID{
 
     _pangoNum = 0;
-    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\"}",menuID];
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",menuID,[LoginStatus sharedManager].idStr];
     NSDictionary *dic = @{@"arg0":parameterStr};
     [FYTXHub progress:@"正在加载。。。"];
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
@@ -118,8 +120,7 @@
         
         } failure:^(NSError *error) {
             [FYTXHub dismiss];
-            //添加提示信息
-            [self.view addSubview:[self backGroundLabel]];
+            
             NSLog(@"-----%@",error);
     }];
 }
@@ -288,8 +289,7 @@
     [cell.commodityImg sd_setImageWithURL:[NSURL URLWithString:commodity.commodityImageUrl]];
     cell.commodityName.text=commodity.commodityName;
     cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
-//    cell.commodityZX.image=[UIImage imageNamed:commodity.commodityZX];
-//    cell.commodityPraise.text=commodity.praise;
+    [cell.commodityGoodNumer setTitle:commodity.commodityCartNum forState:UIControlStateNormal];
    __weak typeof(cell) weakCell = cell;
     cell.addGoodsBtnAction = ^(NSInteger numberOne){
         [weakCell.commodityGoodNumer setTitle:[NSString stringWithFormat:@"%ld",[cell.commodityGoodNumer.titleLabel.text integerValue] + numberOne] forState:UIControlStateNormal];

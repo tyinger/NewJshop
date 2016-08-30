@@ -7,6 +7,7 @@
 //
 
 #import "JLShopsViewController.h"
+#import "JLHomeViewController.h"
 #import "SearchBarView.h"
 #import "CategoryMeunModel.h"
 #import "MultilevelMenu.h"
@@ -33,15 +34,16 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
     [self setupNavigationItem];
-    
+    //初始化数据
+    [self initData];
 //    //初始化分类菜单
 //    [self initCategoryMenu];
     
 }
 - (void)viewWillAppear:(BOOL)animated;
 {
-    //初始化数据
-    [self initData];
+    
+    
     //     (( AppDelegate *) [UIApplication sharedApplication].delegate).avatar.hidden=YES;
 }
 
@@ -88,7 +90,6 @@
 
 - (void)initCategoryMenu{
     
-    if (!_mutiview) {
         _mutiview = [[MultilevelMenu alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-49) WithData:_list withSelectIndex:^(NSInteger left, NSInteger right,CategoryRightMeunModel * info) {
             
             NSLog(@"点击的 菜单%@",info.menuNameOfRight);
@@ -106,13 +107,14 @@
             CommodityTableViewController *commod = [[CommodityTableViewController alloc] initWithType:1];
             [self.navigationController pushViewController:commod animated:YES];
         }];
-    }
+        _mutiview.needToScorllerIndex=_numRow; //默认是 选中第一行
+        _mutiview.isSelected = _isSelected;
+        _mutiview.leftSelectColor=[UIColor redColor];
+        _mutiview.leftSelectBgColor=[UIColor whiteColor];//选中背景颜色
+        _mutiview.isRecordLastScroll=NO;//是否记住当前位置
+        [self.view addSubview:_mutiview];
     
-    _mutiview.needToScorllerIndex=_numRow; //默认是 选中第一行
-    _mutiview.leftSelectColor=[UIColor redColor];
-    _mutiview.leftSelectBgColor=[UIColor whiteColor];//选中背景颜色
-    _mutiview.isRecordLastScroll=YES;//是否记住当前位置
-    [self.view addSubview:_mutiview];
+    //    _isSelected = NO;
 }
 
 //- (void)setNumRow:(NSInteger)numRow{

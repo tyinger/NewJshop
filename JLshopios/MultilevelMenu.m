@@ -43,7 +43,7 @@
         if (data.count==0) {
             return nil;
         }
-        
+        self.isSelected = NO;
         _block=selectIndex;
         self.leftSelectColor=[UIColor blackColor];
         self.leftSelectBgColor=[UIColor whiteColor];
@@ -52,15 +52,14 @@
         self.leftUnSelectBgColor=UIColorFromRGB(0xF3F4F6);
         self.leftUnSelectColor=[UIColor blackColor];
         
-        _selectIndex=0;
+//        _selectIndex=;
         
         _allData=data;
-        
-        
+
         /**
          左边的视图
-        */
-        self.leftTablew=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, kLeftWidth, frame.size.height)];
+         */
+        self.leftTablew=[[UITableView alloc] initWithFrame:CGRectMake(0, 0, kLeftWidth, self.frame.size.height)];
         self.leftTablew.dataSource=self;
         self.leftTablew.delegate=self;
         
@@ -75,7 +74,7 @@
         }
         self.leftTablew.separatorColor=self.leftSeparatorColor;
         
-        [self.leftTablew selectRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self.leftTablew selectRowAtIndexPath:[NSIndexPath indexPathForRow:_needToScorllerIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
         /**
          右边的视图
          */
@@ -97,17 +96,22 @@
         
         [self addSubview:self.rightCollection];
         
-      
+        
         self.isReturnLastOffset=YES;
         
         self.rightCollection.backgroundColor=self.leftSelectBgColor;
-
+        
         self.backgroundColor=self.leftSelectBgColor;
         
+
         
         
     }
     return self;
+}
+
+- (void) creatCell:(NSInteger )selectIndex{
+    
 }
 
 -(void)setNeedToScorllerIndex:(NSInteger)needToScorllerIndex{
@@ -135,9 +139,8 @@
         _selectIndex=needToScorllerIndex;
         
         [self.rightCollection reloadData];
-
     }
-//    _needToScorllerIndex=needToScorllerIndex;
+    _needToScorllerIndex=needToScorllerIndex;
     MYLog(@"假装来一下");
 }
 -(void)setLeftBgColor:(UIColor *)leftBgColor{

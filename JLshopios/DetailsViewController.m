@@ -96,7 +96,8 @@
 
 - (void)getSourceData:(NSString *)productIDStr
 {
-        NSDictionary *dic = @{@"sellType":@"normal",@"id":productIDStr,@"userId":@""};
+    NSString * userId = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr:@"";
+        NSDictionary *dic = @{@"sellType":@"normal",@"id":productIDStr,@"userId":userId};
         NSLog(@" ------ %@ ------",dic);
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             NSLog(@"正确返回%@",json);
@@ -146,7 +147,14 @@
     [view addSubview:addCart];
     UIView * view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, view.size.width-addCart.size.width, view.size.height)];
     [view addSubview:view1];
-    UIButton * focus =[UIButton createButtonWithImage:@"wareb_focus" Title:@"关注" Target:self Selector:@selector(addCartClick)];
+    UIButton * focus;
+    if ([_modelToShow.detailsIsFoucs isEqualToString:@"0"]) {
+        focus =[UIButton createButtonWithImage:@"wareb_focus" Title:@"关注" Target:self Selector:@selector(wareMoreClick:)];
+    }else{
+        focus =[UIButton createButtonWithImage:@"wareb_focus_end" Title:@"关注" Target:self Selector:@selector(wareMoreClick:)];
+        focus.selected = YES;
+    }
+    
     [focus setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     focus.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 20, 0);
     focus.titleEdgeInsets = UIEdgeInsetsMake(40,-35, 0, 0);
@@ -263,10 +271,29 @@
 }
 
 
+- (void)wareMoreClick:(UIButton *)btn {
+    btn.selected = !btn.selected;
+    [[CartManager sharedManager] followActionType:0 ID:[NSString stringWithFormat:@"%lld",_modelToShow.Id] isFollow:btn.selected :^(id obj) {
+        
+            if (btn.selected) {
+                
+                UIImage *Image = [[UIImage imageWithName:@"wareb_focus_end"] scaleImageWithSize:CGSizeMake(35, 35)];
+                [btn setImage:Image forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageWithName:nil] forState:UIControlStateHighlighted];
+                [FYTXHub toast:@"关注成功"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [FYTXHub dismiss];
+                });
 
-- (void)wareMoreClick{
-    
+            }else{
+                UIImage *Image = [[UIImage imageWithName:@"wareb_focus"] scaleImageWithSize:CGSizeMake(35, 35)];
+                [btn setImage:Image forState:UIControlStateNormal];
+            }
+        } :^(id obj) {
+        MYLog(@"操作失败");
+    }];
 }
+
 -(void)showLoginView{
 
     QSCNavigationController *loginView = [[QSCNavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
@@ -289,7 +316,7 @@
                               @"goodImg":_productIconStr,
                               @"shopid":@"-1"};
         
-        [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+        [QSCHttpTool post:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             MYLog(@"加入购物车%@",json);
             [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue]+1];
 //            [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {

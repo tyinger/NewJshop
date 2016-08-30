@@ -18,6 +18,7 @@
 @property (nonatomic,copy) NSString *commodityZX;//手机专享
 @property (nonatomic,copy) NSString *commodityPraise;//评价
 @property (nonatomic,copy) NSString *commodityPerson;//人数
+@property (nonatomic,copy) NSString *commodityCartNum;//商品数量
 
 
 #pragma mark 根据字典初始化微博对象

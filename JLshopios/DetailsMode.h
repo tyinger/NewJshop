@@ -21,7 +21,9 @@
 @property (nonatomic, strong) NSString *detailsPraise;//评价
 @property (nonatomic, strong) NSString *detailsPerson;//人数
 
-@property (nonatomic, strong) NSArray *previewImgs;//人数
+@property (nonatomic, strong) NSArray *previewImgs;//滚图
+
+@property (nonatomic, strong) NSString *detailsIsFoucs;//是否关注
 
 @property (nonatomic, assign) CGFloat cellHeight;//cell的高度
 

@@ -18,6 +18,7 @@
         self.commodityImageUrl=dic[@"icon"];
         self.commodityName=dic[@"name"];
         self.commodityPrice=dic[@"price"];
+        self.commodityCartNum=dic[@"cartNum"];
 //        self.commodityZX=dic[@"commodityZX"];
 //        self.commodityPraise=dic[@"commodityPraise"];
 //        self.commodityPerson=dic[@"commodityPerson"];
@@ -34,5 +35,11 @@
 //-(NSString *)praise{
 //    return [NSString stringWithFormat:@"好评%@ %@人",_commodityPraise,_commodityPerson];
 //}
+-(NSString *)commodityCartNum{
+    if (!_commodityCartNum) {
+        return @"0";
+    }
+    return [NSString stringWithFormat:@"%@",_commodityCartNum];
+}
 
 @end

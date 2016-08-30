@@ -18,6 +18,7 @@
         self.detailsDescription = dic[@"goods"][@"description"];
         self.detailsPrice = dic[@"goods"][@"price"];
         self.previewImgs = dic[@"goods"][@"previewImgs"];
+        self.detailsIsFoucs = [NSString stringWithFormat:@"%@",dic[@"isCollectioned"]];
     }
     return self;
 }
@@ -27,6 +28,7 @@
     DetailsMode *details=[[DetailsMode alloc]initWithDictionary:dic];
     return details;
 }
+
 
 -(NSString *)detailsPrice{
     return [NSString stringWithFormat:@"%@",_detailsPrice];

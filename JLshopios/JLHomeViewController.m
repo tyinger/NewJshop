@@ -235,7 +235,10 @@
         QSCNavigationController *s = [self.tabBarController.viewControllers objectAtIndex:2];
         JLShopsViewController *q = s.viewControllers.lastObject;
         q.numRow = btnTag;
-//        [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%ld",(long)btnTag] forKey:@"btntag"];
+        q.isSelected = YES;
+        
+        
+        
     }else{
         OtherListViewController *otherListVC = [[OtherListViewController alloc] init];
         [self.navigationController pushViewController:otherListVC animated:YES];
