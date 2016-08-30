@@ -92,7 +92,7 @@
     }];
 }
 
-- (void)followActionType:(FollowType)type ID:(NSString *)Id isFollow:(BOOL)isFollow :(void(^)(void))success :(void(^)(void))failure{
+- (void)followActionType:(FollowType)type ID:(NSString *)Id isFollow:(BOOL)isFollow :(void(^)(id))success :(void(^)(id))failure{
     /*
      关注商品   goodsId，userId
      <item>https://123.56.192.182:8443</item>
@@ -129,13 +129,13 @@
     
     [QSCHttpTool get:urlString parameters:parameter isShowHUD:YES httpToolSuccess:^(id json) {
         if (success) {
-            success();
+            success(json);
         }
 //        [FYTXHub success:@"关注成功" delayClose:1.5];
     } failure:^(NSError *error) {
 //           [FYTXHub toast:@"关注失败"];
         if (failure) {
-            failure();
+            failure(error);
         }
         
     }];

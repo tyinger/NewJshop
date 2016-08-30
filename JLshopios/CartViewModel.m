@@ -203,10 +203,11 @@
     }] array];
     NSArray <RACSignal *>* signalArray = [[followArrayID.rac_sequence map:^id(id value) {
         return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-            [[CartManager sharedManager] followActionType:FollowTypeGood ID:value isFollow:YES :^{
+
+            [[CartManager sharedManager] followActionType:FollowTypeGood ID:value isFollow:YES :^(id obj){
                 [subscriber sendNext:@(YES)];
                 [subscriber sendCompleted];
-            } :^{
+            } :^(id error){
                 [subscriber sendNext:@(NO)];
                 [subscriber sendCompleted];
             }];
