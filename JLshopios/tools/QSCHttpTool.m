@@ -160,7 +160,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/javascript",@"text/html", nil];
-     manager.requestSerializer.timeoutInterval = 10.f;
+     manager.requestSerializer.timeoutInterval = 60.f;
 
     [manager setSecurityPolicy:[self customSecurityPolicy]];
     return manager;

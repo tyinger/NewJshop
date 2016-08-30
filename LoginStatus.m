@@ -91,7 +91,7 @@
     NSString *filePath = [documentDirectory stringByAppendingPathComponent:@"LoginStatus.plist"];
     [fileManager removeItemAtPath:filePath error:nil];
     
-    //清楚数据 就这样子吧
+    //清除数据 就这样子吧
     self.age = nil;
     self.birthday = nil;
     self.createDate = nil;
