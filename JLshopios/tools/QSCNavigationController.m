@@ -76,7 +76,7 @@
     if (iOS7) {
         [navBar setBackgroundImage:[UIImage createImageWithColor:[UIColor whiteColor]] forBarMetrics:UIBarMetricsDefault];
         [navBar setBarTintColor: RGB(248, 248, 248)];
-        [navBar setTintColor:RGB(248, 248, 248)];
+        [navBar setTintColor:RGB(148, 148, 148)];
     }
     
     

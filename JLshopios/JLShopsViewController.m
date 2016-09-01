@@ -8,6 +8,7 @@
 
 #import "JLShopsViewController.h"
 #import "JLHomeViewController.h"
+#import "SearchController.h"
 #import "SearchBarView.h"
 #import "CategoryMeunModel.h"
 #import "MultilevelMenu.h"
@@ -63,6 +64,7 @@
 #pragma mark - 🔌 SearchBarViewDelegate Method
 - (void)searchBarSearchButtonClicked:(SearchBarView *)searchBarView {
     MYLog(@"搜索");
+    [self.navigationController pushViewController:[SearchController new] animated:YES];
 }
 
 - (void)searchBarAudioButtonClicked:(SearchBarView *)searchBarView {
@@ -148,11 +150,6 @@
             [_list addObject:meun];
         }
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 

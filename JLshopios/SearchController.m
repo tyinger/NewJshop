@@ -29,9 +29,11 @@ static const CGFloat kRightItemWidth = 40;
     //设置左导航按钮
     UIBarButtonItem *itemBtn = [[UIBarButtonItem alloc] initWithTitle:@"商品" style:UIBarButtonItemStylePlain target:self action:@selector(exchange:)];
     itemBtn.width = kBackItemWidth;
-    self.navigationItem.leftBarButtonItem.width = kLeftItemWidth;
+//    self.navigationItem.leftBarButtonItem.width = kLeftItemWidth;
     
-    NSArray * arr = [[NSArray alloc] initWithObjects:self.navigationItem.leftBarButtonItem,itemBtn, nil];
+    UIBarButtonItem *itemBack = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"flight_title_back_normal"] style:UIBarButtonItemStylePlain target:self action:@selector(backRoot)];
+    itemBack.width = 50;
+    NSArray * arr = [[NSArray alloc] initWithObjects:itemBack,itemBtn, nil];
     self.navigationItem.leftBarButtonItems = arr;
     
     //设置右导航按钮
@@ -47,9 +49,10 @@ static const CGFloat kRightItemWidth = 40;
 
 - (UIView *)titleView{
     
-    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 2, [UIScreen mainScreen].bounds.size.width - kRightItemWidth - kLeftItemWidth - kBackItemWidth, kTitleViewHeight)];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 2, [UIScreen mainScreen].bounds.size.width - kRightItemWidth - kLeftItemWidth - 60, kTitleViewHeight)];
 //    titleView.backgroundColor = [UIColor blackColor];
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:titleView.frame];
+//    imgView.backgroundColor = [UIColor redColor];
     imgView.image = [UIImage imageNamed:@"HomePageSH_searchBack_bg"];
     [titleView addSubview:imgView];
 //    titleView
@@ -63,12 +66,14 @@ static const CGFloat kRightItemWidth = 40;
 }
 
 - (void) exchange:(UIBarButtonItem *)itemBtn{
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.navigationItem.leftBarButtonItem.width, 0, itemBtn.width, 60)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.navigationItem.leftBarButtonItems[0].width, 0, itemBtn.width, 60)];
     MYLog(@"%@",NSStringFromCGRect(view.frame));
-    view.backgroundColor = [UIColor greenColor];
+    view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:view];
     for (int i = 0; i < 2; i++) {
         UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.layer.borderWidth = 0.5;
+        btn.layer.borderColor = [UIColor blackColor].CGColor;
         btn.frame = CGRectMake(0, 30*i, 40, 30);
         NSString *textStr = i == 0? @"商品" : @"商铺";
         [btn setTitle:textStr forState:UIControlStateNormal];
@@ -111,6 +116,9 @@ static const CGFloat kRightItemWidth = 40;
     }
 }
 
+- (void)backRoot{
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
