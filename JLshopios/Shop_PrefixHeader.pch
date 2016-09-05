@@ -76,6 +76,11 @@
 #define QSCNotificationCenter [NSNotificationCenter defaultCenter]
 #define QSCPopViewControllerNotification @"QSCPopViewControllerNotification"
 
+//首页按钮跳转关系宏
+#define HomeListBtnClickYes [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"homelistbtnclick"]
+#define HomeListBtnClickNo [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"homelistbtnclick"]
+#define GetHomeListBtnClick [[NSUserDefaults standardUserDefaults] boolForKey:@"homelistbtnclick"]
+
 //FONT宏
 #define SXFont(font) [UIFont systemFontOfSize:(font)]
 

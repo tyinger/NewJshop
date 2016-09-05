@@ -61,6 +61,7 @@
     QSCNavigationController *bnCate = [[QSCNavigationController alloc]initWithRootViewController:vcCate];
     
     JLShopsViewController *vcShop = [[JLShopsViewController alloc]init];
+    HomeListBtnClickYes;
     QSCNavigationController *bnShop = [[QSCNavigationController alloc]initWithRootViewController:vcShop];
     
     ShopingCartController *cart  = [[ShopingCartController alloc] init];

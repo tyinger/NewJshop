@@ -231,9 +231,9 @@
 
 - (void)listViewBtnAction:(NSInteger )btnTag{
     if (btnTag != 7) {
-        
+        HomeListBtnClickYes;
         [self.tabBarController setSelectedIndex:2];
-        
+
         QSCNavigationController *s = [self.tabBarController.viewControllers objectAtIndex:2];
         JLShopsViewController *q = s.viewControllers.lastObject;
         q.numRow = btnTag;

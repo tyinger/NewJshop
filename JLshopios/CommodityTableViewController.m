@@ -282,13 +282,11 @@
     
     static NSString *cellIdentifier=@"Cell";
      CommodityTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if(cell==nil){
-////           cell=[[NSBundle mainBundle] loadNibNamed:@"CommodityTableViewCell" owner:self options:nil][0];
-//    }
+
 
     CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
     
-    [cell.commodityImg sd_setImageWithURL:[NSURL URLWithString:commodity.commodityImageUrl]];
+    [cell.commodityImg sd_setImageWithURL:[NSURL URLWithString:commodity.commodityImageUrl] placeholderImage:[UIImage imageWithName:@"icon_loading5"]];
     cell.commodityName.text=commodity.commodityName;
     cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
     [cell.commodityGoodNumer setTitle:commodity.commodityCartNum forState:UIControlStateNormal];

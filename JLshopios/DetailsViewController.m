@@ -177,7 +177,8 @@
 
 - (UIView*)addHeaderView{
 
-//    _images = @[[UIImage imageNamed:@"h1.jpg"],
+//    _images = @[
+//                [UIImage imageNamed:@"h1.jpg"],
 //                [UIImage imageNamed:@"h2.jpg"],
 //                [UIImage imageNamed:@"h3.jpg"],
 //                [UIImage imageNamed:@"h4.jpg"]
@@ -191,7 +192,7 @@
             [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.previewImgs[i][@"path"]]]]];
         }
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, view.size.width, view.size.height) imageNamesGroup:_images];
-
+        cycleScrollView.placeholderImage = [UIImage imageWithName:@"img_home_banner1"];
         cycleScrollView.autoScroll = NO;
         cycleScrollView.infiniteLoop = NO;
         cycleScrollView.delegate = self;

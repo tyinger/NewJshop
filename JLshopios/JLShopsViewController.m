@@ -35,14 +35,17 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
     [self setupNavigationItem];
-    //初始化数据
-    [self initData];
+    
 //    //初始化分类菜单
 //    [self initCategoryMenu];
     
 }
 - (void)viewWillAppear:(BOOL)animated;
 {
+    if (GetHomeListBtnClick) {
+        //初始化数据
+        [self initData];
+    }
     
     
     //     (( AppDelegate *) [UIApplication sharedApplication].delegate).avatar.hidden=YES;
@@ -152,7 +155,9 @@
     }];
 }
 
-
+- (void)viewDidDisappear:(BOOL)animated{
+    HomeListBtnClickNo;
+}
 /*
 #pragma mark - Navigation
 

@@ -49,9 +49,8 @@
                             </mask>
                         </variation>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="C_0.PNG" translatesAutoresizingMaskIntoConstraints="NO" id="mCe-Gw-7tO">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_loading5" translatesAutoresizingMaskIntoConstraints="NO" id="mCe-Gw-7tO">
                         <rect key="frame" x="13" y="10" width="80" height="80"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="GoL-xM-mZM"/>
                             <constraint firstAttribute="width" constant="80" id="Zpf-jg-jPm"/>
@@ -193,6 +192,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="C_0.PNG" width="167" height="163"/>
+        <image name="icon_loading5" width="50" height="50"/>
     </resources>
 </document>
