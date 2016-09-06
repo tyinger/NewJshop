@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ShopBaseViewController.h"
 
-
+typedef void(^CellRowBlock)(NSInteger rowNumber);
 @interface JLHomeViewController : ShopBaseViewController
-
+@property (copy, nonatomic) CellRowBlock cellRowBlock;
 @end
