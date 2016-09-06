@@ -5,6 +5,7 @@
 //  Created by imao on 16/6/5.
 //  Copyright © 2016年 feng. All rights reserved.
 //
+#import "ScoreViewController.h"
 
 #import "JLMeViewController.h"
 
@@ -44,7 +45,7 @@
     
     
     
-    NSArray *className1 = @[@"PianbaoViewController",@"JifenViewController"];
+    NSArray *className1 = @[@"WalletViewController",@"ScoreViewController"];
     NSArray *className2 = @[@"GuanzhuViewController",@"ShouhoudizhiViewController",@"ShangjiaViewController"];
     NSArray *className3 = @[@"SaomazhuceViewController",@"XiugaimimaViewController"];
     

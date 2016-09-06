@@ -107,6 +107,12 @@
 		978D3C261D44F04800C0C1BE /* TSLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1A1D44F04800C0C1BE /* TSLocateView.m */; };
 		978D3C271D44F04800C0C1BE /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */; };
 		978D3C281D44F04800C0C1BE /* TSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1D1D44F04800C0C1BE /* TSLocation.m */; };
+		B5068FBB1D7E95E1002D2BB1 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FBA1D7E95E1002D2BB1 /* ScoreViewController.m */; };
+		B5068FC11D7E9642002D2BB1 /* ScoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC01D7E9642002D2BB1 /* ScoreHeaderView.m */; };
+		B5068FC41D7E9FCC002D2BB1 /* ScoreViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC31D7E9FCC002D2BB1 /* ScoreViewModel.m */; };
+		B5068FC71D7EAE2A002D2BB1 /* WalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC61D7EAE2A002D2BB1 /* WalletViewController.m */; };
+		B5068FCA1D7EAE3A002D2BB1 /* WalletViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC91D7EAE3A002D2BB1 /* WalletViewModel.m */; };
+		B5068FCD1D7EAE51002D2BB1 /* WalletHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */; };
 		B529A39C1D7018D200A1A3B1 /* CartBarEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */; };
 		B58E8F3E1D716C8C006C21CD /* ToolClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B58E8F3D1D716C8C006C21CD /* ToolClass.m */; };
 		B5F3C8321D6F4B730010D199 /* CartPlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F3C8311D6F4B730010D199 /* CartPlaceHolderView.m */; };
@@ -375,6 +381,18 @@
 		978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSLocateView.xib; sourceTree = "<group>"; };
 		978D3C1C1D44F04800C0C1BE /* TSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocation.h; sourceTree = "<group>"; };
 		978D3C1D1D44F04800C0C1BE /* TSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocation.m; sourceTree = "<group>"; };
+		B5068FB91D7E95E1002D2BB1 /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
+		B5068FBA1D7E95E1002D2BB1 /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
+		B5068FBF1D7E9642002D2BB1 /* ScoreHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreHeaderView.h; sourceTree = "<group>"; };
+		B5068FC01D7E9642002D2BB1 /* ScoreHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreHeaderView.m; sourceTree = "<group>"; };
+		B5068FC21D7E9FCC002D2BB1 /* ScoreViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewModel.h; sourceTree = "<group>"; };
+		B5068FC31D7E9FCC002D2BB1 /* ScoreViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewModel.m; sourceTree = "<group>"; };
+		B5068FC51D7EAE2A002D2BB1 /* WalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletViewController.h; sourceTree = "<group>"; };
+		B5068FC61D7EAE2A002D2BB1 /* WalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletViewController.m; sourceTree = "<group>"; };
+		B5068FC81D7EAE3A002D2BB1 /* WalletViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletViewModel.h; sourceTree = "<group>"; };
+		B5068FC91D7EAE3A002D2BB1 /* WalletViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletViewModel.m; sourceTree = "<group>"; };
+		B5068FCB1D7EAE51002D2BB1 /* WalletHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WalletHeaderView.h; sourceTree = "<group>"; };
+		B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletHeaderView.m; sourceTree = "<group>"; };
 		B529A39A1D7018D200A1A3B1 /* CartBarEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartBarEdit.h; sourceTree = "<group>"; };
 		B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartBarEdit.m; sourceTree = "<group>"; };
 		B58E8F3C1D716C8C006C21CD /* ToolClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolClass.h; sourceTree = "<group>"; };
@@ -926,6 +944,56 @@
 			path = img;
 			sourceTree = "<group>";
 		};
+		B5068FB71D7E9423002D2BB1 /* MyWallet */ = {
+			isa = PBXGroup;
+			children = (
+				B5068FC51D7EAE2A002D2BB1 /* WalletViewController.h */,
+				B5068FC61D7EAE2A002D2BB1 /* WalletViewController.m */,
+				B5068FC81D7EAE3A002D2BB1 /* WalletViewModel.h */,
+				B5068FC91D7EAE3A002D2BB1 /* WalletViewModel.m */,
+				B5068FCB1D7EAE51002D2BB1 /* WalletHeaderView.h */,
+				B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */,
+			);
+			name = MyWallet;
+			sourceTree = "<group>";
+		};
+		B5068FB81D7E9453002D2BB1 /* MyScore */ = {
+			isa = PBXGroup;
+			children = (
+				B5068FBE1D7E9620002D2BB1 /* ViewModel */,
+				B5068FBD1D7E9613002D2BB1 /* View */,
+				B5068FBC1D7E9604002D2BB1 /* Controller */,
+			);
+			name = MyScore;
+			sourceTree = "<group>";
+		};
+		B5068FBC1D7E9604002D2BB1 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5068FB91D7E95E1002D2BB1 /* ScoreViewController.h */,
+				B5068FBA1D7E95E1002D2BB1 /* ScoreViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B5068FBD1D7E9613002D2BB1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5068FBF1D7E9642002D2BB1 /* ScoreHeaderView.h */,
+				B5068FC01D7E9642002D2BB1 /* ScoreHeaderView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B5068FBE1D7E9620002D2BB1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B5068FC21D7E9FCC002D2BB1 /* ScoreViewModel.h */,
+				B5068FC31D7E9FCC002D2BB1 /* ScoreViewModel.m */,
+			);
+			name = ViewModel;
+			sourceTree = "<group>";
+		};
 		B5FDB2191D6C35100042D9EC /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -1265,6 +1333,8 @@
 		E7A189BC1D02D03000E6F441 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				B5068FB81D7E9453002D2BB1 /* MyScore */,
+				B5068FB71D7E9423002D2BB1 /* MyWallet */,
 				C5F63B1E1D5F1E5C0090F215 /* xieyi */,
 				C5DEE9F81D5715B100823ED8 /* Register */,
 				C5EE85671D45E138005F905C /* Classes */,
@@ -1560,14 +1630,17 @@
 				E715ECF51D0526A3003A2D62 /* REFrostedContainerViewController.m in Sources */,
 				975976EC1D577B4100B3B5CB /* CommodityInfoCell.m in Sources */,
 				8E2DE7881D048A43003C077A /* UINavigationController+JZExtension.m in Sources */,
+				B5068FCA1D7EAE3A002D2BB1 /* WalletViewModel.m in Sources */,
 				30312C331D570B7600E0D0BD /* JLCityController.m in Sources */,
 				E715ECBE1D052671003A2D62 /* UIButton+Extension.m in Sources */,
 				E715ECF81D0526A3003A2D62 /* UIView+REFrostedViewController.m in Sources */,
+				B5068FCD1D7EAE51002D2BB1 /* WalletHeaderView.m in Sources */,
 				30312C2F1D5709E500E0D0BD /* LNSearchManager.m in Sources */,
 				C5F63B271D5F2BC90090F215 /* JifenViewController.m in Sources */,
 				8E2DE7831D048A43003C077A /* _JZNavigationInteractiveTransition.m in Sources */,
 				305783311D0C22FD007AED3C /* TAAbstractDotView.m in Sources */,
 				E77EFF041D05611600E5113C /* UIImage+Image.m in Sources */,
+				B5068FBB1D7E95E1002D2BB1 /* ScoreViewController.m in Sources */,
 				8E2DE7891D048A43003C077A /* UIViewController+JZExtension.m in Sources */,
 				E77EFEF31D05565400E5113C /* UIButton+PPiAwesome.m in Sources */,
 				8E2DE78A1D048A43003C077A /* UIViewController+NMExtension.m in Sources */,
@@ -1597,6 +1670,7 @@
 				9780EBE71D7343CA00E804C4 /* CustomBadge.m in Sources */,
 				3043B0A31D02C55B00E97B82 /* ViewController.m in Sources */,
 				305783361D0C22FD007AED3C /* SDCycleScrollView.m in Sources */,
+				B5068FC71D7EAE2A002D2BB1 /* WalletViewController.m in Sources */,
 				E715ED151D0526E5003A2D62 /* MultilevelTableViewCell.m in Sources */,
 				975976D01D577ACE00B3B5CB /* DetailsMode.m in Sources */,
 				305783351D0C22FD007AED3C /* SDCollectionViewCell.m in Sources */,
@@ -1649,9 +1723,11 @@
 				E715ECBD1D052671003A2D62 /* NSString+Extension.m in Sources */,
 				3057831D1D0C0D51007AED3C /* JLGuideViewController.m in Sources */,
 				975976EB1D577B4100B3B5CB /* CommodityComponentCell.m in Sources */,
+				B5068FC11D7E9642002D2BB1 /* ScoreHeaderView.m in Sources */,
 				E715ED131D0526E5003A2D62 /* MultilevelCollectionViewCell.m in Sources */,
 				978D3C281D44F04800C0C1BE /* TSLocation.m in Sources */,
 				3057831C1D0C0D51007AED3C /* FYTXGuideVersion.m in Sources */,
+				B5068FC41D7E9FCC002D2BB1 /* ScoreViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
