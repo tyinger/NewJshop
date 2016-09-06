@@ -302,7 +302,7 @@ NSString * const ID = @"cycleCell";
     [self.mainView reloadData];
     
     if (imagePathsGroup.count) {
-        [self.backgroundImageView removeFromSuperview];
+//        [self.backgroundImageView removeFromSuperview];
     } else {
         if (self.backgroundImageView && !self.backgroundImageView.superview) {
             [self insertSubview:self.backgroundImageView belowSubview:self.mainView];

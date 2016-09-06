@@ -8,6 +8,7 @@
 
 #import "OtherListViewController.h"
 #import "JLShopTypeModel.h"
+#import "JLShopsViewController.h"
 
 static CGFloat TypeListButtonWidth = 40;
 
@@ -62,22 +63,22 @@ static CGFloat TypeListButtonWidth = 40;
         if (i<11) {
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth * (i - 7) + offsetX, 10, TypeListButtonWidth, TypeListButtonWidth)];
-            [button setTag:i];
-            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
+            [button setTag:i+1000];
+            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
             
             [self.view addSubview:button];
             
         }else if(11<=i && 15>i) {
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*(i-11)+offsetX, TypeListButtonWidth+10*3, TypeListButtonWidth, TypeListButtonWidth)];
-            [button setTag:i];
-            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
+            [button setTag:i+1000];
+            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
             [self.view addSubview:button];
         }else{
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*(i-15)+offsetX, TypeListButtonWidth+10*9, TypeListButtonWidth, TypeListButtonWidth)];
-            [button setTag:i];
-            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
+            [button setTag:i+1000];
+            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
             [self.view addSubview:button];
         }
         
@@ -97,10 +98,20 @@ static CGFloat TypeListButtonWidth = 40;
 -(void) btnAction:(UIButton *)btn
 {
     
-    [FYTXHub toast:@"敬请期待"];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [FYTXHub dismiss];
-    });
+//    [FYTXHub toast:@"敬请期待"];
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [FYTXHub dismiss];
+//    });
+    
+#warning 麻烦的做法，有待改进
+    HomeListBtnClickYes;
+    AppDelegate *app = [UIApplication sharedApplication].delegate;
+    app.window.rootViewController = [JLTabMainController shareJLTabVC];
+    [JLTabMainController shareJLTabVC].selectedIndex = 2;
+    [self.navigationController popToRootViewControllerAnimated:NO];
+    QSCNavigationController *s = [[JLTabMainController shareJLTabVC].viewControllers objectAtIndex:2];
+    JLShopsViewController *q = s.viewControllers.lastObject;
+    q.numRow = btn.tag-1000;
     
 }
 

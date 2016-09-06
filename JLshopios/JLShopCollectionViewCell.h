@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class JLGoodModel;
+
+typedef void(^TuiJianBlock)(JLGoodModel *goodModel);
 @interface JLShopCollectionViewCell : UICollectionViewCell
 
+@property (weak, nonatomic) IBOutlet UIView *yuShouGoods;
+
+@property (weak, nonatomic) IBOutlet UIView *zhidemai;
+@property (weak, nonatomic) IBOutlet UIView *jingxuantuijian;
+@property (copy, nonatomic) TuiJianBlock tuiJianBlock;
 @end

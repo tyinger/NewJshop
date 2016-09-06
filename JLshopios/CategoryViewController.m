@@ -7,6 +7,7 @@
 //
 
 #import "CategoryViewController.h"
+#import "SearchController.h"
 #import "SearchBarView.h"
 #import "CategoryMeunModel.h"
 #import "MultilevelMenu.h"
@@ -58,6 +59,7 @@
 #pragma mark - 🔌 SearchBarViewDelegate Method
 - (void)searchBarSearchButtonClicked:(SearchBarView *)searchBarView {
     MYLog(@"搜索");
+    [self.navigationController pushViewController:[SearchController new] animated:YES];
 }
 
 - (void)searchBarAudioButtonClicked:(SearchBarView *)searchBarView {
@@ -103,6 +105,7 @@
           
           CommodityTableViewController *commod = [[CommodityTableViewController alloc] initWithType:0];
           commod.secondMenuIDStr = [NSString stringWithFormat:@"%d",info.Id];
+          commod.searchNameStr = @"";
           [self.navigationController pushViewController:commod animated:YES];
     }];
     

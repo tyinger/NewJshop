@@ -8,6 +8,7 @@
 
 #import "JLShopsViewController.h"
 #import "JLHomeViewController.h"
+#import "SearchController.h"
 #import "SearchBarView.h"
 #import "CategoryMeunModel.h"
 #import "MultilevelMenu.h"
@@ -34,14 +35,17 @@
     self.view.backgroundColor = [UIColor whiteColor];
     //设置导航栏
     [self setupNavigationItem];
-    //初始化数据
-    [self initData];
+    
 //    //初始化分类菜单
 //    [self initCategoryMenu];
     
 }
 - (void)viewWillAppear:(BOOL)animated;
 {
+    if (GetHomeListBtnClick) {
+        //初始化数据
+        [self initData];
+    }
     
     
     //     (( AppDelegate *) [UIApplication sharedApplication].delegate).avatar.hidden=YES;
@@ -63,6 +67,7 @@
 #pragma mark - 🔌 SearchBarViewDelegate Method
 - (void)searchBarSearchButtonClicked:(SearchBarView *)searchBarView {
     MYLog(@"搜索");
+    [self.navigationController pushViewController:[SearchController new] animated:YES];
 }
 
 - (void)searchBarAudioButtonClicked:(SearchBarView *)searchBarView {
@@ -150,12 +155,9 @@
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidDisappear:(BOOL)animated{
+    HomeListBtnClickNo;
 }
-
-
 /*
 #pragma mark - Navigation
 

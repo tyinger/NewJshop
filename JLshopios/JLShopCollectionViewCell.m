@@ -17,8 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *hotGoodsRightImage;
 
 @property (nonatomic,strong) NSArray *hotGoodsArray;
-@property (weak, nonatomic) IBOutlet UIView *yuShouGoods;
-
 
 
 @end
@@ -29,9 +27,15 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
-    UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testAction:)];
-    self.yuShouGoods.userInteractionEnabled = YES;
-    [self.yuShouGoods addGestureRecognizer:ges];
+    UITapGestureRecognizer *yuShouGoodsGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testAction:)];
+    [self.yuShouGoods addGestureRecognizer:yuShouGoodsGes];
+    UITapGestureRecognizer *zhidemaiGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testAction1:)];
+    [self.zhidemai addGestureRecognizer:zhidemaiGes];
+    UITapGestureRecognizer *jingxuantuijianGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testAction1:)];
+    [self.jingxuantuijian addGestureRecognizer:jingxuantuijianGes];
+    
+    
+    
     [self loadHotGoodsInfo];
 }
 
@@ -93,7 +97,18 @@
 }
 
 - (void)testAction1:(UIGestureRecognizer *)ges{
-    MYLog(@"fffff");
+    if (self.hotGoodsArray.count == 0) {
+        [FYTXHub toast:@"敬请期待"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [FYTXHub dismiss];
+        });
+        return;
+    }
+    if (ges.view.tag == 111) {
+        self.tuiJianBlock(self.hotGoodsArray[0]);
+    }else{
+        self.tuiJianBlock(self.hotGoodsArray[1]);
+    }
 }
 
 @end

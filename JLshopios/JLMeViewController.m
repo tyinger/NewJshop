@@ -221,7 +221,8 @@
     UILabel *code = [[UILabel alloc] init];
     code.textColor = [UIColor whiteColor];
     code.font = [UIFont systemFontOfSize:16];
-    code.text = [LoginStatus sharedManager].recommendCode;
+    
+    code.text = [NSString stringWithFormat:@"推荐码：%@",[LoginStatus sharedManager].recommendCode];
     [code sizeToFit];
     [b addSubview:code];
     [code mas_makeConstraints:^(MASConstraintMaker *make) {

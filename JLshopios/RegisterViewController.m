@@ -170,20 +170,54 @@
         
         tuijian = self.tuijianCode.text;
     }
+    NSString *code;
+    if (self.codeTextF.text == nil || [self.codeTextF.text isEqualToString:@""]) {
+        
+        code = @"";
+    }else{
+        
+        code = self.codeTextF.text;
+    }
     
-    NSDictionary *dic = @{@"phoneNum":self.phoneNumTextF.text,@"checkCode":@"123123",@"pwd":[NSString changemd:self.passwordTextF.text],@"recommendCode":tuijian};
+    NSDictionary *dic = @{@"phoneNum":self.phoneNumTextF.text,@"checkCode":code,@"pwd":[NSString changemd:self.passwordTextF.text],@"recommendCode":tuijian};
         //loginName=18643212316 password=
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/registNewUser?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             
             if (json[@"msg"] != nil) {
                 
-                [FYTXHub toast:[NSString stringWithFormat:@"%@",json[@"msg"]]];
+                NSString *str = [NSString stringWithFormat:@"%@",json[@"msg"]];
+                [FYTXHub toast:str];
+                if ([str rangeOfString:@"成功"].location != NSNotFound) {
+                    
+                    [self loginAction];
+                }
             }
             
         } failure:^(NSError *error) {
             
             [FYTXHub toast:@"网络请求失败"];
         }];
+}
+
+- (void)loginAction{
+    
+    NSDictionary *d = @{@"loginName":self.phoneNumTextF.text,@"password":[NSString changemd:self.passwordTextF.text]};
+    
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getLoginUser?" parameters:d isShowHUD:NO httpToolSuccess:^(id json) {
+        
+        [[LoginStatus sharedManager] setJson:json];
+        [LoginStatus sharedManager].login = YES;
+        [[CartManager sharedManager] getCartGoodCount];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [self.navigationController popToViewController:[self.navigationController.viewControllers firstObject] animated:YES];
+        });
+        
+    } failure:^(NSError *error) {
+        
+        [FYTXHub toast:@"登录失败"];
+    }];
 }
 
 

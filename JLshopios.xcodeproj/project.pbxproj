@@ -114,6 +114,7 @@
 		B5068FCA1D7EAE3A002D2BB1 /* WalletViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC91D7EAE3A002D2BB1 /* WalletViewModel.m */; };
 		B5068FCD1D7EAE51002D2BB1 /* WalletHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */; };
 		B529A39C1D7018D200A1A3B1 /* CartBarEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */; };
+		B55EF72E1D7EC707000B8216 /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55EF72D1D7EC707000B8216 /* SearchController.m */; };
 		B58E8F3E1D716C8C006C21CD /* ToolClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B58E8F3D1D716C8C006C21CD /* ToolClass.m */; };
 		B5F3C8321D6F4B730010D199 /* CartPlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F3C8311D6F4B730010D199 /* CartPlaceHolderView.m */; };
 		B5F3C8341D6F4B9D0010D199 /* CartPlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F3C8331D6F4B9D0010D199 /* CartPlaceHolderView.xib */; };
@@ -395,6 +396,8 @@
 		B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletHeaderView.m; sourceTree = "<group>"; };
 		B529A39A1D7018D200A1A3B1 /* CartBarEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartBarEdit.h; sourceTree = "<group>"; };
 		B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartBarEdit.m; sourceTree = "<group>"; };
+		B55EF72C1D7EC707000B8216 /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchController.h; sourceTree = "<group>"; };
+		B55EF72D1D7EC707000B8216 /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchController.m; sourceTree = "<group>"; };
 		B58E8F3C1D716C8C006C21CD /* ToolClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolClass.h; sourceTree = "<group>"; };
 		B58E8F3D1D716C8C006C21CD /* ToolClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolClass.m; sourceTree = "<group>"; };
 		B5F3C8301D6F4B730010D199 /* CartPlaceHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartPlaceHolderView.h; sourceTree = "<group>"; };
@@ -618,6 +621,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A189B81D02CFEA00E6F441 /* Classes */,
+				B55EF72B1D7EC6D4000B8216 /* Searcher */,
 				E78544FF1D02CA18007839EE /* BaseController */,
 				E78544FE1D02C97A007839EE /* Delegate */,
 				3043B0A11D02C55B00E97B82 /* ViewController.h */,
@@ -992,6 +996,15 @@
 				B5068FC31D7E9FCC002D2BB1 /* ScoreViewModel.m */,
 			);
 			name = ViewModel;
+			sourceTree = "<group>";
+		};
+		B55EF72B1D7EC6D4000B8216 /* Searcher */ = {
+			isa = PBXGroup;
+			children = (
+				B55EF72C1D7EC707000B8216 /* SearchController.h */,
+				B55EF72D1D7EC707000B8216 /* SearchController.m */,
+			);
+			name = Searcher;
 			sourceTree = "<group>";
 		};
 		B5FDB2191D6C35100042D9EC /* View */ = {
@@ -1640,6 +1653,7 @@
 				8E2DE7831D048A43003C077A /* _JZNavigationInteractiveTransition.m in Sources */,
 				305783311D0C22FD007AED3C /* TAAbstractDotView.m in Sources */,
 				E77EFF041D05611600E5113C /* UIImage+Image.m in Sources */,
+				B55EF72E1D7EC707000B8216 /* SearchController.m in Sources */,
 				B5068FBB1D7E95E1002D2BB1 /* ScoreViewController.m in Sources */,
 				8E2DE7891D048A43003C077A /* UIViewController+JZExtension.m in Sources */,
 				E77EFEF31D05565400E5113C /* UIButton+PPiAwesome.m in Sources */,

@@ -43,7 +43,6 @@
         if (data.count==0) {
             return nil;
         }
-        self.isSelected = NO;
         _block=selectIndex;
         self.leftSelectColor=[UIColor blackColor];
         self.leftSelectBgColor=[UIColor whiteColor];
@@ -122,19 +121,19 @@
          */
         [self.leftTablew selectRowAtIndexPath:[NSIndexPath indexPathForRow:needToScorllerIndex inSection:0] animated:YES scrollPosition:UITableViewScrollPositionTop];
         
-        
-        MultilevelTableViewCell * cell=(MultilevelTableViewCell*)[self.leftTablew cellForRowAtIndexPath:[NSIndexPath indexPathForRow:needToScorllerIndex inSection:0]];
-        UILabel * line=(UILabel*)[cell viewWithTag:100];
-        line.backgroundColor=cell.backgroundColor;
-        cell.titile.textColor=self.leftSelectColor;
-        cell.backgroundColor=self.leftSelectBgColor;
-        
-        [self.leftTablew deselectRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0] animated:NO];
-        cell=(MultilevelTableViewCell*)[self.leftTablew cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]];
-        line=(UILabel*)[cell viewWithTag:100];
-        line.backgroundColor=cell.backgroundColor;
-        cell.titile.textColor=self.leftUnSelectColor;
-        cell.backgroundColor=self.leftUnSelectBgColor;
+        //删除后按钮跳转跟手动点选择都会变色，否则就手动会变色
+//        MultilevelTableViewCell * cell=(MultilevelTableViewCell*)[self.leftTablew cellForRowAtIndexPath:[NSIndexPath indexPathForRow:needToScorllerIndex inSection:0]];
+//        UILabel * line=(UILabel*)[cell viewWithTag:100];
+//        line.backgroundColor=cell.backgroundColor;
+//        cell.titile.textColor=self.leftSelectColor;
+//        cell.backgroundColor=self.leftSelectBgColor;
+//        
+//        [self.leftTablew deselectRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0] animated:NO];
+//        cell=(MultilevelTableViewCell*)[self.leftTablew cellForRowAtIndexPath:[NSIndexPath indexPathForRow:_selectIndex inSection:0]];
+//        line=(UILabel*)[cell viewWithTag:100];
+//        line.backgroundColor=cell.backgroundColor;
+//        cell.titile.textColor=self.leftUnSelectColor;
+//        cell.backgroundColor=self.leftUnSelectBgColor;
         
         _selectIndex=needToScorllerIndex;
         
@@ -310,9 +309,9 @@
     
     //给一张默认图片，先使用默认图片，当图片加载完成后再替换
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:meun.urlNameOfRight]
-                      placeholderImage:[UIImage imageNamed:meun.urlNameOfRight]];
+                      placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
     
-    cell.imageView.backgroundColor = [UIColor blueColor];
+//    cell.imageView.backgroundColor = [UIColor blueColor];
     return cell;
 }
 
