@@ -41,8 +41,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.title = @"我的积分";
+    
+    self.title = @"我的钱包";
     self.view.backgroundColor = [UIColor whiteColor];
     [self initialization];
 }

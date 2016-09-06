@@ -135,8 +135,6 @@
 		C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85611D45E11F005F905C /* JLMeViewController.m */; };
 		C5EE85661D45E134005F905C /* ItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EE85651D45E134005F905C /* ItemModel.m */; };
 		C5F63B211D5F1E7D0090F215 /* XieYiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B201D5F1E7D0090F215 /* XieYiViewController.m */; };
-		C5F63B241D5F2BBE0090F215 /* PianbaoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B231D5F2BBE0090F215 /* PianbaoViewController.m */; };
-		C5F63B271D5F2BC90090F215 /* JifenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B261D5F2BC90090F215 /* JifenViewController.m */; };
 		C5F63B2A1D5F2BD50090F215 /* GuanzhuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B291D5F2BD50090F215 /* GuanzhuViewController.m */; };
 		C5F63B2D1D5F2BE50090F215 /* ShouhoudizhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B2C1D5F2BE50090F215 /* ShouhoudizhiViewController.m */; };
 		C5F63B301D5F2BF00090F215 /* ShangjiaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5F63B2F1D5F2BF00090F215 /* ShangjiaViewController.m */; };
@@ -435,10 +433,6 @@
 		C5EE85651D45E134005F905C /* ItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemModel.m; sourceTree = "<group>"; };
 		C5F63B1F1D5F1E7D0090F215 /* XieYiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieYiViewController.h; sourceTree = "<group>"; };
 		C5F63B201D5F1E7D0090F215 /* XieYiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieYiViewController.m; sourceTree = "<group>"; };
-		C5F63B221D5F2BBE0090F215 /* PianbaoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PianbaoViewController.h; sourceTree = "<group>"; };
-		C5F63B231D5F2BBE0090F215 /* PianbaoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PianbaoViewController.m; sourceTree = "<group>"; };
-		C5F63B251D5F2BC90090F215 /* JifenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JifenViewController.h; sourceTree = "<group>"; };
-		C5F63B261D5F2BC90090F215 /* JifenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JifenViewController.m; sourceTree = "<group>"; };
 		C5F63B281D5F2BD50090F215 /* GuanzhuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GuanzhuViewController.h; sourceTree = "<group>"; };
 		C5F63B291D5F2BD50090F215 /* GuanzhuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuanzhuViewController.m; sourceTree = "<group>"; };
 		C5F63B2B1D5F2BE50090F215 /* ShouhoudizhiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouhoudizhiViewController.h; sourceTree = "<group>"; };
@@ -1088,10 +1082,6 @@
 		C5EE85671D45E138005F905C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				C5F63B221D5F2BBE0090F215 /* PianbaoViewController.h */,
-				C5F63B231D5F2BBE0090F215 /* PianbaoViewController.m */,
-				C5F63B251D5F2BC90090F215 /* JifenViewController.h */,
-				C5F63B261D5F2BC90090F215 /* JifenViewController.m */,
 				C5F63B281D5F2BD50090F215 /* GuanzhuViewController.h */,
 				C5F63B291D5F2BD50090F215 /* GuanzhuViewController.m */,
 				C5F63B2B1D5F2BE50090F215 /* ShouhoudizhiViewController.h */,
@@ -1649,7 +1639,6 @@
 				E715ECF81D0526A3003A2D62 /* UIView+REFrostedViewController.m in Sources */,
 				B5068FCD1D7EAE51002D2BB1 /* WalletHeaderView.m in Sources */,
 				30312C2F1D5709E500E0D0BD /* LNSearchManager.m in Sources */,
-				C5F63B271D5F2BC90090F215 /* JifenViewController.m in Sources */,
 				8E2DE7831D048A43003C077A /* _JZNavigationInteractiveTransition.m in Sources */,
 				305783311D0C22FD007AED3C /* TAAbstractDotView.m in Sources */,
 				E77EFF041D05611600E5113C /* UIImage+Image.m in Sources */,
@@ -1676,7 +1665,6 @@
 				E77EFEF61D05566700E5113C /* NSString+FontAwesome.m in Sources */,
 				E715ECDC1D052696003A2D62 /* MASConstraint.m in Sources */,
 				975976CF1D577ACE00B3B5CB /* CellConfig.m in Sources */,
-				C5F63B241D5F2BBE0090F215 /* PianbaoViewController.m in Sources */,
 				8EA0FE121D0C727D00947433 /* JLTypeListView.m in Sources */,
 				975976F11D577B4100B3B5CB /* CommoditySectionCell.m in Sources */,
 				8E2DE7871D048A43003C077A /* UIToolbar+JZExtension.m in Sources */,
