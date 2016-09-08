@@ -64,6 +64,7 @@
 		8E2DE78A1D048A43003C077A /* UIViewController+NMExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E2DE7821D048A43003C077A /* UIViewController+NMExtension.m */; };
 		8E6EC3161D58EFA8008A03EF /* JLGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */; };
 		8EA0FE121D0C727D00947433 /* JLTypeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA0FE111D0C727D00947433 /* JLTypeListView.m */; };
+		971C74201D81C531009F0619 /* AddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 971C741F1D81C531009F0619 /* AddressController.m */; };
 		975976C61D570AAC00B3B5CB /* NewCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 975976C51D570AAC00B3B5CB /* NewCategory.plist */; };
 		975976CF1D577ACE00B3B5CB /* CellConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 975976CC1D577ACE00B3B5CB /* CellConfig.m */; };
 		975976D01D577ACE00B3B5CB /* DetailsMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 975976CE1D577ACE00B3B5CB /* DetailsMode.m */; };
@@ -310,6 +311,8 @@
 		8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLGoodModel.m; sourceTree = "<group>"; };
 		8EA0FE101D0C727D00947433 /* JLTypeListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLTypeListView.h; sourceTree = "<group>"; };
 		8EA0FE111D0C727D00947433 /* JLTypeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLTypeListView.m; sourceTree = "<group>"; };
+		971C741E1D81C531009F0619 /* AddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressController.h; sourceTree = "<group>"; };
+		971C741F1D81C531009F0619 /* AddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressController.m; sourceTree = "<group>"; };
 		975976C51D570AAC00B3B5CB /* NewCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewCategory.plist; sourceTree = "<group>"; };
 		975976CB1D577ACE00B3B5CB /* CellConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellConfig.h; sourceTree = "<group>"; };
 		975976CC1D577ACE00B3B5CB /* CellConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellConfig.m; sourceTree = "<group>"; };
@@ -780,6 +783,15 @@
 				8E2DE77C1D048A43003C077A /* UIToolbar+JZExtension.m */,
 			);
 			path = Private;
+			sourceTree = "<group>";
+		};
+		971C741D1D81C4FD009F0619 /* Addresses */ = {
+			isa = PBXGroup;
+			children = (
+				971C741E1D81C531009F0619 /* AddressController.h */,
+				971C741F1D81C531009F0619 /* AddressController.m */,
+			);
+			name = Addresses;
 			sourceTree = "<group>";
 		};
 		975976C71D577A5C00B3B5CB /* product */ = {
@@ -1340,6 +1352,7 @@
 				B5068FB71D7E9423002D2BB1 /* MyWallet */,
 				C5F63B1E1D5F1E5C0090F215 /* xieyi */,
 				C5DEE9F81D5715B100823ED8 /* Register */,
+				971C741D1D81C4FD009F0619 /* Addresses */,
 				C5EE85671D45E138005F905C /* Classes */,
 				C5EE85631D45E123005F905C /* Model */,
 				E7A189C51D02D17700E6F441 /* Me.storyboard */,
@@ -1366,6 +1379,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3043B0AF1D02C55B00E97B82 /* Build configuration list for PBXNativeTarget "JLshopios" */;
 			buildPhases = (
+				C52E0AD97FA0B11A4251F35F /* 📦 Check Pods Manifest.lock */,
 				8EC028755B83B67C08A72677 /* [CP] Check Pods Manifest.lock */,
 				3D3B8D3B47B8543D60717630 /* [CP] Check Pods Manifest.lock */,
 				5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */,
@@ -1573,6 +1587,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C52E0AD97FA0B11A4251F35F /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1720,6 +1749,7 @@
 				30312C2D1D5709E500E0D0BD /* LNLocationGeocoder.m in Sources */,
 				E715ED101D0526E5003A2D62 /* MultilevelMenu.m in Sources */,
 				305783321D0C22FD007AED3C /* TAAnimatedDotView.m in Sources */,
+				971C74201D81C531009F0619 /* AddressController.m in Sources */,
 				E715ED0D1D0526E5003A2D62 /* SearchBarView.m in Sources */,
 				C5F63B2A1D5F2BD50090F215 /* GuanzhuViewController.m in Sources */,
 				E715ECBD1D052671003A2D62 /* NSString+Extension.m in Sources */,
