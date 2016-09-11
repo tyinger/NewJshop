@@ -108,6 +108,7 @@
 		978D3C261D44F04800C0C1BE /* TSLocateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1A1D44F04800C0C1BE /* TSLocateView.m */; };
 		978D3C271D44F04800C0C1BE /* TSLocateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */; };
 		978D3C281D44F04800C0C1BE /* TSLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D3C1D1D44F04800C0C1BE /* TSLocation.m */; };
+		978D4CD61D8531DF0079C984 /* AddressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 978D4CD51D8531DF0079C984 /* AddressView.m */; };
 		B5068FBB1D7E95E1002D2BB1 /* ScoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FBA1D7E95E1002D2BB1 /* ScoreViewController.m */; };
 		B5068FC11D7E9642002D2BB1 /* ScoreHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC01D7E9642002D2BB1 /* ScoreHeaderView.m */; };
 		B5068FC41D7E9FCC002D2BB1 /* ScoreViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC31D7E9FCC002D2BB1 /* ScoreViewModel.m */; };
@@ -383,6 +384,8 @@
 		978D3C1B1D44F04800C0C1BE /* TSLocateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TSLocateView.xib; sourceTree = "<group>"; };
 		978D3C1C1D44F04800C0C1BE /* TSLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSLocation.h; sourceTree = "<group>"; };
 		978D3C1D1D44F04800C0C1BE /* TSLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSLocation.m; sourceTree = "<group>"; };
+		978D4CD41D8531DF0079C984 /* AddressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressView.h; sourceTree = "<group>"; };
+		978D4CD51D8531DF0079C984 /* AddressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressView.m; sourceTree = "<group>"; };
 		B5068FB91D7E95E1002D2BB1 /* ScoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreViewController.h; sourceTree = "<group>"; };
 		B5068FBA1D7E95E1002D2BB1 /* ScoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreViewController.m; sourceTree = "<group>"; };
 		B5068FBF1D7E9642002D2BB1 /* ScoreHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreHeaderView.h; sourceTree = "<group>"; };
@@ -790,6 +793,8 @@
 			children = (
 				971C741E1D81C531009F0619 /* AddressController.h */,
 				971C741F1D81C531009F0619 /* AddressController.m */,
+				978D4CD41D8531DF0079C984 /* AddressView.h */,
+				978D4CD51D8531DF0079C984 /* AddressView.m */,
 			);
 			name = Addresses;
 			sourceTree = "<group>";
@@ -1714,6 +1719,7 @@
 				C5EE85661D45E134005F905C /* ItemModel.m in Sources */,
 				30312C2B1D5709E500E0D0BD /* ChineseToPinyin.m in Sources */,
 				9759770F1D577C0E00B3B5CB /* TYTextStorage.m in Sources */,
+				978D4CD61D8531DF0079C984 /* AddressView.m in Sources */,
 				E77EFF0A1D05619600E5113C /* UIBarButtonItem+Addition.m in Sources */,
 				E77EFF0D1D05621900E5113C /* UIButton+Bg.m in Sources */,
 				305783331D0C22FD007AED3C /* TADotView.m in Sources */,
