@@ -9,8 +9,12 @@
 #import "ShangjiaViewController.h"
 #import "AddressController.h"
 
+//按钮TAG范围：100-200；
+//textView的tag范围在：200-300
+//label 的tag范围在：300-400
+
 static const CGFloat kBottomHeight = 60;
-@interface ShangjiaViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ShangjiaViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 /** 列表 */
 @property (nonatomic , strong) UITableView *addressTableView;
@@ -24,12 +28,29 @@ static const CGFloat kBottomHeight = 60;
 @end
 
 @implementation ShangjiaViewController
+{
+    NSTimer *_timer;
+}
+- (void)viewDidAppear:(BOOL)animated{
+    _timer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(timer:) userInfo:nil repeats:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [_timer invalidate];
+    _timer = nil;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    [self whiteBackGroundView];
+    _imagePickerController = [[UIImagePickerController alloc] init];
+    _imagePickerController.delegate = self;
+    _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera | UIImagePickerControllerSourceTypePhotoLibrary;
+
     [self addressTableView];
+    
 }
 
 - (UIView *)whiteBackGroundView
@@ -88,6 +109,7 @@ static const CGFloat kBottomHeight = 60;
     agreeBtn.frame = CGRectMake(0, 0, 40, 40);
     [agreeBtn setImage:[UIImage imageNamed:@"xn_circle_normal"] forState:UIControlStateNormal];
     [agreeBtn setImage:[UIImage imageNamed:@"xn_circle_select"] forState:UIControlStateSelected];
+    agreeBtn.tag = 102;
     [agreeBtn addTarget:self action:@selector(agreeAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, kDeviceWidth, 40)];
@@ -108,6 +130,7 @@ static const CGFloat kBottomHeight = 60;
     commitButton.tag = 101;
     [commitButton setTitle:@"提交" forState:UIControlStateNormal];
     [commitButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    commitButton.enabled = NO;
     commitButton.layer.masksToBounds = YES;
     commitButton.layer.cornerRadius = 5;
     commitButton.backgroundColor = [UIColor lightGrayColor];
@@ -129,10 +152,10 @@ static const CGFloat kBottomHeight = 60;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
+//    if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
+//    }
     switch (indexPath.row) {
         case 0:
         {
@@ -152,6 +175,7 @@ static const CGFloat kBottomHeight = 60;
             
             UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame), 40)];
             filed.font = [UIFont systemFontOfSize:17];
+            filed.delegate = self;
             filed.tag = 201;
             
             [cell addSubview:filed];
@@ -188,6 +212,7 @@ static const CGFloat kBottomHeight = 60;
             
             UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame), 40)];
             filed.font = [UIFont systemFontOfSize:17];
+            filed.delegate = self;
             filed.tag = 202;
             
             [cell addSubview:filed];
@@ -205,6 +230,7 @@ static const CGFloat kBottomHeight = 60;
             
             UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame), 40)];
             filed.font = [UIFont systemFontOfSize:17];
+            filed.delegate = self;
             filed.tag = 203;
             
             [cell addSubview:filed];
@@ -222,6 +248,7 @@ static const CGFloat kBottomHeight = 60;
             
             UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame), 40)];
             filed.font = [UIFont systemFontOfSize:17];
+            filed.delegate = self;
             filed.tag = 204;
             
             [cell addSubview:filed];
@@ -239,6 +266,8 @@ static const CGFloat kBottomHeight = 60;
             
             UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame) - 40, 40)];
             filed.font = [UIFont systemFontOfSize:17];
+            filed.delegate = self;
+            filed.editable = NO;
             filed.tag = 205;
             
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -261,6 +290,8 @@ static const CGFloat kBottomHeight = 60;
             
             UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame) - 40, 40)];
             filed.font = [UIFont systemFontOfSize:17];
+            filed.delegate = self;
+            filed.editable = NO;
             filed.tag = 206;
             
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -283,6 +314,8 @@ static const CGFloat kBottomHeight = 60;
             
             UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame) - 40, 40)];
             filed.font = [UIFont systemFontOfSize:17];
+            filed.delegate = self;
+            filed.editable = NO;
             filed.tag = 207;
             
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -302,6 +335,7 @@ static const CGFloat kBottomHeight = 60;
 //
             UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame), 40)];
             filed.font = [UIFont systemFontOfSize:17];
+            filed.delegate = self;
             filed.tag = 208;
             
             UILabel *placeLabel = [[UILabel alloc] initWithFrame:filed.frame];
@@ -309,6 +343,7 @@ static const CGFloat kBottomHeight = 60;
             placeLabel.y = -1;
             placeLabel.text = @" 填写店铺连接";
             placeLabel.textColor = [UIColor lightGrayColor];
+            placeLabel.tag = 301;
             [filed addSubview:placeLabel];
             
             [cell addSubview:filed];
@@ -344,8 +379,110 @@ static const CGFloat kBottomHeight = 60;
 }
 
 - (void)photoAction:(UIButton *)btn{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传照片" message:@"" preferredStyle:0];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _imagePickerController.cameraOverlayView.userInteractionEnabled = YES;
+        _imagePickerController.showsCameraControls = YES;
+        [self presentViewController:_imagePickerController animated:YES completion:nil];
+        
+    }];
+    
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"相册选取" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentViewController:_imagePickerController animated:YES completion:nil];
+    }];
+    
+    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }];
+    
+    
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        
+        [alert addAction:action1];
+        [alert addAction:action2];
+        [alert addAction:action3];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    else
+    {
+        
+        [alert addAction:action2];
+        [alert addAction:action3];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+
+}
+
+- (void)timer:(NSTimer *)timer{
+    UIButton *btn1 = [self.view viewWithTag:101];//提交按钮
+    UIButton *btn2 = [self.view viewWithTag:101];//协议同意按钮
+    
+    UITextView *textView1 = [self.view viewWithTag:201];//商户名称
+    UITextView *textView2 = [self.view viewWithTag:202];//详细地址
+    UITextView *textView3 = [self.view viewWithTag:203];//联系人
+    UITextView *textView4 = [self.view viewWithTag:204];//联系电话
+    UITextView *textView5 = [self.view viewWithTag:205];//营业执照
+    UITextView *textView6 = [self.view viewWithTag:206];//身份证正面
+    UITextView *textView7 = [self.view viewWithTag:207];//身份证反面
+//    UITextView *textView8 = [self.view viewWithTag:208];
+    
+    if (![textView1.text isEqualToString:@""] && ![textView2.text isEqualToString:@""] && ![textView3.text isEqualToString:@""] && ![textView4.text isEqualToString:@""] && ![textView5.text isEqualToString:@""] && ![textView6.text isEqualToString:@""] && ![textView7.text isEqualToString:@""] && btn2.selected) {
+        btn1.enabled = YES;
+        [btn1 setTitle:@"提交" forState:UIControlStateNormal];
+        [btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        btn1.backgroundColor = [UIColor redColor];
+    }else{
+        btn1.enabled = NO;
+        [btn1 setTitle:@"提交" forState:UIControlStateNormal];
+        [btn1 setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        btn1.backgroundColor = [UIColor lightGrayColor];
+    }
+}
+
+
+#pragma mark - TextViewDelegate
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    MYLog(@"开始了");
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView{
+    MYLog(@"结束了");
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    if(textView.tag == 208 && ![textView.text isEqualToString:@""]){
+        UILabel *label = [self.view viewWithTag:301];
+        label.text = @"";
+    }else{
+        UILabel *label = [self.view viewWithTag:301];
+        label.text = @" 填写店铺连接";
+    }
+}
+
+
+/**
+ *  选择完照片后调用的方法
+ *
+ *
+ *  @param info   所有相片的信息都在这个字典
+ */
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    //从字典key获取image的地址
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    
+//    self.imageView.image = image;
+    MYLog(@"选完照片了");
+    
     
 }
+
 
 /*
 #pragma mark - Navigation
