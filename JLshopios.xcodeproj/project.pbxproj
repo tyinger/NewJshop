@@ -114,8 +114,17 @@
 		B5068FCA1D7EAE3A002D2BB1 /* WalletViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC91D7EAE3A002D2BB1 /* WalletViewModel.m */; };
 		B5068FCD1D7EAE51002D2BB1 /* WalletHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */; };
 		B529A39C1D7018D200A1A3B1 /* CartBarEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */; };
+		B55A48FD1D87AC1300A94278 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A48FC1D87AC1300A94278 /* UIScrollView+EmptyDataSet.m */; };
 		B55EF72E1D7EC707000B8216 /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55EF72D1D7EC707000B8216 /* SearchController.m */; };
+		B572D63D1D82F99500797399 /* FollowGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B572D63C1D82F99500797399 /* FollowGoodModel.m */; };
 		B58E8F3E1D716C8C006C21CD /* ToolClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B58E8F3D1D716C8C006C21CD /* ToolClass.m */; };
+		B5A9F5F51D814B30002E4293 /* XTSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A9F5F41D814B30002E4293 /* XTSegmentControl.m */; };
+		B5A9F5FC1D8151EF002E4293 /* MyFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A9F5FB1D8151EF002E4293 /* MyFollowViewController.m */; };
+		B5A9F5FF1D815212002E4293 /* FollowViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A9F5FE1D815212002E4293 /* FollowViewModel.m */; };
+		B5A9F6021D815220002E4293 /* FollowUIModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A9F6011D815220002E4293 /* FollowUIModel.m */; };
+		B5A9F6061D816245002E4293 /* FollowGoodTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A9F6041D816245002E4293 /* FollowGoodTableViewCell.m */; };
+		B5A9F6071D816245002E4293 /* FollowGoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A9F6051D816245002E4293 /* FollowGoodTableViewCell.xib */; };
+		B5A9F60A1D816349002E4293 /* UITableView+placeHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = B5A9F6091D816349002E4293 /* UITableView+placeHolder.m */; };
 		B5F3C8321D6F4B730010D199 /* CartPlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5F3C8311D6F4B730010D199 /* CartPlaceHolderView.m */; };
 		B5F3C8341D6F4B9D0010D199 /* CartPlaceHolderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5F3C8331D6F4B9D0010D199 /* CartPlaceHolderView.xib */; };
 		B5FDB21F1D6C35930042D9EC /* CartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FDB21D1D6C35930042D9EC /* CartCell.m */; };
@@ -396,10 +405,27 @@
 		B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletHeaderView.m; sourceTree = "<group>"; };
 		B529A39A1D7018D200A1A3B1 /* CartBarEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartBarEdit.h; sourceTree = "<group>"; };
 		B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartBarEdit.m; sourceTree = "<group>"; };
+		B55A48FB1D87AC1300A94278 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
+		B55A48FC1D87AC1300A94278 /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		B55EF72C1D7EC707000B8216 /* SearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchController.h; sourceTree = "<group>"; };
 		B55EF72D1D7EC707000B8216 /* SearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchController.m; sourceTree = "<group>"; };
+		B572D63B1D82F99500797399 /* FollowGoodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowGoodModel.h; sourceTree = "<group>"; };
+		B572D63C1D82F99500797399 /* FollowGoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowGoodModel.m; sourceTree = "<group>"; };
 		B58E8F3C1D716C8C006C21CD /* ToolClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolClass.h; sourceTree = "<group>"; };
 		B58E8F3D1D716C8C006C21CD /* ToolClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolClass.m; sourceTree = "<group>"; };
+		B5A9F5F31D814B30002E4293 /* XTSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSegmentControl.h; sourceTree = "<group>"; };
+		B5A9F5F41D814B30002E4293 /* XTSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSegmentControl.m; sourceTree = "<group>"; };
+		B5A9F5FA1D8151EF002E4293 /* MyFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFollowViewController.h; sourceTree = "<group>"; };
+		B5A9F5FB1D8151EF002E4293 /* MyFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFollowViewController.m; sourceTree = "<group>"; };
+		B5A9F5FD1D815212002E4293 /* FollowViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowViewModel.h; sourceTree = "<group>"; };
+		B5A9F5FE1D815212002E4293 /* FollowViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowViewModel.m; sourceTree = "<group>"; };
+		B5A9F6001D815220002E4293 /* FollowUIModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowUIModel.h; sourceTree = "<group>"; };
+		B5A9F6011D815220002E4293 /* FollowUIModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowUIModel.m; sourceTree = "<group>"; };
+		B5A9F6031D816245002E4293 /* FollowGoodTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowGoodTableViewCell.h; sourceTree = "<group>"; };
+		B5A9F6041D816245002E4293 /* FollowGoodTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowGoodTableViewCell.m; sourceTree = "<group>"; };
+		B5A9F6051D816245002E4293 /* FollowGoodTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowGoodTableViewCell.xib; sourceTree = "<group>"; };
+		B5A9F6081D816349002E4293 /* UITableView+placeHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+placeHolder.h"; sourceTree = "<group>"; };
+		B5A9F6091D816349002E4293 /* UITableView+placeHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+placeHolder.m"; sourceTree = "<group>"; };
 		B5F3C8301D6F4B730010D199 /* CartPlaceHolderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartPlaceHolderView.h; sourceTree = "<group>"; };
 		B5F3C8311D6F4B730010D199 /* CartPlaceHolderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartPlaceHolderView.m; sourceTree = "<group>"; };
 		B5F3C8331D6F4B9D0010D199 /* CartPlaceHolderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CartPlaceHolderView.xib; sourceTree = "<group>"; };
@@ -722,6 +748,8 @@
 		8E2DE76E1D048A43003C077A /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				B55A48FA1D87AC1300A94278 /* DZNEmptyDataSet */,
+				B5A9F5F21D814B30002E4293 /* XTSegmentControl */,
 				C5DEEA021D57522800823ED8 /* Hub */,
 				30312C131D5709E500E0D0BD /* City */,
 				305783211D0C22FD007AED3C /* SDCycleScrollView */,
@@ -752,6 +780,8 @@
 				8E2DE76F1D048A43003C077A /* JZNavigationExtension */,
 				8E2DE7811D048A43003C077A /* UIViewController+NMExtension.h */,
 				8E2DE7821D048A43003C077A /* UIViewController+NMExtension.m */,
+				B5A9F6081D816349002E4293 /* UITableView+placeHolder.h */,
+				B5A9F6091D816349002E4293 /* UITableView+placeHolder.m */,
 			);
 			name = tools;
 			path = JLshopios/tools;
@@ -998,6 +1028,15 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		B55A48FA1D87AC1300A94278 /* DZNEmptyDataSet */ = {
+			isa = PBXGroup;
+			children = (
+				B55A48FB1D87AC1300A94278 /* UIScrollView+EmptyDataSet.h */,
+				B55A48FC1D87AC1300A94278 /* UIScrollView+EmptyDataSet.m */,
+			);
+			path = DZNEmptyDataSet;
+			sourceTree = "<group>";
+		};
 		B55EF72B1D7EC6D4000B8216 /* Searcher */ = {
 			isa = PBXGroup;
 			children = (
@@ -1005,6 +1044,57 @@
 				B55EF72D1D7EC707000B8216 /* SearchController.m */,
 			);
 			name = Searcher;
+			sourceTree = "<group>";
+		};
+		B5A9F5F21D814B30002E4293 /* XTSegmentControl */ = {
+			isa = PBXGroup;
+			children = (
+				B5A9F5F31D814B30002E4293 /* XTSegmentControl.h */,
+				B5A9F5F41D814B30002E4293 /* XTSegmentControl.m */,
+			);
+			path = XTSegmentControl;
+			sourceTree = "<group>";
+		};
+		B5A9F5F61D815172002E4293 /* MyFollow */ = {
+			isa = PBXGroup;
+			children = (
+				B5A9F5F91D8151A8002E4293 /* ViewModel */,
+				B5A9F5F81D8151A6002E4293 /* View */,
+				B5A9F5F71D8151A2002E4293 /* Controller */,
+			);
+			name = MyFollow;
+			sourceTree = "<group>";
+		};
+		B5A9F5F71D8151A2002E4293 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B5A9F5FA1D8151EF002E4293 /* MyFollowViewController.h */,
+				B5A9F5FB1D8151EF002E4293 /* MyFollowViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B5A9F5F81D8151A6002E4293 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B5A9F6031D816245002E4293 /* FollowGoodTableViewCell.h */,
+				B5A9F6041D816245002E4293 /* FollowGoodTableViewCell.m */,
+				B5A9F6051D816245002E4293 /* FollowGoodTableViewCell.xib */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		B5A9F5F91D8151A8002E4293 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B5A9F5FD1D815212002E4293 /* FollowViewModel.h */,
+				B5A9F5FE1D815212002E4293 /* FollowViewModel.m */,
+				B5A9F6001D815220002E4293 /* FollowUIModel.h */,
+				B5A9F6011D815220002E4293 /* FollowUIModel.m */,
+				B572D63B1D82F99500797399 /* FollowGoodModel.h */,
+				B572D63C1D82F99500797399 /* FollowGoodModel.m */,
+			);
+			name = ViewModel;
 			sourceTree = "<group>";
 		};
 		B5FDB2191D6C35100042D9EC /* View */ = {
@@ -1346,6 +1436,7 @@
 		E7A189BC1D02D03000E6F441 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				B5A9F5F61D815172002E4293 /* MyFollow */,
 				B5068FB81D7E9453002D2BB1 /* MyScore */,
 				B5068FB71D7E9423002D2BB1 /* MyWallet */,
 				C5F63B1E1D5F1E5C0090F215 /* xieyi */,
@@ -1468,6 +1559,7 @@
 				C5DEE9FD1D5715DC00823ED8 /* RegisterViewController.xib in Resources */,
 				978D3C201D44F04800C0C1BE /* btn_020.press@2x.png in Resources */,
 				E715ED0F1D0526E5003A2D62 /* CommodityTableViewCell.xib in Resources */,
+				B5A9F6071D816245002E4293 /* FollowGoodTableViewCell.xib in Resources */,
 				B5FDB2201D6C35930042D9EC /* CartCell.xib in Resources */,
 				3057831F1D0C1CA5007AED3C /* ShopHome.storyboard in Resources */,
 				976BC90B1D57AB0700BDEF01 /* CommodityPackCell.xib in Resources */,
@@ -1618,6 +1710,8 @@
 				E715ECDD1D052696003A2D62 /* MASConstraintMaker.m in Sources */,
 				B58E8F3E1D716C8C006C21CD /* ToolClass.m in Sources */,
 				975976E91D577B4100B3B5CB /* CommodityAddressCell.m in Sources */,
+				B5A9F6021D815220002E4293 /* FollowUIModel.m in Sources */,
+				B5A9F60A1D816349002E4293 /* UITableView+placeHolder.m in Sources */,
 				8E6EC3161D58EFA8008A03EF /* JLGoodModel.m in Sources */,
 				C5EE85621D45E11F005F905C /* JLMeViewController.m in Sources */,
 				C5DEE9FC1D5715DC00823ED8 /* RegisterViewController.m in Sources */,
@@ -1637,6 +1731,7 @@
 				C5F63B211D5F1E7D0090F215 /* XieYiViewController.m in Sources */,
 				8E2DE7841D048A43003C077A /* _JZValue.m in Sources */,
 				9759770B1D577C0E00B3B5CB /* TYImageStorage.m in Sources */,
+				B5A9F5FF1D815212002E4293 /* FollowViewModel.m in Sources */,
 				B5FDB2321D6C42D00042D9EC /* GoodModel.m in Sources */,
 				B5FDB22C1D6C37130042D9EC /* CartViewModel.m in Sources */,
 				8E2DE75D1D047B98003C077A /* JLHomeViewController.m in Sources */,
@@ -1669,6 +1764,7 @@
 				E715ECB91D052671003A2D62 /* UIImage+Extension.m in Sources */,
 				B5FDB21F1D6C35930042D9EC /* CartCell.m in Sources */,
 				E77EFEFE1D05593F00E5113C /* ShopNextController.m in Sources */,
+				B5A9F5FC1D8151EF002E4293 /* MyFollowViewController.m in Sources */,
 				975976F31D577B4100B3B5CB /* CommoditySelectCell.m in Sources */,
 				975977101D577C0E00B3B5CB /* TYViewStorage.m in Sources */,
 				E715ECDF1D052696003A2D62 /* MASViewAttribute.m in Sources */,
@@ -1680,7 +1776,9 @@
 				8EA0FE121D0C727D00947433 /* JLTypeListView.m in Sources */,
 				975976F11D577B4100B3B5CB /* CommoditySectionCell.m in Sources */,
 				8E2DE7871D048A43003C077A /* UIToolbar+JZExtension.m in Sources */,
+				B55A48FD1D87AC1300A94278 /* UIScrollView+EmptyDataSet.m in Sources */,
 				E715ECF71D0526A3003A2D62 /* UIImage+REFrostedViewController.m in Sources */,
+				B5A9F5F51D814B30002E4293 /* XTSegmentControl.m in Sources */,
 				9780EBE71D7343CA00E804C4 /* CustomBadge.m in Sources */,
 				3043B0A31D02C55B00E97B82 /* ViewController.m in Sources */,
 				305783361D0C22FD007AED3C /* SDCycleScrollView.m in Sources */,
@@ -1723,6 +1821,7 @@
 				E715ECF41D0526A3003A2D62 /* RECommonFunctions.m in Sources */,
 				E715ED0E1D0526E5003A2D62 /* CommodityTableViewCell.m in Sources */,
 				E77EFF071D05613400E5113C /* NSString+File.m in Sources */,
+				B5A9F6061D816245002E4293 /* FollowGoodTableViewCell.m in Sources */,
 				30312C291D5709E500E0D0BD /* BHotCityCell.m in Sources */,
 				E715ECBA1D052671003A2D62 /* UIBarButtonItem+Extension.m in Sources */,
 				E715ED1E1D05273D003A2D62 /* CategoryMeunModel.m in Sources */,
@@ -1738,6 +1837,7 @@
 				3057831D1D0C0D51007AED3C /* JLGuideViewController.m in Sources */,
 				975976EB1D577B4100B3B5CB /* CommodityComponentCell.m in Sources */,
 				B5068FC11D7E9642002D2BB1 /* ScoreHeaderView.m in Sources */,
+				B572D63D1D82F99500797399 /* FollowGoodModel.m in Sources */,
 				E715ED131D0526E5003A2D62 /* MultilevelCollectionViewCell.m in Sources */,
 				978D3C281D44F04800C0C1BE /* TSLocation.m in Sources */,
 				3057831C1D0C0D51007AED3C /* FYTXGuideVersion.m in Sources */,
