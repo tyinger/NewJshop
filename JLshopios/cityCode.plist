@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>市辖区</string>
+		<string>北京市县</string>
+	</array>
+	<array>
+		<string>市辖区</string>
+		<string>天津市县</string>
+	</array>
+	<array>
+		<string>石家庄市</string>
+		<string>唐山市</string>
+		<string>秦皇岛市</string>
+		<string>邯郸市</string>
+		<string>邢台市</string>
+		<string>保定市</string>
+		<string>张家口市</string>
+		<string>承德市</string>
+		<string>沧州市</string>
+		<string>廊坊市</string>
+		<string>衡水市</string>
+	</array>
+</array>
+</plist>

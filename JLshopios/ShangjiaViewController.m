@@ -382,7 +382,7 @@ static const CGFloat kBottomHeight = 60;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传照片" message:@"" preferredStyle:0];
     
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        _imagePickerController.cameraOverlayView.userInteractionEnabled = YES;
+        _imagePickerController.cameraOverlayView.userInteractionEnabled = NO;
         _imagePickerController.showsCameraControls = YES;
         [self presentViewController:_imagePickerController animated:YES completion:nil];
         
