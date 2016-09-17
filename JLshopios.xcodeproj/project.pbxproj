@@ -69,6 +69,7 @@
 		8E6EC3161D58EFA8008A03EF /* JLGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */; };
 		8EA0FE121D0C727D00947433 /* JLTypeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA0FE111D0C727D00947433 /* JLTypeListView.m */; };
 		971C74201D81C531009F0619 /* AddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 971C741F1D81C531009F0619 /* AddressController.m */; };
+		973032EB1D8D8D66003B48FA /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 973032EA1D8D8D66003B48FA /* address.json */; };
 		975976C61D570AAC00B3B5CB /* NewCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 975976C51D570AAC00B3B5CB /* NewCategory.plist */; };
 		975976CF1D577ACE00B3B5CB /* CellConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 975976CC1D577ACE00B3B5CB /* CellConfig.m */; };
 		975976D01D577ACE00B3B5CB /* DetailsMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 975976CE1D577ACE00B3B5CB /* DetailsMode.m */; };
@@ -322,6 +323,7 @@
 		8EA0FE111D0C727D00947433 /* JLTypeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLTypeListView.m; sourceTree = "<group>"; };
 		971C741E1D81C531009F0619 /* AddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressController.h; sourceTree = "<group>"; };
 		971C741F1D81C531009F0619 /* AddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressController.m; sourceTree = "<group>"; };
+		973032EA1D8D8D66003B48FA /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
 		975976C51D570AAC00B3B5CB /* NewCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewCategory.plist; sourceTree = "<group>"; };
 		975976CB1D577ACE00B3B5CB /* CellConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellConfig.h; sourceTree = "<group>"; };
 		975976CC1D577ACE00B3B5CB /* CellConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellConfig.m; sourceTree = "<group>"; };
@@ -638,6 +640,7 @@
 				3043B0A71D02C55B00E97B82 /* Assets.xcassets */,
 				3043B0A91D02C55B00E97B82 /* LaunchScreen.storyboard */,
 				3043B0AC1D02C55B00E97B82 /* Info.plist */,
+				973032EA1D8D8D66003B48FA /* address.json */,
 				1FBB9B741D87DBEA00462A01 /* address.json */,
 				1FBB9B6E1D8791DB00462A01 /* provinceCode.plist */,
 				1FBB9B701D8792A200462A01 /* cityCode.plist */,
@@ -1461,6 +1464,7 @@
 				976BC90F1D57AB3000BDEF01 /* CommodityAddressCell.xib in Resources */,
 				1FBB9B711D8792A200462A01 /* cityCode.plist in Resources */,
 				975976F01D577B4100B3B5CB /* CommodityPraiseCell.xib in Resources */,
+				973032EB1D8D8D66003B48FA /* address.json in Resources */,
 				978D3C251D44F04800C0C1BE /* ProvincesAndCities.plist in Resources */,
 				3043B0AB1D02C55B00E97B82 /* LaunchScreen.storyboard in Resources */,
 				975976F41D577B4100B3B5CB /* CommoditySelectCell.xib in Resources */,

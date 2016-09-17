@@ -33,6 +33,10 @@ static const CGFloat kBottomHeight = 60;
 /** 地址textFiled */
 @property (nonatomic , strong) UITextField *addrTextFiled;
 
+@property (nonatomic , strong) NSArray *arrAll;
+@property (nonatomic , strong) NSArray *proviceArr;
+@property (nonatomic , strong) NSArray *cityArr;
+@property (nonatomic , strong) NSArray *townArr;
 @end
 
 @implementation AddressController
@@ -40,10 +44,75 @@ static const CGFloat kBottomHeight = 60;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self loadFirstData];
     [self whiteBackGroundView];
     [self createUI];
     
 }
+
+- (NSArray *)arrAll{
+    if (!_arrAll) {
+        _arrAll = [[NSArray alloc] init];
+    }
+    return _arrAll;
+}
+
+- (NSArray *)proviceArr{
+    if (!_proviceArr) {
+        _proviceArr = [[NSArray alloc] init];
+    }
+    return _proviceArr;
+}
+
+- (NSArray *)cityArr{
+    if (!_cityArr) {
+        _cityArr = [[NSArray alloc] init];
+    }
+    return _cityArr;
+}
+
+- (NSArray *)townArr{
+    if (!_townArr) {
+        _townArr = [[NSArray alloc] init];
+    }
+    return _townArr;
+}
+
+- (void)loadFirstData{
+
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"address" ofType:@"json"];
+    NSString *jsonStr = [NSString stringWithContentsOfFile:jsonPath usedEncoding:nil error:nil];
+    self.arrAll = [jsonStr JSONObject];
+    
+    NSMutableArray *firstName = [[NSMutableArray alloc] init];
+    for (NSDictionary *dict in self.arrAll)
+    {
+        NSString *name = dict.allKeys.firstObject;
+        [firstName addObject:name];
+    }
+    // 第一层是省份 分解出整个省份数组
+    self.proviceArr = firstName;
+}
+
+//// 根据传进来的下标数组计算对应的三个数组
+//- (void)calculateFirstData
+//{
+//    // 拿出省的数组
+//    [self loadFirstData];
+//    
+//    NSMutableArray *cityNameArr = [[NSMutableArray alloc] init];
+//    // 根据省的index1，默认是0，拿出对应省下面的市
+//    for (NSDictionary *cityName in [self.arrAll[self.index1] allValues].firstObject) {
+//        
+//        NSString *name1 = cityName.allKeys.firstObject;
+//        [cityNameArr addObject:name1];
+//    }
+//    // 组装对应省下面的市
+//    self.cityArr = cityNameArr;
+//    //                             index1对应省的字典         市的数组 index2市的字典   对应县的数组
+//    self.districtArr = [[self.arrAll[self.index1] allValues][0][self.index2] allValues][0];
+//}
+
 
 - (UIView *)whiteBackGroundView
 {
@@ -225,7 +294,10 @@ static const CGFloat kBottomHeight = 60;
 
 #pragma mark - UITableViewDataSource AND UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 0;
+    if (tableView == _provinceTableView) {
+        return self.proviceArr.count;
+    }
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -234,7 +306,9 @@ static const CGFloat kBottomHeight = 60;
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
 //        cell.backgroundColor = [UIColor orangeColor];
+        cell.textLabel.font = [UIFont systemFontOfSize:15];
     }
+    cell.textLabel.text = self.proviceArr[indexPath.row];
     
     return cell;
 }
