@@ -7,7 +7,7 @@
 //
 
 #import "ShouhoudizhiViewController.h"
-
+#import "ShouHuoTableViewCell.h"
 #import "AddressController.h"
 
 static const CGFloat kBottomHeight = 60;
@@ -67,7 +67,7 @@ static const CGFloat kBottomHeight = 60;
         
         _addressTableView.dataSource = self;
         _addressTableView.delegate = self;
-        _addressTableView.backgroundColor = [UIColor greenColor];
+//        _addressTableView.backgroundColor = [UIColor greenColor];
         [self.view addSubview:_addressTableView];
         [_addressTableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(0);
@@ -75,7 +75,11 @@ static const CGFloat kBottomHeight = 60;
             make.left.equalTo(self.view.mas_left).offset(0);
             make.right.equalTo(self.view.mas_right).offset(0);
         }];
+        [_addressTableView registerNib:[UINib nibWithNibName:@"ShouHuoTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+        //隐藏多余cell
+        _addressTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
+    
     return _addressTableView;
 }
 
@@ -83,17 +87,19 @@ static const CGFloat kBottomHeight = 60;
 #pragma mark -----tableView Delegate And Datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    cell.backgroundColor = [UIColor blueColor];
+    ShouHuoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    
+//    cell.backgroundColor = [UIColor blueColor];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 112;
 }
 
 #pragma mark -- button Action

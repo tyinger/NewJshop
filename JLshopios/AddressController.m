@@ -33,10 +33,15 @@ static const CGFloat kBottomHeight = 60;
 /** 地址textFiled */
 @property (nonatomic , strong) UITextField *addrTextFiled;
 
-@property (nonatomic , strong) NSArray *arrAll;
-@property (nonatomic , strong) NSArray *proviceArr;
-@property (nonatomic , strong) NSArray *cityArr;
-@property (nonatomic , strong) NSArray *townArr;
+@property (nonatomic , strong) NSArray *arrAll;//总
+@property (nonatomic , strong) NSArray *proviceArr;//省
+@property (nonatomic , strong) NSArray *cityArr;//市
+@property (nonatomic , strong) NSArray *townArr;//县区
+
+@property (nonatomic,assign) NSInteger index1; // 省下标
+@property (nonatomic,assign) NSInteger index2; // 市下标
+@property (nonatomic,assign) NSInteger index3; // 区下标
+@property (copy, nonatomic) NSMutableString *detailAddress; // 具体地址
 @end
 
 @implementation AddressController
@@ -44,7 +49,7 @@ static const CGFloat kBottomHeight = 60;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self loadFirstData];
+    [self calculateFirstData];
     [self whiteBackGroundView];
     [self createUI];
     
@@ -78,6 +83,13 @@ static const CGFloat kBottomHeight = 60;
     return _townArr;
 }
 
+- (NSMutableString *)detailAddress{
+    if (!_detailAddress) {
+        _detailAddress = [[NSMutableString alloc] init];
+    }
+    return _detailAddress;
+}
+
 - (void)loadFirstData{
 
     NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"address" ofType:@"json"];
@@ -94,24 +106,24 @@ static const CGFloat kBottomHeight = 60;
     self.proviceArr = firstName;
 }
 
-//// 根据传进来的下标数组计算对应的三个数组
-//- (void)calculateFirstData
-//{
-//    // 拿出省的数组
-//    [self loadFirstData];
-//    
-//    NSMutableArray *cityNameArr = [[NSMutableArray alloc] init];
-//    // 根据省的index1，默认是0，拿出对应省下面的市
-//    for (NSDictionary *cityName in [self.arrAll[self.index1] allValues].firstObject) {
-//        
-//        NSString *name1 = cityName.allKeys.firstObject;
-//        [cityNameArr addObject:name1];
-//    }
-//    // 组装对应省下面的市
-//    self.cityArr = cityNameArr;
-//    //                             index1对应省的字典         市的数组 index2市的字典   对应县的数组
-//    self.districtArr = [[self.arrAll[self.index1] allValues][0][self.index2] allValues][0];
-//}
+// 根据传进来的下标数组计算对应的三个数组
+- (void)calculateFirstData
+{
+    // 拿出省的数组
+    [self loadFirstData];
+    
+    NSMutableArray *cityNameArr = [[NSMutableArray alloc] init];
+    // 根据省的index1，默认是0，拿出对应省下面的市
+    for (NSDictionary *cityName in [self.arrAll[self.index1] allValues].firstObject) {
+        
+        NSString *name1 = cityName.allKeys.firstObject;
+        [cityNameArr addObject:name1];
+    }
+    // 组装对应省下面的市
+    self.cityArr = cityNameArr;
+    //                             index1对应省的字典         市的数组 index2市的字典   对应县的数组
+    self.townArr = [[self.arrAll[self.index1] allValues][0][self.index2] allValues][0];
+}
 
 
 - (UIView *)whiteBackGroundView
@@ -145,10 +157,11 @@ static const CGFloat kBottomHeight = 60;
 {
     if (!_provinceTableView) {
         _provinceTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 120, kDeviceWidth/3, 0) style:UITableViewStylePlain];
-        _provinceTableView.backgroundColor = [UIColor redColor];
+//        _provinceTableView.backgroundColor = [UIColor redColor];
         _provinceTableView.dataSource = self;
         _provinceTableView.delegate = self;
         [self.view addSubview:_provinceTableView];
+        
     }
     return _provinceTableView;
 }
@@ -157,10 +170,12 @@ static const CGFloat kBottomHeight = 60;
 {
     if (!_cityTableView) {
         _cityTableView = [[UITableView alloc] initWithFrame:CGRectMake(kDeviceWidth/3, 120, kDeviceWidth/3, 0) style:UITableViewStylePlain];
-        _cityTableView.backgroundColor = [UIColor magentaColor];
+//        _cityTableView.backgroundColor = [UIColor magentaColor];
         _cityTableView.dataSource = self;
         _cityTableView.delegate = self;
         [self.view addSubview:_cityTableView];
+        //隐藏多余cell
+        self.cityTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     return _cityTableView;
 }
@@ -169,10 +184,12 @@ static const CGFloat kBottomHeight = 60;
 {
     if (!_townTableView) {
         _townTableView = [[UITableView alloc] initWithFrame:CGRectMake(kDeviceWidth/3*2, 120, kDeviceWidth/3, 0) style:UITableViewStylePlain];
-        _townTableView.backgroundColor = [UIColor orangeColor];
+//        _townTableView.backgroundColor = [UIColor orangeColor];
         _townTableView.dataSource = self;
         _townTableView.delegate = self;
         [self.view addSubview:_townTableView];
+        //隐藏多余cell
+        self.townTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
     return _townTableView;
 }
@@ -229,6 +246,7 @@ static const CGFloat kBottomHeight = 60;
     [self.view addSubview:label3];
     
     UIButton *searchAddress = [UIButton buttonWithType:UIButtonTypeCustom];
+    searchAddress.tag = 205;
     [searchAddress setTitle:@"请选择搜索区域" forState:UIControlStateNormal];
     [searchAddress setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     searchAddress.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -282,6 +300,7 @@ static const CGFloat kBottomHeight = 60;
         self.cityTableView.frame = CGRectMake(kDeviceWidth/3, 120.5, kDeviceWidth/3, 0);
         self.townTableView.frame = CGRectMake(kDeviceWidth/3*2, 120.5, kDeviceWidth/3, 0);
 //        tempLabel.frame=CGRectMake(0,120.5, 100,40);
+        self.detailAddress = nil;
     }
     [UIView commitAnimations];
 }
@@ -296,8 +315,12 @@ static const CGFloat kBottomHeight = 60;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (tableView == _provinceTableView) {
         return self.proviceArr.count;
+    }else if(tableView == _cityTableView){
+        return self.cityArr.count;
+    }else if(tableView == _townTableView){
+        return self.townArr.count;
     }
-    return 1;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -308,10 +331,90 @@ static const CGFloat kBottomHeight = 60;
 //        cell.backgroundColor = [UIColor orangeColor];
         cell.textLabel.font = [UIFont systemFontOfSize:15];
     }
-    cell.textLabel.text = self.proviceArr[indexPath.row];
+    if (tableView == _provinceTableView) {
+        cell.textLabel.text = self.proviceArr[indexPath.row];
+    }else if(tableView == _cityTableView){
+        cell.textLabel.text = self.cityArr[indexPath.row];
+    }else if(tableView == _townTableView){
+        cell.textLabel.text = self.townArr[indexPath.row];
+    }
+    
     
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _provinceTableView) {
+        self.index1 = indexPath.row;
+        self.index2 = 0;
+//        self.index3 = 0;
+        [self calculateFirstData];
+        [self.cityTableView reloadData];
+//        [self.townTableView reloadData];
+        
+    }else if(tableView == _cityTableView){
+        self.index2 = indexPath.row;
+        self.index3 = 0;
+        [self calculateFirstData];
+        [self.townTableView reloadData];
+        
+    }else if(tableView == _townTableView){
+        self.index3 = indexPath.row;
+        if (self.index1 == 0) {
+            [self.provinceTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+        if (self.index2 == 0){
+            [self.cityTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
+        }
+        [self.detailAddress appendString:self.proviceArr[self.index1]];
+        [self.detailAddress appendString:@"-"];
+        [self.detailAddress appendString:self.cityArr[self.index2]];
+        [self.detailAddress appendString:@"-"];
+        [self.detailAddress appendString:self.townArr[self.index3]];
+        UIButton *tempBtn = [self.view viewWithTag:205];
+        [tempBtn setTitle:self.detailAddress forState:UIControlStateNormal];
+        [self chooseAddress:tempBtn];
+    }
+}
+
+-(void)viewDidLayoutSubviews
+{
+    if ([self.provinceTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.provinceTableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([self.provinceTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.provinceTableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([self.cityTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.cityTableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([self.cityTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.cityTableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([self.townTableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.townTableView setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([self.townTableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.townTableView setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
 /*
 #pragma mark - Navigation
 

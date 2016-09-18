@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F31AB361D8E975500094919 /* ShouHuoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F31AB341D8E975400094919 /* ShouHuoTableViewCell.m */; };
+		1F31AB371D8E975500094919 /* ShouHuoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F31AB351D8E975400094919 /* ShouHuoTableViewCell.xib */; };
 		1FACAE8D1D45BD6F0049A4BC /* JLFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FACAE8C1D45BD6F0049A4BC /* JLFlowLayout.m */; };
 		1FACAE911D45C49A0049A4BC /* JLCommdoityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FACAE8F1D45C4990049A4BC /* JLCommdoityCollectionCell.m */; };
 		1FACAE921D45C49A0049A4BC /* JLCommdoityCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FACAE901D45C4990049A4BC /* JLCommdoityCollectionCell.xib */; };
@@ -206,6 +208,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F31AB331D8E975400094919 /* ShouHuoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouHuoTableViewCell.h; sourceTree = "<group>"; };
+		1F31AB341D8E975400094919 /* ShouHuoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouHuoTableViewCell.m; sourceTree = "<group>"; };
+		1F31AB351D8E975400094919 /* ShouHuoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShouHuoTableViewCell.xib; sourceTree = "<group>"; };
 		1FACAE8B1D45BD6F0049A4BC /* JLFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLFlowLayout.h; sourceTree = "<group>"; };
 		1FACAE8C1D45BD6F0049A4BC /* JLFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLFlowLayout.m; sourceTree = "<group>"; };
 		1FACAE8E1D45C4990049A4BC /* JLCommdoityCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLCommdoityCollectionCell.h; sourceTree = "<group>"; };
@@ -810,6 +815,9 @@
 				971C741F1D81C531009F0619 /* AddressController.m */,
 				978D4CD41D8531DF0079C984 /* AddressView.h */,
 				978D4CD51D8531DF0079C984 /* AddressView.m */,
+				1F31AB331D8E975400094919 /* ShouHuoTableViewCell.h */,
+				1F31AB341D8E975400094919 /* ShouHuoTableViewCell.m */,
+				1F31AB351D8E975400094919 /* ShouHuoTableViewCell.xib */,
 			);
 			name = Addresses;
 			sourceTree = "<group>";
@@ -1481,6 +1489,7 @@
 				B5F3C8341D6F4B9D0010D199 /* CartPlaceHolderView.xib in Resources */,
 				E72893F11D06A251006CAEBB /* kudou.cer in Resources */,
 				976BC90D1D57AB1600BDEF01 /* CommodityComponentCell.xib in Resources */,
+				1F31AB371D8E975500094919 /* ShouHuoTableViewCell.xib in Resources */,
 				978D3C1F1D44F04800C0C1BE /* btn_020.disable@2x.png in Resources */,
 				E7A189C61D02D17700E6F441 /* Me.storyboard in Resources */,
 				C5478B0C1D7144A0006CFBFB /* LoginViewController.xib in Resources */,
@@ -1756,6 +1765,7 @@
 				9759770D1D577C0E00B3B5CB /* TYTextContainer+Extended.m in Sources */,
 				E715ECBB1D052671003A2D62 /* Foundation+Log.m in Sources */,
 				308B96C61D572D2C008DD755 /* JLShopModel.m in Sources */,
+				1F31AB361D8E975500094919 /* ShouHuoTableViewCell.m in Sources */,
 				E77EFEED1D05558600E5113C /* CommodityTableViewController.m in Sources */,
 				E715ECE11D052696003A2D62 /* NSArray+MASAdditions.m in Sources */,
 				975977091D577C0E00B3B5CB /* TYAttributedLabel.m in Sources */,
