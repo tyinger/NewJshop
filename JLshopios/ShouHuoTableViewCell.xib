@@ -156,7 +156,12 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="334" y="298.5"/>
+            <connections>
+                <outlet property="detailAddr" destination="rxw-HO-h8g" id="hYb-3w-O4b"/>
+                <outlet property="manName" destination="p6G-kf-5zB" id="Kgw-Qt-Wbw"/>
+                <outlet property="phoneLabel" destination="R4B-bK-u31" id="Pub-iN-Ghh"/>
+            </connections>
+            <point key="canvasLocation" x="397" y="298.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -20,14 +20,28 @@ static const CGFloat kBottomHeight = 60;
 /** 底部白色背景 */
 @property (nonatomic , strong) UIView *whiteBackGroundView;
 
+@property (nonatomic , strong) NSMutableArray*allArr;
+
 @end
 
 @implementation ShouhoudizhiViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
+        _allArr = json;
+        [_addressTableView reloadData];
+        MYLog(@"json = %@",json);
+    } failure:^(NSError *error) {
+        
+        MYLog(@"error = %@",error);
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    _allArr = [[NSMutableArray alloc] init];
     [self whiteBackGroundView];
     [self addressTableView];
 }
@@ -87,14 +101,17 @@ static const CGFloat kBottomHeight = 60;
 #pragma mark -----tableView Delegate And Datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    return _allArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ShouHuoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //    cell.backgroundColor = [UIColor blueColor];
+    cell.manName.text = _allArr[indexPath.row][@"name"];
+    cell.phoneLabel.text = _allArr[indexPath.row][@"phone"];
+    cell.detailAddr.text = _allArr[indexPath.row][@"detailedAdd"];
     return cell;
 }
 

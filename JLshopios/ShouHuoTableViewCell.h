@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ShouHuoTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *manName;
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailAddr;
 
 @end
