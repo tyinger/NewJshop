@@ -10,4 +10,5 @@
 
 @interface ShangjiaViewController : UIViewController
 
+@property (strong, nonatomic) UIImagePickerController *imagePickerController;
 @end

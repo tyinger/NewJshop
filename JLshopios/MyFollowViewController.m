@@ -5,7 +5,7 @@
 //  Created by 孙鑫 on 16/9/8.
 //  Copyright © 2016年 feng. All rights reserved.
 //
-static const 
+static const CGFloat segHeight = 44;
 #import "MyFollowViewController.h"
 #import "XTSegmentControl.h"
 #import "FollowUIModel.h"
@@ -22,7 +22,7 @@ static const
 #pragma mark - lazyLoad
 - (XTSegmentControl *)segmentControl{
     if (!_segmentControl) {
-        _segmentControl= [[XTSegmentControl alloc] initWithFrame:CGRectMake(0, 0, 160, 44) Items:@[@"商品",@"店铺"] selectedBlock:^(NSInteger index) {
+        _segmentControl= [[XTSegmentControl alloc] initWithFrame:CGRectMake(0, 0, 160, segHeight) Items:@[@"商品",@"店铺"] selectedBlock:^(NSInteger index) {
 //            [self refreshMySegment];
 //            [self.myCarousel scrollToItemAtIndex:index animated:NO];
             
@@ -32,9 +32,11 @@ static const
     return _segmentControl;
 }
 - (UITableView *)mainTableView{
+    
     if (!_mainTableView) {
-     _mainTableView = [UITableView alloc] initWithFrame:CGRectMake(0, 44, <#CGFloat width#>, <#CGFloat height#>) style:<#(UITableViewStyle)#>
+        _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, segHeight, kDeviceWidth, KDeviceHeight-segHeight) style:UITableViewStylePlain];
     }
+    return _mainTableView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

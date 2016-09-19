@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSString * goodsId;
 @property (nonatomic, copy) NSString * price;
 @property (nonatomic, copy) NSString * status;
-@property (nonatomic, copy) NSString * description;
+@property (nonatomic, copy) NSString * Description;
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, copy) NSString * collectId;
 @property (nonatomic, copy) NSString * soldNum;
