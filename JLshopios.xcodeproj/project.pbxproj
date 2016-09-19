@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F31AB361D8E975500094919 /* ShouHuoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F31AB341D8E975400094919 /* ShouHuoTableViewCell.m */; };
+		1F31AB371D8E975500094919 /* ShouHuoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F31AB351D8E975400094919 /* ShouHuoTableViewCell.xib */; };
 		1FACAE8D1D45BD6F0049A4BC /* JLFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FACAE8C1D45BD6F0049A4BC /* JLFlowLayout.m */; };
 		1FACAE911D45C49A0049A4BC /* JLCommdoityCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FACAE8F1D45C4990049A4BC /* JLCommdoityCollectionCell.m */; };
 		1FACAE921D45C49A0049A4BC /* JLCommdoityCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FACAE901D45C4990049A4BC /* JLCommdoityCollectionCell.xib */; };
+		1FBB9B6F1D8791DB00462A01 /* provinceCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FBB9B6E1D8791DB00462A01 /* provinceCode.plist */; };
+		1FBB9B711D8792A200462A01 /* cityCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FBB9B701D8792A200462A01 /* cityCode.plist */; };
+		1FBB9B731D8792B700462A01 /* townCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FBB9B721D8792B700462A01 /* townCode.plist */; };
+		1FBB9B751D87DBEB00462A01 /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 1FBB9B741D87DBEA00462A01 /* address.json */; };
 		30312C271D5709E500E0D0BD /* BAddressPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C161D5709E500E0D0BD /* BAddressPickerController.m */; };
 		30312C281D5709E500E0D0BD /* BCurrentCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C181D5709E500E0D0BD /* BCurrentCityCell.m */; };
 		30312C291D5709E500E0D0BD /* BHotCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C1A1D5709E500E0D0BD /* BHotCityCell.m */; };
@@ -65,6 +71,7 @@
 		8E6EC3161D58EFA8008A03EF /* JLGoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6EC3151D58EFA8008A03EF /* JLGoodModel.m */; };
 		8EA0FE121D0C727D00947433 /* JLTypeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA0FE111D0C727D00947433 /* JLTypeListView.m */; };
 		971C74201D81C531009F0619 /* AddressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 971C741F1D81C531009F0619 /* AddressController.m */; };
+		973032EB1D8D8D66003B48FA /* address.json in Resources */ = {isa = PBXBuildFile; fileRef = 973032EA1D8D8D66003B48FA /* address.json */; };
 		975976C61D570AAC00B3B5CB /* NewCategory.plist in Resources */ = {isa = PBXBuildFile; fileRef = 975976C51D570AAC00B3B5CB /* NewCategory.plist */; };
 		975976CF1D577ACE00B3B5CB /* CellConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 975976CC1D577ACE00B3B5CB /* CellConfig.m */; };
 		975976D01D577ACE00B3B5CB /* DetailsMode.m in Sources */ = {isa = PBXBuildFile; fileRef = 975976CE1D577ACE00B3B5CB /* DetailsMode.m */; };
@@ -210,11 +217,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F31AB331D8E975400094919 /* ShouHuoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouHuoTableViewCell.h; sourceTree = "<group>"; };
+		1F31AB341D8E975400094919 /* ShouHuoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouHuoTableViewCell.m; sourceTree = "<group>"; };
+		1F31AB351D8E975400094919 /* ShouHuoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShouHuoTableViewCell.xib; sourceTree = "<group>"; };
 		1FACAE8B1D45BD6F0049A4BC /* JLFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLFlowLayout.h; sourceTree = "<group>"; };
 		1FACAE8C1D45BD6F0049A4BC /* JLFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLFlowLayout.m; sourceTree = "<group>"; };
 		1FACAE8E1D45C4990049A4BC /* JLCommdoityCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JLCommdoityCollectionCell.h; sourceTree = "<group>"; };
 		1FACAE8F1D45C4990049A4BC /* JLCommdoityCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLCommdoityCollectionCell.m; sourceTree = "<group>"; };
 		1FACAE901D45C4990049A4BC /* JLCommdoityCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JLCommdoityCollectionCell.xib; sourceTree = "<group>"; };
+		1FBB9B6E1D8791DB00462A01 /* provinceCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = provinceCode.plist; sourceTree = "<group>"; };
+		1FBB9B701D8792A200462A01 /* cityCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityCode.plist; sourceTree = "<group>"; };
+		1FBB9B721D8792B700462A01 /* townCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = townCode.plist; sourceTree = "<group>"; };
+		1FBB9B741D87DBEA00462A01 /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
 		30312C141D5709E500E0D0BD /* BAddressHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAddressHeader.h; sourceTree = "<group>"; };
 		30312C151D5709E500E0D0BD /* BAddressPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAddressPickerController.h; sourceTree = "<group>"; };
 		30312C161D5709E500E0D0BD /* BAddressPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAddressPickerController.m; sourceTree = "<group>"; };
@@ -323,6 +337,7 @@
 		8EA0FE111D0C727D00947433 /* JLTypeListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JLTypeListView.m; sourceTree = "<group>"; };
 		971C741E1D81C531009F0619 /* AddressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressController.h; sourceTree = "<group>"; };
 		971C741F1D81C531009F0619 /* AddressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressController.m; sourceTree = "<group>"; };
+		973032EA1D8D8D66003B48FA /* address.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address.json; sourceTree = "<group>"; };
 		975976C51D570AAC00B3B5CB /* NewCategory.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = NewCategory.plist; sourceTree = "<group>"; };
 		975976CB1D577ACE00B3B5CB /* CellConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellConfig.h; sourceTree = "<group>"; };
 		975976CC1D577ACE00B3B5CB /* CellConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellConfig.m; sourceTree = "<group>"; };
@@ -656,6 +671,11 @@
 				3043B0A71D02C55B00E97B82 /* Assets.xcassets */,
 				3043B0A91D02C55B00E97B82 /* LaunchScreen.storyboard */,
 				3043B0AC1D02C55B00E97B82 /* Info.plist */,
+				973032EA1D8D8D66003B48FA /* address.json */,
+				1FBB9B741D87DBEA00462A01 /* address.json */,
+				1FBB9B6E1D8791DB00462A01 /* provinceCode.plist */,
+				1FBB9B701D8792A200462A01 /* cityCode.plist */,
+				1FBB9B721D8792B700462A01 /* townCode.plist */,
 				3043B09B1D02C55B00E97B82 /* Supporting Files */,
 			);
 			path = JLshopios;
@@ -825,6 +845,9 @@
 				971C741F1D81C531009F0619 /* AddressController.m */,
 				978D4CD41D8531DF0079C984 /* AddressView.h */,
 				978D4CD51D8531DF0079C984 /* AddressView.m */,
+				1F31AB331D8E975400094919 /* ShouHuoTableViewCell.h */,
+				1F31AB341D8E975400094919 /* ShouHuoTableViewCell.m */,
+				1F31AB351D8E975400094919 /* ShouHuoTableViewCell.xib */,
 			);
 			name = Addresses;
 			sourceTree = "<group>";
@@ -1538,7 +1561,9 @@
 				30312C2C1D5709E500E0D0BD /* cities.plist in Resources */,
 				E7A189CA1D02D19B00E6F441 /* Category.storyboard in Resources */,
 				976BC90F1D57AB3000BDEF01 /* CommodityAddressCell.xib in Resources */,
+				1FBB9B711D8792A200462A01 /* cityCode.plist in Resources */,
 				975976F01D577B4100B3B5CB /* CommodityPraiseCell.xib in Resources */,
+				973032EB1D8D8D66003B48FA /* address.json in Resources */,
 				978D3C251D44F04800C0C1BE /* ProvincesAndCities.plist in Resources */,
 				3043B0AB1D02C55B00E97B82 /* LaunchScreen.storyboard in Resources */,
 				975976F41D577B4100B3B5CB /* CommoditySelectCell.xib in Resources */,
@@ -1551,9 +1576,11 @@
 				E715ECDA1D052696003A2D62 /* LICENSE in Resources */,
 				978D3C231D44F04800C0C1BE /* btn_021.press@2x.png in Resources */,
 				975976F21D577B4100B3B5CB /* CommoditySectionCell.xib in Resources */,
+				1FBB9B731D8792B700462A01 /* townCode.plist in Resources */,
 				B5F3C8341D6F4B9D0010D199 /* CartPlaceHolderView.xib in Resources */,
 				E72893F11D06A251006CAEBB /* kudou.cer in Resources */,
 				976BC90D1D57AB1600BDEF01 /* CommodityComponentCell.xib in Resources */,
+				1F31AB371D8E975500094919 /* ShouHuoTableViewCell.xib in Resources */,
 				978D3C1F1D44F04800C0C1BE /* btn_020.disable@2x.png in Resources */,
 				E7A189C61D02D17700E6F441 /* Me.storyboard in Resources */,
 				C5478B0C1D7144A0006CFBFB /* LoginViewController.xib in Resources */,
@@ -1567,9 +1594,11 @@
 				978D3C211D44F04800C0C1BE /* btn_020@2x.png in Resources */,
 				C5DEE9FD1D5715DC00823ED8 /* RegisterViewController.xib in Resources */,
 				978D3C201D44F04800C0C1BE /* btn_020.press@2x.png in Resources */,
+				1FBB9B6F1D8791DB00462A01 /* provinceCode.plist in Resources */,
 				E715ED0F1D0526E5003A2D62 /* CommodityTableViewCell.xib in Resources */,
 				B5A9F6071D816245002E4293 /* FollowGoodTableViewCell.xib in Resources */,
 				B5FDB2201D6C35930042D9EC /* CartCell.xib in Resources */,
+				1FBB9B751D87DBEB00462A01 /* address.json in Resources */,
 				3057831F1D0C1CA5007AED3C /* ShopHome.storyboard in Resources */,
 				976BC90B1D57AB0700BDEF01 /* CommodityPackCell.xib in Resources */,
 				978D3C271D44F04800C0C1BE /* TSLocateView.xib in Resources */,
@@ -1834,6 +1863,7 @@
 				9759770D1D577C0E00B3B5CB /* TYTextContainer+Extended.m in Sources */,
 				E715ECBB1D052671003A2D62 /* Foundation+Log.m in Sources */,
 				308B96C61D572D2C008DD755 /* JLShopModel.m in Sources */,
+				1F31AB361D8E975500094919 /* ShouHuoTableViewCell.m in Sources */,
 				E77EFEED1D05558600E5113C /* CommodityTableViewController.m in Sources */,
 				E715ECE11D052696003A2D62 /* NSArray+MASAdditions.m in Sources */,
 				975977091D577C0E00B3B5CB /* TYAttributedLabel.m in Sources */,

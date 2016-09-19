@@ -30,6 +30,7 @@
 #import "UIBarButtonItem+Addition.h"
 #import "QSCNavigationController.h"
 #import "QSCHttpTool.h"
+#import "MJExtension.h"
 
 #import "UIScrollView+EmptyDataSet.h"
 #import "FYTXHub.h"

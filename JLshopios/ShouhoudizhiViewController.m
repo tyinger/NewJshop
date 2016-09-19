@@ -7,7 +7,7 @@
 //
 
 #import "ShouhoudizhiViewController.h"
-
+#import "ShouHuoTableViewCell.h"
 #import "AddressController.h"
 
 static const CGFloat kBottomHeight = 60;
@@ -20,14 +20,28 @@ static const CGFloat kBottomHeight = 60;
 /** 底部白色背景 */
 @property (nonatomic , strong) UIView *whiteBackGroundView;
 
+@property (nonatomic , strong) NSMutableArray*allArr;
+
 @end
 
 @implementation ShouhoudizhiViewController
 
+- (void)viewWillAppear:(BOOL)animated{
+    
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
+        _allArr = json;
+        [_addressTableView reloadData];
+        MYLog(@"json = %@",json);
+    } failure:^(NSError *error) {
+        
+        MYLog(@"error = %@",error);
+    }];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    _allArr = [[NSMutableArray alloc] init];
     [self whiteBackGroundView];
     [self addressTableView];
 }
@@ -67,7 +81,7 @@ static const CGFloat kBottomHeight = 60;
         
         _addressTableView.dataSource = self;
         _addressTableView.delegate = self;
-        _addressTableView.backgroundColor = [UIColor greenColor];
+//        _addressTableView.backgroundColor = [UIColor greenColor];
         [self.view addSubview:_addressTableView];
         [_addressTableView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.view).offset(0);
@@ -75,7 +89,11 @@ static const CGFloat kBottomHeight = 60;
             make.left.equalTo(self.view.mas_left).offset(0);
             make.right.equalTo(self.view.mas_right).offset(0);
         }];
+        [_addressTableView registerNib:[UINib nibWithNibName:@"ShouHuoTableViewCell" bundle:nil] forCellReuseIdentifier:@"cell"];
+        //隐藏多余cell
+        _addressTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     }
+    
     return _addressTableView;
 }
 
@@ -83,17 +101,22 @@ static const CGFloat kBottomHeight = 60;
 #pragma mark -----tableView Delegate And Datasource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return _allArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
-    cell.backgroundColor = [UIColor blueColor];
+    ShouHuoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.backgroundColor = [UIColor blueColor];
+    cell.manName.text = _allArr[indexPath.row][@"name"];
+    cell.phoneLabel.text = _allArr[indexPath.row][@"phone"];
+    cell.detailAddr.text = _allArr[indexPath.row][@"detailedAdd"];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 112;
 }
 
 #pragma mark -- button Action
