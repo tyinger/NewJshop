@@ -308,7 +308,46 @@ static const CGFloat kBottomHeight = 60;
 
 //保存地址
 - (void)saveAction:(UIButton *)btn{
+    /** 收货人textFiled */
+//    @property (nonatomic , strong) UITextField *shouTextFiled;
+//    /** 手机textFilled */
+//    @property (nonatomic , strong) UITextField *phoneTextFiled;
+//    /** 地址textFiled */
+//    @property (nonatomic , strong) UITextField *addrTextFiled;
+    UIButton *tempBtn = [self.view viewWithTag:205];
+    if([self.shouTextFiled.text isEqualToString:@""]){
+        [FYTXHub toast:@"请填写收货人"];
+        return;
+    }
+    if ([self.phoneTextFiled.text isEqualToString:@""]) {
+        [FYTXHub toast:@"请填写联系方式"];
+        return;
+    }
+    if ([tempBtn.titleLabel.text isEqualToString:@"请选择搜索区域"]) {
+        [FYTXHub toast:@"请选择区域"];
+        return;
+    }
+    if ([self.addrTextFiled.text isEqualToString:@""]) {
+        [FYTXHub toast:@"请填写详细地址"];
+        return;
+    }
     
+    
+    NSDictionary *dic = @{@"isDefault":@"0",
+                          @"areaAdds":tempBtn.titleLabel.text,
+                          @"detailedAdd":self.addrTextFiled.text,
+                          @"userId":[LoginStatus sharedManager].idStr,
+                          @"name":self.shouTextFiled.text,
+                          @"phone":self.phoneTextFiled.text,
+                          @"area.id":@"110101000",
+                          @"area.name":@""};
+    [QSCHttpTool post:@"https://123.56.192.182:8444/app/address/saveUserAddress?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+        MYLog(@"json = %@",json);
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+        MYLog(@"error  = %@",error);
+    }];
+
 }
 
 #pragma mark - UITableViewDataSource AND UITableViewDelegate

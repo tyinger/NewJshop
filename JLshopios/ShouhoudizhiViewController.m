@@ -9,6 +9,7 @@
 #import "ShouhoudizhiViewController.h"
 #import "ShouHuoTableViewCell.h"
 #import "AddressController.h"
+#import "ShouHuoModel.h"
 
 static const CGFloat kBottomHeight = 60;
 @interface ShouhoudizhiViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -31,10 +32,10 @@ static const CGFloat kBottomHeight = 60;
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
         _allArr = json;
         [_addressTableView reloadData];
-        MYLog(@"json = %@",json);
+        MYLog(@"收货地址列表error = %@",json);
     } failure:^(NSError *error) {
         
-        MYLog(@"error = %@",error);
+        MYLog(@"收货地址列表error = %@",error);
     }];
 }
 
@@ -108,10 +109,14 @@ static const CGFloat kBottomHeight = 60;
 {
     ShouHuoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    ShouHuoModel *shouModel = [[ShouHuoModel alloc] initWithDictionary:_allArr[indexPath.row]];
+    cell.cellBtnBlock = ^(NSInteger tag){
+        [self cellBtnAction:tag AndCellNum:shouModel.areaId];
+    };
 //    cell.backgroundColor = [UIColor blueColor];
-    cell.manName.text = _allArr[indexPath.row][@"name"];
-    cell.phoneLabel.text = _allArr[indexPath.row][@"phone"];
-    cell.detailAddr.text = _allArr[indexPath.row][@"detailedAdd"];
+    cell.manName.text = shouModel.name;
+    cell.phoneLabel.text = shouModel.phone;
+    cell.detailAddr.text = shouModel.detailedAdd;
     return cell;
 }
 
@@ -130,6 +135,28 @@ static const CGFloat kBottomHeight = 60;
     }
 }
 
+- (void)cellBtnAction:(NSInteger)tag AndCellNum:(NSInteger)cellNum{
+    switch (tag) {
+        case 331:
+        {
+            MYLog(@"xxxx%d",cellNum);
+        }
+            break;
+        case 332:
+        {
+            MYLog(@"cccc%d",cellNum);
+        }
+            break;
+        case 333:
+        {
+            MYLog(@"vvvv%d",cellNum);
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 /*
 #pragma mark - Navigation
 

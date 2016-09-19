@@ -10,6 +10,7 @@
 
 @implementation ShouHuoTableViewCell
 
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
@@ -19,6 +20,27 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (IBAction)isDefaultAction:(UIButton *)sender {
+    
+    if (self.cellBtnBlock) {
+        self.cellBtnBlock(sender.tag);
+    }
+    
+}
+
+- (IBAction)modifyAction:(UIButton *)sender {
+    
+    if (self.cellBtnBlock) {
+        self.cellBtnBlock(sender.tag);
+    }
+}
+
+- (IBAction)deteleAction:(UIButton *)sender {
+    
+    if (self.cellBtnBlock) {
+        self.cellBtnBlock(sender.tag);
+    }
 }
 
 @end
