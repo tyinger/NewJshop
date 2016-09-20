@@ -13,7 +13,7 @@
 
 #import "LoginViewController.h"
 
-@interface JLMeViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface JLMeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic,strong) UITableView *mainTableView;
 
@@ -145,14 +145,8 @@
     tuichuButton.layer.cornerRadius = 5;
     [[[tuichuButton rac_signalForControlEvents:UIControlEventTouchUpInside] deliverOnMainThread] subscribeNext:^(id x) {
         
-        [FYTXHub success:@"退出成功" delayClose:1 compelete:^{
-            
-           dispatch_async(dispatch_get_main_queue(), ^{
-               
-               [[LoginStatus sharedManager] end];
-               [LoginStatus sharedManager].login = NO;
-           });
-        }];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"退出当前账号" message:@"是否要退出当前账号" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alert show];
     }];
     [mainView addSubview:tuichuButton];
     [tuichuButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -187,6 +181,22 @@
     userImage.layer.masksToBounds = YES;
     userImage.layer.borderWidth = 2;
     userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    userImage.userInteractionEnabled = YES;
+    UITapGestureRecognizer *ages = [[UITapGestureRecognizer alloc] init];
+    [userImage addGestureRecognizer:ages];
+    @weakify(self);
+    [[ages rac_gestureSignal] subscribeNext:^(id x) {
+        
+        @strongify(self);
+        Class class = NSClassFromString(@"GerenziliaoxiugaiController");
+        if (class) {
+            UIViewController *ctrl = class.new;
+            ctrl.title = @"个人信息";
+            [self.navigationController pushViewController:ctrl animated:YES];
+        }
+    }];
+    
     [b addSubview:userImage];
     [userImage mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -233,9 +243,24 @@
     
     UIImageView *codeImage = [[UIImageView alloc] init];
     codeImage.layer.masksToBounds = YES;
-    codeImage.contentMode = UIViewContentModeScaleAspectFill;
-    [codeImage sd_setImageWithURL:[NSURL URLWithString:[LoginStatus sharedManager].recommendCodePic]];
+    codeImage.contentMode = UIViewContentModeScaleAspectFit;
+    codeImage.image = [UIImage imageNamed:@"wodeerweima"];
     [b addSubview:codeImage];
+    codeImage.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] init];
+    [codeImage addGestureRecognizer:ges];
+    [[ges rac_gestureSignal] subscribeNext:^(id x) {
+        
+        @strongify(self);
+        Class class = NSClassFromString(@"WodeerweimaController");
+        if (class) {
+            UIViewController *ctrl = class.new;
+            ctrl.title = @"我的二维码";
+            [self.navigationController pushViewController:ctrl animated:YES];
+        }
+    }];
+    
     [codeImage mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.centerY.equalTo(userImage.mas_centerY).offset(0);
@@ -243,8 +268,8 @@
         make.right.offset(-20);
     }];
     
-    NSArray *imageNarr = @[@"daifukuan",@"daishou",@"pingjia",@"",@"quanbudingdan"];
-    NSArray *iconName = @[@"代付款",@"待收货",@"待评价",@"返修/退换",@"全部订单"];
+    NSArray *imageNarr = @[@"daifukuan",@"daifahuo",@"daishou",@"pingjia",@"quanbudingdan"];
+    NSArray *iconName = @[@"代付款",@"待发货",@"待收货",@"待评价",@"全部订单"];
     
     UIView *lastView;
     for (int i = 0; i<5; i++) {
@@ -269,6 +294,20 @@
             }
         }];
         
+        if (i == 4) {
+            
+            UIView *lView = [[UIView alloc] init];
+            lView.backgroundColor = [UIColor grayColor];
+            [b addSubview:lView];
+            [lView mas_makeConstraints:^(MASConstraintMaker *make) {
+                
+                make.left.equalTo(backView.mas_left).offset(0);
+                make.top.equalTo(backView.mas_top).offset(0);
+                make.width.mas_equalTo(@1);
+                make.height.equalTo(backView.mas_height).offset(0);
+            }];
+        }
+        
         lastView = backView;
         
         UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageNarr[i]]];
@@ -282,7 +321,7 @@
         
         UILabel *label = [[UILabel alloc] init];
         label.text = iconName[i];
-        label.font = [UIFont systemFontOfSize:10];
+        label.font = [UIFont systemFontOfSize:11];
         label.textColor = [UIColor blackColor];
         [backView addSubview:label];
         [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -310,7 +349,19 @@
 }
 - (void)gesAction: (UIGestureRecognizer *)ges{
     
-    
+    if ([LoginStatus sharedManager].login == NO) {
+        
+        [FYTXHub toast:@"请先登录"];
+        @weakify(self);
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            @strongify(self);
+            [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+        });
+    }else{
+        
+        NSLog(@"%ld",ges.view.tag);
+    }
 }
 
 //init
@@ -482,6 +533,22 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     
     return 10;
+}
+
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    
+    if (buttonIndex == 1) {
+        
+        [FYTXHub success:@"退出成功" delayClose:1 compelete:^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [[LoginStatus sharedManager] end];
+                [LoginStatus sharedManager].login = NO;
+            });
+        }];
+    }
 }
 
 @end

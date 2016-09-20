@@ -59,7 +59,7 @@
 
 - (IBAction)loginAction:(id)sender {
 
-    NSDictionary *d = @{@"loginName":@"18643212316",@"password":[NSString changemd:self.passwordTextF.text]};
+    NSDictionary *d = @{@"loginName":[NSString stringWithFormat:@"%@",self.userNameTextF.text],@"password":[NSString changemd:self.passwordTextF.text]};
     
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getLoginUser?" parameters:d isShowHUD:NO httpToolSuccess:^(id json) {
         

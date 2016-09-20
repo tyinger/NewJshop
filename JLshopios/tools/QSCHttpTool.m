@@ -160,7 +160,8 @@
 //    [self getToken];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+//    傻逼后台只接受键值对
+//    manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/javascript",@"text/html", nil];
      manager.requestSerializer.timeoutInterval = 60.f;
 
@@ -171,7 +172,7 @@
 
 + (void)uploadImagePath:(NSString *)path params:(NSDictionary *)params kHeadimgName:(NSString *)headimgName image:(UIImage *)image success:(ImageHttpSuccessBlock)success failure:(ImageHttpFailureBlock)failure
 {
-    NSData *data = UIImageJPEGRepresentation(image, 0.7);// 压缩
+    NSData *data = UIImageJPEGRepresentation(image, 0.01);// 压缩
     // 在网络开发中，上传文件时，是文件不允许被覆盖，文件重名
     // 要解决此问题，
     // 可以在上传时使用当前的系统时间作为文件名

@@ -8,8 +8,6 @@
 
 #import "LoginStatus.h"
 
-#import <AdSupport/AdSupport.h>
-
 @interface LoginStatus()
 
 @end
