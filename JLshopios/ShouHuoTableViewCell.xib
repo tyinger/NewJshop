@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="113"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="112.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="112"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18050554962" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R4B-bK-u31">
@@ -75,13 +75,14 @@
                             <action selector="deteleAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bgT-H2-2Dl"/>
                         </connections>
                     </button>
-                    <button opaque="NO" tag="331" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IK-KU-1ia">
-                        <rect key="frame" x="8" y="76" width="20" height="20"/>
-                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <button opaque="NO" tag="331" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IK-KU-1ia">
+                        <rect key="frame" x="2" y="70" width="32" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="IgN-xC-m1w"/>
-                            <constraint firstAttribute="height" constant="20" id="nFx-PF-Vby"/>
+                            <constraint firstAttribute="width" constant="32" id="IgN-xC-m1w"/>
+                            <constraint firstAttribute="height" constant="32" id="nFx-PF-Vby"/>
                         </constraints>
+                        <state key="normal" image="icon_box-normal"/>
+                        <state key="selected" image="icon_box-selected"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
@@ -151,11 +152,11 @@
                     <constraint firstItem="x7n-5E-K9k" firstAttribute="top" secondItem="6c1-nB-nAw" secondAttribute="bottom" constant="10" id="g5f-1T-XR9"/>
                     <constraint firstItem="R4B-bK-u31" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gAy-eh-r6z"/>
                     <constraint firstItem="rxw-HO-h8g" firstAttribute="top" secondItem="p6G-kf-5zB" secondAttribute="bottom" constant="10" id="gzk-oA-sXx"/>
-                    <constraint firstItem="1IK-KU-1ia" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="qSN-cc-x6s"/>
+                    <constraint firstItem="1IK-KU-1ia" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-6" id="qSN-cc-x6s"/>
                     <constraint firstItem="6c1-nB-nAw" firstAttribute="top" secondItem="rxw-HO-h8g" secondAttribute="bottom" constant="5" id="sU3-z2-RvQ"/>
                     <constraint firstItem="frY-qE-fiD" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="t7J-E6-0ol"/>
-                    <constraint firstItem="1IK-KU-1ia" firstAttribute="top" secondItem="6c1-nB-nAw" secondAttribute="bottom" constant="10" id="tMu-8Y-Xjd"/>
-                    <constraint firstItem="x7n-5E-K9k" firstAttribute="leading" secondItem="1IK-KU-1ia" secondAttribute="trailing" constant="5" id="u7i-sB-HiE"/>
+                    <constraint firstItem="1IK-KU-1ia" firstAttribute="top" secondItem="6c1-nB-nAw" secondAttribute="bottom" constant="4" id="tMu-8Y-Xjd"/>
+                    <constraint firstItem="x7n-5E-K9k" firstAttribute="leading" secondItem="1IK-KU-1ia" secondAttribute="trailing" constant="-1" id="u7i-sB-HiE"/>
                     <constraint firstItem="rxw-HO-h8g" firstAttribute="top" secondItem="p6G-kf-5zB" secondAttribute="bottom" constant="10" id="uak-kA-6Wk"/>
                     <constraint firstAttribute="bottomMargin" secondItem="MPy-bt-eja" secondAttribute="bottom" constant="-10" id="yZB-ZG-mqH"/>
                 </constraints>
@@ -173,7 +174,11 @@
                 <outlet property="modifyBtn" destination="Q6j-fz-71q" id="3Ks-EA-1at"/>
                 <outlet property="phoneLabel" destination="R4B-bK-u31" id="Pub-iN-Ghh"/>
             </connections>
-            <point key="canvasLocation" x="-3" y="146.5"/>
+            <point key="canvasLocation" x="68" y="146.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_box-normal" width="32" height="32"/>
+        <image name="icon_box-selected" width="32" height="32"/>
+    </resources>
 </document>

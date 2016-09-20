@@ -46,6 +46,17 @@ static const CGFloat kBottomHeight = 60;
 
 @implementation AddressController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.addrId) {
+        self.shouTextFiled.text = self.firstLabelText;
+        self.phoneTextFiled.text = self.secondLabelText;
+        self.addrTextFiled.text = self.fourthLabelText;
+        UIButton *tempBtn = [self.view viewWithTag:205];
+        [tempBtn setTitle:self.thirdLabelText forState:UIControlStateNormal];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];

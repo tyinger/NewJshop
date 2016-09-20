@@ -17,6 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *deteleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *isDefaultBtn;
 
-@property (copy, nonatomic) void(^cellBtnBlock)(NSInteger tag);
+@property (copy, nonatomic) void(^cellBtnBlock)(UIButton *sender);
 
 @end

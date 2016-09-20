@@ -22,9 +22,11 @@
     // Configure the view for the selected state
 }
 - (IBAction)isDefaultAction:(UIButton *)sender {
-    
+    sender.selected = !sender.selected;
+    [FYTXHub progress:@"数据更新中..."];
+
     if (self.cellBtnBlock) {
-        self.cellBtnBlock(sender.tag);
+        self.cellBtnBlock(sender);
     }
     
 }
@@ -32,14 +34,14 @@
 - (IBAction)modifyAction:(UIButton *)sender {
     
     if (self.cellBtnBlock) {
-        self.cellBtnBlock(sender.tag);
+        self.cellBtnBlock(sender);
     }
 }
 
 - (IBAction)deteleAction:(UIButton *)sender {
     
     if (self.cellBtnBlock) {
-        self.cellBtnBlock(sender.tag);
+        self.cellBtnBlock(sender);
     }
 }
 
