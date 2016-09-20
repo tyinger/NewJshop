@@ -110,6 +110,7 @@ static const CGFloat kBottomHeight = 60;
     [agreeBtn setImage:[UIImage imageNamed:@"xn_circle_normal"] forState:UIControlStateNormal];
     [agreeBtn setImage:[UIImage imageNamed:@"xn_circle_select"] forState:UIControlStateSelected];
     agreeBtn.tag = 102;
+    agreeBtn.selected = YES;
     [agreeBtn addTarget:self action:@selector(agreeAction:) forControlEvents:UIControlEventTouchUpInside];
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(40, 0, kDeviceWidth, 40)];
@@ -382,6 +383,7 @@ static const CGFloat kBottomHeight = 60;
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传照片" message:@"" preferredStyle:0];
     
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         _imagePickerController.cameraOverlayView.userInteractionEnabled = NO;
         _imagePickerController.showsCameraControls = YES;
         [self presentViewController:_imagePickerController animated:YES completion:nil];
@@ -475,15 +477,66 @@ static const CGFloat kBottomHeight = 60;
     [self dismissViewControllerAnimated:YES completion:nil];
     
     //从字典key获取image的地址
-    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    UIImage *image = [self imageCompressForWidth:info[UIImagePickerControllerOriginalImage] targetWidth:400];
     
-//    self.imageView.image = image;
-    MYLog(@"选完照片了");
+    NSData *_data = UIImageJPEGRepresentation(image, 0.7f);
+    NSString *_encodedImageStr = [_data base64Encoding];
+    
+    
+    NSDictionary *dic = @{@"imgFile":_encodedImageStr,@"userId":[LoginStatus sharedManager].idStr};
+    [QSCHttpTool uploadImagePath:@"https://123.56.192.182:8443/app/user/updateLicenceImg" params:dic kHeadimgName:nil image:image success:^(id JSON) {
+        MYLog(@"照片json = %@",JSON);
+    } failure:^(NSError *error) {
+        MYLog(@"照片error = %@",error);
+    }];
+    MYLog(@"选完照片了%lu",(unsigned long)_data.length);
     
     
 }
 
+-(UIImage *) imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth
+{
+    CGSize imageSize = sourceImage.size;
+    CGFloat width = imageSize.width;
+    CGFloat height = imageSize.height;
+    CGFloat targetWidth = defineWidth;
+    CGFloat targetHeight = (targetWidth / width) * height;
+    UIGraphicsBeginImageContext(CGSizeMake(targetWidth, targetHeight));
+    [sourceImage drawInRect:CGRectMake(0,0,targetWidth, targetHeight)];
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
 
+//压缩图像
++(NSData *)imageData:(UIImage *)myimage
+{
+    NSData *data=UIImageJPEGRepresentation(myimage, 1.0);
+    if (data.length>100*1024) {
+        if (data.length>1024*1024) {//1M以及以上
+            data=UIImageJPEGRepresentation(myimage, 0.1);
+        }else if (data.length>512*1024) {//0.5M-1M
+            data=UIImageJPEGRepresentation(myimage, 0.5);
+        }else if (data.length>200*1024) {//0.25M-0.5M
+            data=UIImageJPEGRepresentation(myimage, 0.9);
+        }
+    }
+    return data;
+}
+
+- (NSData *)compressImage:(UIImage *)image toMaxFileSize:(NSInteger)maxFileSize {
+    CGFloat compression = 0.9f;
+    CGFloat maxCompression = 0.1f;
+    NSData *imageData = UIImageJPEGRepresentation(image, compression);
+    while ([imageData length] > maxFileSize && compression > maxCompression) {
+        compression -= 0.1;
+        imageData = UIImageJPEGRepresentation(image, compression);
+        image = [UIImage imageWithData:imageData];
+    }
+    
+//    UIImage *compressedImage = [UIImage imageWithData:imageData];
+    return imageData;
+}
 /*
 #pragma mark - Navigation
 

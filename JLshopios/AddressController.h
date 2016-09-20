@@ -14,4 +14,5 @@
 @property (nonatomic, copy) NSString *thirdLabelText;
 @property (nonatomic, copy) NSString *fourthLabelText;
 @property (nonatomic, assign) NSInteger addrId;//列表地址id
+@property (nonatomic, copy) NSString *isDefualtFlag;
 @end

@@ -73,7 +73,7 @@
 //   [[QSCHudView sharedQSCHudView] creatHUD];
 //   [QSCHudView sharedQSCHudView].hidden = !showHUD;
     AFHTTPSessionManager *manager = [self getAFHTTPRequestOperationManager];
- 
+    
     [manager POST:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (httpToolSuccess) {
             httpToolSuccess(responseObject);
@@ -160,7 +160,7 @@
 //    [self getToken];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    manager.requestSerializer=[AFJSONRequestSerializer serializer];
+//    manager.requestSerializer=[AFJSONRequestSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json",@"text/plain",@"text/javascript",@"text/html", nil];
      manager.requestSerializer.timeoutInterval = 60.f;
 

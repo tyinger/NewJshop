@@ -319,19 +319,14 @@ static const CGFloat kBottomHeight = 60;
 
 //保存地址
 - (void)saveAction:(UIButton *)btn{
-    /** 收货人textFiled */
-//    @property (nonatomic , strong) UITextField *shouTextFiled;
-//    /** 手机textFilled */
-//    @property (nonatomic , strong) UITextField *phoneTextFiled;
-//    /** 地址textFiled */
-//    @property (nonatomic , strong) UITextField *addrTextFiled;
+    
     UIButton *tempBtn = [self.view viewWithTag:205];
     if([self.shouTextFiled.text isEqualToString:@""]){
         [FYTXHub toast:@"请填写收货人"];
         return;
     }
-    if ([self.phoneTextFiled.text isEqualToString:@""]) {
-        [FYTXHub toast:@"请填写联系方式"];
+    if (![self isMobileNumber:self.phoneTextFiled.text]) {
+        [FYTXHub toast:@"请正确填写联系方式"];
         return;
     }
     if ([tempBtn.titleLabel.text isEqualToString:@"请选择搜索区域"]) {
@@ -344,15 +339,29 @@ static const CGFloat kBottomHeight = 60;
     }
     
     
-    NSDictionary *dic = @{@"isDefault":@"0",
-                          @"areaAdds":tempBtn.titleLabel.text,
-                          @"detailedAdd":self.addrTextFiled.text,
-                          @"userId":[LoginStatus sharedManager].idStr,
-                          @"name":self.shouTextFiled.text,
-                          @"phone":self.phoneTextFiled.text,
-                          @"area.id":@"110101000",
-                          @"area.name":@""};
-    [QSCHttpTool post:@"https://123.56.192.182:8444/app/address/saveUserAddress?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+    NSDictionary *dic = self.addrId ? @{@"isDefault":self.isDefualtFlag,
+                                        @"areaAdds":tempBtn.titleLabel.text,
+                                        @"detailedAdd":self.addrTextFiled.text,
+                                        @"userId":[LoginStatus sharedManager].idStr,
+                                        @"name":self.shouTextFiled.text,
+                                        @"phone":self.phoneTextFiled.text,
+                                        @"area.id":@"110101000",
+                                        @"area.name":@"",
+                                        @"id":@(self.addrId)}
+    :
+  @{@"isDefault":@"0",
+    @"areaAdds":tempBtn.titleLabel.text,
+    @"detailedAdd":self.addrTextFiled.text,
+    @"userId":[LoginStatus sharedManager].idStr,
+    @"name":self.shouTextFiled.text,
+    @"phone":self.phoneTextFiled.text,
+    @"area.id":@"110101000",
+    @"area.name":@""};
+    
+    NSString *pathStr = self.addrId ? @"https://123.56.192.182:8443/app/address/updateUserAddress?" : @"https://123.56.192.182:8443/app/address/saveUserAddress?";
+    
+    
+    [QSCHttpTool post:pathStr parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         MYLog(@"json = %@",json);
         [self.navigationController popViewControllerAnimated:YES];
     } failure:^(NSError *error) {
@@ -465,6 +474,21 @@ static const CGFloat kBottomHeight = 60;
     }
 }
 
+
+// 正则判断手机号码地址格式
+- (BOOL)isMobileNumber:(NSString *)mobileNum {
+    
+    //    电信号段:133/153/180/181/189/177
+    //    联通号段:130/131/132/155/156/185/186/145/176
+    //    移动号段:134/135/136/137/138/139/150/151/152/157/158/159/182/183/184/187/188/147/178
+    //    虚拟运营商:170
+    
+    NSString *MOBILE = @"^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[06-8])\\d{8}$";
+    
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    
+    return [regextestmobile evaluateWithObject:mobileNum];
+}
 /*
 #pragma mark - Navigation
 
