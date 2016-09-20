@@ -14,8 +14,14 @@
 //label 的tag范围在：300-400
 
 static const CGFloat kBottomHeight = 60;
+static const CGFloat kquyustartHeight = 44*4 + 1;
 @interface ShangjiaViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
-
+/** 省份tableView */
+@property (nonatomic , strong) UITableView *provinceTableView;
+/** 市区tableVIew */
+@property (nonatomic , strong) UITableView *cityTableView;
+/** 县城tableView */
+@property (nonatomic , strong) UITableView *townTableView;
 /** 列表 */
 @property (nonatomic , strong) UITableView *addressTableView;
 /** 底部添加按钮 */
@@ -25,6 +31,10 @@ static const CGFloat kBottomHeight = 60;
 /** footVIew */
 @property (nonatomic , strong) UIView *myFootView;
 
+/** 辨别哪个上传图片 */
+@property (nonatomic , assign) NSInteger btnTag;//记录哪个按钮选择照片
+/** 保存零售业 */
+@property (nonatomic , strong) NSMutableArray *jingyingArr;
 @end
 
 @implementation ShangjiaViewController
@@ -43,12 +53,22 @@ static const CGFloat kBottomHeight = 60;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.btnTag = 0;
     // Do any additional setup after loading the view.
 //    [self whiteBackGroundView];
     _imagePickerController = [[UIImagePickerController alloc] init];
     _imagePickerController.delegate = self;
     _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera | UIImagePickerControllerSourceTypePhotoLibrary;
-
+    _jingyingArr = [[NSMutableArray alloc] init];
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/appShopController/ProductStatus?" parameters:nil isShowHUD:YES httpToolSuccess:^(id json) {
+        [json enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [_jingyingArr addObject:obj[@"name"]];
+        }];
+        [_addressTableView reloadData];
+    } failure:^(NSError *error) {
+//        [self addressTableView];
+    }];
+    
     [self addressTableView];
     
 }
@@ -99,6 +119,47 @@ static const CGFloat kBottomHeight = 60;
 //        }];
     }
     return _addressTableView;
+}
+
+- (UITableView *)provinceTableView
+{
+    if (!_provinceTableView) {
+        _provinceTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, kquyustartHeight, kDeviceWidth/3, 0) style:UITableViewStylePlain];
+        //        _provinceTableView.backgroundColor = [UIColor redColor];
+        _provinceTableView.dataSource = self;
+        _provinceTableView.delegate = self;
+        [self.view addSubview:_provinceTableView];
+        
+    }
+    return _provinceTableView;
+}
+
+- (UITableView *)cityTableView
+{
+    if (!_cityTableView) {
+        _cityTableView = [[UITableView alloc] initWithFrame:CGRectMake(kDeviceWidth/3, kquyustartHeight, kDeviceWidth/3, 0) style:UITableViewStylePlain];
+        //        _cityTableView.backgroundColor = [UIColor magentaColor];
+        _cityTableView.dataSource = self;
+        _cityTableView.delegate = self;
+        [self.view addSubview:_cityTableView];
+        //隐藏多余cell
+        self.cityTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    return _cityTableView;
+}
+
+- (UITableView *)townTableView
+{
+    if (!_townTableView) {
+        _townTableView = [[UITableView alloc] initWithFrame:CGRectMake(kDeviceWidth/3*2, kquyustartHeight, kDeviceWidth/3, 0) style:UITableViewStylePlain];
+        //        _townTableView.backgroundColor = [UIColor orangeColor];
+        _townTableView.dataSource = self;
+        _townTableView.delegate = self;
+        [self.view addSubview:_townTableView];
+        //隐藏多余cell
+        self.townTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    return _townTableView;
 }
 
 -(UIView *)myFootView{
@@ -190,17 +251,37 @@ static const CGFloat kBottomHeight = 60;
             NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:label.text];
             [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
             [label setAttributedText:str];
+            
+            UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+            btn.frame = CGRectMake(CGRectGetMaxX(label.frame), 0, self.view.width - label.width, label.height);
+            _jingyingArr.count == 0 ? [btn setTitle:@"" forState:UIControlStateNormal]:[btn setTitle:_jingyingArr[0] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            btn.titleLabel.textAlignment = NSTextAlignmentCenter;
+            
+            [cell addSubview:btn];
             [cell addSubview:label];
         }
             break;
         case 3:
         {
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 40)];
-            label.text = @"*  所在城市";
-            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:label.text];
+            UILabel *label3 = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 100, 40)];
+            label3.text = @"*  所在城市";
+            NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:label3.text];
             [str addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, 3)];
-            [label setAttributedText:str];
-            [cell addSubview:label];
+            [label3 setAttributedText:str];
+            
+            UIButton *searchAddress = [UIButton buttonWithType:UIButtonTypeCustom];
+            searchAddress.tag = 205;
+            [searchAddress setTitle:@"请选择搜索区域" forState:UIControlStateNormal];
+            [searchAddress setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            searchAddress.titleLabel.font = [UIFont systemFontOfSize:15];
+            searchAddress.titleLabel.textAlignment = NSTextAlignmentCenter;
+            searchAddress.frame = CGRectMake(CGRectGetMaxX(label3.frame), 0, kDeviceWidth - CGRectGetWidth(label3.frame), CGRectGetHeight(label3.frame));
+            [searchAddress addTarget:self action:@selector(chooseAddress:) forControlEvents:UIControlEventTouchUpInside];
+            
+            [cell addSubview:searchAddress];
+            [cell addSubview:label3];
+            MYLog(@"cell.y = %@",NSStringFromCGRect(cell.frame));
         }
             break;
         case 4:
@@ -273,6 +354,7 @@ static const CGFloat kBottomHeight = 60;
             
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.frame = CGRectMake(CGRectGetMaxX(filed.frame), 0, 40, 40);
+            btn.tag = 103;
             [btn setImage:[UIImage imageNamed:@"woshishangjia"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(photoAction:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -297,6 +379,7 @@ static const CGFloat kBottomHeight = 60;
             
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.frame = CGRectMake(CGRectGetMaxX(filed.frame), 0, 40, 40);
+            btn.tag = 104;
             [btn setImage:[UIImage imageNamed:@"woshishangjia"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(photoAction:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -321,6 +404,7 @@ static const CGFloat kBottomHeight = 60;
             
             UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
             btn.frame = CGRectMake(CGRectGetMaxX(filed.frame), 0, 40, 40);
+            btn.tag = 105;
             [btn setImage:[UIImage imageNamed:@"woshishangjia"] forState:UIControlStateNormal];
             [btn addTarget:self action:@selector(photoAction:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -381,7 +465,7 @@ static const CGFloat kBottomHeight = 60;
 
 - (void)photoAction:(UIButton *)btn{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传照片" message:@"" preferredStyle:0];
-    
+    self.btnTag = btn.tag;
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         _imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         _imagePickerController.cameraOverlayView.userInteractionEnabled = NO;
@@ -417,6 +501,31 @@ static const CGFloat kBottomHeight = 60;
         [self presentViewController:alert animated:YES completion:nil];
     }
 
+}
+
+- (void)chooseAddress:(UIButton *)button{
+    
+    button.selected = !button.selected;
+    _addressTableView.scrollEnabled = !button.selected;
+    [UIView beginAnimations:@"move" context:nil];
+    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDelegate:self];
+    if (button.selected) {
+        
+        //改变它的frame的x,y的值
+        self.provinceTableView.frame = CGRectMake(0, kquyustartHeight, kDeviceWidth/3, _addressTableView.height - kquyustartHeight);
+        self.cityTableView.frame = CGRectMake(kDeviceWidth/3, kquyustartHeight, kDeviceWidth/3, _addressTableView.height - kquyustartHeight);
+        self.townTableView.frame = CGRectMake(kDeviceWidth/3*2, kquyustartHeight, kDeviceWidth/3, _addressTableView.height - kquyustartHeight);
+        //        tempLabel.frame=CGRectMake(0,300 + 0.5, 100,40);
+    }else{
+        
+        self.provinceTableView.frame = CGRectMake(0, kquyustartHeight, kDeviceWidth/3, 0);
+        self.cityTableView.frame = CGRectMake(kDeviceWidth/3, kquyustartHeight, kDeviceWidth/3, 0);
+        self.townTableView.frame = CGRectMake(kDeviceWidth/3*2, kquyustartHeight, kDeviceWidth/3, 0);
+        //        tempLabel.frame=CGRectMake(0,120.5, 100,40);
+//        self.detailAddress = nil;
+    }
+    [UIView commitAnimations];
 }
 
 - (void)timer:(NSTimer *)timer{
@@ -482,12 +591,16 @@ static const CGFloat kBottomHeight = 60;
     NSData *_data = UIImageJPEGRepresentation(image, 0.7f);
     NSString *_encodedImageStr = [_data base64Encoding];
     
-    
+    [FYTXHub progress:@"正在上传..."];
     NSDictionary *dic = @{@"imgFile":_encodedImageStr,@"userId":[LoginStatus sharedManager].idStr};
     [QSCHttpTool uploadImagePath:@"https://123.56.192.182:8443/app/user/updateLicenceImg" params:dic kHeadimgName:nil image:image success:^(id JSON) {
         MYLog(@"照片json = %@",JSON);
+        UITextView *textView = [self.view viewWithTag:self.btnTag + 102];
+        [FYTXHub dismiss];
+        textView.text = @"已上传";
     } failure:^(NSError *error) {
         MYLog(@"照片error = %@",error);
+        [FYTXHub toast:@"上传失败"];
     }];
     MYLog(@"选完照片了%lu",(unsigned long)_data.length);
     
@@ -512,7 +625,7 @@ static const CGFloat kBottomHeight = 60;
 +(NSData *)imageData:(UIImage *)myimage
 {
     NSData *data=UIImageJPEGRepresentation(myimage, 1.0);
-    if (data.length>100*1024) {
+    if (data.length>1000*1024) {
         if (data.length>1024*1024) {//1M以及以上
             data=UIImageJPEGRepresentation(myimage, 0.1);
         }else if (data.length>512*1024) {//0.5M-1M
