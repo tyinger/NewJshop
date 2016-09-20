@@ -79,7 +79,7 @@
     
     _list=[NSMutableArray arrayWithCapacity:0];
     
-    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\"}"};
+    NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\",\"shopid\":\"1\"}"};
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
 //        NSLog(@"%@",json);
