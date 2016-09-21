@@ -46,6 +46,17 @@ static const CGFloat kBottomHeight = 60;
 
 @implementation AddressController
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if (self.addrId) {
+        self.shouTextFiled.text = self.firstLabelText;
+        self.phoneTextFiled.text = self.secondLabelText;
+        self.addrTextFiled.text = self.fourthLabelText;
+        UIButton *tempBtn = [self.view viewWithTag:205];
+        [tempBtn setTitle:self.thirdLabelText forState:UIControlStateNormal];
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -309,6 +320,54 @@ static const CGFloat kBottomHeight = 60;
 //保存地址
 - (void)saveAction:(UIButton *)btn{
     
+    UIButton *tempBtn = [self.view viewWithTag:205];
+    if([self.shouTextFiled.text isEqualToString:@""]){
+        [FYTXHub toast:@"请填写收货人"];
+        return;
+    }
+    if (![self isMobileNumber:self.phoneTextFiled.text]) {
+        [FYTXHub toast:@"请正确填写联系方式"];
+        return;
+    }
+    if ([tempBtn.titleLabel.text isEqualToString:@"请选择搜索区域"]) {
+        [FYTXHub toast:@"请选择区域"];
+        return;
+    }
+    if ([self.addrTextFiled.text isEqualToString:@""]) {
+        [FYTXHub toast:@"请填写详细地址"];
+        return;
+    }
+    
+    
+    NSDictionary *dic = self.addrId ? @{@"isDefault":self.isDefualtFlag,
+                                        @"areaAdds":tempBtn.titleLabel.text,
+                                        @"detailedAdd":self.addrTextFiled.text,
+                                        @"userId":[LoginStatus sharedManager].idStr,
+                                        @"name":self.shouTextFiled.text,
+                                        @"phone":self.phoneTextFiled.text,
+                                        @"area.id":@"110101000",
+                                        @"area.name":@"",
+                                        @"id":@(self.addrId)}
+    :
+  @{@"isDefault":@"0",
+    @"areaAdds":tempBtn.titleLabel.text,
+    @"detailedAdd":self.addrTextFiled.text,
+    @"userId":[LoginStatus sharedManager].idStr,
+    @"name":self.shouTextFiled.text,
+    @"phone":self.phoneTextFiled.text,
+    @"area.id":@"110101000",
+    @"area.name":@""};
+    
+    NSString *pathStr = self.addrId ? @"https://123.56.192.182:8443/app/address/updateUserAddress?" : @"https://123.56.192.182:8443/app/address/saveUserAddress?";
+    
+    
+    [QSCHttpTool post:pathStr parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+        MYLog(@"json = %@",json);
+        [self.navigationController popViewControllerAnimated:YES];
+    } failure:^(NSError *error) {
+        MYLog(@"error  = %@",error);
+    }];
+
 }
 
 #pragma mark - UITableViewDataSource AND UITableViewDelegate
@@ -346,11 +405,12 @@ static const CGFloat kBottomHeight = 60;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _provinceTableView) {
         self.index1 = indexPath.row;
-        self.index2 = 0;
+//        self.index2 = 0;
 //        self.index3 = 0;
+//        self.townArr = nil;
         [self calculateFirstData];
         [self.cityTableView reloadData];
-//        [self.townTableView reloadData];
+        [self.townTableView reloadData];
         
     }else if(tableView == _cityTableView){
         self.index2 = indexPath.row;
@@ -415,6 +475,21 @@ static const CGFloat kBottomHeight = 60;
     }
 }
 
+
+// 正则判断手机号码地址格式
+- (BOOL)isMobileNumber:(NSString *)mobileNum {
+    
+    //    电信号段:133/153/180/181/189/177
+    //    联通号段:130/131/132/155/156/185/186/145/176
+    //    移动号段:134/135/136/137/138/139/150/151/152/157/158/159/182/183/184/187/188/147/178
+    //    虚拟运营商:170
+    
+    NSString *MOBILE = @"^1(3[0-9]|4[57]|5[0-35-9]|8[0-9]|7[06-8])\\d{8}$";
+    
+    NSPredicate *regextestmobile = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", MOBILE];
+    
+    return [regextestmobile evaluateWithObject:mobileNum];
+}
 /*
 #pragma mark - Navigation
 

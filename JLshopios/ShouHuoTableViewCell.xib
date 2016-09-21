@@ -53,7 +53,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frY-qE-fiD">
+                    <button opaque="NO" tag="333" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frY-qE-fiD">
                         <rect key="frame" x="266" y="71" width="46" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="9Fw-EU-H8s"/>
@@ -71,38 +71,26 @@
                                 <color key="value" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="deteleAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bgT-H2-2Dl"/>
+                        </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6j-fz-71q">
-                        <rect key="frame" x="218" y="71" width="46" height="30"/>
+                    <button opaque="NO" tag="331" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IK-KU-1ia">
+                        <rect key="frame" x="2" y="70" width="32" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="46" id="Y4R-uC-zgM"/>
-                            <constraint firstAttribute="height" constant="30" id="dHU-lo-t4F"/>
+                            <constraint firstAttribute="width" constant="32" id="IgN-xC-m1w"/>
+                            <constraint firstAttribute="height" constant="32" id="nFx-PF-Vby"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <state key="normal" title="编辑">
-                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        </state>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IK-KU-1ia">
-                        <rect key="frame" x="8" y="76" width="20" height="20"/>
-                        <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="20" id="IgN-xC-m1w"/>
-                            <constraint firstAttribute="height" constant="20" id="nFx-PF-Vby"/>
-                        </constraints>
+                        <state key="normal" image="icon_box-normal"/>
+                        <state key="selected" image="icon_box-selected"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                 <color key="value" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="isDefaultAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="94R-Tk-FxO"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设为默认地址" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7n-5E-K9k">
                         <rect key="frame" x="33" y="76" width="100" height="21"/>
@@ -124,6 +112,28 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" tag="332" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6j-fz-71q">
+                        <rect key="frame" x="218" y="71" width="46" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="46" id="Y4R-uC-zgM"/>
+                            <constraint firstAttribute="height" constant="30" id="dHU-lo-t4F"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="编辑">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="modifyAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3xf-7p-gjg"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="R4B-bK-u31" firstAttribute="leading" secondItem="p6G-kf-5zB" secondAttribute="trailing" id="10f-88-ibD"/>
@@ -142,11 +152,11 @@
                     <constraint firstItem="x7n-5E-K9k" firstAttribute="top" secondItem="6c1-nB-nAw" secondAttribute="bottom" constant="10" id="g5f-1T-XR9"/>
                     <constraint firstItem="R4B-bK-u31" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gAy-eh-r6z"/>
                     <constraint firstItem="rxw-HO-h8g" firstAttribute="top" secondItem="p6G-kf-5zB" secondAttribute="bottom" constant="10" id="gzk-oA-sXx"/>
-                    <constraint firstItem="1IK-KU-1ia" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="qSN-cc-x6s"/>
+                    <constraint firstItem="1IK-KU-1ia" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-6" id="qSN-cc-x6s"/>
                     <constraint firstItem="6c1-nB-nAw" firstAttribute="top" secondItem="rxw-HO-h8g" secondAttribute="bottom" constant="5" id="sU3-z2-RvQ"/>
                     <constraint firstItem="frY-qE-fiD" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="t7J-E6-0ol"/>
-                    <constraint firstItem="1IK-KU-1ia" firstAttribute="top" secondItem="6c1-nB-nAw" secondAttribute="bottom" constant="10" id="tMu-8Y-Xjd"/>
-                    <constraint firstItem="x7n-5E-K9k" firstAttribute="leading" secondItem="1IK-KU-1ia" secondAttribute="trailing" constant="5" id="u7i-sB-HiE"/>
+                    <constraint firstItem="1IK-KU-1ia" firstAttribute="top" secondItem="6c1-nB-nAw" secondAttribute="bottom" constant="4" id="tMu-8Y-Xjd"/>
+                    <constraint firstItem="x7n-5E-K9k" firstAttribute="leading" secondItem="1IK-KU-1ia" secondAttribute="trailing" constant="-1" id="u7i-sB-HiE"/>
                     <constraint firstItem="rxw-HO-h8g" firstAttribute="top" secondItem="p6G-kf-5zB" secondAttribute="bottom" constant="10" id="uak-kA-6Wk"/>
                     <constraint firstAttribute="bottomMargin" secondItem="MPy-bt-eja" secondAttribute="bottom" constant="-10" id="yZB-ZG-mqH"/>
                 </constraints>
@@ -158,10 +168,17 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="detailAddr" destination="rxw-HO-h8g" id="hYb-3w-O4b"/>
+                <outlet property="deteleBtn" destination="frY-qE-fiD" id="a73-7f-Ywe"/>
+                <outlet property="isDefaultBtn" destination="1IK-KU-1ia" id="f8t-VR-M2p"/>
                 <outlet property="manName" destination="p6G-kf-5zB" id="Kgw-Qt-Wbw"/>
+                <outlet property="modifyBtn" destination="Q6j-fz-71q" id="3Ks-EA-1at"/>
                 <outlet property="phoneLabel" destination="R4B-bK-u31" id="Pub-iN-Ghh"/>
             </connections>
-            <point key="canvasLocation" x="397" y="298.5"/>
+            <point key="canvasLocation" x="68" y="146.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_box-normal" width="32" height="32"/>
+        <image name="icon_box-selected" width="32" height="32"/>
+    </resources>
 </document>

@@ -9,9 +9,10 @@
 #import "ShouhoudizhiViewController.h"
 #import "ShouHuoTableViewCell.h"
 #import "AddressController.h"
+#import "ShouHuoModel.h"
 
 static const CGFloat kBottomHeight = 60;
-@interface ShouhoudizhiViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface ShouhoudizhiViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 /** 列表 */
 @property (nonatomic , strong) UITableView *addressTableView;
@@ -27,14 +28,20 @@ static const CGFloat kBottomHeight = 60;
 @implementation ShouhoudizhiViewController
 
 - (void)viewWillAppear:(BOOL)animated{
-    
+    [super viewWillAppear:animated];
+    [FYTXHub progress:@"列表加载中..."];
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
         _allArr = json;
         [_addressTableView reloadData];
-        MYLog(@"json = %@",json);
+        [FYTXHub dismiss];
+        MYLog(@"收货地址列表error = %@",json);
     } failure:^(NSError *error) {
         
-        MYLog(@"error = %@",error);
+        MYLog(@"收货地址列表error = %@",error);
+        [FYTXHub toast:@"加载失败"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [FYTXHub dismiss];
+        });
     }];
 }
 
@@ -108,10 +115,15 @@ static const CGFloat kBottomHeight = 60;
 {
     ShouHuoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    ShouHuoModel *shouModel = [[ShouHuoModel alloc] initWithDictionary:_allArr[indexPath.row]];
+    cell.cellBtnBlock = ^(UIButton *sender){
+        [self cellBtnAction:sender AndModel:shouModel];
+    };
 //    cell.backgroundColor = [UIColor blueColor];
-    cell.manName.text = _allArr[indexPath.row][@"name"];
-    cell.phoneLabel.text = _allArr[indexPath.row][@"phone"];
-    cell.detailAddr.text = _allArr[indexPath.row][@"detailedAdd"];
+    cell.isDefaultBtn.selected = [shouModel.isDefault integerValue];
+    cell.manName.text = shouModel.name;
+    cell.phoneLabel.text = shouModel.phone;
+    cell.detailAddr.text = shouModel.detailedAdd;
     return cell;
 }
 
@@ -130,6 +142,94 @@ static const CGFloat kBottomHeight = 60;
     }
 }
 
+#pragma mark ---------------默认地址，编辑列表，删除列表----------------
+- (void)cellBtnAction:(UIButton *)sender AndModel:(ShouHuoModel *)model{
+    switch (sender.tag) {
+        case 331:
+        {
+            if ([model.isDefault integerValue] == 1) {
+                sender.selected = YES;
+                [FYTXHub dismiss];
+                return;
+            }
+            [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/updateDefault?" parameters:@{@"userId":[LoginStatus sharedManager].idStr,@"newId":@(model.areaId)} isShowHUD:YES httpToolSuccess:^(id json) {
+                    [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
+                            _allArr = json;
+                        
+                        [FYTXHub success:@"设置成功" delayClose:1.0f compelete:^{
+                            [_addressTableView reloadData];
+                            sender.selected = NO;
+                        }];
+                        MYLog(@"收货地址列表error = %@",json);
+                    } failure:^(NSError *error) {
+                        
+                        MYLog(@"收货地址列表error = %@",error);
+                    }];
+                
+                MYLog(@"默认地址成功%@",json);
+            } failure:^(NSError *error) {
+                
+                MYLog(@"默认地址失败%@",error);
+                [FYTXHub toast:@"操作失败"];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [FYTXHub dismiss];
+                });
+            }];
+        }
+            break;
+        case 332:
+        {
+            AddressController *addVC = [[AddressController alloc] init];
+            addVC.firstLabelText = model.name;
+            addVC.secondLabelText = model.phone;
+            addVC.thirdLabelText = model.areaAdds;
+            addVC.fourthLabelText = model.detailedAdd;
+            addVC.isDefualtFlag = model.isDefault;
+            addVC.addrId = model.areaId;
+            [self.navigationController pushViewController:addVC animated:YES];
+
+        }
+            break;
+        case 333:
+        {
+            UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否确定删除?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [[av rac_buttonClickedSignal] subscribeNext:^(NSNumber* index) {
+                if ([index isEqualToNumber:@(1)]) {
+                    [FYTXHub progress:@"正在删除..."];
+                    //点击了确定
+                    [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/deleteUserAddressById?" parameters:@{@"id":@(model.areaId)} isShowHUD:YES httpToolSuccess:^(id json) {
+                        [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
+                                _allArr = json;
+                                
+                                [FYTXHub success:@"删除成功" delayClose:1.0f compelete:^{
+                                    [_addressTableView reloadData];
+                                }];
+                            MYLog(@"收货地址列表error = %@",json);
+                        } failure:^(NSError *error) {
+                            
+                            MYLog(@"收货地址列表error = %@",error);
+                        }];
+
+                        MYLog(@"删除成功%@",json);
+                    } failure:^(NSError *error) {
+                        
+                        MYLog(@"删除失败%@",error);
+                        [FYTXHub toast:@"删除失败"];
+                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                            [FYTXHub dismiss];
+                        });
+                    }];
+                }
+            }];
+            [av show];
+                
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
 /*
 #pragma mark - Navigation
 
