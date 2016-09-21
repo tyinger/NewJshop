@@ -405,11 +405,12 @@ static const CGFloat kBottomHeight = 60;
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (tableView == _provinceTableView) {
         self.index1 = indexPath.row;
-        self.index2 = 0;
+//        self.index2 = 0;
 //        self.index3 = 0;
+//        self.townArr = nil;
         [self calculateFirstData];
         [self.cityTableView reloadData];
-//        [self.townTableView reloadData];
+        [self.townTableView reloadData];
         
     }else if(tableView == _cityTableView){
         self.index2 = indexPath.row;

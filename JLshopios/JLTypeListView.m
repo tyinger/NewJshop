@@ -15,6 +15,7 @@ static CGFloat TypeListButtonWidth = 40;
 
 
 @property (nonatomic,strong) NSArray *typeListArray;
+@property (nonatomic,strong) NSArray *typeArray;//未网络请求时候
 
 
 
@@ -29,6 +30,14 @@ static CGFloat TypeListButtonWidth = 40;
     if (self) {
         [self setBackgroundColor:[UIColor whiteColor]];
         //        [self loadAllButtons];
+        self.typeArray = @[@"便利店",
+                               @"美食",
+                               @"购物",
+                               @"休闲娱乐",
+                               @"美容美发",
+                               @"网吧",
+                               @"KTV",
+                               @"FLAG"];
         [self loadTypeListInfo];
         
     }
@@ -50,11 +59,10 @@ static CGFloat TypeListButtonWidth = 40;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self loadAllButtons];
         });
-        
-        
     } failure:^(NSError *error) {
+        MYLog(@"wuwangluo");
     }];
-    
+    [self loadAllButtons1];
 }
 
 -(void)loadAllButtons{
@@ -64,12 +72,13 @@ static CGFloat TypeListButtonWidth = 40;
     for (int i = 0; i<self.typeListArray.count; i++) {
         
         JLShopTypeModel *model = self.typeListArray[i];
+
         UIButton *button;
         if (i<4) {
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*i+offsetX, 10, TypeListButtonWidth, TypeListButtonWidth)];
             [button setTag:i];
-            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
+            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
             
             [self addSubview:button];
             
@@ -77,13 +86,13 @@ static CGFloat TypeListButtonWidth = 40;
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*3, TypeListButtonWidth, TypeListButtonWidth)];
             [button setTag:i];
-            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"guide_page_1"]];
+            [button sd_setBackgroundImageWithURL:[NSURL URLWithString:model.icon] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
             [self addSubview:button];
         }else if(7 == i){
             button = [UIButton buttonWithType:UIButtonTypeCustom];
             [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*3, TypeListButtonWidth, TypeListButtonWidth)];
             [button setTag:i];
-            
+            button.enabled = model ? YES:NO;
             [button setBackgroundImage:[UIImage imageNamed:@"home_center_menu_gd"] forState:UIControlStateNormal];
             
             [self addSubview:button];
@@ -106,6 +115,56 @@ static CGFloat TypeListButtonWidth = 40;
         
     }
 }
+
+-(void)loadAllButtons1{
+    CGFloat swidth = [UIScreen mainScreen].bounds.size.width/4.0;
+    CGFloat offsetX = (swidth - TypeListButtonWidth)/2.0;
+    
+    for (int i = 0; i<self.typeArray.count; i++) {
+        
+        UIButton *button;
+        if (i<4) {
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button setFrame:CGRectMake(swidth*i+offsetX, 10, TypeListButtonWidth, TypeListButtonWidth)];
+            [button setTag:i];
+            [button sd_setBackgroundImageWithURL:nil forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
+            
+            [self addSubview:button];
+            
+        }else if(4<=i && 7>i) {
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*3, TypeListButtonWidth, TypeListButtonWidth)];
+            [button setTag:i];
+            [button sd_setBackgroundImageWithURL:nil forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
+            [self addSubview:button];
+        }else if(7 == i){
+            button = [UIButton buttonWithType:UIButtonTypeCustom];
+            [button setFrame:CGRectMake(swidth*(i-4)+offsetX, TypeListButtonWidth+10*3, TypeListButtonWidth, TypeListButtonWidth)];
+            [button setTag:i];
+            button.enabled = NO;
+            [button setBackgroundImage:[UIImage imageNamed:@"home_center_menu_gd"] forState:UIControlStateNormal];
+            
+            [self addSubview:button];
+        }
+        
+        UILabel *typeText = [[UILabel alloc]init];
+        typeText.text = self.typeArray[i];
+        if (7 == i) {
+            typeText.text = @"更多";
+            
+        }
+        
+        [button addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+        
+        [typeText setTextColor:[UIColor darkGrayColor]];
+        [typeText setTextAlignment:NSTextAlignmentCenter];
+        [typeText setFrame:CGRectMake(-10, TypeListButtonWidth, TypeListButtonWidth+10*2, 15)];
+        [typeText setFont:[UIFont systemFontOfSize:12]];
+        [button addSubview:typeText];
+        
+    }
+}
+
 
 -(void) btnAction:(UIButton *)btn
 {
