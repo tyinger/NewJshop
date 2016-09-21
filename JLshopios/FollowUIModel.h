@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "FollowViewModel.h"
 @interface FollowUIModel : NSObject
-
+@property (nonatomic, strong) FollowViewModel * viewModel;
+@property (nonatomic, strong) UITableView * mainTableView;
+- (void)reloadData:(VCType)type;
 @end

@@ -6,16 +6,18 @@
 //  Copyright © 2016年 feng. All rights reserved.
 //
 typedef NS_ENUM(NSUInteger, VCType) {
-    VCTypeGood = 1,
-    VCTypeShop = 2,
+    VCTypeGood = 0,
+    VCTypeShop = 1,
 };
+#import "FollowGoodModel.h"
 #import <Foundation/Foundation.h>
 @class MyFollowViewController;
 @interface FollowViewModel : NSObject
 @property (nonatomic, weak)MyFollowViewController * followViewController;
-@property (nonatomic, strong)NSMutableArray * followGoodData;
-@property (nonatomic, strong)NSMutableArray * followShopData;
 
-- (void)goToDetailWithID:(NSString *)goodID;
-- (RACSignal*)getData:(void(^)(id))comlicated;
+@property (nonatomic, strong)NSMutableArray <FollowGoodModel*>* followGoodData;
+@property (nonatomic, strong)NSMutableArray <FollowGoodModel*>* followShopData;
+
+- (RACSignal*)goToDetailWithID:(NSString *)goodID;
+- (RACSignal*)getData:(VCType)type andPage:(NSInteger)page;
 @end

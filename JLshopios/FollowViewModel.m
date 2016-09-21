@@ -9,42 +9,64 @@
 
 #import "FollowViewModel.h"
 #import "DetailsViewController.h"
+
 @implementation FollowViewModel
-
-
-- (void)goToDetailWithID:(NSString *)goodID{
-    DetailsViewController * detail = [[DetailsViewController alloc] init];
-    detail.productIDStr = goodID;
-    [((UIViewController*)self.followViewController).navigationController pushViewController:detail animated:YES];
+- (NSMutableArray *)followGoodData{
+    if (!_followGoodData) {
+        _followGoodData = [NSMutableArray array];
+    }
+    return _followGoodData;
 }
-- (void)getData:(void (^)(id))comlicated{
+
+- (RACSignal*)goToDetailWithID:(NSString *)goodID{
+    RACSignal * result = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        DetailsViewController * detail = [[DetailsViewController alloc] init];
+        detail.productIDStr = goodID;
+        [((UIViewController*)self.followViewController).navigationController pushViewController:detail animated:YES];
+        [subscriber sendCompleted];
+        return nil;
+    }];
+    return result;
+  
+}
+- (RACSignal*)getData:(VCType)type andPage:(NSInteger)page{
     /*
     https://123.56.192.182:8443/app/favorite/listFavoriteGoods?userId=37&pageNo=1
      */
     [FYTXHub progress:@"正在加载"];
-    [self.followGoodData removeAllObjects];
-    //https://123.56.192.182:8443/app/shopCart/listShopCart?&userid=37
-    NSString *  urlString = @"https://123.56.192.182:8443/app/favorite/listFavoriteGoods?";
-//    NSString * idStr = [LoginStatus sharedManager].idStr;
-         NSString * idStr =@"37";
-    [QSCHttpTool get:urlString parameters:@{@"userid":idStr} isShowHUD:YES httpToolSuccess:^(id json) {
-        [FYTXHub dismiss];
-        __block NSInteger totalCount = 0;
-//        NSMutableArray * arr =[[[((NSArray*)json) rac_sequence map:^id(id value) {
-//            GoodModel* model =  [[GoodModel alloc] initWithData:value];
-//            totalCount += [model.num integerValue];
-//            return model;
-//        }] array] mutableCopy];
-//        
-//        self.followGoodData = arr;
-        [CartManager sharedManager].totalNum = @(totalCount);
-        //计算数量
-        
-//        comlicated?comlicated():nil;
-//        
-    } failure:^(NSError *error) {
-        [FYTXHub dismiss];
-        //        TTAlert(@"网络请求出错");
+  
+    RACSignal * result = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        if (page == 1&&type ==0) {
+            self.followGoodData = [NSMutableArray array] ;
+        }
+        if (page == 1&&type ==1) {
+            self.followShopData = [NSMutableArray array];
+        }
+         NSString *  urlString = @"https://123.56.192.182:8443/app/favorite/listFavoriteGoods?";
+        //    NSString * idStr = [LoginStatus sharedManager].idStr;
+        NSString * idStr = @"6";
+       
+        [QSCHttpTool get:urlString parameters:@{@"userId":idStr,@"pageNo":[NSString stringWithFormat:@"%ld",(long)page]} isShowHUD:YES httpToolSuccess:^(id json) {
+            [FYTXHub dismiss];
+          
+            NSMutableArray * arr =[[[((NSArray*)json).rac_sequence map:^id(id value) {
+                        FollowGoodModel* model =  [[FollowGoodModel alloc] initWithData:value];
+                        return model;
+                    }] array] mutableCopy];
+            if (type == 0) {
+              [self.followGoodData addObjectsFromArray:arr];
+            }
+          
+//            [subscriber sendNext:@(YES)];
+            [subscriber sendCompleted];
+            
+            } failure:^(NSError *error) {
+            [FYTXHub dismiss];
+            [subscriber sendError:error];
+        }];
+
+        return nil;
     }];
-}
+    return result;
+  }
 @end

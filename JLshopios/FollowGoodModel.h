@@ -19,5 +19,5 @@
 @property (nonatomic, copy) NSString * collectId;
 @property (nonatomic, copy) NSString * soldNum;
 
-
+- (instancetype)initWithData:(NSDictionary*)data;
 @end

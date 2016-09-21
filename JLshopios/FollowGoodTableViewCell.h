@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "FollowGoodModel.h"
 @interface FollowGoodTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) FollowGoodModel * model;
 @end
