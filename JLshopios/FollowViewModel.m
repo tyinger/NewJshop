@@ -18,10 +18,11 @@
     return _followGoodData;
 }
 
-- (RACSignal*)goToDetailWithID:(NSString *)goodID{
+- (RACSignal*)goToDetailWithID:(NSString *)goodID AndIconUrl:(NSString *)goodImg{
     RACSignal * result = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         DetailsViewController * detail = [[DetailsViewController alloc] init];
         detail.productIDStr = goodID;
+        detail.productIconStr = goodImg;
         [((UIViewController*)self.followViewController).navigationController pushViewController:detail animated:YES];
         [subscriber sendCompleted];
         return nil;

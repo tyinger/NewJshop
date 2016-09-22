@@ -192,9 +192,10 @@
 }
 
 #pragma mark - ACTION
-- (void)goToDetailWithID:(NSString *)goodID{
+- (void)goToDetailWithID:(NSString *)goodID AndIconUrl:(NSString *)goodImg{
     DetailsViewController * detail = [[DetailsViewController alloc] init];
     detail.productIDStr = goodID;
+    detail.productIconStr = goodImg;
     [((UIViewController*)self.cartVC).navigationController pushViewController:detail animated:YES];
 }
 - (void)followAction{

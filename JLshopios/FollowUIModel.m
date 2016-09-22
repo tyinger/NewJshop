@@ -36,8 +36,10 @@ static NSString * kCellShop = @"FollowGoodTableViewCell";
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString * ID;
+    NSString * iconUrl;
     ID = _type == VCTypeGood?self.viewModel.followGoodData[indexPath.row].goodsId:self.viewModel.followShopData[indexPath.row].goodsId;
-    [[self.viewModel goToDetailWithID:ID] subscribeCompleted:^{
+    iconUrl = _type == VCTypeGood?self.viewModel.followGoodData[indexPath.row].icon:self.viewModel.followShopData[indexPath.row].icon;
+    [[self.viewModel goToDetailWithID:ID AndIconUrl:iconUrl] subscribeCompleted:^{
         
     }];
     

@@ -18,6 +18,6 @@ typedef NS_ENUM(NSUInteger, VCType) {
 @property (nonatomic, strong)NSMutableArray <FollowGoodModel*>* followGoodData;
 @property (nonatomic, strong)NSMutableArray <FollowGoodModel*>* followShopData;
 
-- (RACSignal*)goToDetailWithID:(NSString *)goodID;
+- (RACSignal*)goToDetailWithID:(NSString *)goodID AndIconUrl:(NSString *)goodImg;
 - (RACSignal*)getData:(VCType)type andPage:(NSInteger)page;
 @end
