@@ -52,6 +52,8 @@
 
 @property (nonatomic,strong) NSArray *typeListArray;
 
+@property (nonatomic,strong) UIView *mainView;
+
 @end
 
 @implementation JLHomeViewController
@@ -136,6 +138,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mainView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.view addSubview:self.mainView];
     [self netWorkTest];
     self.topSearchView.layer.cornerRadius = 6;
     self.topSearchView.layer.borderColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1].CGColor;
@@ -160,7 +164,7 @@
     self.collectionView.delegate = self;
     self.collectionView.scrollsToTop = YES;
     {
-        UIView *pview = self.view;
+        UIView *pview = self.mainView;
         UICollectionView *sview = self.collectionView;
         [pview addSubview:sview];
         
@@ -176,6 +180,8 @@
     
     self.collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
         [self.collectionView.mj_header endRefreshing];
+        [self.mainView removeFromSuperview];
+        [self viewDidLoad];
     }];
     
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
@@ -187,10 +193,11 @@
 
 -(void)loadSrollView{
     CGFloat creenWidth = [UIScreen mainScreen].bounds.size.width;
-    self.cycleScrollview = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, creenWidth, 125) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    self.cycleScrollview = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, creenWidth, 125) delegate:self placeholderImage:[UIImage imageNamed:@"FYTXCategories_page_dot_press"]];
     
     _cycleScrollview.currentPageDotImage = [UIImage imageNamed:@"FYTXCategories_page_dot_press"];
     _cycleScrollview.autoScrollTimeInterval = 5.0f;
+    _cycleScrollview.backgroundColor = [UIColor colorWithRed:0 green:139/255.0 blue:139/255.0 alpha:1];
     _cycleScrollview.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     [self.collectionView addSubview:_cycleScrollview];
     
@@ -265,7 +272,7 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    //    [[self.viewModel openBannerWith:index]execute:nil];
+    //    [[self.mainViewModel openBannerWith:index]execute:nil];
 }
 
 #pragma mark - <<<<<<<<<<<<<<<  ButtonMethed  >>>>>>>>>>>>>>>

@@ -64,7 +64,7 @@
 
 ///触发事件
 //      点击详情
-- (void)goToDetailWithID:(NSString *)goodID;
+- (void)goToDetailWithID:(NSString *)goodID AndIconUrl:(NSString *)goodImg;
 //      点击登录
 - (void)loginAction;
 //      点击秒杀 (控制器中跳转一下 暂时不需要提进来)

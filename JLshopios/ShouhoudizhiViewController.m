@@ -29,13 +29,19 @@ static const CGFloat kBottomHeight = 60;
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    [FYTXHub progress:@"列表加载中..."];
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
         _allArr = json;
         [_addressTableView reloadData];
+        [FYTXHub dismiss];
         MYLog(@"收货地址列表error = %@",json);
     } failure:^(NSError *error) {
         
         MYLog(@"收货地址列表error = %@",error);
+        [FYTXHub toast:@"加载失败"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [FYTXHub dismiss];
+        });
     }];
 }
 

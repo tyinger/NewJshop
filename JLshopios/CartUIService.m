@@ -192,7 +192,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.viewModel goToDetailWithID:[self.viewModel.cartData[indexPath.row] goodid]];
+    [self.viewModel goToDetailWithID:[self.viewModel.cartData[indexPath.row] goodid] AndIconUrl:[self.viewModel.cartData[indexPath.row] goodImg]];
 }
 
 @end

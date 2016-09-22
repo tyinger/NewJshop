@@ -46,7 +46,7 @@
     
     
     NSArray *className1 = @[@"WalletViewController",@"ScoreViewController"];
-    NSArray *className2 = @[@"GuanzhuViewController",@"ShouhoudizhiViewController",@"ShangjiaViewController"];
+    NSArray *className2 = @[@"MyFollowViewController",@"ShouhoudizhiViewController",@"ShangjiaViewController"];
     NSArray *className3 = @[@"SaomazhuceViewController",@"XiugaimimaViewController"];
     
     NSMutableArray *arr1 = @[].mutableCopy;

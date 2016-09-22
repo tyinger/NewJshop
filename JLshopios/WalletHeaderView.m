@@ -88,7 +88,7 @@ static CGFloat titleHeight = 25;
     [self addSubview:lineViewTwo];
     
     UILabel * titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, lineViewTwo.y+lineHeight, kDeviceWidth, titleHeight)];
-    titleLabel.text = @"积分明细";
+    titleLabel.text = @"钱包明细";
     titleLabel.font = SXFont(15);
     titleLabel.textAlignment = NSTextAlignmentLeft;
     [self addSubview:titleLabel];
