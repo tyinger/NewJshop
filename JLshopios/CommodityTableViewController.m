@@ -143,7 +143,7 @@
         searchView = [[SearchBarView alloc] initWithFrame:CGRectMake(250, 0, 240 , 30)];
         [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
             if (x) {
-                self.navigationItem.rightBarButtonItem.badgeValue = [NSString stringWithFormat:@"%@",x];
+                self.navigationItem.rightBarButtonItem.badgeValue = [x integerValue] == 0 ? nil : [NSString stringWithFormat:@"%@",x];
             }
             
         }];
@@ -306,7 +306,7 @@
                                   @"shopid":@"-1"
                                   };
             
-            [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+            [QSCHttpTool post:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
                 MYLog(@"5555%@",json);
                 [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
             } failure:^(NSError *error) {

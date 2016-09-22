@@ -108,7 +108,7 @@
     }
     if(index == 3){
         [RACObserve(self.manager, totalNum) subscribeNext:^(NSNumber *x) {
-            tabBarItem.badgeValue = [x stringValue];
+            tabBarItem.badgeValue = [x integerValue] == 0 ? nil : [x stringValue];
         
         }];
     }

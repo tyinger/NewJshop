@@ -38,7 +38,7 @@
     if (![self.commodityGoodNumer.titleLabel.text isEqualToString:@"0"] && [LoginStatus sharedManager].status) {
         self.addGoodsBtnAction(-1);
     }else{
-        [FYTXHub toast:@"请先登录"];
+        ![LoginStatus sharedManager].status ? [FYTXHub toast:@"请先登录"] : nil;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [FYTXHub dismiss];
         });
