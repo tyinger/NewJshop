@@ -166,11 +166,9 @@ static CGFloat TypeListButtonWidth = 40;
 }
 
 
--(void) btnAction:(UIButton *)btn
-{
+-(void) btnAction:(UIButton *)btn{
         
     self.listBtnBlock(btn.tag);
-   
 }
 
 @end

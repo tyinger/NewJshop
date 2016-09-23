@@ -816,14 +816,14 @@ static const CGFloat kquyustartHeight = 44*4 + 1;
     //从字典key获取image的地址
     UIImage *image = [self imageCompressForWidth:info[UIImagePickerControllerOriginalImage] targetWidth:400];
     
-    NSData *_data = UIImageJPEGRepresentation(image, 0.7f);
+    NSData *_data = UIImageJPEGRepresentation(image, 0.01);
     NSString *_encodedImageStr = [_data base64Encoding];
     
     [FYTXHub progress:@"正在上传..."];
     NSDictionary *dic = @{@"imgFile":_encodedImageStr,@"userId":[LoginStatus sharedManager].idStr};
     NSString *str = self.btnTag > 103 ? @"https://123.56.192.182:8443/app/user/updateIdentityCardImg" : @"https://123.56.192.182:8443/app/user/updateLicenceImg";
     
-    [QSCHttpTool uploadImagePath:str params:dic kHeadimgName:nil image:image success:^(id JSON) {
+    [QSCHttpTool uploadImagePath:str params:dic kHeadimgName:nil image:nil success:^(id JSON) {
         MYLog(@"照片json = %@",JSON);
         UITextView *textView = [self.view viewWithTag:self.btnTag + 102];
         [FYTXHub dismiss];

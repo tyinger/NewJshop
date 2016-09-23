@@ -408,8 +408,8 @@
         make.centerX.mas_equalTo(@0);
     }];
     
-    NSArray *imageNarr = @[@"daifukuan",@"daishou",@"pingjia",@"",@"quanbudingdan"];
-    NSArray *iconName = @[@"代付款",@"待收货",@"待评价",@"返修/退换",@"全部订单"];
+    NSArray *imageNarr = @[@"daifukuan",@"daifahuo",@"daishou",@"pingjia",@"quanbudingdan"];
+    NSArray *iconName = @[@"代付款",@"待发货",@"待收货",@"待评价",@"全部订单"];
     
     UIView *lastView;
     for (int i = 0; i<5; i++) {
