@@ -111,19 +111,13 @@
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
         [dic setObject:imageBase64 forKey:@"imgFile"];
         [dic setObject:[LoginStatus sharedManager].idStr forKey:@"userId"];
-//        [QSCHttpTool uploadImagePath:@"https://123.56.192.182:8443/app/user/updateHeadImg" params:dic kHeadimgName:nil image:nil success:^(id JSON) {
-//            
-//            
-//        } failure:^(NSError *error) {
-//            
-//            
-//        }];
         [QSCHttpTool post:@"https://123.56.192.182:8443/app/user/updateHeadImg" parameters:dic isShowHUD:NO httpToolSuccess:^(id json) {
             
-            
+            [subscriber sendNext:json];
+            [subscriber sendCompleted];
         } failure:^(NSError *error) {
             
-            
+            [subscriber sendError:error];
         }];
         
         return nil;
@@ -133,8 +127,10 @@
     
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        
-        
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        [parameters setObject:@"" forKey:@""];
+        [parameters setObject:@"" forKey:@""];
+
         return nil;
     }] replayLazily];
 }

@@ -823,24 +823,25 @@ static const CGFloat kquyustartHeight = 44*4 + 1;
     NSDictionary *dic = @{@"imgFile":_encodedImageStr,@"userId":[LoginStatus sharedManager].idStr};
     NSString *str = self.btnTag > 103 ? @"https://123.56.192.182:8443/app/user/updateIdentityCardImg" : @"https://123.56.192.182:8443/app/user/updateLicenceImg";
     
-    [QSCHttpTool uploadImagePath:str params:dic kHeadimgName:nil image:nil success:^(id JSON) {
-        MYLog(@"照片json = %@",JSON);
+    [QSCHttpTool post:str parameters:dic isShowHUD:NO httpToolSuccess:^(id json) {
+        
+        MYLog(@"照片json = %@",json);
         UITextView *textView = [self.view viewWithTag:self.btnTag + 102];
         [FYTXHub dismiss];
         switch (self.btnTag) {
             case 103:
             {
-                self.businessLicenceStr = JSON[@"url"];
+                self.businessLicenceStr = json[@"url"];
             }
                 break;
             case 104:
             {
-                self.IdentityCard1 = JSON[@"url"];
+                self.IdentityCard1 = json[@"url"];
             }
                 break;
             case 105:
             {
-                self.IdentityCard2 = JSON[@"url"];
+                self.IdentityCard2 = json[@"url"];
             }
                 break;
             default:
@@ -848,12 +849,11 @@ static const CGFloat kquyustartHeight = 44*4 + 1;
         }
         textView.text = @"已上传";
     } failure:^(NSError *error) {
+        
         MYLog(@"照片error = %@",error);
         [FYTXHub toast:@"上传失败"];
     }];
     MYLog(@"选完照片了%lu",(unsigned long)_data.length);
-    
-    
 }
 
 -(UIImage *) imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth
