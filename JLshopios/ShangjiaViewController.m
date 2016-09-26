@@ -909,6 +909,8 @@ static const CGFloat kquyustartHeight = 44*4 + 1;
     self.cityTableView.frame = CGRectMake(kDeviceWidth/3, kquyustartHeight - self.placeFloat, kDeviceWidth/3, 0);
     
     self.townTableView.frame = CGRectMake(kDeviceWidth/3*2, kquyustartHeight - self.placeFloat, kDeviceWidth/3, 0);
+    
+    self.managementTableView.frame = CGRectMake([self.view viewWithTag:109].x, kquyustartHeight-44 - self.placeFloat, [self.view viewWithTag:109].width, 0);
 }
 
 - (NSMutableString *)detailAddress{
