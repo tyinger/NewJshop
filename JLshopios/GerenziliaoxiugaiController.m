@@ -92,8 +92,39 @@
 - (void)btnAction:(UIButton*)b{
     
     [FYTXHub progress:@"正在上传"];
-    [[RACSignal combineLatest:@[[self uploadInfo],[self uploadImageView]]] subscribeNext:^(id x) {
+    @weakify(self);
+    [[RACSignal combineLatest:@[[self uploadInfo],[self uploadImageView]]] subscribeNext:^(RACTuple *x) {
         
+        @strongify(self);
+        [FYTXHub dismiss];
+
+        if ([x.first[@"status"] intValue] == 1 && [x.second[@"status"] intValue] == 1) {
+            
+            //url
+            NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+            [userInfo setObject:[NSString stringWithFormat:@"%ld",[self ageWithDateOfBirth:self.briLabel.text]] forKey:@"age"];
+            [userInfo setObject:self.briLabel.text forKey:@"birthday"];
+            [userInfo setObject:[LoginStatus sharedManager].createDate forKey:@"createDate"];
+            [userInfo setObject:x.second[@"url"] forKey:@"headPic"];
+            [userInfo setObject:[LoginStatus sharedManager].idStr forKey:@"id"];
+            [userInfo setObject:[LoginStatus sharedManager].lockScore forKey:@"lockScore"];
+            [userInfo setObject:[LoginStatus sharedManager].loginName forKey:@"loginName"];
+            [userInfo setObject:self.textF.text forKey:@"name"];
+            [userInfo setObject:[LoginStatus sharedManager].password forKey:@"password"];
+            [userInfo setObject:[LoginStatus sharedManager].phone forKey:@"phone"];
+            [userInfo setObject:[LoginStatus sharedManager].rank forKey:@"rank"];
+            [userInfo setObject:[LoginStatus sharedManager].recommendCode forKey:@"recommendCode"];
+            [userInfo setObject:[LoginStatus sharedManager].recommendCodePic forKey:@"recommendCodePic"];
+            [userInfo setObject:[LoginStatus sharedManager].score forKey:@"score"];
+            [userInfo setObject:[NSString stringWithFormat:@"%@",self.seg.selectedSegmentIndex ? @"女":@"男"] forKey:@"sex"];
+            [userInfo setObject:[LoginStatus sharedManager].status forKey:@"status"];
+            
+            [[LoginStatus sharedManager] setJson:userInfo];
+            [FYTXHub success:@"修改成功" delayClose:2 compelete:^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }];
+        }
         
     } error:^(NSError *error) {
         
@@ -128,9 +159,18 @@
     return [[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
         NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-        [parameters setObject:@"" forKey:@""];
-        [parameters setObject:@"" forKey:@""];
-
+        [parameters setObject:[LoginStatus sharedManager].idStr forKey:@"userid"];
+        [parameters setObject:self.textF.text forKey:@"name"];
+        [parameters setObject:[[NSString stringWithFormat:@"%ld",(long)self.seg.selectedSegmentIndex] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:@"sex"];
+        [parameters setObject:self.briLabel.text forKey:@"brithday"];
+        [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/updateUser?" parameters:parameters isShowHUD:NO httpToolSuccess:^(id json) {
+            
+            [subscriber sendNext:json];
+            [subscriber sendCompleted];
+        } failure:^(NSError *error) {
+            
+            [subscriber sendError:error];
+        }];
         return nil;
     }] replayLazily];
 }
@@ -290,6 +330,33 @@
     UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return newImage;
+}
+
+- (NSInteger)ageWithDateOfBirth:(NSString *)dateStr{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *date = [dateFormatter dateFromString:dateStr];
+    
+    // 出生日期转换 年月日
+    NSDateComponents *components1 = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:date];
+    NSInteger brithDateYear  = [components1 year];
+    NSInteger brithDateDay   = [components1 day];
+    NSInteger brithDateMonth = [components1 month];
+    
+    // 获取系统当前 年月日
+    NSDateComponents *components2 = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:[NSDate date]];
+    NSInteger currentDateYear  = [components2 year];
+    NSInteger currentDateDay   = [components2 day];
+    NSInteger currentDateMonth = [components2 month];
+    
+    // 计算年龄
+    NSInteger iAge = currentDateYear - brithDateYear - 1;
+    if ((currentDateMonth > brithDateMonth) || (currentDateMonth == brithDateMonth && currentDateDay >= brithDateDay)) {
+        iAge++;
+    }
+    
+    return iAge;
 }
 
 @end
