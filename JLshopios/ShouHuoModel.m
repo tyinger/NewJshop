@@ -26,7 +26,8 @@
         self.userId = [dic[@"userId"] integerValue];
         self.isDefault=dic[@"isDefault"];
         self.areaAdds = dic[@"areaAdds"];
-        self.areaId=[dic[@"id"] integerValue];
+        self.addrId=[dic[@"id"] integerValue];
+        self.areaId = dic[@"area"][@"id"];
     }
     return self;
 }

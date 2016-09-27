@@ -15,4 +15,6 @@
 @property (nonatomic, copy) NSString *fourthLabelText;
 @property (nonatomic, assign) NSInteger addrId;//列表地址id
 @property (nonatomic, copy) NSString *isDefualtFlag;
+@property (nonatomic, copy) NSString *areaId;//行政区号
+@property (nonatomic, assign) BOOL isModefy;//是否是编辑修改进来的
 @end

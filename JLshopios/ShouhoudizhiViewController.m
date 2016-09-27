@@ -152,7 +152,7 @@ static const CGFloat kBottomHeight = 60;
                 [FYTXHub dismiss];
                 return;
             }
-            [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/updateDefault?" parameters:@{@"userId":[LoginStatus sharedManager].idStr,@"newId":@(model.areaId)} isShowHUD:YES httpToolSuccess:^(id json) {
+            [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/updateDefault?" parameters:@{@"userId":[LoginStatus sharedManager].idStr,@"newId":@(model.addrId)} isShowHUD:YES httpToolSuccess:^(id json) {
                     [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
                             _allArr = json;
                         
@@ -185,7 +185,9 @@ static const CGFloat kBottomHeight = 60;
             addVC.thirdLabelText = model.areaAdds;
             addVC.fourthLabelText = model.detailedAdd;
             addVC.isDefualtFlag = model.isDefault;
-            addVC.addrId = model.areaId;
+            addVC.addrId = model.addrId;
+            addVC.areaId = model.areaId;
+            addVC.isModefy = YES;
             [self.navigationController pushViewController:addVC animated:YES];
 
         }
@@ -197,7 +199,7 @@ static const CGFloat kBottomHeight = 60;
                 if ([index isEqualToNumber:@(1)]) {
                     [FYTXHub progress:@"正在删除..."];
                     //点击了确定
-                    [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/deleteUserAddressById?" parameters:@{@"id":@(model.areaId)} isShowHUD:YES httpToolSuccess:^(id json) {
+                    [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/deleteUserAddressById?" parameters:@{@"id":@(model.addrId)} isShowHUD:YES httpToolSuccess:^(id json) {
                         [QSCHttpTool get:@"https://123.56.192.182:8443/app/address/listUserAddressByUserId?" parameters:@{@"userId" : [NSNumber numberWithInteger:[[LoginStatus sharedManager].idStr integerValue]]} isShowHUD:YES httpToolSuccess:^(id json) {
                                 _allArr = json;
                                 
