@@ -86,13 +86,16 @@
 
     _pangoNum = 0;
     NSString *userid = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr :@"";
-    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"%@\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",name,menuID,userid];
+    NSString *parameterStr = [menuID integerValue] == 1 ? [NSString stringWithFormat:@"{\"shopName\":\"%@\",\"shopClass\":\"\",\"id\":\"%@\",\"pageBegin\":\"0\",\"pagesize\":\"10\",\"lat\":\"114.058\",\"lng\":\"22.521\",\"userid\":\"%@\"}",name,menuID,userid] : [NSString stringWithFormat:@"{\"name\":\"%@\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",name,menuID,userid];
     NSDictionary *dic = @{@"arg0":parameterStr};
     [FYTXHub progress:@"正在加载。。。"];
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
-    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+    
+    NSString * Str = [menuID integerValue] == 1 ? @"https://123.56.192.182:8443/app/appShopController/nearShopListPager?": @"https://123.56.192.182:8443/app/product/listGoods?";
+    
+    [QSCHttpTool get:Str parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         [FYTXHub dismiss];
-        
+        NSLog(@" json------ %@ ",json);
         [_commodity setArray:json];
         _jsonCount = _commodity.count;
         if (_jsonCount >= 10) {

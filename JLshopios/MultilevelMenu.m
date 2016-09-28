@@ -277,17 +277,28 @@
 }
 #pragma mark---每一组有多少个cell
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    
     CategoryMeunModel * title=self.allData[self.selectIndex];
-
+    if (title.Id == 1) {
+        return 1;
+    }
     return title.nextArray.count;
 }
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    CategoryMeunModel * title=self.allData[self.selectIndex];
-    CategoryRightMeunModel * meun=[[CategoryRightMeunModel alloc] initWithDictionary:title.nextArray[indexPath.row]];
-
     void (^select)(NSInteger left,NSInteger right,id info) = self.block;
+    CategoryMeunModel * title=self.allData[self.selectIndex];
+    CategoryRightMeunModel * meun;
+    if (title.Id == 1) {
+        NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%d",title.Id],@"icon":title.urlName,@"name":title.menuName,@"level":title.menuLevel};
+        meun = [[CategoryRightMeunModel alloc] initWithDictionary:dic];
+        
+    }else{
+        meun = [[CategoryRightMeunModel alloc] initWithDictionary:title.nextArray[indexPath.row]];
+        
+    }
+    
     select(self.selectIndex,indexPath.row,meun);
     
 }
@@ -298,18 +309,31 @@
     MultilevelCollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:kMultilevelCollectionViewCell forIndexPath:indexPath];
     CategoryMeunModel * title=self.allData[self.selectIndex];
     
-    CategoryRightMeunModel * meun=[[CategoryRightMeunModel alloc] initWithDictionary:title.nextArray[indexPath.row]];
-    
-    cell.titile.text=meun.menuNameOfRight;
+    CategoryRightMeunModel * meun;
+    if (title.Id == 1) {
+        NSDictionary *dic = @{@"id":[NSString stringWithFormat:@"%d",title.Id],@"icon":title.urlName,@"name":title.menuName,@"level":title.menuLevel};
+        meun = [[CategoryRightMeunModel alloc] initWithDictionary:dic];
+//        cell.titile.text=title.menuName;
+//        
+//        cell.imageView.image=[UIImage imageNamed:title.urlName];
+//        //给一张默认图片，先使用默认图片，当图片加载完成后再替换
+//        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:title.urlName]
+//                          placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
+    }else{
+        meun = [[CategoryRightMeunModel alloc] initWithDictionary:title.nextArray[indexPath.row]];
+        
+    }
     cell.backgroundColor=[UIColor clearColor];
     cell.imageView.backgroundColor=[UIColor whiteColor];
     cell.imageView.layer.masksToBounds = YES;
     cell.imageView.layer.cornerRadius = 8;
-    cell.imageView.image=[UIImage imageNamed:meun.urlNameOfRight];
+    cell.titile.text=meun.menuNameOfRight;
     
+    cell.imageView.image=[UIImage imageNamed:meun.urlNameOfRight];
     //给一张默认图片，先使用默认图片，当图片加载完成后再替换
     [cell.imageView sd_setImageWithURL:[NSURL URLWithString:meun.urlNameOfRight]
                       placeholderImage:[UIImage imageNamed:@"icon_loading5"]];
+    
     
 //    cell.imageView.backgroundColor = [UIColor blueColor];
     return cell;
