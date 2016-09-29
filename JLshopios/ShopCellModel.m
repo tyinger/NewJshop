@@ -54,6 +54,8 @@
         self.createTime = dic[@"createTime"];
         self.logo = dic[@"logo"];
         self.address = dic[@"address"];
+        self.info = dic[@"info"];
+        self.distance = dic[@"distance"];
     }
     return self;
 }

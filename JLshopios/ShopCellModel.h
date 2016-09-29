@@ -39,6 +39,7 @@
 @property(assign,nonatomic) BOOL isCollectioned;
 
 @property(copy,nonatomic) NSString *discount;
+@property(copy,nonatomic) NSString *distance;
 
 @property(assign,nonatomic) NSInteger fullYoufei;
 @property(assign,nonatomic) NSInteger noFullYoufei;

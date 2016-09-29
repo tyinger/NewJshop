@@ -17,6 +17,9 @@
 		1FBB9B711D8792A200462A01 /* cityCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FBB9B701D8792A200462A01 /* cityCode.plist */; };
 		1FBB9B731D8792B700462A01 /* townCode.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1FBB9B721D8792B700462A01 /* townCode.plist */; };
 		1FBB9B751D87DBEB00462A01 /* address1.json in Resources */ = {isa = PBXBuildFile; fileRef = 1FBB9B741D87DBEA00462A01 /* address1.json */; };
+		1FC711BE1D9CA8DD000D8C27 /* ShopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC711BC1D9CA8DD000D8C27 /* ShopTableViewCell.m */; };
+		1FC711BF1D9CA8DD000D8C27 /* ShopTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1FC711BD1D9CA8DD000D8C27 /* ShopTableViewCell.xib */; };
+		1FC711C21D9CEED0000D8C27 /* ShopDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FC711C11D9CEED0000D8C27 /* ShopDetailController.m */; };
 		30312C271D5709E500E0D0BD /* BAddressPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C161D5709E500E0D0BD /* BAddressPickerController.m */; };
 		30312C281D5709E500E0D0BD /* BCurrentCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C181D5709E500E0D0BD /* BCurrentCityCell.m */; };
 		30312C291D5709E500E0D0BD /* BHotCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30312C1A1D5709E500E0D0BD /* BHotCityCell.m */; };
@@ -263,6 +266,11 @@
 		1FBB9B701D8792A200462A01 /* cityCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityCode.plist; sourceTree = "<group>"; };
 		1FBB9B721D8792B700462A01 /* townCode.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = townCode.plist; sourceTree = "<group>"; };
 		1FBB9B741D87DBEA00462A01 /* address1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = address1.json; sourceTree = "<group>"; };
+		1FC711BB1D9CA8DD000D8C27 /* ShopTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopTableViewCell.h; sourceTree = "<group>"; };
+		1FC711BC1D9CA8DD000D8C27 /* ShopTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopTableViewCell.m; sourceTree = "<group>"; };
+		1FC711BD1D9CA8DD000D8C27 /* ShopTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopTableViewCell.xib; sourceTree = "<group>"; };
+		1FC711C01D9CEECF000D8C27 /* ShopDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailController.h; sourceTree = "<group>"; };
+		1FC711C11D9CEED0000D8C27 /* ShopDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailController.m; sourceTree = "<group>"; };
 		30312C141D5709E500E0D0BD /* BAddressHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAddressHeader.h; sourceTree = "<group>"; };
 		30312C151D5709E500E0D0BD /* BAddressPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAddressPickerController.h; sourceTree = "<group>"; };
 		30312C161D5709E500E0D0BD /* BAddressPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAddressPickerController.m; sourceTree = "<group>"; };
@@ -1778,6 +1786,11 @@
 				8E2DE7621D047BC8003C077A /* JLShopsViewController.m */,
 				1F3580D01D9BCD0500A5973F /* ShopCellModel.h */,
 				1F3580D11D9BCD0500A5973F /* ShopCellModel.m */,
+				1FC711BB1D9CA8DD000D8C27 /* ShopTableViewCell.h */,
+				1FC711BC1D9CA8DD000D8C27 /* ShopTableViewCell.m */,
+				1FC711BD1D9CA8DD000D8C27 /* ShopTableViewCell.xib */,
+				1FC711C01D9CEECF000D8C27 /* ShopDetailController.h */,
+				1FC711C11D9CEED0000D8C27 /* ShopDetailController.m */,
 			);
 			name = Shops;
 			sourceTree = "<group>";
@@ -1889,6 +1902,7 @@
 				975976F41D577B4100B3B5CB /* CommoditySelectCell.xib in Resources */,
 				3043B0A81D02C55B00E97B82 /* Assets.xcassets in Resources */,
 				1FACAE921D45C49A0049A4BC /* JLCommdoityCollectionCell.xib in Resources */,
+				1FC711BF1D9CA8DD000D8C27 /* ShopTableViewCell.xib in Resources */,
 				E77EFEFB1D05589F00E5113C /* Commodity.plist in Resources */,
 				E7A189C81D02D18D00E6F441 /* Shops.storyboard in Resources */,
 				E715ED211D05289C003A2D62 /* Category.plist in Resources */,
@@ -2191,6 +2205,7 @@
 				30312C271D5709E500E0D0BD /* BAddressPickerController.m in Sources */,
 				1F3580D21D9BCD0500A5973F /* ShopCellModel.m in Sources */,
 				3057831A1D0C0D51007AED3C /* FYTXGuideFactory.m in Sources */,
+				1FC711C21D9CEED0000D8C27 /* ShopDetailController.m in Sources */,
 				30312C2A1D5709E500E0D0BD /* BRecentCityCell.m in Sources */,
 				305783181D0C0D51007AED3C /* FYTXGuide.m in Sources */,
 				9759770D1D577C0E00B3B5CB /* TYTextContainer+Extended.m in Sources */,
@@ -2226,6 +2241,7 @@
 				E715ECBD1D052671003A2D62 /* NSString+Extension.m in Sources */,
 				3057831D1D0C0D51007AED3C /* JLGuideViewController.m in Sources */,
 				975976EB1D577B4100B3B5CB /* CommodityComponentCell.m in Sources */,
+				1FC711BE1D9CA8DD000D8C27 /* ShopTableViewCell.m in Sources */,
 				B5068FC11D7E9642002D2BB1 /* ScoreHeaderView.m in Sources */,
 				B572D63D1D82F99500797399 /* FollowGoodModel.m in Sources */,
 				E715ED131D0526E5003A2D62 /* MultilevelCollectionViewCell.m in Sources */,
