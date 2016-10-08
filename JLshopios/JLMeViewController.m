@@ -13,6 +13,8 @@
 
 #import "LoginViewController.h"
 
+#import "MyOrderViewController.h"
+
 @interface JLMeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic,strong) UITableView *mainTableView;
@@ -359,7 +361,8 @@
             [self.navigationController pushViewController:[LoginViewController new] animated:YES];
         });
     }else{
-        
+        MyOrderViewController * order = [[MyOrderViewController alloc] init];
+        [self.navigationController pushViewController:order animated:YES];
         NSLog(@"%ld",ges.view.tag);
     }
 }
