@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "DetailsMode.h"
 @interface CommodityPraiseCell : UITableViewCell
-@property (strong, nonatomic) IBOutlet UILabel *praiseLabel;
-@property (strong, nonatomic) IBOutlet UILabel *personLabel;
+@property (strong, nonatomic) IBOutlet UILabel *simpleAddressLabel;
 - (void)showInfo:(DetailsMode *)model;
 @end

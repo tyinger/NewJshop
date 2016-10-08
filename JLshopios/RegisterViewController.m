@@ -182,22 +182,22 @@
     
     NSDictionary *dic = @{@"phoneNum":self.phoneNumTextF.text,@"checkCode":code,@"pwd":[NSString changemd:self.passwordTextF.text],@"recommendCode":tuijian};
         //loginName=18643212316 password=
-        [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/registNewUser?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/registNewUser?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             
-            if (json[@"msg"] != nil) {
+        if (json[@"msg"] != nil) {
                 
-                NSString *str = [NSString stringWithFormat:@"%@",json[@"msg"]];
-                [FYTXHub toast:str];
-                if ([str rangeOfString:@"成功"].location != NSNotFound) {
+            NSString *str = [NSString stringWithFormat:@"%@",json[@"msg"]];
+            [FYTXHub toast:str];
+            if ([str rangeOfString:@"成功"].location != NSNotFound) {
                     
-                    [self loginAction];
-                }
+                [self loginAction];
             }
+        }
             
-        } failure:^(NSError *error) {
+    } failure:^(NSError *error) {
             
-            [FYTXHub toast:@"网络请求失败"];
-        }];
+        [FYTXHub toast:@"网络请求失败"];
+    }];
 }
 
 - (void)loginAction{

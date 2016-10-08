@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DetailsMode.h"
 @interface CommoditySelectCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *selectLatel;
+@property (weak, nonatomic) IBOutlet UILabel *DetailAddressLatel;
 
 /// 根据数据模型来显示内容
 - (void)showInfo:(DetailsMode *)model;

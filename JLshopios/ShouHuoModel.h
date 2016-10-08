@@ -16,7 +16,8 @@
 @property (assign, nonatomic) NSInteger userId;//用户id
 @property (copy, nonatomic) NSString *isDefault;//是否默认地址
 @property (copy, nonatomic) NSString *areaAdds;//区域
-@property (assign, nonatomic) NSInteger areaId;//id  列表id
+@property (assign, nonatomic) NSInteger addrId;//id  列表id
+@property (copy, nonatomic) NSString *areaId;//行政区code
 
 -(ShouHuoModel *)initWithDictionary:(NSDictionary *)dic;
 +(ShouHuoModel *)shouhuoWithDictionary:(NSDictionary *)dic;

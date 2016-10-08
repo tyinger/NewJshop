@@ -188,7 +188,7 @@
                 <outlet property="commodityPraise" destination="Vc7-ge-b4M" id="ahd-jX-Bww"/>
                 <outlet property="commodityPrice" destination="xz5-T4-3Z0" id="VTR-WM-RDJ"/>
             </connections>
-            <point key="canvasLocation" x="-40.5" y="202"/>
+            <point key="canvasLocation" x="34.5" y="338"/>
         </tableViewCell>
     </objects>
     <resources>

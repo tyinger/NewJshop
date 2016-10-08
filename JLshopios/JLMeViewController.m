@@ -21,6 +21,9 @@
 
 @property (nonatomic,strong) NSMutableArray *dataArr;
 
+@property (nonatomic,strong) UILabel *name;
+@property (nonatomic,strong) UIImageView *userImage;
+
 @end
 
 @implementation JLMeViewController
@@ -107,8 +110,10 @@
     
     [self creatUI];
     
+    @weakify(self);
     [[RACObserve([LoginStatus sharedManager], login) deliverOnMainThread] subscribeNext:^(NSNumber *x) {
         
+        @strongify(self);
         if ([x boolValue] == YES) {
             
             self.mainTableView.tableFooterView = [self creatFootView];
@@ -119,6 +124,7 @@
     }];
     [[RACObserve([LoginStatus sharedManager], login) deliverOnMainThread] subscribeNext:^(id x) {
         
+        @strongify(self);
         if ([x boolValue] == NO) {
             
             self.mainTableView.tableHeaderView = [self creatHeaderView];
@@ -126,6 +132,16 @@
             
             self.mainTableView.tableHeaderView = [self creatHeaderLoginView];
         }
+    }];
+    [[RACObserve([LoginStatus sharedManager], name) deliverOnMainThread] subscribeNext:^(id x) {
+        
+        @strongify(self);
+        self.name.text = [LoginStatus sharedManager].name;
+    }];
+    [[RACObserve([LoginStatus sharedManager], headPic) deliverOnMainThread] subscribeNext:^(id x) {
+        
+        @strongify(self);
+        [self.userImage sd_setImageWithURL:[NSURL URLWithString:[LoginStatus sharedManager].headPic]];
     }];
 }
 
@@ -178,15 +194,15 @@
         make.bottom.offset(-width);
     }];
     
-    UIImageView *userImage = [[UIImageView alloc] init];
-    [userImage sd_setImageWithURL:[NSURL URLWithString:[LoginStatus sharedManager].headPic]];
-    userImage.layer.masksToBounds = YES;
-    userImage.layer.borderWidth = 2;
-    userImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.userImage = [[UIImageView alloc] init];
+    [self.userImage sd_setImageWithURL:[NSURL URLWithString:[LoginStatus sharedManager].headPic]];
+    self.userImage.layer.masksToBounds = YES;
+    self.userImage.layer.borderWidth = 2;
+    self.userImage.layer.borderColor = [UIColor whiteColor].CGColor;
     
-    userImage.userInteractionEnabled = YES;
+    self.userImage.userInteractionEnabled = YES;
     UITapGestureRecognizer *ages = [[UITapGestureRecognizer alloc] init];
-    [userImage addGestureRecognizer:ages];
+    [self.userImage addGestureRecognizer:ages];
     @weakify(self);
     [[ages rac_gestureSignal] subscribeNext:^(id x) {
         
@@ -199,23 +215,23 @@
         }
     }];
     
-    [b addSubview:userImage];
-    [userImage mas_makeConstraints:^(MASConstraintMaker *make) {
+    [b addSubview:self.userImage];
+    [self.userImage mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.left.mas_equalTo(@20);
         make.width.height.offset(180 - width - 36);;
     }];
     
-    UILabel *name = [[UILabel alloc] init];
-    name.textColor = [UIColor whiteColor];
-    name.font = [UIFont systemFontOfSize:16];
-    name.text = [LoginStatus sharedManager].name;
-    [name sizeToFit];
-    [b addSubview:name];
-    [name mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.name = [[UILabel alloc] init];
+    self.name.textColor = [UIColor whiteColor];
+    self.name.font = [UIFont systemFontOfSize:16];
+    self.name.text = [LoginStatus sharedManager].name;
+    [self.name sizeToFit];
+    [b addSubview:self.name];
+    [self.name mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(userImage.mas_top).offset(0);
-        make.left.equalTo(userImage.mas_right).offset(15);
+        make.top.equalTo(self.userImage.mas_top).offset(0);
+        make.left.equalTo(self.userImage.mas_right).offset(15);
     }];
     
     UILabel *phone = [[UILabel alloc] init];
@@ -226,8 +242,8 @@
     [b addSubview:phone];
     [phone mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(userImage.mas_right).offset(15);
-        make.centerY.equalTo(userImage.mas_centerY).offset(0);
+        make.left.equalTo(self.userImage.mas_right).offset(15);
+        make.centerY.equalTo(self.userImage.mas_centerY).offset(0);
     }];
     
     UILabel *code = [[UILabel alloc] init];
@@ -239,8 +255,8 @@
     [b addSubview:code];
     [code mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.equalTo(userImage.mas_right).offset(15);
-        make.bottom.equalTo(userImage.mas_bottom).offset(0);
+        make.left.equalTo(self.userImage.mas_right).offset(15);
+        make.bottom.equalTo(self.userImage.mas_bottom).offset(0);
     }];
     
     UIImageView *codeImage = [[UIImageView alloc] init];
@@ -265,7 +281,7 @@
     
     [codeImage mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.centerY.equalTo(userImage.mas_centerY).offset(0);
+        make.centerY.equalTo(self.userImage.mas_centerY).offset(0);
         make.width.height.mas_equalTo(@35);
         make.right.offset(-20);
     }];

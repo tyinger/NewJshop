@@ -82,7 +82,7 @@
     NSDictionary *dic = @{@"arg0":@"{\"name\":\"\",\"type\":\"1\",\"id\":\"\",\"level\":\"\",\"firstSeplling\":\"\",\"shopid\":\"1\"}"};
     NSLog(@" ------ %@ ------",dic[@"arg0"]);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listClass?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-//        NSLog(@"%@",json);
+        NSLog(@"json = %@",json);
         [self analizeData:json];
         //初始化分类菜单
         [self initCategoryMenu];
@@ -110,6 +110,8 @@
             //[self.navigationController pushViewController:frostedViewController animated:YES];
             
             CommodityTableViewController *commod = [[CommodityTableViewController alloc] initWithType:1];
+            commod.secondMenuIDStr = [NSString stringWithFormat:@"%d",info.Id];
+            commod.searchNameStr = @"";
             [self.navigationController pushViewController:commod animated:YES];
         }];
         _mutiview.needToScorllerIndex=_numRow; //默认是 选中第一行

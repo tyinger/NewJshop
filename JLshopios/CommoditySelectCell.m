@@ -14,7 +14,7 @@
 - (void)showInfo:(DetailsMode *)model
 {
     
-    self.selectLatel.text = model.detailsSelect;
+    self.DetailAddressLatel.text = model.detailsSelect;
     [self layoutSubviews];
 }
 

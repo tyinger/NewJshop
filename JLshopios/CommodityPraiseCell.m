@@ -14,8 +14,7 @@
 - (void)showInfo:(DetailsMode *)model
 {
     
-    self.praiseLabel.text = model.detailsPraise;
-    self.personLabel.text = model.detailsPerson;
+    self.simpleAddressLabel.text = model.detailsPraise;
     [self layoutSubviews];
 }
 

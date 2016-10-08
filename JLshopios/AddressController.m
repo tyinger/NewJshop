@@ -42,6 +42,7 @@ static const CGFloat kBottomHeight = 60;
 @property (nonatomic,assign) NSInteger index2; // 市下标
 @property (nonatomic,assign) NSInteger index3; // 区下标
 @property (copy, nonatomic) NSMutableString *detailAddress; // 具体地址
+@property (copy, nonatomic) NSString *areaStr;//所在区域
 @end
 
 @implementation AddressController
@@ -60,6 +61,7 @@ static const CGFloat kBottomHeight = 60;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.areaStr = self.isModefy ? self.areaId : nil;
     [self calculateFirstData];
     [self whiteBackGroundView];
     [self createUI];
@@ -103,7 +105,7 @@ static const CGFloat kBottomHeight = 60;
 
 - (void)loadFirstData{
 
-    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"address" ofType:@"json"];
+    NSString *jsonPath = [[NSBundle mainBundle] pathForResource:@"address1" ofType:@"json"];
     NSString *jsonStr = [NSString stringWithContentsOfFile:jsonPath usedEncoding:nil error:nil];
     self.arrAll = [jsonStr JSONObject];
     
@@ -345,7 +347,7 @@ static const CGFloat kBottomHeight = 60;
                                         @"userId":[LoginStatus sharedManager].idStr,
                                         @"name":self.shouTextFiled.text,
                                         @"phone":self.phoneTextFiled.text,
-                                        @"area.id":@"110101000",
+                                        @"area.id":self.areaStr,
                                         @"area.name":@"",
                                         @"id":@(self.addrId)}
     :
@@ -355,7 +357,7 @@ static const CGFloat kBottomHeight = 60;
     @"userId":[LoginStatus sharedManager].idStr,
     @"name":self.shouTextFiled.text,
     @"phone":self.phoneTextFiled.text,
-    @"area.id":@"110101000",
+    @"area.id":self.areaStr,
     @"area.name":@""};
     
     NSString *pathStr = self.addrId ? @"https://123.56.192.182:8443/app/address/updateUserAddress?" : @"https://123.56.192.182:8443/app/address/saveUserAddress?";
@@ -395,7 +397,7 @@ static const CGFloat kBottomHeight = 60;
     }else if(tableView == _cityTableView){
         cell.textLabel.text = self.cityArr[indexPath.row];
     }else if(tableView == _townTableView){
-        cell.textLabel.text = self.townArr[indexPath.row];
+        cell.textLabel.text = [self.townArr[indexPath.row] substringFromIndex:9];
     }
     
     
@@ -430,9 +432,10 @@ static const CGFloat kBottomHeight = 60;
         [self.detailAddress appendString:@"-"];
         [self.detailAddress appendString:self.cityArr[self.index2]];
         [self.detailAddress appendString:@"-"];
-        [self.detailAddress appendString:self.townArr[self.index3]];
+        [self.detailAddress appendString:[self.townArr[self.index3] substringFromIndex:9]];
         UIButton *tempBtn = [self.view viewWithTag:205];
         [tempBtn setTitle:self.detailAddress forState:UIControlStateNormal];
+        self.areaStr = [self.townArr[self.index3] substringToIndex:9];
         [self chooseAddress:tempBtn];
     }
 }

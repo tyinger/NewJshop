@@ -23,6 +23,9 @@
 #import "DetailsViewController.h"
 #import "UIImageView+WebCache.h"
 #import "UIBarButtonItem+Badge.h"
+#import "ShopTableViewCell.h"
+#import "ShopCellModel.h"
+#import "ShopDetailController.h"
 
 @interface CommodityTableViewController ()<SearchBarViewDelegate,UITableViewDataSource,UITableViewDelegate,UICollectionViewDelegate>
 {
@@ -87,12 +90,24 @@
     _pangoNum = 0;
     NSString *userid = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr :@"";
     NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"%@\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",name,menuID,userid];
-    NSDictionary *dic = @{@"arg0":parameterStr};
+    NSDictionary *dic = _tabbarNum == 1 ? @{@"shopName":name,
+                                            @"shopClass":menuID,
+                                            @"nearby":@"",
+                                            @"pageBegin":@0,
+                                            @"pageSize":@10,
+                                            @"lat":@"114.058",
+                                            @"lng":@"22.521"} : @{@"arg0":parameterStr};
+    
+    
+    
     [FYTXHub progress:@"正在加载。。。"];
-    NSLog(@" ------ %@ ------",dic[@"arg0"]);
-    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/listGoods?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+//    NSLog(@" ------ %@ ------",dic[@"arg0"]);
+    
+    NSString * Str = _tabbarNum == 1 ? @"https://123.56.192.182:8443/app/appShopController/nearShopListPager?": @"https://123.56.192.182:8443/app/product/listGoods?";
+    
+    [QSCHttpTool post:Str parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         [FYTXHub dismiss];
-        
+        NSLog(@" json------ %@ ",json);
         [_commodity setArray:json];
         _jsonCount = _commodity.count;
         if (_jsonCount >= 10) {
@@ -114,7 +129,7 @@
                 _tableView.backgroundColor=RGB(240, 243, 245);
                 [self.view addSubview:_tableView];
                 
-                [_tableView registerNib:[UINib nibWithNibName:@"CommodityTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+                _tabbarNum ? [_tableView registerNib:[UINib nibWithNibName:@"ShopTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"] : [_tableView registerNib:[UINib nibWithNibName:@"CommodityTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
                 _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
                 
                 _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
@@ -171,6 +186,10 @@
                                         items:arr
                                         iconPosition:IconPositionRight
                                         andSelectionBlock:^(NSUInteger segmentIndex) {
+                                            
+                                            if (tabbNum) {
+                                                return;
+                                            }
                                             
                                              MYLog(@"第几个%ld",segmentIndex);
                                             switch (segmentIndex) {
@@ -281,54 +300,77 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *cellIdentifier=@"Cell";
-     CommodityTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
-
-    CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
     
-    [cell.commodityImg sd_setImageWithURL:[NSURL URLWithString:commodity.commodityImageUrl] placeholderImage:[UIImage imageWithName:@"icon_loading5"]];
-    cell.commodityName.text=commodity.commodityName;
-    cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
-    [cell.commodityGoodNumer setTitle:commodity.commodityCartNum forState:UIControlStateNormal];
-   __weak typeof(cell) weakCell = cell;
-    cell.addGoodsBtnAction = ^(NSInteger numberOne){
-        [weakCell.commodityGoodNumer setTitle:[NSString stringWithFormat:@"%ld",[cell.commodityGoodNumer.titleLabel.text integerValue] + numberOne] forState:UIControlStateNormal];
-        if (numberOne == 1) {
+
+    switch (_tabbarNum) {
+        case 0:
+        {
+            CommodityTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
             
-            NSDictionary *dic = @{
-                                  @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
-                                  @"num":@"1",
-                                  @"jsFlag":@"0",
-                                  @"Price":commodity.commodityPrice,
-                                  @"userid":[LoginStatus sharedManager].idStr,
-                                  @"goodName":commodity.commodityName,
-                                  @"goodImg":commodity.commodityImageUrl,
-                                  @"shopid":@"-1"
-                                  };
-            
-            [QSCHttpTool post:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-                MYLog(@"5555%@",json);
-                [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
-            } failure:^(NSError *error) {
-                MYLog(@"4444%@",error);
-            }];
-        }else{
-            NSDictionary *dic = @{
-                                  @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
-                                  @"userid":[LoginStatus sharedManager].idStr
-                                  };
-            [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/deleteShopCartByGoodId?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-                MYLog(@"删除成功%@",json);
-                [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+            [cell.commodityImg sd_setImageWithURL:[NSURL URLWithString:commodity.commodityImageUrl] placeholderImage:[UIImage imageWithName:@"icon_loading5"]];
+            cell.commodityName.text=commodity.commodityName;
+            cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
+            [cell.commodityGoodNumer setTitle:commodity.commodityCartNum forState:UIControlStateNormal];
+            __weak typeof(cell) weakCell = cell;
+            cell.addGoodsBtnAction = ^(NSInteger numberOne){
+                [weakCell.commodityGoodNumer setTitle:[NSString stringWithFormat:@"%ld",[cell.commodityGoodNumer.titleLabel.text integerValue] + numberOne] forState:UIControlStateNormal];
+                if (numberOne == 1) {
+                    
+                    NSDictionary *dic = @{
+                                          @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
+                                          @"num":@"1",
+                                          @"jsFlag":@"0",
+                                          @"Price":commodity.commodityPrice,
+                                          @"userid":[LoginStatus sharedManager].idStr,
+                                          @"goodName":commodity.commodityName,
+                                          @"goodImg":commodity.commodityImageUrl,
+                                          @"shopid":@"-1"
+                                          };
+                    
+                    [QSCHttpTool post:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                        MYLog(@"5555%@",json);
+                        [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+                    } failure:^(NSError *error) {
+                        MYLog(@"4444%@",error);
+                    }];
+                }else{
+                    NSDictionary *dic = @{
+                                          @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
+                                          @"userid":[LoginStatus sharedManager].idStr
+                                          };
+                    [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/deleteShopCartByGoodId?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                        MYLog(@"删除成功%@",json);
+                        [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+                        
+                    } failure:^(NSError *error) {
+                        MYLog(@"删除商品失败%@",error);
+                    }];
+                }
                 
-            } failure:^(NSError *error) {
-                MYLog(@"删除商品失败%@",error);
-            }];
+            };
+            return cell;
         }
-        
-    };
+            break;
+            case 1:
+        {
+            ShopTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            ShopCellModel *shopModel = [[ShopCellModel alloc] initWithDictionary:_commodity[indexPath.row]];
+            
+            [cell.iconLogoImage sd_setImageWithURL:[NSURL URLWithString:shopModel.logo] placeholderImage:[UIImage imageWithName:@"icon_loading5"]];
+            cell.shopNameLabel.text = shopModel.name;
+            cell.noFullYouFeiLabel.text=[NSString stringWithFormat:@"邮费：%ld元",shopModel.noFullYoufei];
+            cell.shopInfoLabel.text = shopModel.info;
+            cell.fullYouFeiLabel.text = [NSString stringWithFormat:@"满%ld元包邮",shopModel.fullYoufei];
+            cell.shopStanceLabel.text = [NSString stringWithFormat:@"距离：%@米",shopModel.distance];
+            return cell;
+        }
+            break;
+        default:
+            break;
+    }
     
-    return cell;
+    return nil;
 }
 
 #pragma mark - UITableViewDelegate代理方法
@@ -337,13 +379,30 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"cell selected at index path %i", (int)indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    DetailsViewController * detailsTVC = [[DetailsViewController alloc]init];
-//    [self.navigationController pushViewController:detailsTVC animated:YES];
-    CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
-    DetailsViewController *next = [[DetailsViewController alloc] init];
-    next.productIDStr = [NSString stringWithFormat:@"%lld",commodity.Id];
-    next.productIconStr = commodity.commodityImageUrl;
-    [self.navigationController pushViewController:next animated:YES];
+    switch (_tabbarNum) {
+        case 0:
+        {
+            CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
+            DetailsViewController *next = [[DetailsViewController alloc] init];
+            next.productIDStr = [NSString stringWithFormat:@"%lld",commodity.Id];
+            next.productIconStr = commodity.commodityImageUrl;
+            [self.navigationController pushViewController:next animated:YES];
+        }
+            break;
+        case 1:
+        {
+            ShopCellModel *commodity = [[ShopCellModel alloc] initWithDictionary:_commodity[indexPath.row]];
+            ShopDetailController *next = [[ShopDetailController alloc] init];
+            next.productIDStr = [NSString stringWithFormat:@"%d",commodity.ID];
+            next.productIconStr = commodity.logo;
+            next.tabbarNum = _tabbarNum;
+            [self.navigationController pushViewController:next animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 //获取数据
