@@ -128,6 +128,16 @@
                     <constraint firstItem="TBg-zx-QgR" firstAttribute="top" secondItem="nDF-su-HOa" secondAttribute="bottom" constant="1" id="zYw-db-30h"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="actionButton" destination="AEi-sA-LMc" id="Rgu-ej-Q9D"/>
+                <outlet property="cancelButton" destination="Rlt-IF-hWB" id="isg-jZ-55m"/>
+                <outlet property="moreImage" destination="dM0-p5-MlP" id="vwE-Wc-u27"/>
+                <outlet property="orderImageOne" destination="Q4K-Ob-hfB" id="TB7-82-itm"/>
+                <outlet property="orderImageTwo" destination="43E-xv-Wcc" id="AdP-4d-Dgc"/>
+                <outlet property="orderPirceLabel" destination="CCz-pS-L3Q" id="Axw-8Z-vIr"/>
+                <outlet property="orderStateLabel" destination="nDF-su-HOa" id="R9c-WM-rll"/>
+                <outlet property="shopNameLabel" destination="Th0-c0-R08" id="3Cn-aj-ux3"/>
+            </connections>
             <point key="canvasLocation" x="304" y="311.5"/>
         </tableViewCell>
     </objects>

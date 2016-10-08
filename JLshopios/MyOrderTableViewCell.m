@@ -7,7 +7,19 @@
 //
 
 #import "MyOrderTableViewCell.h"
+@interface MyOrderTableViewCell()
+@property (weak, nonatomic) IBOutlet UILabel *shopNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orderStateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *orderPirceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *actionButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIImageView *orderImageOne;
+@property (weak, nonatomic) IBOutlet UIImageView *orderImageTwo;
+@property (weak, nonatomic) IBOutlet UIImageView *moreImage;
 
+
+
+@end
 @implementation MyOrderTableViewCell
 
 - (void)awakeFromNib {

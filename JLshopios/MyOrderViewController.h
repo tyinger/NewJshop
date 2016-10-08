@@ -15,5 +15,7 @@ typedef NS_ENUM(NSUInteger, OrderType) {
     OrderTypeAll,           //全部
 };
 @interface MyOrderViewController : UIViewController
-
+@property (nonatomic, strong) UITableView *mainView;
+@property (nonatomic, assign) OrderType mainType;
+- (instancetype)initWithType:(OrderType)type;
 @end

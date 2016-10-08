@@ -9,8 +9,8 @@
 #import "MyOrderViewController.h"
 #import "MyOrderTableViewCell.h"
 #import "MyOrderViewModel.h"
-@interface MyOrderViewController ()<UITableViewDelegate,UITableViewDataSource>
-@property (nonatomic, strong) UITableView *mainView;
+@interface MyOrderViewController ()
+
 @property (nonatomic, strong) MyOrderViewModel *viewModel;
 @end
 
@@ -18,9 +18,10 @@
 - (UITableView *)mainView{
     if (!_mainView) {
         _mainView = [[UITableView alloc] initWithFrame:self.view.frame style:UITableViewStylePlain];
-        _mainView.delegate = self;
-        _mainView.dataSource = self;
+        _mainView.delegate = self.viewModel;
+        _mainView.dataSource = self.viewModel;
         _mainView.rowHeight = 150;
+        _mainView.emptyDataSetSource = self.viewModel;
         LAYOUT_TABLE(_mainView)
         [_mainView registerNib:[UINib nibWithNibName:NSStringFromClass([MyOrderTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([MyOrderTableViewCell class])];
     }
@@ -32,12 +33,22 @@
     }
     return _viewModel;
 }
+- (instancetype)initWithType:(OrderType)type{
+    self = [super init];
+    self.mainType = type;
+    return self;
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
     self.title = @"我的订单";
-    [[self.viewModel getTheData] execute:nil];
+    NSArray * titles = @[@"待支付",@"待发货",@"待收货",@"待评价",@"全部订单"];
+    self.title = titles[self.mainType];
     [self.view addSubview:self.mainView];
+    
+    [[self.viewModel getTheData] execute:nil];
+    
+   
     // Do any additional setup after loading the view.
 }
 
@@ -49,15 +60,7 @@
     MyOrderTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MyOrderTableViewCell class])];
     return cell;
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 5;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-    return 10;
-}
+
 /*
 #pragma mark - Navigation
 

@@ -377,7 +377,7 @@
             [self.navigationController pushViewController:[LoginViewController new] animated:YES];
         });
     }else{
-        MyOrderViewController * order = [[MyOrderViewController alloc] init];
+        MyOrderViewController * order = [[MyOrderViewController alloc] initWithType:(ges.view.tag-1000)];
         [self.navigationController pushViewController:order animated:YES];
         NSLog(@"%ld",ges.view.tag);
     }

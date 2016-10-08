@@ -7,11 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MyOrderViewController.h"
+#import "OrderModel.h"
 @class SysPage;
 @interface MyOrderViewModel : NSObject<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) SysPage *pageInfo;
+@property (nonatomic, strong) NSMutableArray <OrderModel *> * dataInfo;
+@property (nonatomic, weak) MyOrderViewController * owner;
 - (RACCommand*)getTheData;
 
+- (RACCommand*)getTheDataWithPage:(NSInteger)page;
+
+- (RACCommand*)payAction;
+- (RACCommand*)cancelAction;
 @end
 
 @interface SysPage : NSObject

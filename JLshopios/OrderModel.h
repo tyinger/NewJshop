@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface OrderModel : NSObject
-
+- (instancetype)initWithData:(id)data;
 @end

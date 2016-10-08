@@ -9,5 +9,10 @@
 #import "OrderModel.h"
 
 @implementation OrderModel
-
+- (instancetype)initWithData:(id)data{
+    if (self = [super init]) {
+        [self setValuesForKeysWithDictionary:data];
+    }
+    return self;
+}
 @end
