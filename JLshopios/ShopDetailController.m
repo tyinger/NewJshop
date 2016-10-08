@@ -52,21 +52,21 @@
         _dataArray = [NSMutableArray array];
         
         // 购买信息
-        CellConfig *comInfo = [CellConfig cellConfigWithClassName:NSStringFromClass([CommodityInfoCell class]) title:@"购买信息" showInfoMethod:@selector(showInfo:) heightOfCell:_modelToShow.cellHeight cellType:NO];
+        CellConfig *comInfo = [CellConfig cellConfigWithClassName:NSStringFromClass([CommodityInfoCell class]) title:@"购买信息" showInfoMethod:@selector(showInfo:) heightOfCell:40.0f cellType:NO];
         
-        //        CellConfig *comSelect = [CellConfig cellConfigWithClassName:@"CommoditySelectCell" title:@"已选" showInfoMethod:@selector(showInfo:) heightOfCell:80.0f cellType:YES];
+                CellConfig *comSelect = [CellConfig cellConfigWithClassName:@"CommoditySelectCell" title:@"地址" showInfoMethod:@selector(showInfo:) heightOfCell:40.0f cellType:YES];
         //
-        //        CellConfig *comAddress = [CellConfig cellConfigWithClassName:@"CommodityAddressCell" title:@"地址" showInfoMethod:@selector(showInfo:) heightOfCell:180.0f cellType:YES];
+//                CellConfig *comAddress = [CellConfig cellConfigWithClassName:@"CommodityAddressCell" title:@"地址" showInfoMethod:@selector(showInfo:) heightOfCell:180.0f cellType:YES];
         
-        //        CellConfig *comPack = [CellConfig cellConfigWithClassName:@"CommodityPackCell" title:@"包装" showInfoMethod:@selector(showInfo:) heightOfCell:50.0f cellType:YES];
+                CellConfig *comPack = [CellConfig cellConfigWithClassName:@"CommodityPackCell" title:@"电话" showInfoMethod:@selector(showInfo:) heightOfCell:40.0f cellType:YES];
         //
-        //        CellConfig *comPraise = [CellConfig cellConfigWithClassName:@"CommodityPraiseCell" title:@"评价" showInfoMethod:@selector(showInfo:) heightOfCell:80.0f cellType:YES];
+                CellConfig *comPraise = [CellConfig cellConfigWithClassName:@"CommodityPraiseCell" title:@"评价" showInfoMethod:@selector(showInfo:) heightOfCell:40.0f cellType:YES];
         //
-        //        CellConfig *comSection = [CellConfig cellConfigWithClassName:@"CommoditySectionCell" title:@"专区" showInfoMethod:@selector(showInfo:) heightOfCell:110.0f cellType:YES];
+//                CellConfig *comSection = [CellConfig cellConfigWithClassName:@"CommoditySectionCell" title:@"专区" showInfoMethod:@selector(showInfo:) heightOfCell:110.0f cellType:YES];
         //
         //        CellConfig *comComponent = [CellConfig cellConfigWithClassName:@"CommodityComponentCell" title:@"配件" showInfoMethod:@selector(showInfo:) heightOfCell:50.0f cellType:YES];
         
-        [_dataArray addObject:@[comInfo]];//,comSelect,comAddress,comPack,comPraise,comSection,comComponent]];
+        [_dataArray addObject:@[comInfo,comSelect,comPack,comPraise]];//,comSelect,comAddress,comPack,comPraise,comSection,comComponent]];
         // 注意，是self.dataArray二维数组，所以这里要套一层数组
         
     }
@@ -127,15 +127,15 @@
     view.backgroundColor=RGBA(0, 0, 0, 0.8);
     [self.view addSubview:view];
     
-    UIButton * addCart =[UIButton createButtonWithFrame:CGRectMake(view.size.width-160, 0, 160, view.size.height) Title:@"加入购物车" Target:self Selector:@selector(addCartClick)];
-    [addCart.titleLabel setFont:[UIFont systemFontOfSize:20]];
-    [addCart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
-    [addCart setBackgroundColor:RGB(255, 100, 98)];
-    
-    [view addSubview:addCart];
-    UIView * view1=[[UIView alloc]initWithFrame:CGRectMake(0, 0, view.size.width-addCart.size.width, view.size.height)];
-    [view addSubview:view1];
+//    UIButton * focus =[UIButton createButtonWithFrame:CGRectMake(0, 0, view.width/5, view.size.height) Title:@"当面付" Target:self Selector:@selector(addCartClick)];
+//    [focus.titleLabel setFont:[UIFont systemFontOfSize:20]];
+//    [focus setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    
+//    [focus setBackgroundColor:RGB(255, 100, 98)];
+//    
+//    [view addSubview:focus];
+
     UIButton * focus;
     if ([_modelToShow.detailsIsFoucs isEqualToString:@"0"]) {
         focus =[UIButton createButtonWithImage:@"wareb_focus" Title:@"关注" Target:self Selector:@selector(wareMoreClick:)];
@@ -145,23 +145,30 @@
     }
     
     [focus setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    focus.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 20, 0);
+    focus.imageEdgeInsets = UIEdgeInsetsMake(0, 14, 20, 0);
     focus.titleEdgeInsets = UIEdgeInsetsMake(40,-35, 0, 0);
-    [view1 addSubview:focus];
-    
-    _cart =[UIButton createButtonWithImage:@"btn_ware_buy_h" Title:@"购物车" Target:self Selector:@selector(cartClick)];
-    [_cart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _cart.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 20, 0);
-    _cart.titleEdgeInsets = UIEdgeInsetsMake(40,-35, 0, 0);
-    //    [_cart setBadgeWithNumber:@5];
-    [view1 addSubview:_cart];
-    [MasonyUtil equalSpacingView:@[focus,_cart]
-                       viewWidth:view1.size.width/2
-                      viewHeight:view1.size.height
-                  superViewWidth:view1.size.width];
-    [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
-        [_cart setBadgeWithNumber:x];
+    [view addSubview:focus];
+    [focus mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.leading.equalTo(view.mas_leading);
+        make.width.equalTo(@(view.width/5));
+        make.height.equalTo(view.mas_height);
+        make.top.equalTo(view.mas_top);
     }];
+    
+    UIButton * addCart =[UIButton createButtonWithFrame:CGRectMake(view.width/5, 0, (view.width-view.width/5)/2, view.size.height) Title:@"当面付" Target:self Selector:@selector(addCartClick)];
+    [addCart.titleLabel setFont:[UIFont systemFontOfSize:20]];
+    [addCart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    [addCart setBackgroundColor:RGB(255, 100, 98)];
+    
+    [view addSubview:addCart];
+    
+    _cart =[UIButton createButtonWithFrame:CGRectMake(CGRectGetMaxX(addCart.frame), 0, (view.width-view.width/5)/2, view.size.height) Title:@"去选购" Target:self Selector:@selector(addCartClick)];
+    [_cart.titleLabel setFont:[UIFont systemFontOfSize:20]];
+    [_cart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    
+    [_cart setBackgroundColor:RGB(255, 100, 98)];
+    [view addSubview:_cart];
 }
 
 - (UIView*)addHeaderView{
@@ -233,13 +240,13 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    CellConfig *cellConfig = self.dataArray[indexPath.section][indexPath.row];
+    CellConfig *cellConfig = self.dataArray[indexPath.section][indexPath.row];
     
-    return _modelToShow.cellHeight;
+    return cellConfig.heightOfCell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 100.f;
+    return 140.f;
 }
 #pragma mark - TableView Delegate
 #pragma mark 选中cell
