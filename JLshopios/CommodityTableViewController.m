@@ -359,10 +359,11 @@
             
             [cell.iconLogoImage sd_setImageWithURL:[NSURL URLWithString:shopModel.logo] placeholderImage:[UIImage imageWithName:@"icon_loading5"]];
             cell.shopNameLabel.text = shopModel.name;
-            cell.noFullYouFeiLabel.text=[NSString stringWithFormat:@"邮费：%ld元",shopModel.noFullYoufei];
-            cell.shopInfoLabel.text = shopModel.info;
-            cell.fullYouFeiLabel.text = [NSString stringWithFormat:@"满%ld元包邮",shopModel.fullYoufei];
+            cell.noFullYouFeiLabel.text = [self.secondMenuIDStr integerValue] == 1 ? [NSString stringWithFormat:@"邮费：%ld元",shopModel.noFullYoufei] : nil;
+            cell.shopInfoLabel.text = [self.secondMenuIDStr integerValue] == 1 ? shopModel.info : nil;
+            cell.fullYouFeiLabel.text = [self.secondMenuIDStr integerValue] == 1 ? [NSString stringWithFormat:@"满%ld元包邮",shopModel.fullYoufei] : nil;
             cell.shopStanceLabel.text = [NSString stringWithFormat:@"距离：%@米",shopModel.distance];
+            cell.detailInfoLabel.text = [self.secondMenuIDStr integerValue] == 1 ? nil : shopModel.info;
             return cell;
         }
             break;

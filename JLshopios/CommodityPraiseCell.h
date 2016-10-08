@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DetailsMode.h"
+#import "ShopDetailModel.h"
 @interface CommodityPraiseCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *simpleAddressLabel;
-- (void)showInfo:(DetailsMode *)model;
+@property (assign, nonatomic) CGFloat cellHeight;
+- (void)showInfo:(ShopDetailModel *)model;
 @end

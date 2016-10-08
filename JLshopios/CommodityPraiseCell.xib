@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="79"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品评价" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gts-Sa-afM">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="商品评价" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gts-Sa-afM">
                         <rect key="frame" x="8" y="8" width="359" height="63"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.47450980392156861" green="0.4823529411764706" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
@@ -26,8 +26,15 @@
                     <constraint firstItem="gts-Sa-afM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ChH-Ex-mVb"/>
                     <constraint firstAttribute="trailingMargin" secondItem="gts-Sa-afM" secondAttribute="trailing" id="F2D-6O-9LO"/>
                     <constraint firstItem="gts-Sa-afM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Y1X-V9-84A"/>
+                    <constraint firstItem="gts-Sa-afM" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="ign-SH-a7E"/>
                     <constraint firstAttribute="bottomMargin" secondItem="gts-Sa-afM" secondAttribute="bottom" id="yUx-Kz-6i0"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ign-SH-a7E"/>
+                        <exclude reference="yUx-Kz-6i0"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="simpleAddressLabel" destination="gts-Sa-afM" id="Pae-M7-wSt"/>

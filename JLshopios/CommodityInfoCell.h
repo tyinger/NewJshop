@@ -10,6 +10,7 @@
 #import "DetailsMode.h"
 #import "TYAttributedLabel.h"
 #import "TYLinkTextStorage.h"
+#import "ShopDetailModel.h"
 #define kHeightCommodityInfo 180
 @interface CommodityInfoCell : UITableViewCell
 
@@ -23,4 +24,7 @@
 
 /// 根据数据模型来显示内容
 - (void)showInfo:(DetailsMode *)model;
+
+//商铺数据模型显示内容
+- (void)showShopInfo:(ShopDetailModel *)shopModel;
 @end

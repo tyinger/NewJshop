@@ -16,7 +16,7 @@
 #import "CommoditySelectCell.h"
 #import "LoginViewController.h"
 #import "QSCNavigationController.h"
-#import "DetailsMode.h"
+#import "ShopDetailModel.h"
 #import "ShopingCartController.h"
 #import "CustomBadge.h"
 #import "UIButton+CustomBadge.h"
@@ -32,7 +32,7 @@
 /// cellConfig数据源
 @property (nonatomic, strong) NSMutableArray *dataArray;
 /// 数据模型
-@property (nonatomic, strong) DetailsMode *modelToShow;
+@property (nonatomic, strong) ShopDetailModel *modelToShow;
 
 @property (nonatomic, strong) NSDictionary *dataDic;
 @end
@@ -52,7 +52,7 @@
         _dataArray = [NSMutableArray array];
         
         // 购买信息
-        CellConfig *comInfo = [CellConfig cellConfigWithClassName:NSStringFromClass([CommodityInfoCell class]) title:@"购买信息" showInfoMethod:@selector(showInfo:) heightOfCell:40.0f cellType:NO];
+        CellConfig *comInfo = [CellConfig cellConfigWithClassName:NSStringFromClass([CommodityInfoCell class]) title:@"购买信息" showInfoMethod:@selector(showShopInfo:) heightOfCell:40.0f cellType:NO];
         
                 CellConfig *comSelect = [CellConfig cellConfigWithClassName:@"CommoditySelectCell" title:@"地址" showInfoMethod:@selector(showInfo:) heightOfCell:40.0f cellType:YES];
         //
@@ -60,7 +60,7 @@
         
                 CellConfig *comPack = [CellConfig cellConfigWithClassName:@"CommodityPackCell" title:@"电话" showInfoMethod:@selector(showInfo:) heightOfCell:40.0f cellType:YES];
         //
-                CellConfig *comPraise = [CellConfig cellConfigWithClassName:@"CommodityPraiseCell" title:@"评价" showInfoMethod:@selector(showInfo:) heightOfCell:40.0f cellType:YES];
+                CellConfig *comPraise = [CellConfig cellConfigWithClassName:@"CommodityPraiseCell" title:@"评价" showInfoMethod:@selector(showInfo:) heightOfCell:_modelToShow.cellHeight cellType:YES];
         //
 //                CellConfig *comSection = [CellConfig cellConfigWithClassName:@"CommoditySectionCell" title:@"专区" showInfoMethod:@selector(showInfo:) heightOfCell:110.0f cellType:YES];
         //
@@ -97,7 +97,7 @@
         //            NSFileManager *fm = [NSFileManager defaultManager];
         //            [fm createFileAtPath:fileName contents:nil attributes:nil];
         //            [json writeToFile:fileName atomically:YES];
-        _modelToShow = [[DetailsMode alloc] initWithDictionary:json];
+        _modelToShow = [[ShopDetailModel alloc] initWithDictionary:json];
         //初始化视图
         [self initView];
         
@@ -114,7 +114,7 @@
 }
 
 - (void)initView{
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-100) style:UITableViewStyleGrouped];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-124) style:UITableViewStyleGrouped];
     
     [self.view addSubview:self.tableView];
     self.tableView.bounces = NO;
@@ -126,18 +126,9 @@
     UIView * view =[[UIView alloc]initWithFrame:CGRectMake(0, self.view.height-60, self.view.width, 60)];
     view.backgroundColor=RGBA(0, 0, 0, 0.8);
     [self.view addSubview:view];
-    
-    
-//    UIButton * focus =[UIButton createButtonWithFrame:CGRectMake(0, 0, view.width/5, view.size.height) Title:@"当面付" Target:self Selector:@selector(addCartClick)];
-//    [focus.titleLabel setFont:[UIFont systemFontOfSize:20]];
-//    [focus setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    
-//    [focus setBackgroundColor:RGB(255, 100, 98)];
-//    
-//    [view addSubview:focus];
 
     UIButton * focus;
-    if ([_modelToShow.detailsIsFoucs isEqualToString:@"0"]) {
+    if (_modelToShow.isCollectioned == 0) {
         focus =[UIButton createButtonWithImage:@"wareb_focus" Title:@"关注" Target:self Selector:@selector(wareMoreClick:)];
     }else{
         focus =[UIButton createButtonWithImage:@"wareb_focus_end" Title:@"关注" Target:self Selector:@selector(wareMoreClick:)];
@@ -155,7 +146,7 @@
         make.top.equalTo(view.mas_top);
     }];
     
-    UIButton * addCart =[UIButton createButtonWithFrame:CGRectMake(view.width/5, 0, (view.width-view.width/5)/2, view.size.height) Title:@"当面付" Target:self Selector:@selector(addCartClick)];
+    UIButton * addCart =[UIButton createButtonWithFrame:CGRectMake(view.width/5, 0, (view.width-view.width/5)/2, view.size.height) Title:@"去选购" Target:self Selector:@selector(addCartClick)];
     [addCart.titleLabel setFont:[UIFont systemFontOfSize:20]];
     [addCart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -163,7 +154,7 @@
     
     [view addSubview:addCart];
     
-    _cart =[UIButton createButtonWithFrame:CGRectMake(CGRectGetMaxX(addCart.frame), 0, (view.width-view.width/5)/2, view.size.height) Title:@"去选购" Target:self Selector:@selector(addCartClick)];
+    _cart =[UIButton createButtonWithFrame:CGRectMake(CGRectGetMaxX(addCart.frame), 0, (view.width-view.width/5)/2, view.size.height) Title:@"当面付" Target:self Selector:@selector(addCartClick)];
     [_cart.titleLabel setFont:[UIFont systemFontOfSize:20]];
     [_cart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -181,19 +172,23 @@
     //                 ];
     UIView * view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
     view.backgroundColor = [UIColor whiteColor];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
+    dispatch_async(dispatch_get_main_queue(), ^{
+    
         _images = [NSMutableArray arrayWithCapacity:0];
-        for (int i = 0; i < _modelToShow.previewImgs.count; i++) {
-            [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.previewImgs[i][@"path"]]]]];
+        if (_modelToShow.imagePath) {
+            [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.imagePath]]]];
+        }else{
+            _images = nil;
         }
+
+        
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, view.size.width, view.size.height) imageNamesGroup:_images];
         cycleScrollView.placeholderImage = [UIImage imageWithName:@"img_home_banner1"];
         cycleScrollView.autoScroll = NO;
         cycleScrollView.infiniteLoop = NO;
         cycleScrollView.delegate = self;
         cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
-        dispatch_async(dispatch_get_main_queue(), ^{
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             [view addSubview:cycleScrollView];
             UIImageView * imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circleBackground"]];
             imageView.frame=CGRectMake(cycleScrollView.size.width-70, cycleScrollView.size.height-70, 50, 50);
@@ -204,7 +199,7 @@
             _indexPage.textColor=[UIColor whiteColor];
             _indexPage.text=[NSString stringWithFormat:@"%i/%i",cycleScrollView.indexPage+1,(int)_images.count];
             [imageView addSubview:_indexPage];
-        });
+//        });
     });
     return view;
 }
@@ -278,7 +273,7 @@
         return;
     }
     btn.selected = !btn.selected;
-    [[CartManager sharedManager] followActionType:0 ID:[NSString stringWithFormat:@"%lld",_modelToShow.Id] isFollow:btn.selected :^(id obj) {
+    [[CartManager sharedManager] followActionType:1 ID:[NSString stringWithFormat:@"%lld",_modelToShow.shopId] isFollow:btn.selected :^(id obj) {
         
         if (btn.selected) {
             
@@ -307,37 +302,12 @@
 }
 - (void)addCartClick{
     
-    //    post方式提交
-    //    goodid,num,jsFlag=0,Price,userid,goodName,goodImg,shopid=-1
-    //    说明:goodid是商品id，num=1，price是商品价格，userid是用户id，goodName是商品名，goodImg是商品logo
-    if ([LoginStatus sharedManager].status) {
-        
-        NSDictionary *dic = @{@"goodid":[NSString stringWithFormat:@"%lld",_modelToShow.Id],
-                              @"num":@"1",
-                              @"jsFlag":@"0",
-                              @"Price":_modelToShow.detailsPrice,
-                              @"userid":[LoginStatus sharedManager].idStr,
-                              @"goodName":_modelToShow.detailsName,
-                              @"goodImg":_productIconStr,
-                              @"shopid":@"-1"};
-        
-        [QSCHttpTool post:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-            MYLog(@"加入购物车%@",json);
-            [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue]+1];
-            //            [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
-            //                [_cart setBadgeWithNumber:x];
-            //            }];
-            
-        } failure:^(NSError *error) {
-            MYLog(@"加入购物车失败%@",error);
-        }];
-    }else{
-        
+    
         [FYTXHub toast:@"请先登录"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [FYTXHub dismiss];
         });
-    }
+    
 }
 
 - (void)cartClick{

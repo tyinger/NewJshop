@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *shopStanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *noFullYouFeiLabel;
 @property (weak, nonatomic) IBOutlet UILabel *fullYouFeiLabel;
+@property (weak, nonatomic) IBOutlet UILabel *detailInfoLabel;
 
 @end
