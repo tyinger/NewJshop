@@ -15,6 +15,7 @@
     if (self==[self init]) {
         self.Id=[dic[@"id"] intValue];
         self.menuName=dic[@"name"];
+        self.urlName = dic[@"icon"];
         self.menuLevel = dic[@"level"];
     }
     return self;
