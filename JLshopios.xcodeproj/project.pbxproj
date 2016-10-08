@@ -129,6 +129,11 @@
 		B5068FCA1D7EAE3A002D2BB1 /* WalletViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FC91D7EAE3A002D2BB1 /* WalletViewModel.m */; };
 		B5068FCD1D7EAE51002D2BB1 /* WalletHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */; };
 		B529A39C1D7018D200A1A3B1 /* CartBarEdit.m in Sources */ = {isa = PBXBuildFile; fileRef = B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */; };
+		B53DD1231D9A596100648050 /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B53DD1221D9A596100648050 /* MyOrderViewController.m */; };
+		B53DD12A1D9A59D600648050 /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B53DD1281D9A59D600648050 /* MyOrderTableViewCell.m */; };
+		B53DD12B1D9A59D600648050 /* MyOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B53DD1291D9A59D600648050 /* MyOrderTableViewCell.xib */; };
+		B53DD12E1D9A7F9A00648050 /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B53DD12D1D9A7F9A00648050 /* OrderModel.m */; };
+		B541F6FF1D9BC1E6002D1B48 /* MyOrderViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B541F6FE1D9BC1E6002D1B48 /* MyOrderViewModel.m */; };
 		B543A7391D9265D30024CCD7 /* ScoreUIService.m in Sources */ = {isa = PBXBuildFile; fileRef = B543A7381D9265D30024CCD7 /* ScoreUIService.m */; };
 		B55A48FD1D87AC1300A94278 /* UIScrollView+EmptyDataSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B55A48FC1D87AC1300A94278 /* UIScrollView+EmptyDataSet.m */; };
 		B55EF72E1D7EC707000B8216 /* SearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B55EF72D1D7EC707000B8216 /* SearchController.m */; };
@@ -471,6 +476,15 @@
 		B5068FCC1D7EAE51002D2BB1 /* WalletHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WalletHeaderView.m; sourceTree = "<group>"; };
 		B529A39A1D7018D200A1A3B1 /* CartBarEdit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CartBarEdit.h; sourceTree = "<group>"; };
 		B529A39B1D7018D200A1A3B1 /* CartBarEdit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartBarEdit.m; sourceTree = "<group>"; };
+		B53DD1211D9A596100648050 /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
+		B53DD1221D9A596100648050 /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
+		B53DD1271D9A59D600648050 /* MyOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewCell.h; sourceTree = "<group>"; };
+		B53DD1281D9A59D600648050 /* MyOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewCell.m; sourceTree = "<group>"; };
+		B53DD1291D9A59D600648050 /* MyOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderTableViewCell.xib; sourceTree = "<group>"; };
+		B53DD12C1D9A7F9A00648050 /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
+		B53DD12D1D9A7F9A00648050 /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		B541F6FD1D9BC1E6002D1B48 /* MyOrderViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewModel.h; sourceTree = "<group>"; };
+		B541F6FE1D9BC1E6002D1B48 /* MyOrderViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewModel.m; sourceTree = "<group>"; };
 		B543A7371D9265D30024CCD7 /* ScoreUIService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreUIService.h; sourceTree = "<group>"; };
 		B543A7381D9265D30024CCD7 /* ScoreUIService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreUIService.m; sourceTree = "<group>"; };
 		B55A48FB1D87AC1300A94278 /* UIScrollView+EmptyDataSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+EmptyDataSet.h"; sourceTree = "<group>"; };
@@ -1265,6 +1279,22 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		B53DD1201D9A590900648050 /* MyOrder */ = {
+			isa = PBXGroup;
+			children = (
+				B53DD1211D9A596100648050 /* MyOrderViewController.h */,
+				B53DD1221D9A596100648050 /* MyOrderViewController.m */,
+				B53DD12C1D9A7F9A00648050 /* OrderModel.h */,
+				B53DD12D1D9A7F9A00648050 /* OrderModel.m */,
+				B541F6FD1D9BC1E6002D1B48 /* MyOrderViewModel.h */,
+				B541F6FE1D9BC1E6002D1B48 /* MyOrderViewModel.m */,
+				B53DD1271D9A59D600648050 /* MyOrderTableViewCell.h */,
+				B53DD1281D9A59D600648050 /* MyOrderTableViewCell.m */,
+				B53DD1291D9A59D600648050 /* MyOrderTableViewCell.xib */,
+			);
+			name = MyOrder;
+			sourceTree = "<group>";
+		};
 		B55A48FA1D87AC1300A94278 /* DZNEmptyDataSet */ = {
 			isa = PBXGroup;
 			children = (
@@ -1803,6 +1833,7 @@
 		E7A189BC1D02D03000E6F441 /* Me */ = {
 			isa = PBXGroup;
 			children = (
+				B53DD1201D9A590900648050 /* MyOrder */,
 				B5A9F5F61D815172002E4293 /* MyFollow */,
 				B5068FB81D7E9453002D2BB1 /* MyScore */,
 				B5068FB71D7E9423002D2BB1 /* MyWallet */,
@@ -1917,6 +1948,7 @@
 				975976F21D577B4100B3B5CB /* CommoditySectionCell.xib in Resources */,
 				1FBB9B731D8792B700462A01 /* townCode.plist in Resources */,
 				B5F3C8341D6F4B9D0010D199 /* CartPlaceHolderView.xib in Resources */,
+				B53DD12B1D9A59D600648050 /* MyOrderTableViewCell.xib in Resources */,
 				E72893F11D06A251006CAEBB /* kudou.cer in Resources */,
 				976BC90D1D57AB1600BDEF01 /* CommodityComponentCell.xib in Resources */,
 				1F31AB371D8E975500094919 /* ShouHuoTableViewCell.xib in Resources */,
@@ -2158,6 +2190,7 @@
 				978D3C261D44F04800C0C1BE /* TSLocateView.m in Sources */,
 				C5478B0D1D7144AA006CFBFB /* LoginViewController.m in Sources */,
 				8E2DE7861D048A43003C077A /* UINavigationBar+JZExtension.m in Sources */,
+				B53DD1231D9A596100648050 /* MyOrderViewController.m in Sources */,
 				E715ECBC1D052671003A2D62 /* NSDate+Estension.m in Sources */,
 				E77EFF011D0560E900E5113C /* QSCNavigationController.m in Sources */,
 				E715ECB91D052671003A2D62 /* UIImage+Extension.m in Sources */,
@@ -2197,6 +2230,7 @@
 				9759770F1D577C0E00B3B5CB /* TYTextStorage.m in Sources */,
 				978D4CD61D8531DF0079C984 /* AddressView.m in Sources */,
 				E77EFF0A1D05619600E5113C /* UIBarButtonItem+Addition.m in Sources */,
+				B53DD12E1D9A7F9A00648050 /* OrderModel.m in Sources */,
 				E77EFF0D1D05621900E5113C /* UIButton+Bg.m in Sources */,
 				305783331D0C22FD007AED3C /* TADotView.m in Sources */,
 				305783191D0C0D51007AED3C /* FYTXGuideConst.m in Sources */,
@@ -2224,6 +2258,7 @@
 				C559C79B1D840D070077E953 /* RSADataSigner.m in Sources */,
 				C559C7961D840D070077E953 /* DataSigner.m in Sources */,
 				8E2DE7631D047BC8003C077A /* JLShopsViewController.m in Sources */,
+				B53DD12A1D9A59D600648050 /* MyOrderTableViewCell.m in Sources */,
 				975976ED1D577B4100B3B5CB /* CommodityPackCell.m in Sources */,
 				E715ECE21D052696003A2D62 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				B5FDB2291D6C36F90042D9EC /* CartUIService.m in Sources */,
@@ -2250,6 +2285,7 @@
 				1FC711BE1D9CA8DD000D8C27 /* ShopTableViewCell.m in Sources */,
 				B5068FC11D7E9642002D2BB1 /* ScoreHeaderView.m in Sources */,
 				B572D63D1D82F99500797399 /* FollowGoodModel.m in Sources */,
+				B541F6FF1D9BC1E6002D1B48 /* MyOrderViewModel.m in Sources */,
 				E715ED131D0526E5003A2D62 /* MultilevelCollectionViewCell.m in Sources */,
 				978D3C281D44F04800C0C1BE /* TSLocation.m in Sources */,
 				3057831C1D0C0D51007AED3C /* FYTXGuideVersion.m in Sources */,

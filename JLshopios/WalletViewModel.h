@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WalletViewModel : NSObject
-@property (nonatomic, strong) NSMutableArray * scoreDetailData;
-
-- (void)getTheScore;
-- (void)getTheScoreDetail;
+@interface WalletViewModel : NSObject <UITableViewDataSource,UITableViewDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
+@property (nonatomic, strong) NSMutableArray * walletDetailData;
+@property (nonatomic, copy) NSString* userablemoney; //可用的money
+@property (nonatomic, copy) NSString* totalprofit; //总共的money
+- (RACSignal*)getTheScore;
+- (RACSignal * )getTheScoreDetail;
 - (void)payAction;
 @end

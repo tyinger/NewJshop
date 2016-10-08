@@ -25,7 +25,7 @@
 }
 #pragma mark - tableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.viewModel.scoreDetailArray.count;
+    return self.viewModel.scoreDetailData.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];

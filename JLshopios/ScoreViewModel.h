@@ -13,7 +13,7 @@
 @property (nonatomic, copy) NSString *userusedScore;
 @property (nonatomic, copy) NSString *totalScore;
 @property (nonatomic, copy) NSString *canUseScore;
-@property (nonatomic, copy) NSMutableArray * scoreDetailArray;
+
 - (RACSignal *)getTheScore;
 - (RACSignal *)getTheScoreDetail;
 @end

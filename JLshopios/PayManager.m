@@ -24,7 +24,11 @@
     
     return sharedManager;
 }
-
+- (void)getTheOrder{
+//    <item>https://123.56.192.182:8443</item>
+//    <item>/app/appOrderController/</item>
+//    <item>appCreateOrder?</item>
+}
 
 - (RACCommand *)doAlipayPayWithGood:(GoodModel *)good{
     return [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -32,9 +36,9 @@
 
 //TODO: 商户信息
 
-            NSString *appID = @"";
+            NSString *appID = @"2016071401617406";
             NSString *privateKey = @"";
-            
+           
             /*
              *生成订单信息及签名
              */
@@ -108,4 +112,5 @@
         }];
     }];
 }
+
 @end
