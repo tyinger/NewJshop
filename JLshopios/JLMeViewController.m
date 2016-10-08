@@ -523,25 +523,39 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if ([LoginStatus sharedManager].login == NO) {
+    if (indexPath.section == 2 && indexPath.row == 0) {
         
-        [FYTXHub toast:@"请先登录"];
-        @weakify(self);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if ([LoginStatus sharedManager].login == YES) {
             
-            @strongify(self);
-            [self.navigationController pushViewController:[LoginViewController new] animated:YES];
-        });
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil message:@"重新注册将会退出当前账号，是否继续？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            alertView.tag = 1001;
+            [alertView show];
+        }else{
+            
+            [self saomazhuce];
+        }
     }else{
         
-        NSArray *arr = self.dataArr[indexPath.section];
-        ItemModel *item = arr[indexPath.row];
-        
-        Class class = NSClassFromString(item.className);
-        if (class) {
-            UIViewController *ctrl = class.new;
-            ctrl.title = item.titleStr;
-            [self.navigationController pushViewController:ctrl animated:YES];
+        if ([LoginStatus sharedManager].login == NO) {
+            
+            [FYTXHub toast:@"请先登录"];
+            @weakify(self);
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                @strongify(self);
+                [self.navigationController pushViewController:[LoginViewController new] animated:YES];
+            });
+        }else{
+            
+            NSArray *arr = self.dataArr[indexPath.section];
+            ItemModel *item = arr[indexPath.row];
+            
+            Class class = NSClassFromString(item.className);
+            if (class) {
+                UIViewController *ctrl = class.new;
+                ctrl.title = item.titleStr;
+                [self.navigationController pushViewController:ctrl animated:YES];
+            }
         }
     }
     [self.mainTableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -554,17 +568,33 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     
-    if (buttonIndex == 1) {
+    if (alertView.tag == 1001) {
         
-        [FYTXHub success:@"退出成功" delayClose:1 compelete:^{
+        [[LoginStatus sharedManager] end];
+        [LoginStatus sharedManager].login = NO;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            dispatch_async(dispatch_get_main_queue(), ^{
+            [self saomazhuce];
+        });
+    }else{
+        
+        if (buttonIndex == 1) {
+            
+            [FYTXHub success:@"退出成功" delayClose:1 compelete:^{
                 
-                [[LoginStatus sharedManager] end];
-                [LoginStatus sharedManager].login = NO;
-            });
-        }];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [[LoginStatus sharedManager] end];
+                    [LoginStatus sharedManager].login = NO;
+                });
+            }];
+        }
     }
+}
+
+- (void)saomazhuce{
+    
+    
 }
 
 @end
