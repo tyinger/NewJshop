@@ -10,6 +10,6 @@
 #import "ShopDetailModel.h"
 @interface CommodityPraiseCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *simpleAddressLabel;
-@property (assign, nonatomic) CGFloat cellHeight;
+@property (assign, nonatomic) CGFloat cellHigh;
 - (void)showInfo:(ShopDetailModel *)model;
 @end

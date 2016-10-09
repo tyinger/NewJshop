@@ -71,10 +71,16 @@
 -(void)refresh
 {
     NSLog(@"上啦刷新");
-    _pangoNum = 0;
-    [_tableView.mj_footer setState:MJRefreshStateIdle];
-    [self loadDataFromClientWithMenuID:self.secondMenuIDStr andPageno:@"0" andOrderType:@"soldNum" andOrderDes:@"0" andIsMJRefleshHead:YES];
-    [_tableView.mj_header endRefreshing];
+    if (_tabbarNum == 1) {
+        [self initData:self.secondMenuIDStr searchName:self.searchNameStr];
+        [_tableView.mj_header endRefreshing];
+    }else{
+        
+        _pangoNum = 0;
+        [_tableView.mj_footer setState:MJRefreshStateIdle];
+        [self loadDataFromClientWithMenuID:self.secondMenuIDStr andPageno:@"0" andOrderType:@"soldNum" andOrderDes:@"0" andIsMJRefleshHead:YES];
+        [_tableView.mj_header endRefreshing];
+    }
 }
 
 -(void)loadMore
@@ -118,27 +124,28 @@
         }else{
             [_tableView.mj_footer setState:MJRefreshStateNoMoreData];
         }
-            if (!_tableView) {
-                //创建一个分组样式的UITableView
-                _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-40) style:UITableViewStylePlain];
-                //设置数据源，注意必须实现对应的UITableViewDataSource协议
-                _tableView.dataSource=self;
-                //设置代理
-                _tableView.delegate=self;
-                _tableView.rowHeight = 90;
-                _tableView.backgroundColor=RGB(240, 243, 245);
-                [self.view addSubview:_tableView];
-                
-                _tabbarNum ? [_tableView registerNib:[UINib nibWithNibName:@"ShopTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"] : [_tableView registerNib:[UINib nibWithNibName:@"CommodityTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
-                _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
-                
-                _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
-            }
         
-        } failure:^(NSError *error) {
-            [FYTXHub dismiss];
+        if (!_tableView) {
+            //创建一个分组样式的UITableView
+            _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-40) style:UITableViewStylePlain];
+            //设置数据源，注意必须实现对应的UITableViewDataSource协议
+            _tableView.dataSource=self;
+            //设置代理
+            _tableView.delegate=self;
+            _tableView.rowHeight = 90;
+            _tableView.backgroundColor=RGB(240, 243, 245);
+            [self.view addSubview:_tableView];
             
-            NSLog(@"-----%@",error);
+            _tabbarNum ? [_tableView registerNib:[UINib nibWithNibName:@"ShopTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"] : [_tableView registerNib:[UINib nibWithNibName:@"CommodityTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+            _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
+            
+            _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+        }
+        
+    } failure:^(NSError *error) {
+        [FYTXHub dismiss];
+        
+        NSLog(@"-----%@",error);
     }];
 }
 - (void)setupNavigationItem {

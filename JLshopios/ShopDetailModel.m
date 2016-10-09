@@ -18,6 +18,7 @@
         self.shopPhone = dic[@"phone"];
         self.shopAddress = dic[@"address"];
         self.shopAddInfo = dic[@"info"];
+        self.shopClassName = dic[@"shopClass"][@"name"];
         self.shopId = [dic[@"id"] longLongValue];
         self.imagePath = [dic[@"pictures"] count] ? dic[@"pictures"][0][@"path"] : nil;
     }

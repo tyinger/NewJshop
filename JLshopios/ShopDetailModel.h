@@ -15,6 +15,7 @@
 @property(copy,nonatomic) NSString *shopAddInfo;
 @property(copy,nonatomic) NSString *shopPhone;
 @property(copy,nonatomic) NSString *shopAddress;
+@property(copy,nonatomic) NSString *shopClassName;
 @property(assign,nonatomic) long long shopId;
 @property(assign,nonatomic) BOOL isCollectioned;
 @property(assign,nonatomic) CGFloat cellHeight;

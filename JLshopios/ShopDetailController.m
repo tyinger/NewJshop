@@ -21,7 +21,7 @@
 #import "CustomBadge.h"
 #import "UIButton+CustomBadge.h"
 
-@interface ShopDetailController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate>
+@interface ShopDetailController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate,UIApplicationDelegate>
 {
     MBProgressHUD *HUD;
     NSMutableArray *_images;
@@ -146,7 +146,8 @@
         make.top.equalTo(view.mas_top);
     }];
     
-    UIButton * addCart =[UIButton createButtonWithFrame:CGRectMake(view.width/5, 0, (view.width-view.width/5)/2, view.size.height) Title:@"去选购" Target:self Selector:@selector(addCartClick)];
+    NSString *str = [self.modelToShow.shopClassName isEqualToString:@"便利店"] ? @"去选购" : @"查看商品";
+    UIButton * addCart =[UIButton createButtonWithFrame:CGRectMake(view.width/5, 0, (view.width-view.width/5)/2, view.size.height) Title:str Target:self Selector:@selector(buyOrLook:)];
     [addCart.titleLabel setFont:[UIFont systemFontOfSize:20]];
     [addCart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -173,7 +174,6 @@
     UIView * view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
     view.backgroundColor = [UIColor whiteColor];
     dispatch_async(dispatch_get_main_queue(), ^{
-    
         _images = [NSMutableArray arrayWithCapacity:0];
         if (_modelToShow.imagePath) {
             [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.imagePath]]]];
@@ -189,6 +189,7 @@
         cycleScrollView.delegate = self;
         cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
 //        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        dispatch_async(dispatch_get_main_queue(), ^{
             [view addSubview:cycleScrollView];
             UIImageView * imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circleBackground"]];
             imageView.frame=CGRectMake(cycleScrollView.size.width-70, cycleScrollView.size.height-70, 50, 50);
@@ -236,7 +237,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CellConfig *cellConfig = self.dataArray[indexPath.section][indexPath.row];
-    
+    if ([cellConfig.title isEqualToString:@"评价"]) {
+        return _modelToShow.cellHeight;
+    }
     return cellConfig.heightOfCell;
 }
 
@@ -300,13 +303,26 @@
     
     [self presentViewController:loginView animated:YES completion:nil];
 }
-- (void)addCartClick{
+- (void)buyOrLook:(UIButton *)btn{
     
+    if (![LoginStatus sharedManager].status){
     
         [FYTXHub toast:@"请先登录"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [FYTXHub dismiss];
         });
+    }
+    
+    if ([btn.titleLabel.text isEqualToString:@"去选购"]) {
+        //TODO:要做登录判断
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        app.window.rootViewController = [JLTabMainController shareJLTabVC];
+        [JLTabMainController shareJLTabVC].selectedIndex = 1;
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }else{
+        
+    }
+    
     
 }
 
