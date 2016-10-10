@@ -20,6 +20,7 @@
 #import "ShopingCartController.h"
 #import "CustomBadge.h"
 #import "UIButton+CustomBadge.h"
+#import "CategoryViewController.h"
 
 @interface ShopDetailController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate,UIApplicationDelegate>
 {
@@ -311,9 +312,11 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [FYTXHub dismiss];
         });
+        return;
     }
     
     if ([btn.titleLabel.text isEqualToString:@"去选购"]) {
+        
         //TODO:要做登录判断
         AppDelegate *app = [UIApplication sharedApplication].delegate;
         app.window.rootViewController = [JLTabMainController shareJLTabVC];
@@ -321,6 +324,9 @@
         [self.navigationController popToRootViewControllerAnimated:NO];
     }else{
         
+        CategoryViewController *vcCate = [[CategoryViewController alloc]init];
+        vcCate.shopIDStr = [NSString stringWithFormat:@"%lld",_modelToShow.shopId];
+        [self.navigationController pushViewController:vcCate animated:YES];
     }
     
     
