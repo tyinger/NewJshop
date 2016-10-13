@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ShopDetailModel.h"
 @interface CommodityPackCell : UITableViewCell
-
+@property (weak, nonatomic) IBOutlet UILabel *phoneLabel;
+#pragma mark - 显示数据
+- (void)showInfo:(ShopDetailModel *)model;
 @end

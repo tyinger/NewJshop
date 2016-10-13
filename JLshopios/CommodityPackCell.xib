@@ -25,6 +25,9 @@
                     </imageView>
                 </subviews>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="phoneLabel" destination="fqi-Qo-ODT" id="UzN-bo-ZQo"/>
+            </connections>
             <point key="canvasLocation" x="296.5" y="231"/>
         </tableViewCell>
     </objects>

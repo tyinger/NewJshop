@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F14D67F1DA8DC28008A1114 /* ShopDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F14D67E1DA8DC28008A1114 /* ShopDetailModel.m */; };
 		1F31AB361D8E975500094919 /* ShouHuoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F31AB341D8E975400094919 /* ShouHuoTableViewCell.m */; };
 		1F31AB371D8E975500094919 /* ShouHuoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1F31AB351D8E975400094919 /* ShouHuoTableViewCell.xib */; };
 		1F3580D21D9BCD0500A5973F /* ShopCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3580D11D9BCD0500A5973F /* ShopCellModel.m */; };
@@ -263,6 +264,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F14D67D1DA8DC28008A1114 /* ShopDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDetailModel.h; sourceTree = "<group>"; };
+		1F14D67E1DA8DC28008A1114 /* ShopDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDetailModel.m; sourceTree = "<group>"; };
 		1F31AB331D8E975400094919 /* ShouHuoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShouHuoTableViewCell.h; sourceTree = "<group>"; };
 		1F31AB341D8E975400094919 /* ShouHuoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShouHuoTableViewCell.m; sourceTree = "<group>"; };
 		1F31AB351D8E975400094919 /* ShouHuoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShouHuoTableViewCell.xib; sourceTree = "<group>"; };
@@ -1847,6 +1850,8 @@
 				1FC711BD1D9CA8DD000D8C27 /* ShopTableViewCell.xib */,
 				1FC711C01D9CEECF000D8C27 /* ShopDetailController.h */,
 				1FC711C11D9CEED0000D8C27 /* ShopDetailController.m */,
+				1F14D67D1DA8DC28008A1114 /* ShopDetailModel.h */,
+				1F14D67E1DA8DC28008A1114 /* ShopDetailModel.m */,
 			);
 			name = Shops;
 			sourceTree = "<group>";
@@ -2271,6 +2276,7 @@
 				3057831A1D0C0D51007AED3C /* FYTXGuideFactory.m in Sources */,
 				1FC711C21D9CEED0000D8C27 /* ShopDetailController.m in Sources */,
 				30312C2A1D5709E500E0D0BD /* BRecentCityCell.m in Sources */,
+				1F14D67F1DA8DC28008A1114 /* ShopDetailModel.m in Sources */,
 				305783181D0C0D51007AED3C /* FYTXGuide.m in Sources */,
 				9759770D1D577C0E00B3B5CB /* TYTextContainer+Extended.m in Sources */,
 				E715ECBB1D052671003A2D62 /* Foundation+Log.m in Sources */,

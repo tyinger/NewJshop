@@ -69,18 +69,28 @@
                         <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fdsfdsfsdfdsffdsfdsfdsfdsfdsfdsfsdfdsfdsfsdfsd" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oyj-5s-kUc">
+                        <rect key="frame" x="88" y="29" width="224" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.49803921579999999" green="0.49803921579999999" blue="0.49803921579999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="oyj-5s-kUc" firstAttribute="leading" secondItem="19H-eM-knK" secondAttribute="leading" id="66K-Me-Qcy"/>
                     <constraint firstItem="xED-xD-E6W" firstAttribute="leading" secondItem="2UX-WJ-utq" secondAttribute="trailing" id="8eC-Bv-eIt"/>
                     <constraint firstItem="19H-eM-knK" firstAttribute="leading" secondItem="Yf4-dV-694" secondAttribute="trailing" id="Enp-LI-5BW"/>
                     <constraint firstItem="Nm5-JV-lZa" firstAttribute="leading" secondItem="Yf4-dV-694" secondAttribute="trailing" id="EwK-aH-K59"/>
                     <constraint firstItem="19H-eM-knK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="JiK-lp-WHB"/>
                     <constraint firstItem="Yf4-dV-694" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Oaj-7b-r4O"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="oyj-5s-kUc" secondAttribute="trailing" id="QWf-QX-Wyw"/>
+                    <constraint firstItem="Nm5-JV-lZa" firstAttribute="top" secondItem="oyj-5s-kUc" secondAttribute="bottom" constant="8" id="RTW-Wd-fVF"/>
                     <constraint firstItem="2UX-WJ-utq" firstAttribute="leading" secondItem="Yf4-dV-694" secondAttribute="trailing" id="T04-5M-zxS"/>
                     <constraint firstItem="Hie-ev-0JE" firstAttribute="bottom" secondItem="Yf4-dV-694" secondAttribute="bottom" id="YE3-zO-ZXq"/>
                     <constraint firstItem="Hie-ev-0JE" firstAttribute="leading" secondItem="Nm5-JV-lZa" secondAttribute="trailing" id="bjA-s9-iIN"/>
                     <constraint firstItem="Yf4-dV-694" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="hAB-KS-mfD"/>
                     <constraint firstItem="Hie-ev-0JE" firstAttribute="top" secondItem="xED-xD-E6W" secondAttribute="bottom" constant="6" id="hkL-r9-Vn9"/>
+                    <constraint firstItem="oyj-5s-kUc" firstAttribute="top" secondItem="19H-eM-knK" secondAttribute="bottom" id="ohC-s5-R1X"/>
                     <constraint firstItem="Nm5-JV-lZa" firstAttribute="bottom" secondItem="Yf4-dV-694" secondAttribute="bottom" id="sPd-9J-QV7"/>
                     <constraint firstItem="2UX-WJ-utq" firstAttribute="top" secondItem="19H-eM-knK" secondAttribute="bottom" constant="10" id="uln-CX-MBd"/>
                     <constraint firstItem="xED-xD-E6W" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="vZz-MD-3RB"/>
@@ -89,6 +99,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="detailInfoLabel" destination="oyj-5s-kUc" id="yFC-tR-GOU"/>
                 <outlet property="fullYouFeiLabel" destination="Hie-ev-0JE" id="neP-3Q-B6Q"/>
                 <outlet property="iconLogoImage" destination="Yf4-dV-694" id="sIG-cM-5fc"/>
                 <outlet property="noFullYouFeiLabel" destination="xED-xD-E6W" id="Txx-qs-bpz"/>

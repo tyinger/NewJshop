@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CategoryViewController : UIViewController
-
+@property (nonatomic, copy) NSString *shopIDStr;
 @end
