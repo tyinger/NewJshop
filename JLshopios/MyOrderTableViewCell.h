@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "PayManager.h"
+@class SysOrder;
 @interface MyOrderTableViewCell : UITableViewCell
-
+@property (nonatomic, strong) SysOrder*order;
 @end

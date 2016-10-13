@@ -9,15 +9,33 @@
 #import <Foundation/Foundation.h>
 #import <AlipaySDK/AlipaySDK.h>
 #import "GoodModel.h"
+#import "ShopCellModel.h"
+@class SysOrderReturn;
+@class SysOrder;
 @class SysOrderDetail;
-@class SysShop;
+//@class SysShop;
 @class SysGoodsCombination;
 @class SysInvoice;
 @interface PayManager : NSObject
 
 + (instancetype)manager;
-- (void)getTheOrder;
-- (RACCommand*)doAlipayPayWithGood:(GoodModel *)good;
+/**
+ *  购物车支付
+ */
+- (RACSignal*)getTheOrderCartArray:(NSMutableArray<GoodModel*>*)array shop:(ShopCellModel*)shop;
+/**
+ *  直接支付
+ */
+- (RACSignal*)getTheOrderCurrent;
+/**
+ *  当面支付
+ */
+- (RACSignal*)getTheOrderFace;
+
+- (RACCommand*)doAlipayPayWithGood:(SysOrderReturn *)good;
+
+
+
 
 @end
 
@@ -26,7 +44,7 @@
 @property (nonatomic, copy) NSString *orderId;
 @property (nonatomic, copy) NSString *goodsType; //商品类型,见EnumOrderDetailGoodsType.java
 @property (nonatomic, copy) NSString *fkId;
-@property (nonatomic, copy) GoodModel *goods;
+@property (nonatomic, strong) GoodModel *goods;
 @property (nonatomic, copy) SysGoodsCombination *combination;
 @property (nonatomic, copy) NSString *goodsNum;
 @property (nonatomic, copy) NSString *unitPrice;
@@ -34,8 +52,8 @@
 @property (nonatomic, copy) NSString *status; //状态,EnumOrderDetailStatus.java
 @end
 
-@interface SysShop : NSObject
-@end
+//@interface SysShop : NSObject
+//@end
 
 @interface SysGoodsCombination : NSObject
 @property (nonatomic, copy) NSString *Id;
@@ -47,13 +65,19 @@
 @property (nonatomic, copy) NSString *createTime;
 @end
 //static NSString * serialVersionUID:@"6014327325401693920L";
+@interface SysOrderReturn : NSObject
+
+@property (nonatomic, strong) SysOrder * order;				//订单
+@property (nonatomic, copy) NSString* serialNumber;         //不知道是什么号
+@property (nonatomic, copy) NSString* success;              //1的时候 成功
+@end
 @interface SysOrder : NSObject
 
-@property (nonatomic, copy) NSString *id;						//主键
+@property (nonatomic, copy) NSString *Id;						//主键
 @property (nonatomic, copy) NSString *subject;					//订单名称
 @property (nonatomic, copy) NSString * orderDesc;				//订单描述
-@property (nonatomic, copy) SysShop* shop;					//商铺
-//private SysUser user;					//用户
+@property (nonatomic, strong) ShopCellModel* shop;					//商铺
+@property (nonatomic, strong)  LoginStatus* user;					//用户
 @property (nonatomic, copy) NSString * money;					//订单金额
 @property (nonatomic, copy) NSString * payMoney;				//支付金额
 @property (nonatomic, copy) NSString *payScore;				//使用积分
@@ -61,7 +85,7 @@
 @property (nonatomic, copy) NSString *sendType;					//配送类型 便利店订单使用
 @property (nonatomic, copy) NSString *deliveryFee;				//配送费用/邮费
 @property (nonatomic, copy) NSString * deliveryTime;			//配送时间 便利店使用
-@property (nonatomic, copy) NSString * payStatus;				//支付状态 见EnumOrderPayStatus.java
+@property (nonatomic, copy) NSString * payStatus;				//支付状态 见EnumOrderPayStatus.java  0待付款 1已付款 2支付失败 3取消支付
 @property (nonatomic, copy) NSString * showStatus;				//显示状态EnumOrderShowStatus.java 0正常 1系统删除 2用户删除
 @property (nonatomic, copy) NSString * deliveryStatus;			//物流状态EnumOrderDeliveryStatus.java
 @property (nonatomic, copy) SysOrder* refundOrder;			//退换货订单
@@ -81,6 +105,7 @@
 
 @property (nonatomic, copy) NSString * changeTime;//物流更新时间,deliveryStatus更新  即更新此字段
 @property (nonatomic, copy) NSString * refundsTime;//退换货时间,退换货业务最后更新时间
+@property (nonatomic, strong) NSMutableArray <SysOrderDetail*> *orderDetails;
 @end
 
 

@@ -12,7 +12,7 @@
 @class SysPage;
 @interface MyOrderViewModel : NSObject<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) SysPage *pageInfo;
-@property (nonatomic, strong) NSMutableArray <OrderModel *> * dataInfo;
+@property (nonatomic, strong) NSMutableArray < SysOrder*> * dataInfo;
 @property (nonatomic, weak) MyOrderViewController * owner;
 - (RACCommand*)getTheData;
 

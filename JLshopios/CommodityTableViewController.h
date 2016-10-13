@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ShopCellModel.h"
 @interface CommodityTableViewController : UIViewController
 @property (nonatomic, copy) NSString *secondMenuIDStr;
 @property (nonatomic, copy) NSString *searchNameStr;
 
 - (instancetype)initWithType:(NSInteger)tabbarNum;
+
+@property (nonatomic, strong) void(^cellClick)(ShopCellModel*);
+
 @end

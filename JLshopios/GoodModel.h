@@ -27,6 +27,8 @@
 @property (nonatomic, copy) NSString * userid;
 @property (nonatomic, copy) NSString * Id;
 
+@property (nonatomic, copy) NSString * name;
+@property (nonatomic, copy) NSString * icon;
 //本地数据
 @property (nonatomic, strong) UIImage * iconImage;
 

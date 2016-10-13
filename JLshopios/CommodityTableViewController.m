@@ -391,7 +391,15 @@
             break;
         case 1:
         {
+            
             ShopCellModel *commodity = [[ShopCellModel alloc] initWithDictionary:_commodity[indexPath.row]];
+//TODO:Mars添加
+            if (_cellClick) {
+                _cellClick(commodity);
+                return;
+            }
+         
+            
             ShopDetailController *next = [[ShopDetailController alloc] init];
             next.productIDStr = [NSString stringWithFormat:@"%d",commodity.ID];
             next.productIconStr = commodity.logo;

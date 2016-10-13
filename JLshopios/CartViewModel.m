@@ -9,13 +9,19 @@
 #import "CartViewModel.h"
 #import "DetailsViewController.h"
 #import "tools/QSCHttpTool.h"
+#import "CommodityTableViewController.h"
+#import "ShopCellModel.h"
+#import "PayManager.h"
+#import "MyOrderDetailViewController.h"
 @interface CartViewModel (){
 }
+@property (nonatomic, strong) NSMutableArray <GoodModel*> *payArray;//要结算的数组
 //随机获取店铺下商品数
 //@property (nonatomic, assign) NSInteger random;
 @end
 
 @implementation CartViewModel
+
 - (instancetype)init
 {
     self = [super init];
@@ -131,6 +137,7 @@
         }
             return value;
         }] array] mutableCopy];
+    
     if (isSelect) {
         self.selectArray = self.cartData.mutableCopy;
     }else{
@@ -321,7 +328,37 @@
     
 }
 - (void)payAction{
-     TTAlert(@"PayClick");
+    self.payArray = [NSMutableArray arrayWithArray:self.selectArray];
+    CommodityTableViewController * choseVC = [[CommodityTableViewController alloc] initWithType:1];
+    choseVC.secondMenuIDStr = @"1";
+    choseVC.searchNameStr = @"";
+    choseVC.cellClick = ^(ShopCellModel * shop){
+        
+        UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"是否选择%@",shop.name] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [[av rac_buttonClickedSignal] subscribeNext:^(NSNumber* index) {
+            if ([index isEqualToNumber:@(1)]) {
+                //点击了确定
+                [[[PayManager manager] getTheOrderCartArray: self.payArray  shop:shop] subscribeNext:^(id  x) {
+                    SysOrderReturn * orderReturn = [SysOrderReturn objectWithKeyValues:x];
+                    orderReturn.order = [SysOrder objectWithKeyValues:orderReturn.order];
+                    orderReturn.order.orderDetails = [SysOrderDetail objectArrayWithKeyValuesArray:orderReturn.order.orderDetails];
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        MyOrderDetailViewController * orderVC = [[MyOrderDetailViewController alloc] initWithNibName:@"MyOrderDetailViewController" bundle:nil];
+                        orderVC.orderReturn = orderReturn;
+                        [self.cartVC.navigationController pushViewController:orderVC animated:YES];
+                    });
+                    
+                    NSLog(@"%@",x);
+                }];
+
+            }
+        }];
+        [av show];
+        
+        
+           };
+    [self.cartVC.navigationController pushViewController:choseVC animated:YES];
 }
 - (void)loginAction{
     [((UIViewController*)self.cartVC).navigationController pushViewController:[[LoginViewController alloc] init] animated:YES];

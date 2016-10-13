@@ -8,12 +8,18 @@
 
 #import "MyOrderViewModel.h"
 #import "QSCHttpTool.h"
+#import "MyOrderTableViewCell.h"
+#import "MyOrderDetailViewController.h"
 @implementation MyOrderViewModel
-- (NSMutableArray<OrderModel *> *)dataInfo{
+- (NSMutableArray<SysOrder *> *)dataInfo{
     if (!_dataInfo) {
         _dataInfo = [NSMutableArray array];
     }
     return _dataInfo;
+}
+- (RACCommand *)getTheDataWithPage:(NSInteger)page{
+    return nil;
+    
 }
 - (RACCommand *)getTheData{
      return [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
@@ -25,19 +31,25 @@
             [FYTXHub progress:@"正在加载"];
             
             NSString *  urlString = @"https://123.56.192.182:8443/app/appOrderController/ajaxOrderRecdsPage?";
-            //    NSString * idStr = [LoginStatus sharedManager].idStr;
-            NSString * idStr = @"6";
+                NSString * idStr = [LoginStatus sharedManager].idStr;
+//            NSString * idStr = @"6";
             
             //这个type根据 owner的type 请求不同
-            NSString * type ;
+//            NSString * type ;
+            NSDictionary * paraDic = @{@"id":idStr,@"begin":@"0",@"type":@""};
+            NSString * prarString = [paraDic JSONString];
+            NSDictionary *dic = @{@"arg0":prarString};
             
-            NSDictionary *dic = @{@"arg0":@{@"id":idStr,@"begin":@"1",@"type":@""}};
+            
             [QSCHttpTool get:urlString parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
                 [FYTXHub dismiss];
-                NSLog(@"%@",json);
+                NSLog(@"json  === %@",json);
                 self.dataInfo = [[[[json rac_sequence] map:^id(id value) {
-                    return [[OrderModel alloc] initWithData:value];
+                    SysOrder * order =  [ SysOrder objectWithKeyValues:value];
+                     order.orderDetails = [SysOrderDetail objectArrayWithKeyValuesArray:order.orderDetails];
+                    return order;
                     }] array]mutableCopy];
+                
                 [self.owner.mainView reloadData];
             } failure:^(NSError *error) {
                    NSLog(@"/*****************************    **********************************/%@",error);
@@ -72,6 +84,11 @@
         }];
     }];
 }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    MyOrderTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MyOrderTableViewCell class])];
+    cell.order = self.dataInfo[indexPath.row];
+    return cell;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 1;
 }
@@ -82,6 +99,18 @@
     return 10;
 }
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    return [[NSAttributedString alloc] initWithString:@"暂无订单"];
+    return [[NSAttributedString alloc] initWithString:@"暂无订单,快去挑选商品吧！"];
+}
+
+- (void)pushToDetai:(SysOrder *)order{
+    MyOrderDetailViewController * detail = [[MyOrderDetailViewController alloc] init];
+    SysOrderReturn * orderReturn = [[SysOrderReturn alloc] init];
+    orderReturn.serialNumber = order.serialNumber;
+    orderReturn.order = order;
+     detail.orderReturn = orderReturn;
+    [self.owner.navigationController pushViewController:detail animated:YES];
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self pushToDetai:self.dataInfo[indexPath.row]];
 }
 @end

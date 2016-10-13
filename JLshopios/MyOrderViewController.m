@@ -9,6 +9,7 @@
 #import "MyOrderViewController.h"
 #import "MyOrderTableViewCell.h"
 #import "MyOrderViewModel.h"
+
 @interface MyOrderViewController ()
 
 @property (nonatomic, strong) MyOrderViewModel *viewModel;
@@ -30,6 +31,7 @@
 - (MyOrderViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = [[MyOrderViewModel alloc] init];
+        _viewModel.owner = self;
     }
     return _viewModel;
 }
@@ -42,7 +44,7 @@
     
     [super viewDidLoad];
     self.title = @"我的订单";
-    NSArray * titles = @[@"待支付",@"待发货",@"待收货",@"待评价",@"全部订单"];
+    NSArray * titles = @[@"待付款",@"待发货",@"待收货",@"待评价",@"全部订单"];
     self.title = titles[self.mainType];
     [self.view addSubview:self.mainView];
     
@@ -56,10 +58,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    MyOrderTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MyOrderTableViewCell class])];
-    return cell;
-}
+
 
 /*
 #pragma mark - Navigation

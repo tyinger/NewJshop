@@ -16,6 +16,10 @@
     }
     return self;
 }
++ (NSDictionary *)replacedKeyFromPropertyName{
+    return @{@"id":@"Id",@"Id":@"id"};
+}
+
 -(GoodModel *)initWithDictionary:(NSDictionary *)dic{
     if(self=[super init]){
         self.Id = [dic[@"id"] string];
