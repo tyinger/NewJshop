@@ -13,6 +13,12 @@
 
 #import "LoginViewController.h"
 
+#import "SaomazhuceViewController.h"
+
+#import "LBXScanView.h"
+#import "LBXScanResult.h"
+#import "LBXScanWrapper.h"
+
 @interface JLMeViewController ()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
 @property (nonatomic,strong) UITableView *mainTableView;
@@ -306,7 +312,7 @@
                 make.left.equalTo(lastView.mas_right).offset(20);
             }else{
                 
-                make.left.offset(0);
+                make.left.offset(5);
             }
         }];
         
@@ -446,7 +452,7 @@
                 make.left.equalTo(lastView.mas_right).offset(20);
             }else{
                 
-                make.left.offset(0);
+                make.left.offset(5);
             }
         }];
         
@@ -565,17 +571,25 @@
     return 10;
 }
 
-
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     
     if (alertView.tag == 1001) {
         
-        [[LoginStatus sharedManager] end];
-        [LoginStatus sharedManager].login = NO;
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if (buttonIndex == 1) {
             
-            [self saomazhuce];
-        });
+            [[LoginStatus sharedManager] end];
+            [LoginStatus sharedManager].login = NO;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                
+                [self saomazhuce];
+            });
+        }
+    }else if (alertView.tag == 1002) {
+        
+        if (buttonIndex == 1) {
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
+        }
     }else{
         
         if (buttonIndex == 1) {
@@ -594,7 +608,41 @@
 
 - (void)saomazhuce{
     
-    
+    [[[QuxianJiance xiangjiquanxian] deliverOnMainThread] subscribeNext:^(NSNumber *x) {
+        
+        if ([x boolValue] == YES) {
+            
+            //设置扫码区域参数
+            LBXScanViewStyle *style = [[LBXScanViewStyle alloc]init];
+            style.centerUpOffset = 44;
+            style.photoframeAngleStyle = LBXScanViewPhotoframeAngleStyle_On;
+            style.photoframeLineW = 6;
+            style.photoframeAngleW = 24;
+            style.photoframeAngleH = 24;
+            style.isNeedShowRetangle = YES;
+            
+            style.anmiationStyle = LBXScanViewAnimationStyle_NetGrid;
+            
+            //矩形框离左边缘及右边缘的距离
+            style.xScanRetangleOffset = 80;
+            
+            //使用的支付宝里面网格图片
+            UIImage *imgPartNet = [UIImage imageNamed:@"CodeScan.bundle/qrcode_scan_part_net"];
+            
+            style.animationImage = imgPartNet;
+            
+            SaomazhuceViewController *vc = [SaomazhuceViewController new];
+            vc.style = style;
+            //开启只识别框内
+            vc.isOpenInterestRect = YES;
+            [self.navigationController pushViewController:vc animated:YES]; 
+        }else{
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"未获取到相机权限" message:@"扫码注册需访问你的相机权限,点击设置前往系统设置允许APP访问你的相机" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"设置", nil];
+            alert.tag = 1002;
+            [alert show];
+        }
+    }];
 }
 
 @end

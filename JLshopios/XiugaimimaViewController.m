@@ -21,6 +21,8 @@
 
 @property (nonatomic,strong) UIButton *actionButton;
 
+@property (nonatomic,strong) NSString *registerYzm;
+
 @end
 
 @implementation XiugaimimaViewController
@@ -32,6 +34,21 @@
     self.view.backgroundColor = [UIColor colorWithRed:242/256.0 green:242/256.0 blue:242/256.0 alpha:1.0];
     
     [self creatUI];
+    
+    @weakify(self);
+    [[self.phoneTextF.rac_textSignal deliverOnMainThread] subscribeNext:^(NSString *x) {
+        
+        @strongify(self);
+        if (x.length > 10) {
+            
+            self.codeButton.enabled = YES;
+            [self.codeButton setBackgroundColor:[UIColor redColor]];
+        }else{
+            
+            self.codeButton.enabled = NO;
+            [self.codeButton setBackgroundColor:[UIColor colorWithRed:185/256.0 green:185/256.0 blue:185/256.0 alpha:1]];
+        }
+    }];
 }
 
 - (void)creatUI{
@@ -78,8 +95,25 @@
     [backView addSubview:codeLabel];
     [codeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
+        make.width.mas_equalTo(@53);
         make.top.equalTo(phoneLabel.mas_bottom).offset(padding);
         make.left.offset(10);
+    }];
+    
+    self.codeButton = [JKCountDownButton buttonWithType:UIButtonTypeCustom];
+    [self.codeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [self.codeButton setFont:[UIFont systemFontOfSize:14]];
+    [self.codeButton setBackgroundColor:[UIColor colorWithRed:185/256.0 green:185/256.0 blue:185/256.0 alpha:1]];
+    self.codeButton.layer.cornerRadius = 5;
+    [self.codeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.codeButton addTarget:self action:@selector(sendCodeAction:) forControlEvents:UIControlEventTouchUpInside];
+    [backView addSubview:self.codeButton];
+    [self.codeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.right.offset(-10);
+        make.width.mas_equalTo(@80);
+        make.height.mas_equalTo(@29);
+        make.centerY.equalTo(codeLabel.mas_centerY).offset(0);
     }];
     
     self.codeTextF = [[UITextField alloc] init];
@@ -90,7 +124,7 @@
         
         make.centerY.equalTo(codeLabel.mas_centerY).offset(0);
         make.left.equalTo(codeLabel.mas_right).offset(5);
-        make.right.offset(-10);
+        make.right.equalTo(self.codeButton.mas_left).offset(-5);
     }];
     
     UILabel *pasword = [[UILabel alloc] init];
@@ -140,6 +174,7 @@
     self.actionButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.actionButton setTitle:@"确定" forState:UIControlStateNormal];
     [self.actionButton addTarget:self action:@selector(sureBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+    self.actionButton.layer.cornerRadius = 5;
     [self.actionButton setBackgroundColor:[UIColor colorWithRed:225/156.0 green:225/156.0 blue:225/156.0 alpha:1.0]];
     [self.actionButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.view addSubview:self.actionButton];
@@ -152,12 +187,110 @@
     }];
 }
 
+- (void)sendCodeAction:(JKCountDownButton *)btn{
+    
+    if ([self youxiaodianhua:self.phoneTextF.text]) {
+        
+        NSLog(@"%@",self.phoneTextF.text);
+        
+        //获取验证码的
+        NSDictionary *dic = @{@"phoneNum":self.phoneTextF.text};
+        [QSCHttpTool get:@"https://123.56.192.182:8443/app/user/getRegisterYzm?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+            NSLog(@"json = msg %@",json[@"msg"]);
+            
+            if (![json[@"msg"] isEqualToString:@""] && json[@"msg"] != nil) {
+                
+                [FYTXHub toast:json[@"msg"]];
+            }else{
+                
+                btn.enabled = NO;
+                [btn startCountDownWithSecond:60];
+                
+                [btn countDownChanging:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+                    
+                    NSString *title = [NSString stringWithFormat:@"剩余%zd秒",second];
+                    return title;
+                }];
+                [btn countDownFinished:^NSString *(JKCountDownButton *countDownButton, NSUInteger second) {
+                    
+                    countDownButton.enabled = YES;
+                    return @"重新获取";
+                }];
+                
+                self.registerYzm = json[@"registerYzm"];
+            }
+        } failure:^(NSError *error) {
+            
+            [FYTXHub toast:@"获取验证码失败"];
+        }];
+        
+    }else{
+        
+        [FYTXHub toast:@"请输入正确的手机号码"];
+    }
+}
+
 - (void)sureBtnAction:(UIButton *)btn{
     
+    @weakify(self);
     [[RACSignal combineLatest:@[self.phoneTextF.rac_textSignal,self.codeTextF.rac_textSignal,self.passwordText1.rac_textSignal,self.passwordText2.rac_textSignal]] subscribeNext:^(RACTuple *x) {
         
+        @strongify(self);
+        NSString *s1 = x.first;
+        NSString *s2 = x.second;
+        NSString *s3 = x.third;
+        NSString *s4 = x.fourth;
         
+        if (s1.length < 10) {
+            
+            [FYTXHub toast:@"请输入正确的手机号"];
+        }else{
+            
+            if (s2.length <= 0) {
+                
+                [FYTXHub toast:@"请输入正确的验证码"];
+            }else{
+                
+                if (s3.length <6 || s3.length > 12) {
+                    
+                    [FYTXHub toast:@"请输入正确格式的密码"];
+                }else{
+                    
+                    if (s3 != s4) {
+                        
+                        [FYTXHub toast:@"请确保两次输入的密码一致"];
+                    }else{
+                        
+                        
+                    }
+                }
+            }
+        }
     }];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- (BOOL)youxiaodianhua:(NSString*)str{
+    
+    if (str.length == 11) {
+        
+        NSString* number=@"^[0-9]+$";
+        NSPredicate *numberPre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",number];
+        return [numberPre evaluateWithObject:str];
+    }
+    return NO;
 }
 
 @end

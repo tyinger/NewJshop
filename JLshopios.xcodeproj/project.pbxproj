@@ -151,6 +151,8 @@
 		B5FDB22C1D6C37130042D9EC /* CartViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FDB22B1D6C37130042D9EC /* CartViewModel.m */; };
 		B5FDB22F1D6C404D0042D9EC /* CartManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FDB22E1D6C404D0042D9EC /* CartManager.m */; };
 		B5FDB2321D6C42D00042D9EC /* GoodModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B5FDB2311D6C42D00042D9EC /* GoodModel.m */; };
+		C501CF8F1DAF5F64007B6036 /* CodeScan.bundle in Resources */ = {isa = PBXBuildFile; fileRef = C501CF8E1DAF5F64007B6036 /* CodeScan.bundle */; };
+		C50372151DAA227800D99E8A /* QuxianJiance.m in Sources */ = {isa = PBXBuildFile; fileRef = C50372141DAA227800D99E8A /* QuxianJiance.m */; };
 		C5478B0C1D7144A0006CFBFB /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5478B091D714274006CFBFB /* LoginViewController.xib */; };
 		C5478B0D1D7144AA006CFBFB /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5478B081D714274006CFBFB /* LoginViewController.m */; };
 		C559C6AB1D8405F20077E953 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C559C6AA1D8405F20077E953 /* CoreMotion.framework */; };
@@ -512,6 +514,9 @@
 		B5FDB2301D6C42D00042D9EC /* GoodModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodModel.h; sourceTree = "<group>"; };
 		B5FDB2311D6C42D00042D9EC /* GoodModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodModel.m; sourceTree = "<group>"; };
 		B95FAD02B3B6B9BB49738E14 /* Pods_JLshopios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JLshopios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C501CF8E1DAF5F64007B6036 /* CodeScan.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CodeScan.bundle; sourceTree = "<group>"; };
+		C50372131DAA227800D99E8A /* QuxianJiance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuxianJiance.h; sourceTree = "<group>"; };
+		C50372141DAA227800D99E8A /* QuxianJiance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuxianJiance.m; sourceTree = "<group>"; };
 		C5478B071D714274006CFBFB /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C5478B081D714274006CFBFB /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C5478B091D714274006CFBFB /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -962,6 +967,7 @@
 		8E2DE76E1D048A43003C077A /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				C501CF8E1DAF5F64007B6036 /* CodeScan.bundle */,
 				B55A48FA1D87AC1300A94278 /* DZNEmptyDataSet */,
 				B5A9F5F21D814B30002E4293 /* XTSegmentControl */,
 				C5DEEA021D57522800823ED8 /* Hub */,
@@ -998,6 +1004,8 @@
 				8E2DE7821D048A43003C077A /* UIViewController+NMExtension.m */,
 				B5A9F6081D816349002E4293 /* UITableView+placeHolder.h */,
 				B5A9F6091D816349002E4293 /* UITableView+placeHolder.m */,
+				C50372131DAA227800D99E8A /* QuxianJiance.h */,
+				C50372141DAA227800D99E8A /* QuxianJiance.m */,
 			);
 			name = tools;
 			path = JLshopios/tools;
@@ -1830,7 +1838,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3043B0AF1D02C55B00E97B82 /* Build configuration list for PBXNativeTarget "JLshopios" */;
 			buildPhases = (
-				C52E0AD97FA0B11A4251F35F /* 📦 Check Pods Manifest.lock */,
+				C52E0AD97FA0B11A4251F35F /* [CP] Check Pods Manifest.lock */,
 				8EC028755B83B67C08A72677 /* [CP] Check Pods Manifest.lock */,
 				3D3B8D3B47B8543D60717630 /* [CP] Check Pods Manifest.lock */,
 				5B58A2ABBECD2B8FB1809FC3 /* [CP] Check Pods Manifest.lock */,
@@ -1862,7 +1870,8 @@
 				TargetAttributes = {
 					3043B0971D02C55B00E97B82 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 85R76P9AJ2;
+						DevelopmentTeam = 9P6H6Q75LS;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1896,6 +1905,7 @@
 				976BC90F1D57AB3000BDEF01 /* CommodityAddressCell.xib in Resources */,
 				1FBB9B711D8792A200462A01 /* cityCode.plist in Resources */,
 				975976F01D577B4100B3B5CB /* CommodityPraiseCell.xib in Resources */,
+				C501CF8F1DAF5F64007B6036 /* CodeScan.bundle in Resources */,
 				973032EB1D8D8D66003B48FA /* address.json in Resources */,
 				978D3C251D44F04800C0C1BE /* ProvincesAndCities.plist in Resources */,
 				3043B0AB1D02C55B00E97B82 /* LaunchScreen.storyboard in Resources */,
@@ -2047,14 +2057,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JLshopios/Pods-JLshopios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C52E0AD97FA0B11A4251F35F /* 📦 Check Pods Manifest.lock */ = {
+		C52E0AD97FA0B11A4251F35F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2198,6 +2208,7 @@
 				E715ED111D0526E5003A2D62 /* CollectionHeader.m in Sources */,
 				C559C7941D840D070077E953 /* Order.m in Sources */,
 				E715ECE41D052696003A2D62 /* README.md in Sources */,
+				C50372151DAA227800D99E8A /* QuxianJiance.m in Sources */,
 				C5DEE9F71D57039900823ED8 /* LoginStatus.m in Sources */,
 				8E2DE75A1D047B2E003C077A /* JLTabMainController.m in Sources */,
 				3043B09D1D02C55B00E97B82 /* main.m in Sources */,
@@ -2365,6 +2376,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9P6H6Q75LS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2383,7 +2395,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios;
+				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2398,6 +2410,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 9P6H6Q75LS;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2416,7 +2429,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios;
+				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios12;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

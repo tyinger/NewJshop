@@ -12,6 +12,8 @@ pod 'IQKeyboardManager', '~> 3.3.6'
 pod 'ReactiveCocoa', '~> 2.5'
 pod 'SVProgressHUD'
 pod 'JKCountDownButton'
+source 'https://github.com/CocoaPods/Specs.git'
+pod 'LBXScan','~> 1.1.1'
 
 #pod 'ShareSDK3'
 #pod 'ShareSDK3/ShareSDKPlatforms/SinaWeibo’

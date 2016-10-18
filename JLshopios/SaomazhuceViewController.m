@@ -7,6 +7,7 @@
 //
 
 #import "SaomazhuceViewController.h"
+#import "RegisterViewController.h"
 
 @interface SaomazhuceViewController ()
 
@@ -16,22 +17,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = @"扫码注册";
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+- (void)scanResultWithArray:(NSArray<LBXScanResult*>*)array{
+    
+    if (array.count > 0) {
+        
+        for (LBXScanResult *result in array) {
+            
+            if (result.strScanned != nil && ![result.strScanned isEqualToString:@""]) {
+                
+                [FYTXHub success:@"扫码成功" delayClose:.5 compelete:^{
+                    
+                    RegisterViewController *ctl = [[RegisterViewController alloc] initWithCode:result.strScanned];
+                    [self.navigationController pushViewController:ctl animated:YES];
+                }];
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+            }
+        }
+    }
 }
-*/
 
 @end

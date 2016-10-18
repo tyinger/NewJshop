@@ -29,12 +29,31 @@
 
 @property (nonatomic,strong) NSString *registerYzm;
 
+@property (nonatomic,strong) NSString *tuijianCodeStr;
+
 @end
 
 @implementation RegisterViewController
 
+- (instancetype)initWithCode:(NSString *)code{
+    
+    self = [super init];
+    if (self) {
+        
+        self.tuijianCodeStr = code;
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"注册";
+    
+    if (![self.tuijianCodeStr isEqualToString:@""] && self.tuijianCodeStr != nil) {
+        
+        self.tuijianCode.text = self.tuijianCodeStr;
+    }
     
     self.sureButton.enabled = NO;
     
@@ -50,17 +69,6 @@
     [self youxiaoSureButton];
     
     [self xieyiAction];
-}
-
-- (void)viewWillDisappear:(BOOL)animated{
-    
-    [super viewWillDisappear:animated];
-    
-}
-
-- (void)dealloc{
-
-    
 }
 
 #pragma mark - action
@@ -265,22 +273,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - (BOOL)youxiaodianhua:(NSString*)str{
     
     if (str.length == 11) {
@@ -305,14 +297,5 @@
     }
     return YES;
 }
-
-
-
-
-
-
-
-
-
 
 @end

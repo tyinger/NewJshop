@@ -10,4 +10,6 @@
 
 @interface RegisterViewController : UIViewController
 
+- (instancetype)initWithCode:(NSString *)code;
+
 @end
