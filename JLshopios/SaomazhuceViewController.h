@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SaomazhuceViewController : UIViewController
+#import "LBXScanViewController.h"
+#import "LBXScanResult.h"
+
+@interface SaomazhuceViewController : LBXScanViewController
 
 @end

@@ -118,8 +118,8 @@
             [userInfo setObject:[LoginStatus sharedManager].score forKey:@"score"];
             [userInfo setObject:[NSString stringWithFormat:@"%@",self.seg.selectedSegmentIndex ? @"女":@"男"] forKey:@"sex"];
             [userInfo setObject:[LoginStatus sharedManager].status forKey:@"status"];
-            
             [[LoginStatus sharedManager] setJson:userInfo];
+            
             [FYTXHub success:@"修改成功" delayClose:2 compelete:^{
                 
                 [self.navigationController popViewControllerAnimated:YES];
