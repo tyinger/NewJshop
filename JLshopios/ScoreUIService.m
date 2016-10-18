@@ -20,7 +20,7 @@
     _mainTableView.dataSource = self;
     _mainTableView.emptyDataSetSource = self;
     _mainTableView.emptyDataSetDelegate = self;
-    [_mainTableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+   
     
 }
 #pragma mark - tableView Delegate
@@ -31,8 +31,13 @@
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        cell.detailTextLabel.textColor = QSCRedColor;
     }
-   
+    if (self.viewModel.scoreDetailData.count) {
+        cell.textLabel.text = self.viewModel.scoreDetailData[indexPath.row].Description;
+        cell.detailTextLabel.text = [self.viewModel.scoreDetailData[indexPath.row].type isEqualToNumber:@1]?[NSString stringWithFormat:@"+%@",self.viewModel.scoreDetailData[indexPath.row].num]:[NSString stringWithFormat:@"-%@",self.viewModel.scoreDetailData[indexPath.row].num];
+     
+    }
     
     return cell;
 }

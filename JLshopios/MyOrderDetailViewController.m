@@ -20,8 +20,12 @@
 @property (strong, nonatomic)  UILabel *orderPostalLabel;
 @property (strong, nonatomic)  UILabel *orderRealPriceLabel; //实付款
 @property (strong, nonatomic)  UILabel *orderTotalPriceLabel;
+@property (weak, nonatomic) IBOutlet UIButton *complicateButton;
 
+@property (weak, nonatomic) IBOutlet UILabel *logisticsTag;
+@property (weak, nonatomic) IBOutlet UILabel *logisticsCompany;
 
+@property (weak, nonatomic) IBOutlet UILabel *logisticsNo;
 
 @property (strong, nonatomic) IBOutlet UIButton *payButton;
 
@@ -50,6 +54,7 @@
             label.text = titleArray[i];
             label.font = [UIFont systemFontOfSize:[fontArray[i] floatValue]];
             label.textColor = colorArray[i];
+            
             [_footerView addSubview:label];
         }
         _orderTotalPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(kDeviceWidth-100, 5, 100, 17)];
@@ -94,15 +99,45 @@
     self.view.backgroundColor = RGB(230, 230, 230);
     [_mainView registerNib:[UINib nibWithNibName:NSStringFromClass([MyOrderDetailTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([MyOrderDetailTableViewCell class])];
     _mainView.rowHeight = 70;
-    _mainView.tableHeaderView = self.tableHeader;
-    _mainView.tableFooterView = self.footerView;
+  
     [self setData];
     
-    
+    [[_complicateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        [[[PayManager manager] doAlipayPayWithGood:self.orderReturn] execute:nil];
+    }];
     [[_payButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         [[[PayManager manager] doAlipayPayWithGood:self.orderReturn] execute:nil];
     }];
+    _cancelButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            /*
+            __block UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"是否确定取消" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [av show];
+            //点击了确定
+            SX_WEAK
+            [[av rac_buttonClickedSignal] subscribeNext:^(NSNumber* index) {
+                if ([index isEqualToNumber:@(1)]) {
+                    av = nil;
+                    [[[PayManager manager] cancelTheOrder:self.order] subscribeNext:^(id x) {
+                        SX_STRONG
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }];
+                   
+                    
+                }
+            }];
+             */
+         [self.navigationController popViewControllerAnimated:YES];
+            
+            [subscriber sendCompleted];
+            return nil;
+        }];
+    }];
     // Do any additional setup after loading the view from its nib.
+}
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.mainView.mj_header beginRefreshing];
 }
 - (void)setData{
     _orderReturn = self.orderReturn;
@@ -123,6 +158,42 @@
     NSMutableAttributedString * real = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"实付款：%.2f",[_order.payMoney floatValue]]];
     [real addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, 4)];
     _orderRealPriceLabel.attributedText = real;
+    [_orderRealPriceLabel sizeToFit];
+    _orderRealPriceLabel.x =  kDeviceWidth - _orderRealPriceLabel.width;
+    
+    if ([_order.payStatus isEqualToString:@"0"]){
+        _complicateButton.hidden = YES;
+        _cancelButton.hidden = NO;
+        _payButton.hidden = NO;
+    }if ([_order.payStatus isEqualToString:@"1"]) {
+        _complicateButton.hidden = NO;
+        _cancelButton.hidden = YES;
+        _payButton.hidden = YES;
+    }
+    
+    //如果有物流信息
+    //header高度180
+    if ([_order.invoice.companyName isEqualToString:@"自送货"]||[_order.invoice.companyName isEqualToString:@""]||_order.invoice.companyName == nil) {
+        _tableHeader.height = 100;
+        _logisticsNo.hidden = YES;
+        _logisticsTag.hidden = YES;
+        _logisticsCompany.hidden = YES;
+    }else{
+        _tableHeader.height = 180;
+        _logisticsNo.hidden = NO;
+        _logisticsTag.hidden = NO;
+        _logisticsCompany.hidden = NO;
+        
+        _logisticsNo.text = [NSString stringWithFormat:@"运单号：%@",_order.invoice.deliveryNumber];
+        _logisticsCompany.text = [NSString stringWithFormat:@"承运公司：%@",_order.invoice.companyName];
+        _logisticsTag.text = @"物流信息";
+    }
+    
+
+    //如果没有物流信息
+    //header高度100
+    _mainView.tableHeaderView = self.tableHeader;
+    _mainView.tableFooterView = self.footerView;
     
      [self.mainView reloadData];
 }

@@ -13,8 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *orderStateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *orderPirceLabel;
 
-@property (weak, nonatomic) IBOutlet UIButton *actionButton;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
+
 
 @property (weak, nonatomic) IBOutlet UIImageView *orderImageOne;
 @property (weak, nonatomic) IBOutlet UIImageView *orderImageTwo;
@@ -29,11 +29,42 @@
     _order = order;
     NSArray * stat = @[@"待付款",@"已付款",@"支付失败",@"取消支付"];
     _shopNameLabel.text = order.shop.name;
-    _orderPirceLabel.text = order.money;
+    _orderPirceLabel.text = [NSString stringWithFormat:@"实付款：%@",order.payMoney];
     _orderStateLabel.text = stat[[order.payStatus integerValue]];
     
+    switch ([order.payStatus integerValue]) {
+        case 0:
+        {
+            _actionButton.hidden = NO;
+            _cancelButton.hidden = NO;
+        }
+            break;
+        case 1:
+        {
+            _actionButton.hidden = NO;
+            [_actionButton setTitle:@"再次购买" forState:0];
+            [_actionButton sizeToFit];
+            _cancelButton.hidden = YES;
+        }
+            break;
+        case 2:
+        {
+            _actionButton.hidden = YES;
+             _cancelButton.hidden = YES;
+        }
+            break;
+        default:
+        {
+            _actionButton.hidden = YES;
+             _cancelButton.hidden = YES;
+        }
+            break;
+    }
+    
     NSInteger orderNumber = _order.orderDetails.count;
-    if (orderNumber == 1) {
+    if (orderNumber == 0){
+        
+    }else if (orderNumber == 1) {
         [_orderImageOne sd_setImageWithURL:[NSURL URLWithString:_order.orderDetails[0].goods.icon]];
         _orderImageOne.hidden = NO;
         _orderImageTwo.hidden = YES;

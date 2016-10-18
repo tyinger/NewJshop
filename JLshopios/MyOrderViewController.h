@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PayManager.h"
 typedef NS_ENUM(NSUInteger, OrderType) {
-    OrderTypeWaitpay,       //待支付
+    OrderTypeWaitpay,       //待付款
     OrderTypeWaitsend,      //待发货
     OrderTypeWaitreceive,   //待收货
     OrderTypeWaitComment,   //待评价

@@ -14,7 +14,7 @@
 @property (nonatomic, strong) ScoreHeaderView * headerView;
 @property (nonatomic, strong) ScoreViewModel * viewModel;
 @property (nonatomic, strong) ScoreUIService * service;
-@property (nonatomic, strong) UITableView * mainTableView;
+@property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) UILabel * placeHolder;
 
 @end
@@ -45,32 +45,42 @@
 
 - (UITableView *)mainTableView{
     if (!_mainTableView) {
-        _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.headerView.height, kDeviceWidth, KDeviceHeight-self.headerView.height) style:UITableViewStylePlain];
+        _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.headerView.height, kDeviceWidth, KDeviceHeight-self.headerView.height-20) style:UITableViewStylePlain];
         _mainTableView.tableFooterView = [[UIView alloc] init];
+        _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            _page = 0;
+            [self.viewModel.scoreDetailData removeAllObjects];
+            [[self.viewModel getTheScoreDetailWithPage:_page] subscribeCompleted:^{
+                
+            }];
+        }];
+        _mainTableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+            _page = _page+1;
+            [[self.viewModel getTheScoreDetailWithPage:_page] subscribeCompleted:^{
+                
+            }];
+        }];
     }
     return _mainTableView;
 }
 - (ScoreViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = [[ScoreViewModel alloc] init];
+        _viewModel.owner = self;
     }
     return _viewModel;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _page = 0;
     // Do any additional setup after loading the view.
     self.title = @"我的积分";
     self.view.backgroundColor = [UIColor whiteColor];
     [self initialization];
 }
 - (void)viewWillAppear:(BOOL)animated{
-    [[self.viewModel getTheScore]subscribeCompleted:^{
-        
-    } ];
-    [[self.viewModel getTheScoreDetail] subscribeCompleted:^{
-        
-    }];
+   
 
 }
 - (void)initialization{
@@ -86,6 +96,12 @@
 //         self.headerView.canUseScore = [NSString stringWithFormat:@"%ld",(long)canuse];
         
 //    }];
+    [[self.viewModel getTheScore]subscribeCompleted:^{
+        
+    } ];
+    [[self.viewModel getTheScoreDetailWithPage:_page] subscribeCompleted:^{
+        
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

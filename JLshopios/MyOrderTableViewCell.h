@@ -10,5 +10,8 @@
 #import "PayManager.h"
 @class SysOrder;
 @interface MyOrderTableViewCell : UITableViewCell
+
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *actionButton;
 @property (nonatomic, strong) SysOrder*order;
 @end

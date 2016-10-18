@@ -19,6 +19,7 @@
 @interface PayManager : NSObject
 
 + (instancetype)manager;
+
 /**
  *  购物车支付
  */
@@ -34,7 +35,9 @@
 
 - (RACCommand*)doAlipayPayWithGood:(SysOrderReturn *)good;
 
-
+- (RACSignal*)cancelTheOrder:(SysOrder *)order;
+//评价
+- (RACSignal*)judgeTheOrder:(SysOrder *)order;
 
 
 @end
@@ -93,13 +96,15 @@
 @property (nonatomic, copy) NSString * clearStatus;				//清算状态EnumOrderClearSatus.java
 @property (nonatomic, copy) NSString * commentStatus;			//评价状态 见EnumOrderCommentStatus.java
 @property (nonatomic, copy) NSString * serialNumber;			//流水号
-@property (nonatomic, copy)  SysInvoice* invoice;				//发货单
+@property (nonatomic, strong)  SysInvoice* invoice;				//发货单
 @property (nonatomic, copy) NSString * receiveUser;				//收货人姓名
 @property (nonatomic, copy) NSString *receiveAdd;				//收货地址
 @property (nonatomic, copy) NSString * userPhone;				//收货人联系方式
 @property (nonatomic, copy) NSString * createTime;
 @property (nonatomic, copy) NSString *updateTime;
 @property (nonatomic, copy) NSString *clearTime;			//清算日期
+
+
 
 @property (nonatomic, copy) NSString *originSerialNumber;	//原订单流水号
 
