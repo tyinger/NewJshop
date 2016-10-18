@@ -42,15 +42,7 @@
     }
     return _headerView;
 }
-- (UILabel *)placeHolder{
-    if (!_placeHolder) {
-        _placeHolder = [[UILabel alloc] initWithFrame:CGRectMake(0, self.headerView.height, kDeviceWidth, KDeviceHeight - self.headerView.height)];
-        _placeHolder.text = @"对不起，目前无更多信息";
-        _placeHolder.backgroundColor = RGB(245, 245, 245);
-        _placeHolder.textAlignment = NSTextAlignmentCenter;
-    }
-    return _placeHolder;
-}
+
 - (UITableView *)mainTableView{
     if (!_mainTableView) {
         _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.headerView.height, kDeviceWidth, KDeviceHeight-self.headerView.height) style:UITableViewStylePlain];

@@ -170,7 +170,7 @@
     return 1;
 }
 
-#pragma mark--dcollectionView里有多少个组
+#pragma mark--collectionView里有多少个组
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
     return self.allData.count;

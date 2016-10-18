@@ -78,33 +78,40 @@
 {
     [super layoutSubviews];
     CGFloat nameX=10,nameY=10;
-//    self.nameLabel.frame=CGRectMake(nameX, nameY, self.contentView.frame.size.width-20, 60);
-//    CGSize size = CGSizeMake(320,2000);
-//    //计算实际frame大小，并将label的frame变成实际大小
-//    CGSize labelsize = [_activityLabel.text sizeWithFont:_activityLabel.font constrainedToSize:size lineBreakMode:NSLineBreakByCharWrapping];
-//    _activityLabel.frame = CGRectMake(nameX,70, self.contentView.frame.size.width-20, labelsize.height);
+    self.nameLabel.frame=CGRectMake(nameX, nameY, self.contentView.frame.size.width-20, 60);
+    CGSize size = CGSizeMake(self.width,2000);
+    //计算实际frame大小，并将label的frame变成实际大小
+    CGSize labelsize = [_activityLabel.text sizeWithFont:_activityLabel.font constrainedToSize:size lineBreakMode:NSLineBreakByClipping];
+    _activityLabel.frame = CGRectMake(nameX,70, self.contentView.frame.size.width-20, labelsize.height);
 //    self.activityLabel.frame=CGRectMake(nameX, 70, self.contentView.frame.size.width-20, 45);
     self.priceyLabel.frame=CGRectMake(nameX, CGRectGetMaxY(_activityLabel.frame), self.contentView.frame.size.width-20, 30);
     self.imgZXImageview.frame=CGRectMake(nameX, 150, 80, 20);
-//    self.txtZXLabel.frame=CGRectMake(100, 150, 140, 20);
+    self.txtZXLabel.frame=CGRectMake(100, 150, 140, 20);
     self.cellHigh = CGRectGetMaxY(self.priceyLabel.frame) + nameY;
 }
 
 #pragma mark - 显示数据
 - (void)showInfo:(DetailsMode *)model
 {
-//    self.nameLabel.text = model.detailsName;
+    self.nameLabel.text = model.detailsName;
 //    TYLinkTextStorage *linkTextStorage = [[TYLinkTextStorage alloc]init];
 //    linkTextStorage.range = [model.detailsActivity rangeOfString:@"详情尽在iPhone天天618"];
-//    self.activityLabel.text=model.detailsDescription;
+    self.activityLabel.text=model.detailsDescription;
     
     self.priceyLabel.text= [NSString stringWithFormat:@"¥ %@", model.detailsPrice];
     self.imgZXImageview.image=[UIImage imageNamed:model.detailsImgZX];
-//    self.txtZXLabel.text=model.detailsTxtZX;
+    self.txtZXLabel.text=model.detailsTxtZX;
     
     [self layoutSubviews];
     model.cellHeight = self.cellHigh;
 }
 
+-(void)showShopInfo:(ShopDetailModel *)shopModel{
+    self.priceyLabel.text= [NSString stringWithFormat:@"%@", shopModel.shopName];
+//    self.imgZXImageview.image=[UIImage imageNamed:model.detailsImgZX];
+    
+    [self layoutSubviews];
+    shopModel.cellHeight = self.cellHigh;
+}
 
 @end

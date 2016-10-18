@@ -59,7 +59,9 @@
     }
     return self;
 }
-
++ (NSDictionary *)replacedKeyFromPropertyName{
+    return @{@"ID":@"id"};
+}
 #pragma mark 初始化对象（静态方法）
 +(ShopCellModel *)statusWithDictionary:(NSDictionary *)dic{
     ShopCellModel *categoryMeun=[[ShopCellModel alloc]initWithDictionary:dic];

@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DetailsMode.h"
+#import "ShopDetailModel.h"
 @interface CommoditySelectCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *DetailAddressLatel;
 
 /// 根据数据模型来显示内容
-- (void)showInfo:(DetailsMode *)model;
+- (void)showInfo:(ShopDetailModel *)model;
 @end

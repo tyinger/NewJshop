@@ -71,10 +71,16 @@
 -(void)refresh
 {
     NSLog(@"上啦刷新");
-    _pangoNum = 0;
-    [_tableView.mj_footer setState:MJRefreshStateIdle];
-    [self loadDataFromClientWithMenuID:self.secondMenuIDStr andPageno:@"0" andOrderType:@"soldNum" andOrderDes:@"0" andIsMJRefleshHead:YES];
-    [_tableView.mj_header endRefreshing];
+    if (_tabbarNum == 1) {
+        [self initData:self.secondMenuIDStr searchName:self.searchNameStr];
+        [_tableView.mj_header endRefreshing];
+    }else{
+        
+        _pangoNum = 0;
+        [_tableView.mj_footer setState:MJRefreshStateIdle];
+        [self loadDataFromClientWithMenuID:self.secondMenuIDStr andPageno:@"0" andOrderType:@"soldNum" andOrderDes:@"0" andIsMJRefleshHead:YES];
+        [_tableView.mj_header endRefreshing];
+    }
 }
 
 -(void)loadMore
@@ -118,27 +124,28 @@
         }else{
             [_tableView.mj_footer setState:MJRefreshStateNoMoreData];
         }
-            if (!_tableView) {
-                //创建一个分组样式的UITableView
-                _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-40) style:UITableViewStylePlain];
-                //设置数据源，注意必须实现对应的UITableViewDataSource协议
-                _tableView.dataSource=self;
-                //设置代理
-                _tableView.delegate=self;
-                _tableView.rowHeight = 90;
-                _tableView.backgroundColor=RGB(240, 243, 245);
-                [self.view addSubview:_tableView];
-                
-                _tabbarNum ? [_tableView registerNib:[UINib nibWithNibName:@"ShopTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"] : [_tableView registerNib:[UINib nibWithNibName:@"CommodityTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
-                _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
-                
-                _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
-            }
         
-        } failure:^(NSError *error) {
-            [FYTXHub dismiss];
+        if (!_tableView) {
+            //创建一个分组样式的UITableView
+            _tableView=[[UITableView alloc]initWithFrame:CGRectMake(0, 40, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-64-40) style:UITableViewStylePlain];
+            //设置数据源，注意必须实现对应的UITableViewDataSource协议
+            _tableView.dataSource=self;
+            //设置代理
+            _tableView.delegate=self;
+            _tableView.rowHeight = 90;
+            _tableView.backgroundColor=RGB(240, 243, 245);
+            [self.view addSubview:_tableView];
             
-            NSLog(@"-----%@",error);
+            _tabbarNum ? [_tableView registerNib:[UINib nibWithNibName:@"ShopTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"] : [_tableView registerNib:[UINib nibWithNibName:@"CommodityTableViewCell" bundle:nil] forCellReuseIdentifier:@"Cell"];
+            _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
+            
+            _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+        }
+        
+    } failure:^(NSError *error) {
+        [FYTXHub dismiss];
+        
+        NSLog(@"-----%@",error);
     }];
 }
 - (void)setupNavigationItem {
@@ -359,10 +366,11 @@
             
             [cell.iconLogoImage sd_setImageWithURL:[NSURL URLWithString:shopModel.logo] placeholderImage:[UIImage imageWithName:@"icon_loading5"]];
             cell.shopNameLabel.text = shopModel.name;
-            cell.noFullYouFeiLabel.text=[NSString stringWithFormat:@"邮费：%ld元",shopModel.noFullYoufei];
-            cell.shopInfoLabel.text = shopModel.info;
-            cell.fullYouFeiLabel.text = [NSString stringWithFormat:@"满%ld元包邮",shopModel.fullYoufei];
+            cell.noFullYouFeiLabel.text = [self.secondMenuIDStr integerValue] == 1 ? [NSString stringWithFormat:@"邮费：%ld元",shopModel.noFullYoufei] : nil;
+            cell.shopInfoLabel.text = [self.secondMenuIDStr integerValue] == 1 ? shopModel.info : nil;
+            cell.fullYouFeiLabel.text = [self.secondMenuIDStr integerValue] == 1 ? [NSString stringWithFormat:@"满%ld元包邮",shopModel.fullYoufei] : nil;
             cell.shopStanceLabel.text = [NSString stringWithFormat:@"距离：%@米",shopModel.distance];
+            cell.detailInfoLabel.text = [self.secondMenuIDStr integerValue] == 1 ? nil : shopModel.info;
             return cell;
         }
             break;
@@ -391,7 +399,15 @@
             break;
         case 1:
         {
+            
             ShopCellModel *commodity = [[ShopCellModel alloc] initWithDictionary:_commodity[indexPath.row]];
+//TODO:Mars添加
+            if (_cellClick) {
+                _cellClick(commodity);
+                return;
+            }
+         
+            
             ShopDetailController *next = [[ShopDetailController alloc] init];
             next.productIDStr = [NSString stringWithFormat:@"%d",commodity.ID];
             next.productIconStr = commodity.logo;

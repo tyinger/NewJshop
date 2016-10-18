@@ -59,6 +59,7 @@
     
     CategoryViewController *vcCate = [[CategoryViewController alloc]init];
     QSCNavigationController *bnCate = [[QSCNavigationController alloc]initWithRootViewController:vcCate];
+    vcCate.shopIDStr = @"1";
     
     JLShopsViewController *vcShop = [[JLShopsViewController alloc]init];
     HomeListBtnClickYes;

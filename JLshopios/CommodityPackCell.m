@@ -10,8 +10,12 @@
 
 @implementation CommodityPackCell
 
-- (void)awakeFromNib {
-    // Initialization code
+#pragma mark - 显示数据
+- (void)showInfo:(ShopDetailModel *)model
+{
+    
+    self.phoneLabel.text = model.shopPhone;
+    [self layoutSubviews];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

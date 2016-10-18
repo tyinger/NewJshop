@@ -12,6 +12,7 @@
 @interface WalletViewController ()
 @property (nonatomic, strong) WalletHeaderView * headerView;
 @property (nonatomic, strong) WalletViewModel * viewModel;
+@property (nonatomic, strong) UITableView * mainTableView;
 @property (nonatomic, strong) UILabel * placeHolder;
 @end
 
@@ -19,17 +20,24 @@
 - (WalletHeaderView *)headerView{
     if (!_headerView) {
         _headerView = [[WalletHeaderView alloc] init];
+        [RACObserve(self.viewModel, userablemoney) subscribeNext:^(id x) {
+            _headerView.userablemoney = x;
+        }];
+        [RACObserve(self.viewModel, totalprofit) subscribeNext:^(id x) {
+            _headerView.totalprofit = x;
+        }];
     }
     return _headerView;
 }
-- (UILabel *)placeHolder{
-    if (!_placeHolder) {
-        _placeHolder = [[UILabel alloc] initWithFrame:CGRectMake(0, self.headerView.height, kDeviceWidth, KDeviceHeight - self.headerView.height)];
-        _placeHolder.text = @"对不起，目前无更多信息";
-        _placeHolder.backgroundColor = RGB(245, 245, 245);
-        _placeHolder.textAlignment = NSTextAlignmentCenter;
+- (UITableView *)mainTableView{
+    if (!_mainTableView) {
+        _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.headerView.height, kDeviceWidth, KDeviceHeight-self.headerView.height) style:UITableViewStylePlain];
+        _mainTableView.delegate = self.viewModel;
+        _mainTableView.dataSource = self.viewModel;
+        _mainTableView.emptyDataSetSource = self.viewModel;
+        _mainTableView.tableFooterView = [[UIView alloc] init];
     }
-    return _placeHolder;
+    return _mainTableView;
 }
 - (WalletViewModel *)viewModel{
     if (!_viewModel) {
@@ -46,6 +54,16 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self initialization];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[self.viewModel getTheScore] subscribeCompleted:^{
+        
+    }];
+    [[self.viewModel getTheScoreDetail] subscribeCompleted:^{
+        
+    }];
+    
+}
 - (void)initialization{
     SX_WEAK
     [[self.headerView -> _payButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -54,6 +72,7 @@
         
     }];
     [self.view addSubview:self.headerView];
+    [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.placeHolder];
 }
 - (void)didReceiveMemoryWarning {

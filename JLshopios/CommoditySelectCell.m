@@ -11,10 +11,10 @@
 @implementation CommoditySelectCell
 
 #pragma mark - 显示数据
-- (void)showInfo:(DetailsMode *)model
+- (void)showInfo:(ShopDetailModel *)model
 {
     
-    self.DetailAddressLatel.text = model.detailsSelect;
+    self.DetailAddressLatel.text = model.shopAddress;
     [self layoutSubviews];
 }
 

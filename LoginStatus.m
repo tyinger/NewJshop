@@ -136,5 +136,7 @@
     self.sex = [json valueForKey:@"sex"];
     self.status = [json valueForKey:@"status"];
 }
-
++ (NSDictionary *)replacedKeyFromPropertyName{
+    return @{@"idStr":@"id"};
+}
 @end

@@ -21,7 +21,7 @@ static CGFloat titleHeight = 25;
     self = [super initWithFrame:frame];
     if (self) {
         
-        [self initializtion];
+//        [self initializtion];
     }
     return self;
 }

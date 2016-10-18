@@ -73,8 +73,9 @@
 
 #pragma mark - action
 - (void)gesAction:(UIGestureRecognizer*)ges{
-    
     [self.view endEditing:YES];
+   
+    
 }
 - (void)xieyiAction{
     
