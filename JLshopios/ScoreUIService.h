@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ScoreViewModel.h"
+
 @interface ScoreUIService : NSObject
 @property(nonatomic, strong) UITableView * mainTableView;
 @property (nonatomic, strong) ScoreViewModel * viewModel;

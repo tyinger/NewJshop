@@ -9,6 +9,12 @@
 #import "ScoreViewModel.h"
 
 @implementation ScoreViewModel
+- (NSMutableArray<ScoreDetailModel *> *)scoreDetailData{
+    if (!_scoreDetailData) {
+        _scoreDetailData = [NSMutableArray array];
+    }
+    return _scoreDetailData;
+}
 - (void)getTheScoreSuccess:(void (^)(id))success{
     [FYTXHub progress:@"正在加载"];
     
@@ -38,8 +44,8 @@
      userId
      */
     NSString *  urlString = @"https://123.56.192.182:8443/app/Score/getSumAndUseScore?";
-//    NSString * idStr = [LoginStatus sharedManager].idStr;
-         NSString * idStr =@"6";
+    NSString * idStr = [LoginStatus sharedManager].idStr;
+//         NSString * idStr =@"20";
     [QSCHttpTool get:urlString parameters:@{@"userId":idStr} isShowHUD:YES httpToolSuccess:^(id json) {
         [FYTXHub dismiss];
         self.userusedScore = [NSString stringWithFormat:@"%@",json[@"userusedScore"]];
@@ -56,7 +62,7 @@
     }];
     return result;
 }
-- (RACSignal *)getTheScoreDetail{
+- (RACSignal *)getTheScoreDetailWithPage:(NSInteger)page{
     /*https://123.56.192.182:8445/app/Score/getMoreScoreDetailevent?
     /userId
     pageno
@@ -66,14 +72,37 @@
         [FYTXHub progress:@"正在加载"];
       
         NSString *  urlString = @"https://123.56.192.182:8443/app/Score/getMoreScoreDetailevent?";
-        //    NSString * idStr = [LoginStatus sharedManager].idStr;
-        NSString * idStr =@"20";
+            NSString * idStr = [LoginStatus sharedManager].idStr;
+//        NSString * idStr =@"20";
         
-        NSString *parameterStr = [NSString stringWithFormat:@"{\"userId\":\"%@\",\"pageno\":\"1\",\"pagesize\":\"20\"}",idStr];
-        NSDictionary *dic = @{@"arg0":parameterStr};
-        [QSCHttpTool get:urlString parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+        NSDictionary * dic = @{@"userId":idStr,@"pageno":[NSString stringWithFormat:@"%ld",(long)page],@"pagesize":@"10"};
+        
+        NSString *parameterStr = [dic JSONString];
+        NSDictionary *para = @{@"arg0":parameterStr};
+       
+        
+        [QSCHttpTool get:urlString parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
             NSLog(@"JSON = %@",json);
+            [self.owner.mainTableView.mj_header endRefreshing];
             
+            [FYTXHub dismiss];
+            NSLog(@"JSON = %@",json);
+            if (((NSArray*)json).count<10) {
+                [self.owner.mainTableView.mj_footer endRefreshingWithNoMoreData];
+            }else{
+                [self.owner.mainTableView.mj_footer endRefreshing];
+            }
+            NSArray * data = [[[json rac_sequence] map:^id(id value) {
+//                ScoreDetailModel * model = [[ScoreDetailModel alloc] init];
+//                [model setValuesForKeysWithDictionary:value];
+//                return model;
+                return [ScoreDetailModel objectWithKeyValues:value];
+            }] array];
+            [self.scoreDetailData addObjectsFromArray:data];
+            
+            [self.owner.mainTableView reloadData];
+            
+
             [FYTXHub dismiss];
              [subscriber sendCompleted];
         } failure:^(NSError *error) {

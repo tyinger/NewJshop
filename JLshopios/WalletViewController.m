@@ -12,8 +12,9 @@
 @interface WalletViewController ()
 @property (nonatomic, strong) WalletHeaderView * headerView;
 @property (nonatomic, strong) WalletViewModel * viewModel;
-@property (nonatomic, strong) UITableView * mainTableView;
+
 @property (nonatomic, strong) UILabel * placeHolder;
+@property (nonatomic, assign) NSInteger page;
 @end
 
 @implementation WalletViewController
@@ -31,17 +32,32 @@
 }
 - (UITableView *)mainTableView{
     if (!_mainTableView) {
-        _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.headerView.height, kDeviceWidth, KDeviceHeight-self.headerView.height) style:UITableViewStylePlain];
+        _mainTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.headerView.height, kDeviceWidth, KDeviceHeight-self.headerView.height-44) style:UITableViewStylePlain];
         _mainTableView.delegate = self.viewModel;
         _mainTableView.dataSource = self.viewModel;
         _mainTableView.emptyDataSetSource = self.viewModel;
         _mainTableView.tableFooterView = [[UIView alloc] init];
+        _mainTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            _page = 0;
+            [self.viewModel.walletDetailData removeAllObjects];
+            [[self.viewModel getTheScoreDetailWithPage:_page] subscribeCompleted:^{
+                
+            }];
+        }];
+        _mainTableView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+            _page = _page+1;
+            [[self.viewModel getTheScoreDetailWithPage:_page] subscribeCompleted:^{
+                
+            }];
+        }];
     }
     return _mainTableView;
 }
 - (WalletViewModel *)viewModel{
     if (!_viewModel) {
         _viewModel = [[WalletViewModel alloc] init];
+        _viewModel.owner = self;
     }
     return _viewModel;
 }
@@ -52,16 +68,12 @@
     
     self.title = @"我的钱包";
     self.view.backgroundColor = [UIColor whiteColor];
+    _page = 0;
     [self initialization];
 }
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [[self.viewModel getTheScore] subscribeCompleted:^{
-        
-    }];
-    [[self.viewModel getTheScoreDetail] subscribeCompleted:^{
-        
-    }];
+    
     
 }
 - (void)initialization{
@@ -74,6 +86,12 @@
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.mainTableView];
     [self.view addSubview:self.placeHolder];
+    [[self.viewModel getTheScore] subscribeCompleted:^{
+       
+    }];
+    [[self.viewModel getTheScoreDetailWithPage:_page] subscribeCompleted:^{
+        
+    }];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

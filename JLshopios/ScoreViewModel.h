@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ScoreDetailModel.h"
+#import "ScoreViewController.h"
 @interface ScoreViewModel : NSObject
-@property (nonatomic, strong) NSMutableArray * scoreDetailData;
+@property (nonatomic, strong) NSMutableArray<ScoreDetailModel*> * scoreDetailData;
+@property (nonatomic, weak) ScoreViewController * owner;
 @property (nonatomic, copy) NSString *userusedScore;
 @property (nonatomic, copy) NSString *totalScore;
 @property (nonatomic, copy) NSString *canUseScore;
 
 - (RACSignal *)getTheScore;
-- (RACSignal *)getTheScoreDetail;
+- (RACSignal *)getTheScoreDetailWithPage:(NSInteger)page;
 @end

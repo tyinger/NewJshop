@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface WalletViewController : UIViewController
-
+@property (nonatomic, strong) UITableView * mainTableView;
 @end

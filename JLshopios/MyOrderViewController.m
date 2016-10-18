@@ -11,7 +11,9 @@
 #import "MyOrderViewModel.h"
 
 @interface MyOrderViewController ()
-
+{
+    NSInteger _page;
+}
 @property (nonatomic, strong) MyOrderViewModel *viewModel;
 @end
 
@@ -25,6 +27,14 @@
         _mainView.emptyDataSetSource = self.viewModel;
         LAYOUT_TABLE(_mainView)
         [_mainView registerNib:[UINib nibWithNibName:NSStringFromClass([MyOrderTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([MyOrderTableViewCell class])];
+        _page = 0;
+        _mainView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            [self.viewModel.dataInfo removeAllObjects];
+            [[self.viewModel getTheDataWithPage:0] execute:nil];
+        }];
+        _mainView.mj_footer = [MJRefreshAutoFooter footerWithRefreshingBlock:^{
+            [[self.viewModel getTheDataWithPage:_page++] execute:nil];
+        }];
     }
     return _mainView;
 }

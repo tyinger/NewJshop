@@ -98,7 +98,40 @@
     }];
     return result;
 }
-
+- (RACSignal *)judgeTheOrder:(SysOrder *)order{
+   
+        return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+            TTAlert(@"去评价");
+            [subscriber sendCompleted];
+            return nil;
+        }];
+  
+}
+- (RACSignal *)cancelTheOrder:(SysOrder *)order{
+    RACSignal * result = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        /*
+         <item>https://123.56.192.182:8443</item>
+         <item>/app/appOrderController/</item>
+         <item>appCancelOrDeleteOrder?</item>
+         */
+       NSString *  url = @"https://123.56.192.182:8443/app/appOrderController/appCancelOrDeleteOrder?";
+        order.showStatus = @"2";
+          NSString * sysOrderJsonStr =  [order JSONString];
+         NSDictionary * para = @{@"arg0":sysOrderJsonStr};
+      
+        [QSCHttpTool post:url parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
+            [subscriber sendNext:json];
+            [subscriber sendCompleted];
+             NSLog(@"%@",json);
+        } failure:^(NSError *error) {
+            [subscriber sendError:error];
+            [subscriber sendCompleted];
+            NSLog(@"%@",error);
+        }];
+        return nil;
+    }];
+    return result;
+}
 - (RACCommand *)doAlipayPayWithGood:(SysOrderReturn *)good{
     return [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
@@ -226,4 +259,7 @@
 @implementation SysOrderReturn
 
 @end
+@implementation SysInvoice
 
+
+@end
