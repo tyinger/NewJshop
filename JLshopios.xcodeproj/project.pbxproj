@@ -1932,7 +1932,7 @@
 				TargetAttributes = {
 					3043B0971D02C55B00E97B82 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 9P6H6Q75LS;
+						DevelopmentTeam = HKZ3V6JN2P;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2450,7 +2450,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9P6H6Q75LS;
+				DEVELOPMENT_TEAM = HKZ3V6JN2P;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2469,7 +2470,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios12;
+				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2484,7 +2485,8 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 9P6H6Q75LS;
+				DEVELOPMENT_TEAM = HKZ3V6JN2P;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2503,7 +2505,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios12;
+				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
