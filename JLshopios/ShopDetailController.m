@@ -318,7 +318,7 @@
     if ([btn.titleLabel.text isEqualToString:@"去选购"]) {
         
         //TODO:要做登录判断
-        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         app.window.rootViewController = [JLTabMainController shareJLTabVC];
         [JLTabMainController shareJLTabVC].selectedIndex = 1;
         [self.navigationController popToRootViewControllerAnimated:NO];
@@ -344,7 +344,7 @@
     }else{
         
         //TODO:要做登录判断
-        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        AppDelegate *app = (AppDelegate *)[UIApplication sharedApplication].delegate;
         app.window.rootViewController = [JLTabMainController shareJLTabVC];
         [JLTabMainController shareJLTabVC].selectedIndex = 3;
         [self.navigationController popToRootViewControllerAnimated:NO];

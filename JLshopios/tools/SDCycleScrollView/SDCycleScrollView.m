@@ -36,7 +36,7 @@
 //#import "UIImageView+WebCache.h"
 //#import "SDImageCache.h"
 
-#define kCycleScrollViewInitialPageControlDotSize CGSizeMake(10, 10)
+#define kCycleScrollViewInitialPageControlDotSize CGSizeMake(5, 5)
 
 NSString * const ID = @"cycleCell";
 
