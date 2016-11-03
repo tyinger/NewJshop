@@ -139,6 +139,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mainView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.mainView.y = 64;
+    self.mainView.height = self.mainView.height - 64;//防止遮挡住导航栏
     [self.view addSubview:self.mainView];
     [self netWorkTest];
     self.topSearchView.layer.cornerRadius = 6;
@@ -267,7 +269,7 @@
 
 - (void)searchAction:(UITapGestureRecognizer *)tap
 {
-    [self.navigationController pushViewController:[SearchController new] animated:YES];
+    [self.navigationController pushViewController:[SearchController new] animated:NO];
 }
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
