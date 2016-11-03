@@ -5,12 +5,15 @@
 //  Created by 孙鑫 on 16/9/6.
 //  Copyright © 2016年 feng. All rights reserved.
 //
-
+#import "WithDrawBankViewController.h"
 #import "WalletViewModel.h"
 
 @implementation WalletViewModel
 - (void)payAction{
-    TTAlert(@"点击提现");
+    WithDrawBankViewController * WithDrawVC = [[WithDrawBankViewController alloc] init];
+    WithDrawVC.canUseMoney = self.userablemoney;
+    [self.owner.navigationController pushViewController:WithDrawVC animated:YES];
+//    TTAlert(@"点击提现");
 }
 - (NSMutableArray<WallteDetailModel *> *)walletDetailData{
     if (!_walletDetailData) {

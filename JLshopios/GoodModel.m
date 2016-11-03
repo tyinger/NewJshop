@@ -27,14 +27,14 @@
     }
     return self;
 }
-- (void)setValue:(id)value forKey:(NSString *)key{
-    if ([key isEqualToString:@"id"]) {
-        self.Id = value;
-    }else{
-        [super setValue:[NSString stringWithFormat:@"%@",value] forKey:key];
-    }
-    
-}
+//- (void)setValue:(id)value forKey:(NSString *)key{
+//    if ([key isEqualToString:@"id"]) {
+//        self.Id = value;
+//    }else{
+//        [super setValue:[NSString stringWithFormat:@"%@",value] forKey:key];
+//    }
+//    
+//}
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key{
     NSLog(@"undefine key %@",key);
 }

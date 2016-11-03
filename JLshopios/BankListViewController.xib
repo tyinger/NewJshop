@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BankListViewController">
+            <connections>
+                <outlet property="mainView" destination="pr0-L1-bmE" id="Jkh-D8-WHH"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pr0-L1-bmE">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="525"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="xme-nJ-u1M"/>
+                        <outlet property="delegate" destination="-1" id="jY8-16-JRw"/>
+                        <outlet property="emptyDataSetDelegate" destination="-1" id="8Xo-QJ-il9"/>
+                        <outlet property="emptyDataSetSource" destination="-1" id="fLc-iA-S0q"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plg-3G-Qcl">
+                    <rect key="frame" x="20" y="525" width="280" height="35"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="kjR-dg-8Ar"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="wOp-NO-Re7"/>
+                    </constraints>
+                    <state key="normal" title="+银行卡"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addClick:" destination="-1" eventType="touchUpInside" id="ngh-ZR-WGW"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="plg-3G-Qcl" secondAttribute="bottom" constant="8" id="Jhh-wi-fUq"/>
+                <constraint firstAttribute="trailing" secondItem="pr0-L1-bmE" secondAttribute="trailing" id="Jxm-Ix-ZtC"/>
+                <constraint firstAttribute="trailing" secondItem="plg-3G-Qcl" secondAttribute="trailing" constant="20" id="gQA-bu-fUO"/>
+                <constraint firstItem="pr0-L1-bmE" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kW1-PJ-bde"/>
+                <constraint firstItem="pr0-L1-bmE" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ld5-sk-BXG"/>
+                <constraint firstItem="plg-3G-Qcl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="mVn-IV-eVz"/>
+                <constraint firstItem="plg-3G-Qcl" firstAttribute="top" secondItem="pr0-L1-bmE" secondAttribute="bottom" id="p0N-cd-ZLs"/>
+            </constraints>
+            <point key="canvasLocation" x="378" y="214"/>
+        </view>
+    </objects>
+</document>

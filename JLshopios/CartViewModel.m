@@ -109,7 +109,7 @@
         [FYTXHub dismiss];
         __block NSInteger totalCount = 0;
         NSMutableArray * arr =[[[((NSArray*)json).rac_sequence map:^id(id value) {
-           GoodModel* model =  [[GoodModel alloc] initWithData:value];
+           GoodModel* model =  [GoodModel objectWithKeyValues:value];
             totalCount += [model.num integerValue];
             return model;
         }] array] mutableCopy];
