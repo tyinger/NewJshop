@@ -19,6 +19,7 @@
         self.detailsPrice = dic[@"goods"][@"price"];
         self.previewImgs = dic[@"goods"][@"previewImgs"];
         self.detailsIsFoucs = [NSString stringWithFormat:@"%@",dic[@"isCollectioned"]];
+        self.detailsImgZX = dic[@"goods"][@"goodsDetail"];
     }
     return self;
 }
@@ -31,7 +32,8 @@
 
 
 -(NSString *)detailsPrice{
-    return [NSString stringWithFormat:@"%@",_detailsPrice];
+    
+    return [NSString stringWithFormat:@"%0.1f",[_detailsPrice doubleValue]];
 }
 
 @end

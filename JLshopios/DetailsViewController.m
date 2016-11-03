@@ -22,7 +22,7 @@
 #import "UIButton+CustomBadge.h"
 
 @class QSCHttpTool;
-@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate>
+@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate,UIWebViewDelegate>
 {
     MBProgressHUD *HUD;
     NSMutableArray *_images;
@@ -100,7 +100,7 @@
         NSDictionary *dic = @{@"sellType":@"normal",@"id":productIDStr,@"userId":userId};
         NSLog(@" ------ %@ ------",dic);
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-            NSLog(@"正确返回%@",json);
+            NSLog(@"正确返回%@",json[@"goods"][@"goodsDetail"]);
 //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
 //            NSLog(@"dataDic%@",json);
 //            NSString *path = @"/Users/mymac/Desktop/";
@@ -133,6 +133,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableHeaderView =[self addHeaderView];
+    self.tableView.tableFooterView =[self addFooterView];
     
     UIView * view =[[UIView alloc]initWithFrame:CGRectMake(0, self.view.height-60, self.view.width, 60)];
     view.backgroundColor=RGBA(0, 0, 0, 0.8);
@@ -212,6 +213,47 @@
     });
     return view;
 }
+
+- (UIView *)addFooterView{
+//        NSString *strHTML = @"<p><img src=\"http://123.56.192.182/http_resource/image/ueditor/201610221477119211606038854.jpg\" title=\"201610221477119211606038854.jpg\" alt=\"劲酒.jpg\"/></p>";
+    UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+    webView.backgroundColor = [UIColor whiteColor];
+    webView.delegate = self;
+    [webView loadHTMLString:_modelToShow.detailsImgZX baseURL:nil];
+//    webView.scalesPageToFit = YES;
+//    webView.userInteractionEnabled = NO;
+//    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
+//    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[_modelToShow.detailsImgZX dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+//    textView.attributedText = attributedString;
+    return webView;
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+//    NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=%f, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"",320.0];
+//    [webView stringByEvaluatingJavaScriptFromString:meta];
+    double aaa = [UIScreen mainScreen].bounds.size.width - 20;
+    NSString *str = [NSString stringWithFormat:@"var script = document.createElement('script');"
+                     "script.type = 'text/javascript';"
+                     "script.text = \"function ResizeImages() { "
+                     "var myimg,oldwidth;"
+                     "var maxwidth=%f;" //缩放系数
+                     "for(i=0;i <document.images.length;i++){"
+                     "myimg = document.images[i];"
+                     "if(myimg.width > maxwidth){"
+                     "oldwidth = myimg.width;"
+                     "myimg.width = maxwidth;"
+                     "myimg.height = myimg.height * (maxwidth/oldwidth+0.3);"
+                     "}"
+                     "}"
+                     "}\";"
+                     "document.getElementsByTagName('head')[0].appendChild(script);",aaa];
+    [webView stringByEvaluatingJavaScriptFromString:str];
+    
+    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

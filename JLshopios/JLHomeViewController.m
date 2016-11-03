@@ -201,6 +201,7 @@
     _cycleScrollview.autoScrollTimeInterval = 5.0f;
     _cycleScrollview.backgroundColor = [UIColor colorWithRed:0 green:139/255.0 blue:139/255.0 alpha:1];
     _cycleScrollview.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
+    
     [self.collectionView addSubview:_cycleScrollview];
     
     {
@@ -274,7 +275,14 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    //    [[self.mainViewModel openBannerWith:index]execute:nil];
+    JLShopModel *model = self.bannerArray[index];
+    NSLog(@"---点击了第%@张图片", model);
+//    NSString *strHTML = @"<p><img src=\"http://123.56.192.182/http_resource/image/ueditor/201610221477119211606038854.jpg\" title=\"201610221477119211606038854.jpg\" alt=\"劲酒.jpg\"/></p>";
+//    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.frame];
+//    [self.view addSubview:webView];
+//    
+//    [webView loadHTMLString:strHTML baseURL:nil];
+//        [[self.mainViewModel openBannerWith:index]execute:nil];
 }
 
 #pragma mark - <<<<<<<<<<<<<<<  ButtonMethed  >>>>>>>>>>>>>>>

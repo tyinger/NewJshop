@@ -491,28 +491,28 @@ static const CGFloat kquyustartHeight = 44*4 + 1;
                 [cell addSubview:label];
             }
                 break;
-            case 10:
-            {
-                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 150, 40)];
-                label.text = @"   我在其他平台商铺";
-                label.font = [UIFont systemFontOfSize:16];
-                UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame), 40)];
-                filed.font = [UIFont systemFontOfSize:17];
-                filed.delegate = self;
-                filed.tag = 208;
-                
-                UILabel *placeLabel = [[UILabel alloc] initWithFrame:filed.frame];
-                placeLabel.x = 0;
-                placeLabel.y = -1;
-                placeLabel.text = @" 填写店铺连接";
-                placeLabel.textColor = [UIColor lightGrayColor];
-                placeLabel.tag = 301;
-                [filed addSubview:placeLabel];
-                
-                [cell addSubview:filed];
-                [cell addSubview:label];
-            }
-                break;
+//            case 10:
+//            {
+//                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, 150, 40)];
+//                label.text = @"   我在其他平台商铺";
+//                label.font = [UIFont systemFontOfSize:16];
+//                UITextView *filed = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(label.frame), 1.5, kDeviceWidth - CGRectGetMaxX(label.frame), 40)];
+//                filed.font = [UIFont systemFontOfSize:17];
+//                filed.delegate = self;
+//                filed.tag = 208;
+//                
+//                UILabel *placeLabel = [[UILabel alloc] initWithFrame:filed.frame];
+//                placeLabel.x = 0;
+//                placeLabel.y = -1;
+//                placeLabel.text = @" 填写店铺连接";
+//                placeLabel.textColor = [UIColor lightGrayColor];
+//                placeLabel.tag = 301;
+//                [filed addSubview:placeLabel];
+//                
+//                [cell addSubview:filed];
+//                [cell addSubview:label];
+//            }
+//                break;
             
                 
             default:

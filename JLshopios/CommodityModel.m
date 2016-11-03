@@ -42,4 +42,8 @@
     return [NSString stringWithFormat:@"%@",_commodityCartNum];
 }
 
+-(NSString *)commodityPrice{
+    return [NSString stringWithFormat:@"%0.1f",[_commodityPrice doubleValue]];
+}
+
 @end

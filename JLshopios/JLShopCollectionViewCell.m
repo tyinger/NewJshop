@@ -85,6 +85,9 @@
                 [self.hotGoodsRightImage sd_setImageWithURL:[NSURL URLWithString:imageURL_right]];
             }
         }
+    }else{
+       self.hotGoodsRightText.hidden = self.hotGoodsRightImage.hidden = self.hotGoodsLeftImage.hidden = self.hotGoodsLeftText.hidden = YES;
+        
     }
 }
 

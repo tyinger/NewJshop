@@ -66,8 +66,14 @@ static const CGFloat kRightItemWidth = 40;
 }
 
 - (void) exchange:(UIBarButtonItem *)itemBtn{
+    
+    if ([self.view viewWithTag:666]) {
+        UIView *view = [self.view viewWithTag:666];
+        [view removeFromSuperview];
+    }
+    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(self.navigationItem.leftBarButtonItems[0].width, 0, itemBtn.width, 60)];
-    MYLog(@"%@",NSStringFromCGRect(view.frame));
+    view.tag = 666;
     view.backgroundColor = [UIColor grayColor];
     [self.view addSubview:view];
     for (int i = 0; i < 2; i++) {
@@ -110,14 +116,14 @@ static const CGFloat kRightItemWidth = 40;
         [self.navigationController pushViewController:commod animated:YES];
     }else if ([self.navigationItem.leftBarButtonItems[1].title isEqualToString:@"商铺"]){
         CommodityTableViewController *commod = [[CommodityTableViewController alloc] initWithType:1];
-//        commod.secondMenuIDStr = @"";
-//        commod.searchNameStr = _textField.text;
+        commod.secondMenuIDStr = @"";
+        commod.searchNameStr = _textField.text;
         [self.navigationController pushViewController:commod animated:YES];
     }
 }
 
 - (void)backRoot{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

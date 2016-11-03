@@ -377,7 +377,7 @@
                 <outlet property="yuShouGoods" destination="dso-Kh-kjg" id="ReS-Qo-OrX"/>
                 <outlet property="zhidemai" destination="yph-4X-eP6" id="csG-Ei-54Z"/>
             </connections>
-            <point key="canvasLocation" x="167" y="210.5"/>
+            <point key="canvasLocation" x="325" y="222.5"/>
         </collectionViewCell>
     </objects>
     <resources>
