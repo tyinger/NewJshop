@@ -125,6 +125,10 @@
         TTAlert(@"请输入银行卡号");
         return;
     }
+    if (_cardNoLabel.text.length<10) {
+        TTAlert(@"银行卡位数不能小于十位");
+        return;
+    }
     if (!_proviceLabel.text.length) {
         TTAlert(@"请输入省份");
         return;
@@ -136,9 +140,12 @@
     
     
     NSString * urlString = @"https://123.56.192.182:8443/app/Score/saveuserbackcard?";
+//    NSString * bankName =[NSString stringWithCString:[_choseBankButton.titleLabel.text UTF8String] encoding:NSUnicodeStringEncoding];
+    
     NSDictionary * paraDic = @{@"name":_nameLabel.text,@"cardNo":_cardNoLabel.text,@"userId":[LoginStatus sharedManager].idStr,@"bankName":_choseBankButton.titleLabel.text,@"province":_proviceLabel.text,@"city":_cityLabel.text};
     NSDictionary * prar = @{@"arg0":[paraDic JSONString]};
-    [QSCHttpTool get:urlString parameters:prar isShowHUD:YES httpToolSuccess:^(id json) {
+     [FYTXHub progress:@"请稍等"];
+    [QSCHttpTool post:urlString parameters:prar isShowHUD:YES httpToolSuccess:^(id json) {
         [FYTXHub dismiss];
         
         if ([json[@"status"] boolValue] == YES) {

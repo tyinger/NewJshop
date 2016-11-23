@@ -26,6 +26,13 @@
     UITapGestureRecognizer * pushTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pushBankList)];
     self.bankCardLabel.userInteractionEnabled = YES;
     [self.bankCardLabel addGestureRecognizer:pushTap];
+    [RACObserve(self, mainModel) subscribeNext:^(BankCardModel* x) {
+        if (x.bankName.length&&x.accNoView.length) {
+            self.bankCardLabel.text = [NSString stringWithFormat:@"%@%@",x.bankName,x.accNoView];
+
+        }
+           }];
+    [self getTheDefaultCard];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -39,7 +46,7 @@
     [QSCHttpTool get:urlString parameters:nil isShowHUD:YES httpToolSuccess:^(id json) {
         [FYTXHub dismiss];
         
-        
+       self.mainModel =  [BankCardModel objectWithKeyValues:json[0]];
         NSLog(@"json 9627 === %@",json);
       
     } failure:^(NSError *error) {
@@ -80,6 +87,7 @@
         
         
         NSLog(@"json 9627 === %@",json);
+        TTAlert(json[@"msg"]);
         
     } failure:^(NSError *error) {
         
@@ -90,6 +98,10 @@
 }
 - (void)pushBankList{
     BankListViewController * list = [[BankListViewController alloc] init];
+    list.result = ^(BankCardModel * card){
+        self.mainModel = card;
+        
+    };
     [self.navigationController pushViewController:list animated:YES];
 }
 - (IBAction)tipAction:(id)sender {

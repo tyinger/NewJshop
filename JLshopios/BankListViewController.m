@@ -50,7 +50,7 @@
 }
 - (void)request{
     [self.dataArray removeAllObjects];
-    [FYTXHub progress:nil];
+    [FYTXHub progress:@"请稍等"];
     /*
      https://123.56.192.182:8443/app/Score/tomybankcardPage?&userId=8
      */
@@ -83,6 +83,10 @@
         cell.deleteAction = ^{
             [self request];
         };
+        cell.defaultAction = ^{
+            TTAlert(@"设置成功");
+            [self request];
+        };
     }
     return cell;
 }
@@ -94,6 +98,9 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     //选择某一个银行卡
+    
+    !_result?:_result(self.dataArray[indexPath.row]);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 /*
 #pragma mark - Navigation

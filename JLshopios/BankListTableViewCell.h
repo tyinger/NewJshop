@@ -11,4 +11,5 @@
 @interface BankListTableViewCell : UITableViewCell
 @property (nonatomic, strong) BankCardModel * model;
 @property (nonatomic, strong) void(^deleteAction)(void);
+@property (nonatomic, strong) void(^defaultAction)(void);
 @end

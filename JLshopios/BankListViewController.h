@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BankListViewController : UIViewController
-
+@property (nonatomic, copy) void(^result)(id);
 @end
