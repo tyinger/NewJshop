@@ -64,7 +64,6 @@
                     order.invoice = [SysInvoice objectWithKeyValues:order.invoice];
                     [self.dataInfo  addObject:order];
                 }
-                
                 [self.owner.mainView reloadData];
             } failure:^(NSError *error) {
                 [self.owner.mainView.mj_header endRefreshing];

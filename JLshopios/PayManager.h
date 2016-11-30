@@ -39,7 +39,8 @@
 //评价
 - (RACSignal*)judgeTheOrder:(SysOrder *)order;
 
-
+//确认收货
+- (RACSignal*)confirmTheOrder:(SysOrder *)order;
 @end
 
 @interface SysOrderDetail : NSObject
@@ -90,9 +91,9 @@
 @property (nonatomic, copy) NSString * deliveryTime;			//配送时间 便利店使用
 @property (nonatomic, copy) NSString * payStatus;				//支付状态 见EnumOrderPayStatus.java  0待付款 1已付款 2支付失败 3取消支付
 @property (nonatomic, copy) NSString * showStatus;				//显示状态EnumOrderShowStatus.java 0正常 1系统删除 2用户删除
-@property (nonatomic, copy) NSString * deliveryStatus;			//物流状态EnumOrderDeliveryStatus.java
+@property (nonatomic, copy) NSString * delivderyStatus;			//物流状态EnumOrderDeliveryStatus.java
 @property (nonatomic, copy) SysOrder* refundOrder;			//退换货订单
-@property (nonatomic, copy) NSString *refundStatus;				//退换货状态EnumOrderRefundStatus.java
+@property (nonatomic, copy) NSString *refunStatus;				//退换货状态EnumOrderRefundStatus.java
 @property (nonatomic, copy) NSString * clearStatus;				//清算状态EnumOrderClearSatus.java
 @property (nonatomic, copy) NSString * commentStatus;			//评价状态 见EnumOrderCommentStatus.java
 @property (nonatomic, copy) NSString * serialNumber;			//流水号

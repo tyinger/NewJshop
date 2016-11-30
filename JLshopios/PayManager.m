@@ -107,6 +107,31 @@
         }];
   
 }
+- (RACSignal *)confirmTheOrder:(SysOrder *)order{
+    
+    RACSignal * result = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        /*
+        
+         */
+        NSString *  url = @"https://123.56.192.182:8443/app/appOrderController/confirmRecevicedGoods?";
+        NSDictionary * para = @{@"orderId":order.Id};
+        TTAlert(@"确认收货");
+//        
+//        [QSCHttpTool post:url parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
+//            [subscriber sendNext:json];
+//            [subscriber sendCompleted];
+//            NSLog(@"%@",json);
+//        } failure:^(NSError *error) {
+//            [subscriber sendError:error];
+//            [subscriber sendCompleted];
+//            NSLog(@"%@",error);
+//        }];
+        return nil;
+    }];
+    return result;
+
+    
+}
 - (RACSignal *)cancelTheOrder:(SysOrder *)order{
     RACSignal * result = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         /*
@@ -139,45 +164,133 @@
 //TODO: 商户信息
 
             NSString *appID = @"2016071401617406";
-            NSString *privateKey = @"MIICXAIBAAKBgQDdOO8LdvqkZ0xFZuPLpW//rqPoi4Ve3tTiOFtMw/9m3D1Z4AF9lw8knBLt/65lECQ7OXmdKuMLj7YL3uZVhZ6itSxkRKfnU8bVbWONKtLtrKOK83xGH+/HoUU4W2UxuryDrWnnTPA7ZTAu8eMKjAfPIUSA7ev2bhs+zEBCUoHh6wIDAQABAoGAVrNalH6z6r0FWmnhu02CYI28dYZA5halDmgR+DsUnOaSMOgnDWanq6xzis1bNwalfIShEiTdyQkwyuQ4F6p/qgCP0t6BjdC2kj5pwgsZm1YmgFyycOwHsN7IbuqlQk2TfF/4K21nED9TikM7U+0oB965kCaz/QX0McCgIE4dpHkCQQDyc7wFinw5nmO/aoz3phSZZsy00usXEU+5nvNiNKNYTWzSQ1DVheg/VrFzYZJHrkUfJXD0mYEABk8uwcfrMlvfAkEA6ZWCdW4qw1zANYCs/NRB+rC+LEtkMxKgTlXjqmthon5MnO6PUIJ1SmPvRMgQVlSa7z1c74sNtHnS7qfhoN67dQJAJRkocACcuYRO5v86yroS9NYSBKkxZ7oyZMi5nRFI3T4bpKDAQavXubleNbV8WJOF6Bomiobigkp020azfH2cKQJASGjMlFKedwldnDhTZ9z0xx3bFigY26w+fYoqlT3Mem7kmRFq4+5NJc5s8cmDJv/7N4ayNJ/Kk9PgC5OHYjMpsQJBAIJTFwvL7H+ZqsMt/OLWFJjtfMf4bLFhb3q+Xol2oQ0f2dsO79ZOLru6BGFtVeLL/8Xp86Y5qy3MEVnGq5NEF8o=";
-           
+            NSString * partner = @"2088421459616059";
+//           NSString *privateKey =  @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDAt4DxXTuyRPBy2s63A0JHMOObA0Caa5h9DA+oWEEBqTJwLaevh/PAZDqF+VGPR3V9DuppXQEYIx8cf9PIkAEUu96WYu9JOAn+ohMnEfWIGtxxUUGT+tTBRDj9Rrcj9tRoAPa53BGtbMoG0VqfzSAX17mJI86PMs3sMhQnrsxOQIDAQAB";
+//            NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAMMC3gPFdO7JE8HLazrcDQkcw45sDQJprmH0MD6hYQQGpMnAtp6+H88BkOoX5UY9HdX0O6mldARgjHxx/08iQARS73pZi70k4Cf6iEycR9Yga3HFRQZP61MFEOP1GtyP21GgA9rncEa1sygbRWp/NIBfXuYkjzo8yzewyFCeuzE5AgMBAAECgYAfOEpK2EXMJKzhDavxFGGR3+T+3BWJGVotnGZM4JEjj9y53/xclZuKDHoiwAiYohgwtJUIp9BXEw3qrmVtSdJtlvxan7axKl84ZNKQ1FFWpZlNQE1lstPGkTyOAkeCkU2q18mZHCb/ArXw3ffZFkK3syZN4APAGdcr/W/ii8BgMQJBAPNNISrrQYekxvHrTtzw+G/05s2jfn+AvJDOM1FfTTv3HAbRF+UXrU7+p58T8tlz4AdXBfdUz3KjkKO6PMKye08CQQDNMIJ26j7h1YRD+nMvbT3AeGzeMNp5a6CUZEg87LqLOU+4IEs2p/eKshJ+hKThrrfRyM1hmUedkf1pF9Z6qEj3AkEAqpjdddupgjQO71iAXrl0agQ9xdkq/LpG/f4ny5nYbQCTHVCFwbQ9aFN1MzzonoL6hgsF+uvz3b1E0RjoO9isTwJACBcZjca+o/jfNi7xy7Tq8mPNJxWWB6OOuUsa7gwHbuXbls7vKECHKhjLUeG4/oz9AnCAaJC6miPfcf1Wn49zEQJAQtbCS108b2SIyObV2ePZwzHTlFl11eIAxT+DTONoumXybJdL6o83uIs5zr7oyp8GPV2VB24vtL91wniKQujsKg==";
+//                        NSString *privateKey = @"MIICXQIBAAKBgQCiV3xj9puow/Qe0Oa+3vIacFuTjJHCW3U0Kz5LbhmZfL2H8gV99zyyOujfhEJRu0UbO2CW21SsZXssMGxaQ5ucclNuPv4sBvC24EN9JPwx30pEYRGQdjsW3+4gG6pOkdKwyTURMv0e2VKzz/LzEJOwAq9TP0tkzmqZkIKoxiCvzwIDAQABAoGAO50ovoSWkJi0koRf14ODIBZWao5aECcJmQiwLX7Ww7g82SkUvzcFAOYFEd89g0njjKZ3R65vH4d8fbOidlsRTwIpb4oiISlnV5kLydWX+fRQtl7Vu977F/ZRBt+LdSz2IQf0N4pDOFb71GhCly0DIt4fJTtbpQufGbtLrdmT80ECQQDN7VrnuS3gLtj2dqqXTEFROVY8pGfceQccD8ucxskw6UAmYGAD5ZEDV1SJcasYFhmQGaf1uCFAvRw4OPKkn/sxAkEAydEBidfhtkAqM1/+C7iqyqvITJeYKIB7h0RqUUsURvFVQSUS5OYKhoTFgAAQV1oJ6fqVHRn+OgCTIEcPqcqa/wJBAIp/IU2J2NXXDCqu4srBCYkERACjHgtFBsgTw4BcncGcjn2BAfJ8+kvB92Q9I7IeYvDsoG79eLfeuFUD0AVyZ3ECQCq3wsualnwtOMGHIA77F6uukMclj1+DUqJfKOHsMm6RxqnzXvx0dOXkVKmzWcIjnNWZ5NY0GkvMs1exsu8No6ECQQCJNiD9xDXE8uGXWXmvU5NR2XOIF7dp8ITPd2qukIvVNT3yLcVUWCZuZi6/rqHR6qbxV3FNfOuoGZlWL/0s8nzf";
+            NSString *privateKey = @"MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAKJXfGP2m6jD9B7Q5r7e8hpwW5OMkcJbdTQrPktuGZl8vYfyBX33PLI66N+EQlG7RRs7YJbbVKxleywwbFpDm5xyU24+/iwG8LbgQ30k/DHfSkRhEZB2Oxbf7iAbqk6R0rDJNREy/R7ZUrPP8vMQk7ACr1M/S2TOapmQgqjGIK/PAgMBAAECgYA7nSi+hJaQmLSShF/Xg4MgFlZqjloQJwmZCLAtftbDuDzZKRS/NwUA5gUR3z2DSeOMpndHrm8fh3x9s6J2WxFPAilviiIhKWdXmQvJ1Zf59FC2XtW73vsX9lEG34t1LPYhB/Q3ikM4VvvUaEKXLQMi3h8lO1ulC58Zu0ut2ZPzQQJBAM3tWue5LeAu2PZ2qpdMQVE5VjykZ9x5BxwPy5zGyTDpQCZgYAPlkQNXVIlxqxgWGZAZp/W4IUC9HDg48qSf+zECQQDJ0QGJ1+G2QCozX/4LuKrKq8hMl5gogHuHRGpRSxRG8VVBJRLk5gqGhMWAABBXWgnp+pUdGf46AJMgRw+pypr/AkEAin8hTYnY1dcMKq7iysEJiQREAKMeC0UGyBPDgFydwZyOfYEB8nz6S8H3ZD0jsh5i8Oygbv14t964VQPQBXJncQJAKrfCy5qWfC04wYcgDvsXq66QxyWPX4NSol8o4ewybpHGqfNe/HR05eRUqbNZwiOc1Znk1jQaS8yzV7Gy7w2joQJBAIk2IP3ENcTy4ZdZea9Tk1HZc4gXt2nwhM93aq6Qi9U1PfItxVRYJm5mLr+uodHqpvFXcU1866gZmVYv/SzyfN8=";
             /*
              *生成订单信息及签名
              */
+            
+            //将商品信息赋予AlixPayOrder的成员变量
+            Order *order = [[Order alloc] init];
+            order.partner = partner;
+            order.sellerID = @"119863563@qq.com";
+            order.outTradeNO = good.serialNumber; //订单ID（由商家自行制定）
+            order.subject = good.order.orderDesc; //商品标题
+//            order.body = product.body; //商品描述
+//            order.totalFee = [NSString stringWithFormat:@"%.2f",product.price]; //商品价格
+            order.totalFee = @"0.01";
+            order.notifyURL =  @"http://123.56.192.182/alipayNotify.jsp"; //回调URL
+            
+            order.service = @"mobile.securitypay.pay";
+            order.paymentType = @"1";
+            order.inputCharset = @"utf-8";
+            order.itBPay = @"30m";
+            order.showURL = @"m.alipay.com";
+            
+            //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+            NSString *appScheme = @"JLshopios";
+            
+            //将商品信息拼接成字符串
+            NSString *orderSpec = [order description];
+            NSLog(@"orderSpec = %@",orderSpec);
+            
+            //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+            id<DataSigner> signer = CreateRSADataSigner(privateKey);
+            NSString *signedString = [signer signString:orderSpec];
+            
+            //将签名成功字符串格式化为订单字符串,请严格按照该格式
+            NSString *orderString = nil;
+            if (signedString != nil) {
+                orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                               orderSpec, signedString, @"RSA"];
+                
+                [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+                    NSLog(@"reslut = %@",resultDic);
+                    int  staute =[resultDic[@"resultStatus"] intValue];
+                    switch (staute) {
+                        case 9000:
+                            TTAlert(@"支付成功!");
+                            
+                            break;
+                        case 8000:
+                            TTAlert(@"正在处理中");
+                            
+                            break;
+                        case 4000:
+                            TTAlert(@"订单支付失败");
+                            
+                            break;
+                        case 6001:
+                            TTAlert(@"用户中途取消");
+                            
+                            break;
+                        case 6002:
+                            TTAlert(@"网络连接出错");
+                            
+                            break;
+                        default:
+                            break;
+                            
+                            
+                            
+                    }
+    
+                    NSLog(@"reslut = %@",resultDic);
+                    [subscriber sendNext:resultDic];
+                    [subscriber sendCompleted];
+                }];
+
+             
+            }
+           
+            
+            
+         /*
             //将商品信息赋予AlixPayOrder的成员变量
             Order* order = [Order new];
+//            order.partner = appID;
+            order.partner = pid;
+            order.sellerID = @"119863563@qq.com";
+            order.outTradeNO = good.serialNumber;
+            order.totalFee = @"0.01";
             
-            order.biz_content.seller_id = @"119863563@qq.com";
+//            order.notify_url = @"http://123.56.192.182/alipayNotify.jsp";
+          
+            
             // NOTE: app_id设置
-            order.app_id = appID;
+//            order.app_id = appID;
             
             // NOTE: 支付接口名称
-            order.method = @"alipay.trade.app.pay";
+//            order.method = @"alipay.trade.app.pay";
             
             // NOTE: 参数编码格式
-            order.charset = @"utf-8";
+//            order.charset = @"utf-8";
             
             // NOTE: 当前时间点
             NSDateFormatter* formatter = [NSDateFormatter new];
             [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-            order.timestamp = [formatter stringFromDate:[NSDate date]];
+//            order.timestamp = [formatter stringFromDate:[NSDate date]];
             
             // NOTE: 支付版本
-            order.version = @"1.0";
+//            order.version = @"1.0";
             
             // NOTE: sign_type设置
-            order.sign_type = @"RSA";
+//            order.sign_type = @"RSA";
             
             // NOTE: 商品数据
-            order.biz_content = [BizContent new];
+//            order.biz_content = [BizContent new];
             //描述 好像没有
+//            order.biz_content.seller_id = @"119863563@qq.com";
             //order.biz_content.body = good.description;
-            order.biz_content.subject = good.order.orderDesc;
-            order.biz_content.out_trade_no = good.serialNumber; //订单ID（由商家自行制定）
-            order.biz_content.timeout_express = @"30m"; //超时时间设置
+            order.subject = good.order.orderDesc;
+//            order.biz_content.out_trade_no = good.serialNumber; //订单ID（由商家自行制定）
+//            order.biz_content.timeout_express = @"30m"; //超时时间设置
 //TODO:价格修改
-//            order.biz_content.total_amount = [NSString stringWithFormat:@"%.2f", [good.price floatValue]]; //商品价格
-            order.biz_content.total_amount = @"0.01";
+//            order.biz_content.total_amount = [NSString stringWithFormat:@"%.2f", [good.order.payMoney floatValue]]; //商品价格
+//            order.biz_content.total_amount = @"0.01";
             //将商品信息拼接成字符串
             NSString *orderInfo = [order orderInfoEncoded:NO];
             NSString *orderInfoEncoded = [order orderInfoEncoded:YES];
@@ -229,12 +342,13 @@
                  
                     
                 }
-                    NSLog(@"reslut = %@",resultDic);
-                    [subscriber sendNext:resultDic];
-                    [subscriber sendCompleted];
-                }];
-            }
-            
+          */
+//                    NSLog(@"reslut = %@",resultDic);
+//                    [subscriber sendNext:resultDic];
+//                    [subscriber sendCompleted];
+//                }];
+//            }
+//            
                 return nil;
         }];
     }];

@@ -69,6 +69,7 @@
         
         
         _orderPostalLabel = [[UILabel alloc] initWithFrame:CGRectMake(kDeviceWidth-100, 49, 100, 17)];
+        
         _orderPostalLabel.textColor = [UIColor redColor];
         _orderPostalLabel.textAlignment = NSTextAlignmentRight;
         _orderPostalLabel.font = [UIFont  systemFontOfSize:13];
@@ -103,11 +104,27 @@
     [self setData];
     
     [[_complicateButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [[[PayManager manager] doAlipayPayWithGood:self.orderReturn] execute:nil];
+        TTAlert(@"评价");
     }];
-    [[_payButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        [[[PayManager manager] doAlipayPayWithGood:self.orderReturn] execute:nil];
-    }];
+    [[_payButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton*  x) {
+        if ([x.titleLabel.text isEqualToString:@"确认收货"]) {
+            [[[PayManager manager] confirmTheOrder:self.order] subscribeNext:^(id x) {
+                [FYTXHub toast:x[@"msg"]];
+            }];
+        }
+        if ([x.titleLabel.text isEqualToString:@"支付"]) {
+            [[[PayManager manager] doAlipayPayWithGood:self.orderReturn] execute:nil];
+
+        }
+           }];
+//    [_payButton.rac_command.executing subscribeNext:^(id x) {
+//        if ([x boolValue]) {
+//            NSLog(@"login..");
+//        } else {
+//            NSLog(@"end logining");
+//            [self.navigationController popViewControllerAnimated:YES];
+//        }
+//    }];
     _cancelButton.rac_command =  [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
             /*
@@ -144,22 +161,13 @@
     _order = self.orderReturn.order;
     _orderNoLabel.text = _orderReturn.serialNumber;
     
-    _orderDiscountLabel.text = _order.payScore;
-    _orderPostalLabel.text = _order.deliveryFee;
+  
     _nameLabel.text = _order.receiveUser;
     _userPhoneLabel.text = _order.userPhone;
     _userAddress.text = _order.receiveAdd;
     _orderDetails = _order.orderDetails;
     
-    _orderTotalPriceLabel.text = [NSString stringWithFormat:@"%.2f",[_order.money floatValue]];
-    _orderPostalLabel.text = [NSString stringWithFormat:@"%.2f",[_order.deliveryFee floatValue]];
     
-    _orderDiscountLabel.text =  [NSString stringWithFormat:@"%.2f",[_order.payScore floatValue]];
-    NSMutableAttributedString * real = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"实付款：%.2f",[_order.payMoney floatValue]]];
-    [real addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, 4)];
-    _orderRealPriceLabel.attributedText = real;
-    [_orderRealPriceLabel sizeToFit];
-    _orderRealPriceLabel.x =  kDeviceWidth - _orderRealPriceLabel.width;
     
     if ([_order.payStatus isEqualToString:@"0"]){
         _complicateButton.hidden = YES;
@@ -167,6 +175,42 @@
         _payButton.hidden = NO;
     }if ([_order.payStatus isEqualToString:@"1"]) {
         _complicateButton.hidden = NO;
+        _cancelButton.hidden = YES;
+        _payButton.hidden = YES;
+        switch ([_order.delivderyStatus integerValue]) {
+            case 3:
+            {
+                _complicateButton.hidden = YES;
+                _cancelButton.hidden = NO;
+                _payButton.hidden = NO;
+                [_cancelButton setTitle:@"删除" forState:0];
+                [_cancelButton sizeToFit];
+                [_payButton setTitle:@"再次购买" forState:0];
+                [_payButton sizeToFit];
+             
+            }
+                break;
+                
+            default:
+            {
+                _complicateButton.hidden = YES;
+                _cancelButton.hidden = NO;
+                _payButton.hidden = NO;
+                [_cancelButton setTitle:@"延期收货" forState:0];
+                [_cancelButton sizeToFit];
+                [_payButton setTitle:@"确认收货" forState:0];
+                [_payButton sizeToFit];
+            }
+                break;
+        }
+    }
+    if ([_order.payStatus isEqualToString:@"2"]) {
+        _complicateButton.hidden = YES;
+        _cancelButton.hidden = YES;
+        _payButton.hidden = YES;
+    }
+    if ([_order.payStatus isEqualToString:@"3"]) {
+        _complicateButton.hidden = YES;
         _cancelButton.hidden = YES;
         _payButton.hidden = YES;
     }
@@ -194,6 +238,21 @@
     //header高度100
     _mainView.tableHeaderView = self.tableHeader;
     _mainView.tableFooterView = self.footerView;
+    
+    _orderDiscountLabel.text = _order.payScore;
+    _orderPostalLabel.text = _order.deliveryFee;
+    
+    _orderTotalPriceLabel.text = [NSString stringWithFormat:@"%.2f",[_order.money floatValue]];
+    _orderPostalLabel.text = [NSString stringWithFormat:@"%.2f",[_order.deliveryFee floatValue]];
+    
+    _orderDiscountLabel.text =  [NSString stringWithFormat:@"%.2f",[_order.payScore floatValue]];
+
+    
+    NSMutableAttributedString * real = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"实付款：%.2f",[_order.payMoney floatValue]]];
+    [real addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, 4)];
+    _orderRealPriceLabel.attributedText = real;
+    [_orderRealPriceLabel sizeToFit];
+    _orderRealPriceLabel.x =  kDeviceWidth - _orderRealPriceLabel.width;
     
      [self.mainView reloadData];
 }

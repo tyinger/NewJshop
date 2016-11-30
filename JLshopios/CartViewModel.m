@@ -339,9 +339,19 @@
             if ([index isEqualToNumber:@(1)]) {
                 //点击了确定
                 [[[PayManager manager] getTheOrderCartArray: self.payArray  shop:shop] subscribeNext:^(id  x) {
+                    
+                    if ([x[@"success"] boolValue]==NO)  {
+                        TTAlert(x[@"msg"]);
+                        [self.cartVC.navigationController popViewControllerAnimated:YES];
+                        return ;
+                    }
+                    
+                    
+                    
                     SysOrderReturn * orderReturn = [SysOrderReturn objectWithKeyValues:x];
                     orderReturn.order = [SysOrder objectWithKeyValues:orderReturn.order];
                     orderReturn.order.orderDetails = [SysOrderDetail objectArrayWithKeyValuesArray:orderReturn.order.orderDetails];
+                    
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         MyOrderDetailViewController * orderVC = [[MyOrderDetailViewController alloc] initWithNibName:@"MyOrderDetailViewController" bundle:nil];
