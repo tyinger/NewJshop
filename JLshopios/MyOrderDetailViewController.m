@@ -109,7 +109,14 @@
     [[_payButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(UIButton*  x) {
         if ([x.titleLabel.text isEqualToString:@"确认收货"]) {
             [[[PayManager manager] confirmTheOrder:self.order] subscribeNext:^(id x) {
-                [FYTXHub toast:x[@"msg"]];
+                if ([x[@"success"] boolValue ] == YES) {
+                   
+                    TTAlert(@"确认收货成功");
+                }else{
+                    
+                    TTAlert(@"确认收货失败");
+                }
+                
             }];
         }
         if ([x.titleLabel.text isEqualToString:@"支付"]) {

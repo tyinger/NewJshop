@@ -113,19 +113,22 @@
         /*
         
          */
+        [FYTXHub progress:@"请稍后"];
         NSString *  url = @"https://123.56.192.182:8443/app/appOrderController/confirmRecevicedGoods?";
         NSDictionary * para = @{@"orderId":order.Id};
-        TTAlert(@"确认收货");
+     
 //        
-//        [QSCHttpTool post:url parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
-//            [subscriber sendNext:json];
-//            [subscriber sendCompleted];
-//            NSLog(@"%@",json);
-//        } failure:^(NSError *error) {
-//            [subscriber sendError:error];
-//            [subscriber sendCompleted];
-//            NSLog(@"%@",error);
-//        }];
+        [QSCHttpTool post:url parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
+            [FYTXHub dismiss];
+            [subscriber sendNext:json];
+            [subscriber sendCompleted];
+            NSLog(@"%@",json);
+        } failure:^(NSError *error) {
+            [FYTXHub dismiss];
+            [subscriber sendError:error];
+            [subscriber sendCompleted];
+            NSLog(@"%@",error);
+        }];
         return nil;
     }];
     return result;
