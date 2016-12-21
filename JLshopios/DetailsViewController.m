@@ -165,7 +165,7 @@
     
     _cart =[UIButton createButtonWithImage:@"btn_ware_buy_h" Title:@"购物车" Target:self Selector:@selector(cartClick)];
     [_cart setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _cart.imageEdgeInsets = UIEdgeInsetsMake(0, 30, 20, 0);
+    _cart.imageEdgeInsets = UIEdgeInsetsMake(0, 25, 20, 0);
     _cart.titleEdgeInsets = UIEdgeInsetsMake(40,-35, 0, 0);
 //    [_cart setBadgeWithNumber:@5];
     [view1 addSubview:_cart];
@@ -184,8 +184,6 @@
         NSLog(@"去购买");
         MyOrderDetailViewController * detail = [[MyOrderDetailViewController alloc] init];
         [self.navigationController pushViewController:detail animated:YES];
-
-        
     }];
     focus.width = [UIScreen mainScreen].bounds.size.width/3;
     //两个按钮  addCart   _cart
@@ -203,10 +201,7 @@
                            viewWidth:view1.size.width/2
                           viewHeight:view1.size.height
                       superViewWidth:view1.size.width];
-        
-   
     }
-    
     
     [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
         [_cart setBadgeWithNumber:x];
