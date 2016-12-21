@@ -11,4 +11,6 @@
 @property (nonatomic, assign) NSInteger tabbarNum;
 @property (nonatomic, copy) NSString *productIDStr;
 @property (nonatomic, copy) NSString *productIconStr;
+
+
 @end

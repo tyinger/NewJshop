@@ -320,6 +320,22 @@
             cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
             [cell.commodityGoodNumer setTitle:commodity.commodityCartNum forState:UIControlStateNormal];
             __weak typeof(cell) weakCell = cell;
+            
+//TODO:MARS加
+            UILabel * shopName = [[UILabel alloc] initWithFrame:cell.numberButtonBgView.frame];
+            shopName.x = cell.numberButtonBgView.x - 40;
+            shopName.font = [UIFont systemFontOfSize:13];
+            shopName.text = commodity.shopName;
+            [shopName sizeToFit];
+            if (commodity.needShowShopName) {
+                cell.numberButtonBgView.hidden = YES;
+                [cell.contentView addSubview:shopName];
+            }else{
+                cell.numberButtonBgView.hidden = NO;
+                [shopName removeFromSuperview];
+            }
+            
+//            cell.numberButtonBgView.hidden = commodity.needShowShopName;
             cell.addGoodsBtnAction = ^(NSInteger numberOne){
                 [weakCell.commodityGoodNumer setTitle:[NSString stringWithFormat:@"%ld",[cell.commodityGoodNumer.titleLabel.text integerValue] + numberOne] forState:UIControlStateNormal];
                 if (numberOne == 1) {

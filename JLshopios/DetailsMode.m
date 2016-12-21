@@ -20,6 +20,7 @@
         self.previewImgs = dic[@"goods"][@"previewImgs"];
         self.detailsIsFoucs = [NSString stringWithFormat:@"%@",dic[@"isCollectioned"]];
         self.detailsImgZX = dic[@"goods"][@"goodsDetail"];
+        self.shopid = dic[@"goods"][@"shop"][@"id"];
     }
     return self;
 }

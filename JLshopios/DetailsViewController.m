@@ -5,7 +5,7 @@
 //  Created by 丁博洋 on 15/6/22.
 //  Copyright (c) 2015年 SYETC02. All rights reserved.
 //
-
+#import "MyOrderDetailViewController.h"
 #import "DetailsViewController.h"
 #import "SDCycleScrollView.h"
 #import "AppDelegate.h"
@@ -101,6 +101,8 @@
         NSLog(@" ------ %@ ------",dic);
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             NSLog(@"正确返回%@",json[@"goods"][@"goodsDetail"]);
+            
+//            NSLog(@"%@",json[@"shop"][@"id"]);
 //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
 //            NSLog(@"dataDic%@",json);
 //            NSString *path = @"/Users/mymac/Desktop/";
@@ -171,6 +173,41 @@
                        viewWidth:view1.size.width/2
                       viewHeight:view1.size.height
                   superViewWidth:view1.size.width];
+//TODO:Mars修改
+    UIButton * purchaseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [purchaseButton setFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/3, 0, [UIScreen mainScreen].bounds.size.width/3*2, focus.height)];
+    [purchaseButton setTitle:@"直接购买" forState:0];
+    [purchaseButton setTitleColor:[UIColor whiteColor] forState:0];
+    purchaseButton.backgroundColor = [UIColor redColor];
+    [[purchaseButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        //去购买
+        NSLog(@"去购买");
+        MyOrderDetailViewController * detail = [[MyOrderDetailViewController alloc] init];
+        [self.navigationController pushViewController:detail animated:YES];
+
+        
+    }];
+    focus.width = [UIScreen mainScreen].bounds.size.width/3;
+    //两个按钮  addCart   _cart
+    if ([_modelToShow.shopid intValue] == 1) {
+        //加入购物车
+        addCart.hidden = NO;
+        _cart.hidden = NO;
+        [purchaseButton removeFromSuperview];
+    }else{
+        addCart.hidden = YES;
+        _cart.hidden = YES;
+        view1.width = [UIScreen mainScreen].bounds.size.width;
+             [view1 addSubview:purchaseButton];
+        [MasonyUtil equalSpacingView:@[focus,purchaseButton]
+                           viewWidth:view1.size.width/2
+                          viewHeight:view1.size.height
+                      superViewWidth:view1.size.width];
+        
+   
+    }
+    
+    
     [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
         [_cart setBadgeWithNumber:x];
     }];

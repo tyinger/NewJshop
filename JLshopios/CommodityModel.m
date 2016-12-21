@@ -14,6 +14,11 @@
 #pragma mark 根据字典初始化商品对象
 -(CommodityModel *)initWithDictionary:(NSDictionary *)dic{
     if(self=[super init]){
+//        NSLog(@"%@",dic[@"shop"][@"name"]);
+        self.needShowShopName = ([dic[@"shopid"] intValue] != 1);
+        self.shopName = dic[@"shop"][@"name"];
+        
+        
         self.Id=[dic[@"id"] longLongValue];
         self.commodityImageUrl=dic[@"icon"];
         self.commodityName=dic[@"name"];

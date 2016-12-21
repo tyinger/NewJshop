@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="苹果（Apple）iPhone 6（A1586）16G 金色移动手机" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdD-cu-HYF">
@@ -82,7 +82,7 @@
                             </mask>
                         </variation>
                     </label>
-                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zpL-B2-vQF">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpL-B2-vQF">
                         <rect key="frame" x="287" y="51" width="70" height="26"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Edf-CP-mUZ">
@@ -187,6 +187,7 @@
                 <outlet property="commodityName" destination="jdD-cu-HYF" id="tkj-7d-oJW"/>
                 <outlet property="commodityPraise" destination="Vc7-ge-b4M" id="ahd-jX-Bww"/>
                 <outlet property="commodityPrice" destination="xz5-T4-3Z0" id="VTR-WM-RDJ"/>
+                <outlet property="numberButtonBgView" destination="zpL-B2-vQF" id="fLB-5j-3Ga"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="338"/>
         </tableViewCell>

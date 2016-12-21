@@ -12,6 +12,7 @@ typedef void (^AddGoodsBtnAction)(NSInteger numberOne);
 @interface CommodityTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *commodityImg;
 
+
 @property (strong, nonatomic) IBOutlet UILabel *commodityName;
 @property (strong, nonatomic) IBOutlet UILabel *commodityPrice;
 @property (strong, nonatomic) IBOutlet UIImageView *commodityZX;
@@ -20,6 +21,10 @@ typedef void (^AddGoodsBtnAction)(NSInteger numberOne);
 @property (weak, nonatomic) IBOutlet UIButton *commodityGoodNumer;
 
 @property (copy, nonatomic) AddGoodsBtnAction addGoodsBtnAction;
+
+
+//Mars增加
+@property (weak, nonatomic) IBOutlet UIView *numberButtonBgView;
 @end
 
 
