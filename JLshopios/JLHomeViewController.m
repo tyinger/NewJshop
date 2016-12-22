@@ -25,6 +25,9 @@
 #import "MultilevelMenu.h"
 #import "JLShopTypeModel.h"
 
+#import "DetailsViewController.h"
+#import "ShopDetailController.h"
+
 #define JLHomeCell @"JLHomeViewShopingCell"
 
 #import "OtherListViewController.h"
@@ -155,7 +158,6 @@
 
 -(void)loadCollectionView{
     UICollectionViewFlowLayout *layout =[[UICollectionViewFlowLayout alloc] init];
-    layout = [[UICollectionViewFlowLayout alloc] init];
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
     [layout setScrollDirection:UICollectionViewScrollDirectionVertical]; // 垂直滚动
@@ -176,6 +178,7 @@
             make.width.mas_equalTo(pview.mas_width);
             make.height.mas_equalTo(pview.height - self.topView.height);
         }];
+        
     }
     
     [_collectionView registerNib:[UINib nibWithNibName:@"JLShopCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:JLHomeCell];
@@ -189,6 +192,8 @@
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self.collectionView.mj_footer endRefreshing];
     }];
+    
+    
     [self loadSrollView];
     [self loadJLTypeListView];
 }
@@ -283,6 +288,22 @@
 //    
 //    [webView loadHTMLString:strHTML baseURL:nil];
 //        [[self.mainViewModel openBannerWith:index]execute:nil];
+
+//    DetailsViewController *next = [[DetailsViewController alloc] init];
+//    next.productIDStr = [NSString stringWithFormat:@"%lld",model.adId];
+//    next.productIconStr = model.image;
+//    [self.navigationController pushViewController:next animated:YES];
+    
+    ShopDetailController *next = [[ShopDetailController alloc] init];
+    next.productIDStr = [NSString stringWithFormat:@"%d",model.adId];
+    next.productIconStr = model.image;
+    next.tabbarNum = 1;
+    
+    self.navigationController.navigationBarHidden = NO;
+    
+    [self.navigationController pushViewController:next animated:YES];
+
+
 }
 
 #pragma mark - <<<<<<<<<<<<<<<  ButtonMethed  >>>>>>>>>>>>>>>

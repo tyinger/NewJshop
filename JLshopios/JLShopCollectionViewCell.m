@@ -18,6 +18,7 @@
 
 @property (nonatomic,strong) NSArray *hotGoodsArray;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *haohuoHeigh;
 
 @end
 
@@ -34,7 +35,7 @@
     UITapGestureRecognizer *jingxuantuijianGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testAction1:)];
     [self.jingxuantuijian addGestureRecognizer:jingxuantuijianGes];
     
-    
+
     
     [self loadHotGoodsInfo];
 }
@@ -80,7 +81,7 @@
             NSArray *previewImage = model.previewImgs;
             NSDictionary *dic = [previewImage firstObject];
 
-            NSString *imageURL_right = dic[@"path"];;
+            NSString *imageURL_right = dic[@"path"];
             if (imageURL_right) {
                 [self.hotGoodsRightImage sd_setImageWithURL:[NSURL URLWithString:imageURL_right]];
             }
@@ -89,6 +90,7 @@
        self.hotGoodsRightText.hidden = self.hotGoodsRightImage.hidden = self.hotGoodsLeftImage.hidden = self.hotGoodsLeftText.hidden = YES;
         
     }
+
 }
 
 - (IBAction)testAction:(id)sender {
@@ -100,17 +102,17 @@
 }
 
 - (void)testAction1:(UIGestureRecognizer *)ges{
-    if (self.hotGoodsArray.count == 0) {
-        [FYTXHub toast:@"敬请期待"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
-        return;
-    }
+//    if (self.hotGoodsArray.count == 0) {
+//        [FYTXHub toast:@"敬请期待"];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [FYTXHub dismiss];
+//        });
+//        return;
+//    }
     if (ges.view.tag == 111) {
-        self.tuiJianBlock(self.hotGoodsArray[0]);
+        self.tuiJianBlock(self.hotGoodsArray[2]);
     }else{
-        self.tuiJianBlock(self.hotGoodsArray[1]);
+        self.tuiJianBlock(self.hotGoodsArray[3]);
     }
 }
 
