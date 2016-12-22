@@ -22,7 +22,7 @@
 #import "UIButton+CustomBadge.h"
 
 @class QSCHttpTool;
-@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate,UIWebViewDelegate>
+@interface DetailsViewController ()<UITableViewDataSource, UITableViewDelegate,SDCycleScrollViewDelegate,MBProgressHUDDelegate,UIWebViewDelegate,UIAlertViewDelegate>
 {
     MBProgressHUD *HUD;
     NSMutableArray *_images;
@@ -182,10 +182,15 @@
     [[purchaseButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         //去购买
         NSLog(@"去购买");
-        MyOrderDetailViewController * detail = [[MyOrderDetailViewController alloc] init];
-        [self.navigationController pushViewController:detail animated:YES];
-
-        
+        UIAlertView * AV = [[UIAlertView alloc] init];
+        AV.alertViewStyle = UIAlertViewStylePlainTextInput;
+        AV.title = @"请选择数量";
+        [AV addButtonWithTitle:@"取消"];
+        [AV addButtonWithTitle:@"确定"];
+        AV.delegate = self;
+        [[AV textFieldAtIndex:0] setKeyboardType:UIKeyboardTypeNumberPad];
+        [AV show];
+    
     }];
     focus.width = [UIScreen mainScreen].bounds.size.width/3;
     //两个按钮  addCart   _cart
@@ -441,6 +446,49 @@
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
     
+}
+
+- (void)payAction:(NSString*)count{
+   
+    GoodModel * good = [[GoodModel alloc] init];
+    good.goodid = [NSString stringWithFormat:@"%lld",_modelToShow.Id];
+    good.goodName = _modelToShow.detailsName;
+    good.num = count;
+    [[[PayManager manager] getTheOrderCurrent:good shop:_modelToShow.shop] subscribeNext:^(id x) {
+        
+        if ([x[@"success"] boolValue]==NO)  {
+            TTAlert(x[@"msg"]);
+            
+            return ;
+        }
+        
+        SysOrderReturn * orderReturn = [SysOrderReturn objectWithKeyValues:x];
+        orderReturn.order = [SysOrder objectWithKeyValues:orderReturn.order];
+        orderReturn.order.orderDetails = [SysOrderDetail objectArrayWithKeyValuesArray:orderReturn.order.orderDetails];
+        
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            MyOrderDetailViewController * orderVC = [[MyOrderDetailViewController alloc] initWithNibName:@"MyOrderDetailViewController" bundle:nil];
+            orderVC.orderReturn = orderReturn;
+            [self.navigationController pushViewController:orderVC animated:YES];
+        });
+        
+        NSLog(@"%@",x);
+        
+    }];
+}
+#pragma mark - AlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        UITextField *tf=[alertView textFieldAtIndex:0];
+        if ([tf.text integerValue]<=0) {
+            [FYTXHub toast:@"请输入正确数量"];
+            return;
+        }else{
+            [self payAction:tf.text];
+        }
+    }
 }
 #pragma mark - SDCycleScrollViewDelegate
 

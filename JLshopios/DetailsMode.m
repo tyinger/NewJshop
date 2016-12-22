@@ -21,6 +21,8 @@
         self.detailsIsFoucs = [NSString stringWithFormat:@"%@",dic[@"isCollectioned"]];
         self.detailsImgZX = dic[@"goods"][@"goodsDetail"];
         self.shopid = dic[@"goods"][@"shop"][@"id"];
+      
+        self.shop = [ShopCellModel objectWithKeyValues:dic[@"goods"][@"shop"]];
     }
     return self;
 }

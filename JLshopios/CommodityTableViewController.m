@@ -323,10 +323,13 @@
             
 //TODO:MARS加
             UILabel * shopName = [[UILabel alloc] initWithFrame:cell.numberButtonBgView.frame];
-            shopName.x = cell.numberButtonBgView.x - 40;
             shopName.font = [UIFont systemFontOfSize:13];
-            shopName.text = commodity.shopName;
-            [shopName sizeToFit];
+              shopName.text = commodity.shopName;
+             [shopName sizeToFit];
+            shopName.x = [UIScreen mainScreen].bounds.size.width - shopName.width - 10;
+            
+          
+           
             if (commodity.needShowShopName) {
                 cell.numberButtonBgView.hidden = YES;
                 [cell.contentView addSubview:shopName];

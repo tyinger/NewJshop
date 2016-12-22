@@ -27,7 +27,7 @@
 /**
  *  直接支付
  */
-- (RACSignal*)getTheOrderCurrent;
+- (RACSignal *)getTheOrderCurrent:(GoodModel *)order shop:(ShopCellModel*)shop;
 /**
  *  当面支付
  */

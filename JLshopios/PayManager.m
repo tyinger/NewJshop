@@ -30,19 +30,46 @@
 - (RACSignal *)getTheOrderFace{
     return nil;
 }
-- (RACSignal *)getTheOrderCurrent{
+- (RACSignal *)getTheOrderCurrent:(GoodModel *)order shop:(ShopCellModel*)shop{
     /*
     （2）如果是直接购买：
     需传入setOrderType=0，setUser，setOrderDetails（SysOrderDetail实体），setShop（SysShop实体）
      */
+    
+    
+    SysOrderDetail * orderDetail = [[SysOrderDetail alloc] init];
+    
+    orderDetail.goodsNum = order.num;
+    orderDetail.goods = [[GoodModel alloc] init];
+    orderDetail.goods.Id = order.goodid;
+    orderDetail.goods.goodName = order.goodName;
+    
+    
     SysOrder * sysOrder = [[SysOrder alloc] init];
     sysOrder.user = [LoginStatus sharedManager];
-    NSMutableArray <SysOrderDetail*>*orderDetails = [NSMutableArray array];
+    sysOrder.orderType = @"0";
+    sysOrder.orderDetails = [NSMutableArray arrayWithArray:@[orderDetail]];
+    sysOrder.shop = shop;
     
+ 
+    NSString * sysOrderJsonStr =  [sysOrder JSONString];
+    NSDictionary * para = @{@"arg0":sysOrderJsonStr};
+
+    NSString *  urlString = @"https://123.56.192.182:8443/app/appOrderController/appCreateOrder?";
     RACSignal * result = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        [QSCHttpTool post:urlString parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
+            [subscriber sendNext:json];
+            [subscriber sendCompleted];
+            NSLog(@"%@",json);
+        } failure:^(NSError *error) {
+            [subscriber sendError:error];
+            [subscriber sendCompleted];
+            NSLog(@"%@",error);
+        }];
         return nil;
     }];
     return result;
+
 }
 - (RACSignal*)getTheOrderCartArray:(NSMutableArray<GoodModel*>*)array shop:(ShopCellModel*)shop{
 //    <item>https://123.56.192.182:8443</item>
@@ -66,7 +93,7 @@
     NSMutableArray <SysOrderDetail*>*orderDetails = [[[array.rac_sequence map:^id(GoodModel* value) {
         SysOrderDetail * orderDetail = [[SysOrderDetail alloc] init];
         orderDetail.goodsNum = value.num;
-//        orderDetail.goods = value;
+
         orderDetail.goods = [[GoodModel alloc] init];
         orderDetail.goods.Id = value.goodid;
         orderDetail.goods.goodName = value.goodName;

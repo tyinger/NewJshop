@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "ShopCellModel.h"
 @interface DetailsMode : NSObject
 
 @property (nonatomic,assign) long long Id;//商品id
@@ -28,6 +28,10 @@
 @property (nonatomic, assign) CGFloat cellHeight;//cell的高度
 
 @property (nonatomic, strong) NSNumber * shopid; //商店的ID  用来判断直接购买还是加入购物车
+
+
+
+@property (nonatomic, strong) ShopCellModel * shop;
 
 #pragma mark 根据字典初始化微博对象
 -(DetailsMode *)initWithDictionary:(NSDictionary *)dic;
