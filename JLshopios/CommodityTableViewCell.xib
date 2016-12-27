@@ -166,6 +166,12 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lre-cl-F0f">
+                        <rect key="frame" x="332" y="64" width="33" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="mCe-Gw-7tO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="7CX-yc-qIP"/>
@@ -175,7 +181,9 @@
                     <constraint firstItem="xz5-T4-3Z0" firstAttribute="leading" secondItem="mCe-Gw-7tO" secondAttribute="trailing" constant="30" id="NEi-4F-Ubc"/>
                     <constraint firstItem="jdD-cu-HYF" firstAttribute="leading" secondItem="xz5-T4-3Z0" secondAttribute="leading" id="R8W-Hf-ef5"/>
                     <constraint firstAttribute="trailingMargin" secondItem="jdD-cu-HYF" secondAttribute="trailing" constant="39" id="Zrm-HI-LOZ"/>
+                    <constraint firstAttribute="trailing" secondItem="Lre-cl-F0f" secondAttribute="trailing" constant="10" id="bG3-fW-yea"/>
                     <constraint firstItem="jdD-cu-HYF" firstAttribute="top" secondItem="mCe-Gw-7tO" secondAttribute="top" id="fzX-ak-2gU"/>
+                    <constraint firstAttribute="bottom" secondItem="Lre-cl-F0f" secondAttribute="bottom" constant="20" id="kLB-3U-tV5"/>
                     <constraint firstItem="mCe-Gw-7tO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="mv6-hV-e4b"/>
                     <constraint firstItem="Vc7-ge-b4M" firstAttribute="leading" secondItem="mCe-Gw-7tO" secondAttribute="trailing" constant="30" id="ptd-fo-ASU"/>
                     <constraint firstItem="Vc7-ge-b4M" firstAttribute="bottom" secondItem="mCe-Gw-7tO" secondAttribute="bottom" id="vGA-7X-AYo"/>
@@ -188,6 +196,7 @@
                 <outlet property="commodityPraise" destination="Vc7-ge-b4M" id="ahd-jX-Bww"/>
                 <outlet property="commodityPrice" destination="xz5-T4-3Z0" id="VTR-WM-RDJ"/>
                 <outlet property="numberButtonBgView" destination="zpL-B2-vQF" id="fLB-5j-3Ga"/>
+                <outlet property="shopNameLabel" destination="Lre-cl-F0f" id="EFX-jl-OBA"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="338"/>
         </tableViewCell>

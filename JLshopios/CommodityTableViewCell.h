@@ -12,6 +12,7 @@ typedef void (^AddGoodsBtnAction)(NSInteger numberOne);
 @interface CommodityTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *commodityImg;
 
+@property (weak, nonatomic) IBOutlet UILabel *shopNameLabel;
 
 @property (strong, nonatomic) IBOutlet UILabel *commodityName;
 @property (strong, nonatomic) IBOutlet UILabel *commodityPrice;

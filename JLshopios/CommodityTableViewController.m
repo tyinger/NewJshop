@@ -71,7 +71,8 @@
 -(void)refresh
 {
     NSLog(@"上啦刷新");
-    if (_tabbarNum == 1) {
+//    if (_tabbarNum == 1) {
+      if (self.searchNameStr) {
         [self initData:self.secondMenuIDStr searchName:self.searchNameStr];
         [_tableView.mj_header endRefreshing];
     }else{
@@ -85,7 +86,7 @@
 
 -(void)loadMore
 {
-    NSLog(@"下啦刷新");
+    NSLog(@",下啦刷新");
     _pangoNum += 10;
     [self loadDataFromClientWithMenuID:self.secondMenuIDStr andPageno:[NSString stringWithFormat:@"%ld",(long)_pangoNum] andOrderType:_OderTypeStr andOrderDes:_OderDesStr andIsMJRefleshHead:NO];
     [_tableView.mj_footer endRefreshing];
@@ -322,20 +323,23 @@
             __weak typeof(cell) weakCell = cell;
             
 //TODO:MARS加
-            UILabel * shopName = [[UILabel alloc] initWithFrame:cell.numberButtonBgView.frame];
-            shopName.font = [UIFont systemFontOfSize:13];
-              shopName.text = commodity.shopName;
-             [shopName sizeToFit];
-            shopName.x = [UIScreen mainScreen].bounds.size.width - shopName.width - 10;
-            
+            cell.shopNameLabel.text = commodity.shopName;
+//            UILabel * shopName = [[UILabel alloc] initWithFrame:cell.numberButtonBgView.frame];
+//            shopName.font = [UIFont systemFontOfSize:13];
+//              shopName.text = commodity.shopName;
+//             [shopName sizeToFit];
+//            shopName.x = [UIScreen mainScreen].bounds.size.width - shopName.width - 10;
+//             [cell.contentView addSubview:shopName];
           
            
             if (commodity.needShowShopName) {
                 cell.numberButtonBgView.hidden = YES;
-                [cell.contentView addSubview:shopName];
+                cell.shopNameLabel.hidden = NO;
+//                [cell.contentView addSubview:shopName];
             }else{
                 cell.numberButtonBgView.hidden = NO;
-                [shopName removeFromSuperview];
+                cell.shopNameLabel.hidden = YES;
+//                [shopName removeFromSuperview];
             }
             
 //            cell.numberButtonBgView.hidden = commodity.needShowShopName;
