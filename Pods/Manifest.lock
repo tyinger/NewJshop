@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - BaiduMapKit (3.1.0)
   - IQKeyboardManager (3.3.7)
   - JKCountDownButton (1.0.0)
   - LBXScan (1.1.1):
@@ -38,6 +39,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - BaiduMapKit
   - IQKeyboardManager (~> 3.3.6)
   - JKCountDownButton
   - LBXScan (~> 1.1.1)
@@ -50,6 +52,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BaiduMapKit: 4cfaedb118cff7e157e9771859a4bf65a261b2a1
   IQKeyboardManager: 249c3946acf61345c18b038eb50863fe2793e3a8
   JKCountDownButton: 7b30571da56af2e52272a6974413f4a0c83a5e94
   LBXScan: dfb4d8ae8e4cff2aa0c9e1771e43954dce1469a9
@@ -61,6 +64,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   ZXingObjC: bf15b3814f7a105b6d99f47da2333c93a063650a
 
-PODFILE CHECKSUM: 7f70ff0d9843e24f5783517d2978e7c124cd3a53
+PODFILE CHECKSUM: 93667b03a8e0c58b60225ae7dbacaef3817a596a
 
 COCOAPODS: 1.0.1

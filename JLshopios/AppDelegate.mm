@@ -13,9 +13,13 @@
 
 #import <AlipaySDK/AlipaySDK.h>
 
-@interface AppDelegate ()
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
+
+@interface AppDelegate ()<BMKGeneralDelegate>
 
 @end
+
+BMKMapManager* _mapManager;
 
 @implementation AppDelegate
 
@@ -25,6 +29,13 @@
     [self loadAppGuide];
     
     [[LoginStatus sharedManager] start];
+    
+    // 要使用百度地图，请先启动BaiduMapManager
+    _mapManager = [[BMKMapManager alloc]init];
+    BOOL ret = [_mapManager start:@"please enter your key" generalDelegate:self];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
     
     return YES;
 }
