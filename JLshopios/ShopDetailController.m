@@ -81,16 +81,17 @@
     
     //设置导航栏
     [self setupNavigationItem];
-    // Do any additional setup after loading the view.
 }
 
 - (void)getSourceData:(NSString *)productIDStr
 {
+    [FYTXHub progress:nil];
     NSString * userId = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr:@"";
     NSDictionary *dic = @{@"shopId":productIDStr,@"userId":userId};
     NSLog(@" ------ %@ ------",dic);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/appShopController/GetShopById?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         NSLog(@"正确返回%@",json);
+        [FYTXHub dismiss];
         //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
         //            NSLog(@"dataDic%@",json);
         //            NSString *path = @"/Users/mymac/Desktop/";
@@ -103,6 +104,7 @@
         [self initView];
         
     } failure:^(NSError *error) {
+        [FYTXHub dismiss];
         NSLog(@"错误返回%@",error);
     }];
 }
@@ -175,14 +177,11 @@
     UIView * view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.width, self.view.width)];
     view.backgroundColor = [UIColor whiteColor];
     dispatch_async(dispatch_get_main_queue(), ^{
-        _images = [NSMutableArray arrayWithCapacity:0];
+        _images = [[NSMutableArray alloc] init];
         if (_modelToShow.imagePath) {
             [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.imagePath]]]];
-        }else{
-            _images = nil;
         }
 
-        
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, view.size.width, view.size.height) imageNamesGroup:_images];
         cycleScrollView.placeholderImage = [UIImage imageWithName:@"img_home_banner1"];
         cycleScrollView.autoScroll = NO;
@@ -204,10 +203,6 @@
 //        });
     });
     return view;
-}
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -251,6 +246,18 @@
 #pragma mark 选中cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.row == 0) {
+        
+        
+    }else if(indexPath.row == 1){
+        
+        
+    }else if (indexPath.row == 2){
+        
+        NSString *str = [[NSString alloc] initWithFormat:@"telprompt://%@",self.modelToShow.shopPhone];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    }
 }
 #pragma mark Header
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section

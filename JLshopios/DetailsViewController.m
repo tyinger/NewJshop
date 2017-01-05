@@ -36,6 +36,11 @@
 @property (nonatomic, strong) DetailsMode *modelToShow;
 
 @property (nonatomic, strong) NSDictionary *dataDic;
+
+@property (nonatomic,strong) UISegmentedControl *segment;
+
+@property (nonatomic,strong) UIWebView *webView;
+
 @end
 
 @implementation DetailsViewController
@@ -86,22 +91,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self getSourceData:self.productIDStr];
     
     //设置导航栏
     [self setupNavigationItem];
     
+    [self getSourceData:self.productIDStr];
 }
 
 
 - (void)getSourceData:(NSString *)productIDStr
 {
+    [FYTXHub progress:nil];
     NSString * userId = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr:@"";
         NSDictionary *dic = @{@"sellType":@"normal",@"id":productIDStr,@"userId":userId};
         NSLog(@" ------ %@ ------",dic);
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             NSLog(@"正确返回%@",json[@"goods"][@"goodsDetail"]);
-            
+            [FYTXHub dismiss];
 //            NSLog(@"%@",json[@"shop"][@"id"]);
 //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
 //            NSLog(@"dataDic%@",json);
@@ -115,15 +121,49 @@
             [self initView];
 
             } failure:^(NSError *error) {
+                [FYTXHub dismiss];
+                [FYTXHub toast:@"网络错误!"];
             NSLog(@"错误返回%@",error);
         }];
 }
 
 - (void)setupNavigationItem {
-    self.navigationItem.title=@"商品详情";
     [self.navigationController.navigationBar setTranslucent:NO];
     self.navigationItem.rightBarButtonItems =@[[UIBarButtonItem BarButtonItemWithBackgroudImageName:@"ware_more" highBackgroudImageName:nil target:self action:@selector(wareMoreClick)], [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"ware_histroy" highBackgroudImageName:nil target:self action:@selector(wareMoreClick)]];
+    
+    self.navigationItem.titleView = self.segment;
+}
 
+- (UISegmentedControl *)segment{
+    
+    if (!_segment) {
+        
+        _segment = [[UISegmentedControl alloc] initWithItems:@[@"商品详情",@"视频"]];
+        _segment.tintColor = [UIColor clearColor];
+        _segment.selectedSegmentIndex = 0;
+        
+        NSDictionary *selectedTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor blackColor]};
+        NSDictionary *normolTextAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:18],NSForegroundColorAttributeName:[UIColor grayColor]};
+        
+        [_segment setTitleTextAttributes:selectedTextAttributes forState:UIControlStateSelected];
+        [_segment setTitleTextAttributes:normolTextAttributes forState:UIControlStateNormal];
+        
+        [_segment addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+    }
+    return _segment;
+}
+
+- (void)segmentAction:(UISegmentedControl *)seg{
+    
+    if (seg.selectedSegmentIndex == 0) {
+        
+        self.tableView.hidden = NO;
+        self.webView.hidden = YES;
+    }else{
+        
+        self.tableView.hidden = YES;
+        self.webView.hidden = NO;
+    }
 }
 
 - (void)initView{
@@ -215,6 +255,10 @@
     [RACObserve([CartManager sharedManager], totalNum) subscribeNext:^(NSNumber *x) {
         [_cart setBadgeWithNumber:x];
     }];
+    
+    self.webView.hidden = YES;
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_modelToShow.videoUrl]]];
+    [self.view addSubview:self.webView];
 }
 
 - (UIView*)addHeaderView{
@@ -229,28 +273,30 @@
     view.backgroundColor = [UIColor whiteColor];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
 
-        _images = [NSMutableArray arrayWithCapacity:0];
-        for (int i = 0; i < _modelToShow.previewImgs.count; i++) {
-            [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.previewImgs[i][@"path"]]]]];
-        }
-        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, view.size.width, view.size.height) imageNamesGroup:_images];
-        cycleScrollView.placeholderImage = [UIImage imageWithName:@"img_home_banner1"];
-        cycleScrollView.autoScroll = NO;
-        cycleScrollView.infiniteLoop = NO;
-        cycleScrollView.delegate = self;
-        cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
        dispatch_async(dispatch_get_main_queue(), ^{
-            [view addSubview:cycleScrollView];
-            UIImageView * imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circleBackground"]];
-            imageView.frame=CGRectMake(cycleScrollView.size.width-70, cycleScrollView.size.height-70, 50, 50);
-            [cycleScrollView addSubview:imageView];
-            _indexPage=[[UILabel alloc]initWithFrame:CGRectMake(0,0, imageView.size.width, imageView.size.height)];
-            _indexPage.textAlignment = NSTextAlignmentCenter;
-            _indexPage.font=[UIFont systemFontOfSize:24];
-            _indexPage.textColor=[UIColor whiteColor];
-            _indexPage.text=[NSString stringWithFormat:@"%i/%i",cycleScrollView.indexPage+1,(int)_images.count];
-            [imageView addSubview:_indexPage];
-           });
+           
+           _images = [NSMutableArray arrayWithCapacity:0];
+           for (int i = 0; i < _modelToShow.previewImgs.count; i++) {
+               [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.previewImgs[i][@"path"]]]]];
+           }
+           SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, view.size.width, view.size.height) imageNamesGroup:_images];
+           cycleScrollView.placeholderImage = [UIImage imageWithName:@"img_home_banner1"];
+           cycleScrollView.autoScroll = NO;
+           cycleScrollView.infiniteLoop = NO;
+           cycleScrollView.delegate = self;
+           cycleScrollView.pageControlStyle = SDCycleScrollViewPageContolStyleNone;
+           
+           [view addSubview:cycleScrollView];
+           UIImageView * imageView=[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"circleBackground"]];
+           imageView.frame=CGRectMake(cycleScrollView.size.width-70, cycleScrollView.size.height-70, 50, 50);
+           [cycleScrollView addSubview:imageView];
+           _indexPage=[[UILabel alloc]initWithFrame:CGRectMake(0,0, imageView.size.width, imageView.size.height)];
+           _indexPage.textAlignment = NSTextAlignmentCenter;
+           _indexPage.font=[UIFont systemFontOfSize:24];
+           _indexPage.textColor=[UIColor whiteColor];
+           _indexPage.text=[NSString stringWithFormat:@"%i/%i",cycleScrollView.indexPage+1,(int)_images.count];
+           [imageView addSubview:_indexPage];
+        });
     });
     return view;
 }
@@ -476,6 +522,17 @@
         
     }];
 }
+
+- (UIWebView *)webView{
+    
+    if (!_webView) {
+        
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 164)];
+        _webView.delegate = self;
+    }
+    return _webView;
+}
+
 #pragma mark - AlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) NSNumber * shopid; //商店的ID  用来判断直接购买还是加入购物车
 
-
+@property (nonatomic,strong) NSString *videoUrl;
 
 @property (nonatomic, strong) ShopCellModel * shop;
 
