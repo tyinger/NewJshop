@@ -36,6 +36,7 @@
 
 
 @interface JLHomeViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,SDCycleScrollViewDelegate,JLCityControllerDelegate>
+
 @property (weak, nonatomic) IBOutlet UIView *topView;
 @property (weak, nonatomic) IBOutlet UIButton *cityPickerButton;
 
@@ -56,12 +57,13 @@
 @property (nonatomic,strong) NSArray *typeListArray;
 
 @property (nonatomic,strong) UIView *mainView;
-
+@property (nonatomic,assign) CGFloat collectionHight;
 @end
 
 @implementation JLHomeViewController
 {
     UIView *citySelectWindow_;
+    
 }
 
 -(void)netWorkTest{
@@ -151,6 +153,7 @@
     self.topSearchView.layer.borderWidth = 1;
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(searchAction:)];
     [self.topSearchView addGestureRecognizer:tap];
+    [self getCollectionHight];
     [self loadCollectionView];
     //判断是否有选择过城市，有就加载之前的，没有就弹出选择器
     [self isSelectedCity];
@@ -184,15 +187,16 @@
     [_collectionView registerNib:[UINib nibWithNibName:@"JLShopCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:JLHomeCell];
     
     self.collectionView.mj_header = [MJRefreshGifHeader headerWithRefreshingBlock:^{
+        [self.collectionView reloadData];
         [self.collectionView.mj_header endRefreshing];
-        [self.mainView removeFromSuperview];
-        [self viewDidLoad];
+//        [self.mainView removeFromSuperview];
+//        [self viewDidLoad];
+        
     }];
     
     self.collectionView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         [self.collectionView.mj_footer endRefreshing];
     }];
-    
     
     [self loadSrollView];
     [self loadJLTypeListView];
@@ -306,6 +310,31 @@
 
 }
 
+- (void)getCollectionHight{
+    
+        NSDictionary *dic1 = @{@"begin":@"0"};
+        [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/recommendGoods?" parameters:dic1 isShowHUD:YES httpToolSuccess:^(id json) {
+            
+                NSArray *jsonArray = json;
+                NSMutableArray *marray = [[NSMutableArray alloc]init];
+                for (NSDictionary *dics in jsonArray) {
+                    JLGoodModel *model = [JLGoodModel initWithDictionary:dics];
+                    [marray addObject:model];
+                }
+                self.hotGoodsArray = [marray copy];
+            if (self.hotGoodsArray.count == 0) {
+                self.collectionHight = 238;
+            }else
+                self.collectionHight = 270 + (self.view.frame.size.width*0.5 + 30)*self.hotGoodsArray.count/2;
+            
+                [self.collectionView reloadData];
+            
+        } failure:^(NSError *error) {
+            
+        }];
+    
+}
+
 #pragma mark - <<<<<<<<<<<<<<<  ButtonMethed  >>>>>>>>>>>>>>>
 
 - (IBAction)cityPicker:(UIButton *)sender
@@ -356,8 +385,8 @@
 {
     CGFloat cellWidth = [UIScreen mainScreen].bounds.size.width;
     
-    CGSize bsize = CGSizeMake(cellWidth, 400);
-    
+    CGSize bsize = CGSizeMake(cellWidth, self.collectionHight);
+
     return bsize;
 }
 
