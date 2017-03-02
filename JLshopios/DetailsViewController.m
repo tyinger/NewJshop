@@ -107,7 +107,12 @@
         NSLog(@" ------ %@ ------",dic);
         [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
             NSLog(@"正确返回%@",json[@"goods"][@"goodsDetail"]);
-            [FYTXHub dismiss];
+            [FYTXHub success:nil delayClose:0 compelete:^{
+                
+                _modelToShow = [[DetailsMode alloc] initWithDictionary:json];
+                //初始化视图
+                [self initView];
+            }];
 //            NSLog(@"%@",json[@"shop"][@"id"]);
 //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
 //            NSLog(@"dataDic%@",json);
@@ -116,9 +121,6 @@
 //            NSFileManager *fm = [NSFileManager defaultManager];
 //            [fm createFileAtPath:fileName contents:nil attributes:nil];
 //            [json writeToFile:fileName atomically:YES];
-            _modelToShow = [[DetailsMode alloc] initWithDictionary:json];
-            //初始化视图
-            [self initView];
 
             } failure:^(NSError *error) {
                 [FYTXHub dismiss];

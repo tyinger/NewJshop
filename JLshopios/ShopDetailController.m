@@ -91,7 +91,13 @@
     NSLog(@" ------ %@ ------",dic);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/appShopController/GetShopById?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         NSLog(@"正确返回%@",json);
-        [FYTXHub dismiss];
+        
+        [FYTXHub success:nil delayClose:0 compelete:^{
+            
+            _modelToShow = [[ShopDetailModel alloc] initWithDictionary:json];
+            //初始化视图
+            [self initView];
+        }];
         //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
         //            NSLog(@"dataDic%@",json);
         //            NSString *path = @"/Users/mymac/Desktop/";
@@ -99,9 +105,6 @@
         //            NSFileManager *fm = [NSFileManager defaultManager];
         //            [fm createFileAtPath:fileName contents:nil attributes:nil];
         //            [json writeToFile:fileName atomically:YES];
-        _modelToShow = [[ShopDetailModel alloc] initWithDictionary:json];
-        //初始化视图
-        [self initView];
         
     } failure:^(NSError *error) {
         [FYTXHub dismiss];
@@ -179,7 +182,12 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         _images = [[NSMutableArray alloc] init];
         if (_modelToShow.imagePath) {
-            [_images addObject:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.imagePath]]]];
+            
+            NSData *data = [NSData dataWithContentsOfURL:[NSURL URLWithString:_modelToShow.imagePath]];
+            if (data != nil) {
+                
+                [_images addObject:[UIImage imageWithData:data]];
+            }
         }
 
         SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, view.size.width, view.size.height) imageNamesGroup:_images];

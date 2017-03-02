@@ -174,7 +174,8 @@
     [mainView addSubview:tuichuButton];
     [tuichuButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.centerX.centerY.offset(0);
+        make.right.offset(8);
+        make.left.offset(-8);
         make.height.mas_equalTo(@30);
         make.width.mas_equalTo(@180);
     }];

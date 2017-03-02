@@ -48,7 +48,7 @@ static UIImage *defaultInfoImage;
     [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
     [SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 0 )];
     
-    [SVProgressHUD showProgress:-1 status:message maskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD showProgress:-1 status:message maskType:SVProgressHUDMaskTypeClear];
 }
 
 +(void)dismiss{
@@ -58,7 +58,10 @@ static UIImage *defaultInfoImage;
 
 +(void)success:(NSString *)message delayClose:(NSInteger)section{
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+    [SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 0 )];
     [SVProgressHUD showSuccessWithStatus:message];
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, section * NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{
@@ -67,7 +70,10 @@ static UIImage *defaultInfoImage;
 }
 +(void)successDarkStyle:(NSString *)message delayClose:(NSInteger)second{
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+    [SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 0 )];
     [SVProgressHUD showSuccessWithStatus:message];
 //    [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, second * NSEC_PER_SEC);
@@ -78,7 +84,10 @@ static UIImage *defaultInfoImage;
 
 +(void)success:(NSString *)message delayClose:(NSInteger)section compelete:(void(^)())compelete{
     
-    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setForegroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setBackgroundColor:[UIColor lightGrayColor]];
+    [SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, 0 )];
     [SVProgressHUD showSuccessWithStatus:message];
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, section * NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{

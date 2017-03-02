@@ -375,7 +375,10 @@
     
     JLShopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JLHomeCell forIndexPath:indexPath];
     cell.tuiJianBlock = ^(JLGoodModel *goodModel){
-        MYLog(@"打我啊");
+        
+        DetailsViewController * detail = [[DetailsViewController alloc] init];
+        detail.productIDStr = goodModel.goodID;
+        detail.productIconStr = goodImg;
     };
     return cell;
 }
