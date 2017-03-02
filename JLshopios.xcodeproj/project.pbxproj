@@ -210,6 +210,9 @@
 		C559C79F1D8411370077E953 /* WodeerweimaController.m in Sources */ = {isa = PBXBuildFile; fileRef = C559C79E1D8411370077E953 /* WodeerweimaController.m */; };
 		C559C7A21D841DEE0077E953 /* GerenziliaoxiugaiController.m in Sources */ = {isa = PBXBuildFile; fileRef = C559C7A11D841DEE0077E953 /* GerenziliaoxiugaiController.m */; };
 		C559C7A51D84305E0077E953 /* ASBirthSelectSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = C559C7A41D84305E0077E953 /* ASBirthSelectSheet.m */; };
+		C5B0D0D31E67B9B30036257C /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B0D0CF1E67B9B30036257C /* libWeChatSDK.a */; };
+		C5B0D0D51E67BA120036257C /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B0D0D41E67BA120036257C /* libsqlite3.0.tbd */; };
+		C5B0D0D71E67BA200036257C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5B0D0D61E67BA200036257C /* Security.framework */; };
 		C5DEE9F71D57039900823ED8 /* LoginStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEE9F61D57039900823ED8 /* LoginStatus.m */; };
 		C5DEE9FC1D5715DC00823ED8 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5DEE9FA1D5715DC00823ED8 /* RegisterViewController.m */; };
 		C5DEE9FD1D5715DC00823ED8 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5DEE9FB1D5715DC00823ED8 /* RegisterViewController.xib */; };
@@ -709,6 +712,12 @@
 		C559C7A11D841DEE0077E953 /* GerenziliaoxiugaiController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GerenziliaoxiugaiController.m; sourceTree = "<group>"; };
 		C559C7A31D84305E0077E953 /* ASBirthSelectSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASBirthSelectSheet.h; sourceTree = "<group>"; };
 		C559C7A41D84305E0077E953 /* ASBirthSelectSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASBirthSelectSheet.m; sourceTree = "<group>"; };
+		C5B0D0CF1E67B9B30036257C /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		C5B0D0D01E67B9B30036257C /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		C5B0D0D11E67B9B30036257C /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		C5B0D0D21E67B9B30036257C /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		C5B0D0D41E67BA120036257C /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		C5B0D0D61E67BA200036257C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C5DEE9F51D57039900823ED8 /* LoginStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginStatus.h; sourceTree = "<group>"; };
 		C5DEE9F61D57039900823ED8 /* LoginStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginStatus.m; sourceTree = "<group>"; };
 		C5DEE9F91D5715DC00823ED8 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -844,18 +853,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C559C6B11D8406100077E953 /* CFNetwork.framework in Frameworks */,
+				C559C6B91D8406520077E953 /* CoreTelephony.framework in Frameworks */,
+				C5B0D0D71E67BA200036257C /* Security.framework in Frameworks */,
+				C5B0D0D51E67BA120036257C /* libsqlite3.0.tbd in Frameworks */,
+				C559C6B31D8406330077E953 /* SystemConfiguration.framework in Frameworks */,
 				C559C72E1D840C210077E953 /* libc.tbd in Frameworks */,
+				C5B0D0D31E67B9B30036257C /* libWeChatSDK.a in Frameworks */,
 				B512CB241DEC26E400121409 /* AlipaySDK.framework in Frameworks */,
 				C559C6BF1D8406650077E953 /* UIKit.framework in Frameworks */,
 				C559C6BD1D8406600077E953 /* CoreGraphics.framework in Frameworks */,
 				C559C6BB1D84065A0077E953 /* Foundation.framework in Frameworks */,
-				C559C6B91D8406520077E953 /* CoreTelephony.framework in Frameworks */,
 				C559C6B71D8406490077E953 /* CoreText.framework in Frameworks */,
 				C559C6C31D8406780077E953 /* libssl.a in Frameworks */,
 				C559C6B51D84063E0077E953 /* QuartzCore.framework in Frameworks */,
 				C559C6C21D8406780077E953 /* libcrypto.a in Frameworks */,
-				C559C6B31D8406330077E953 /* SystemConfiguration.framework in Frameworks */,
-				C559C6B11D8406100077E953 /* CFNetwork.framework in Frameworks */,
 				C559C6AF1D8406080077E953 /* libc++.tbd in Frameworks */,
 				C559C6AD1D8405FF0077E953 /* libz.tbd in Frameworks */,
 				C559C6AB1D8405F20077E953 /* CoreMotion.framework in Frameworks */,
@@ -895,6 +907,7 @@
 		3043B08F1D02C55B00E97B82 = {
 			isa = PBXGroup;
 			children = (
+				C5B0D0CE1E67B9A80036257C /* wx */,
 				B512CAC01DEC26E400121409 /* AliPay */,
 				C5DEE9F41D57036A00823ED8 /* LoginStatus */,
 				305783041D0C0D51007AED3C /* Guide */,
@@ -1009,6 +1022,8 @@
 		65F2E137616152DB5C45F13C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C5B0D0D61E67BA200036257C /* Security.framework */,
+				C5B0D0D41E67BA120036257C /* libsqlite3.0.tbd */,
 				C559C72D1D840C210077E953 /* libc.tbd */,
 				C559C6C01D8406780077E953 /* libcrypto.a */,
 				C559C6C11D8406780077E953 /* libssl.a */,
@@ -1654,6 +1669,17 @@
 			name = ViewModel;
 			sourceTree = "<group>";
 		};
+		C5B0D0CE1E67B9A80036257C /* wx */ = {
+			isa = PBXGroup;
+			children = (
+				C5B0D0CF1E67B9B30036257C /* libWeChatSDK.a */,
+				C5B0D0D01E67B9B30036257C /* WechatAuthSDK.h */,
+				C5B0D0D11E67B9B30036257C /* WXApi.h */,
+				C5B0D0D21E67B9B30036257C /* WXApiObject.h */,
+			);
+			path = wx;
+			sourceTree = "<group>";
+		};
 		C5DEE9F41D57036A00823ED8 /* LoginStatus */ = {
 			isa = PBXGroup;
 			children = (
@@ -2029,7 +2055,7 @@
 				TargetAttributes = {
 					3043B0971D02C55B00E97B82 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = UQAVHPD2J9;
+						DevelopmentTeam = DEVUC5SK24;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2562,7 +2588,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UQAVHPD2J9;
+				DEVELOPMENT_TEAM = DEVUC5SK24;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2581,6 +2607,65 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/wx",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"sqlite3.0\"",
+					"-l\"stdc++.6.0.9\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"BaiduMapAPI_Base\"",
+					"-framework",
+					"\"BaiduMapAPI_Cloud\"",
+					"-framework",
+					"\"BaiduMapAPI_Location\"",
+					"-framework",
+					"\"BaiduMapAPI_Map\"",
+					"-framework",
+					"\"BaiduMapAPI_Radar\"",
+					"-framework",
+					"\"BaiduMapAPI_Search\"",
+					"-framework",
+					"\"BaiduMapAPI_Utils\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"IQKeyboardManager\"",
+					"-framework",
+					"\"JKCountDownButton\"",
+					"-framework",
+					"\"LBXScan\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MJExtension\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReactiveCocoa\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"ZXingObjC\"",
+					"-Objc",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2597,7 +2682,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = UQAVHPD2J9;
+				DEVELOPMENT_TEAM = DEVUC5SK24;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2616,6 +2701,65 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/wx",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"sqlite3.0\"",
+					"-l\"stdc++.6.0.9\"",
+					"-framework",
+					"\"AFNetworking\"",
+					"-framework",
+					"\"BaiduMapAPI_Base\"",
+					"-framework",
+					"\"BaiduMapAPI_Cloud\"",
+					"-framework",
+					"\"BaiduMapAPI_Location\"",
+					"-framework",
+					"\"BaiduMapAPI_Map\"",
+					"-framework",
+					"\"BaiduMapAPI_Radar\"",
+					"-framework",
+					"\"BaiduMapAPI_Search\"",
+					"-framework",
+					"\"BaiduMapAPI_Utils\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreTelephony\"",
+					"-framework",
+					"\"IQKeyboardManager\"",
+					"-framework",
+					"\"JKCountDownButton\"",
+					"-framework",
+					"\"LBXScan\"",
+					"-framework",
+					"\"MBProgressHUD\"",
+					"-framework",
+					"\"MJExtension\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"ReactiveCocoa\"",
+					"-framework",
+					"\"SDWebImage\"",
+					"-framework",
+					"\"SVProgressHUD\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-framework",
+					"\"ZXingObjC\"",
+					"-Objc",
+					"-all_load",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jl.JLshopios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
