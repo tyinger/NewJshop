@@ -285,21 +285,9 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
     JLShopModel *model = self.bannerArray[index];
-    NSLog(@"---点击了第%@张图片", model);
-//    NSString *strHTML = @"<p><img src=\"http://123.56.192.182/http_resource/image/ueditor/201610221477119211606038854.jpg\" title=\"201610221477119211606038854.jpg\" alt=\"劲酒.jpg\"/></p>";
-//    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.frame];
-//    [self.view addSubview:webView];
-//    
-//    [webView loadHTMLString:strHTML baseURL:nil];
-//        [[self.mainViewModel openBannerWith:index]execute:nil];
-
-//    DetailsViewController *next = [[DetailsViewController alloc] init];
-//    next.productIDStr = [NSString stringWithFormat:@"%lld",model.adId];
-//    next.productIconStr = model.image;
-//    [self.navigationController pushViewController:next animated:YES];
     
     ShopDetailController *next = [[ShopDetailController alloc] init];
-    next.productIDStr = [NSString stringWithFormat:@"%d",model.adId];
+    next.productIDStr = [NSString stringWithFormat:@"%lld",model.adId];
     next.productIconStr = model.image;
     next.tabbarNum = 1;
     
@@ -375,7 +363,11 @@
     
     JLShopCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:JLHomeCell forIndexPath:indexPath];
     cell.tuiJianBlock = ^(JLGoodModel *goodModel){
-        MYLog(@"打我啊");
+        
+        DetailsViewController * detail = [[DetailsViewController alloc] init];
+        detail.productIDStr = [NSString stringWithFormat:@"%lld",goodModel.userid];
+        detail.productIconStr = goodModel.icon;
+        [self.navigationController pushViewController:detail animated:YES];
     };
     return cell;
 }

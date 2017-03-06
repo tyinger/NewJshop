@@ -500,7 +500,7 @@
     backLabel.centerY = self.view.centerY - 50;
     backLabel.text = @"对不起，目前无更多信息";
     backLabel.textColor = RGB(93, 93, 93);
-    backLabel.font = [UIFont boldSystemFontOfSize:17];
+    backLabel.font = [UIFont boldSystemFontOfSize:14];
     return backLabel;
 }
 

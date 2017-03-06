@@ -96,6 +96,14 @@
     [self setupNavigationItem];
     
     [self getSourceData:self.productIDStr];
+    
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 
@@ -103,11 +111,16 @@
 {
     [FYTXHub progress:nil];
     NSString * userId = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr:@"";
-        NSDictionary *dic = @{@"sellType":@"normal",@"id":productIDStr,@"userId":userId};
-        NSLog(@" ------ %@ ------",dic);
-        [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-            NSLog(@"正确返回%@",json[@"goods"][@"goodsDetail"]);
-            [FYTXHub dismiss];
+    NSDictionary *dic = @{@"sellType":@"normal",@"id":productIDStr,@"userId":userId};
+    NSLog(@" ------ %@ ------",dic);
+    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+        NSLog(@"正确返回%@",json[@"goods"][@"goodsDetail"]);
+        [FYTXHub success:nil delayClose:0 compelete:^{
+                
+            _modelToShow = [[DetailsMode alloc] initWithDictionary:json];
+            //初始化视图
+            [self initView];
+        }];
 //            NSLog(@"%@",json[@"shop"][@"id"]);
 //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
 //            NSLog(@"dataDic%@",json);
@@ -116,15 +129,12 @@
 //            NSFileManager *fm = [NSFileManager defaultManager];
 //            [fm createFileAtPath:fileName contents:nil attributes:nil];
 //            [json writeToFile:fileName atomically:YES];
-            _modelToShow = [[DetailsMode alloc] initWithDictionary:json];
-            //初始化视图
-            [self initView];
 
-            } failure:^(NSError *error) {
-                [FYTXHub dismiss];
-                [FYTXHub toast:@"网络错误!"];
+        } failure:^(NSError *error) {
+            [FYTXHub dismiss];
+            [FYTXHub toast:@"网络错误!"];
             NSLog(@"错误返回%@",error);
-        }];
+    }];
 }
 
 - (void)setupNavigationItem {
@@ -317,28 +327,34 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
-//    NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=%f, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"",320.0];
-//    [webView stringByEvaluatingJavaScriptFromString:meta];
-    double aaa = [UIScreen mainScreen].bounds.size.width - 20;
-    NSString *str = [NSString stringWithFormat:@"var script = document.createElement('script');"
-                     "script.type = 'text/javascript';"
-                     "script.text = \"function ResizeImages() { "
-                     "var myimg,oldwidth;"
-                     "var maxwidth=%f;" //缩放系数
-                     "for(i=0;i <document.images.length;i++){"
-                     "myimg = document.images[i];"
-                     "if(myimg.width > maxwidth){"
-                     "oldwidth = myimg.width;"
-                     "myimg.width = maxwidth;"
-                     "myimg.height = myimg.height * (maxwidth/oldwidth+0.3);"
-                     "}"
-                     "}"
-                     "}\";"
-                     "document.getElementsByTagName('head')[0].appendChild(script);",aaa];
-    [webView stringByEvaluatingJavaScriptFromString:str];
     
-    [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
-    
+    if (webView.tag != 1001) {
+        
+        //    NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=%f, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"",320.0];
+        //    [webView stringByEvaluatingJavaScriptFromString:meta];
+        double aaa = [UIScreen mainScreen].bounds.size.width - 20;
+        NSString *str = [NSString stringWithFormat:@"var script = document.createElement('script');"
+                         "script.type = 'text/javascript';"
+                         "script.text = \"function ResizeImages() { "
+                         "var myimg,oldwidth;"
+                         "var maxwidth=%f;" //缩放系数
+                         "for(i=0;i <document.images.length;i++){"
+                         "myimg = document.images[i];"
+                         "if(myimg.width > maxwidth){"
+                         "oldwidth = myimg.width;"
+                         "myimg.width = maxwidth;"
+                         "myimg.height = myimg.height * (maxwidth/oldwidth+0.3);"
+                         "}"
+                         "}"
+                         "}\";"
+                         "document.getElementsByTagName('head')[0].appendChild(script);",aaa];
+        [webView stringByEvaluatingJavaScriptFromString:str];
+        
+        [webView stringByEvaluatingJavaScriptFromString:@"ResizeImages();"];
+    }else{
+        
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -528,6 +544,7 @@
     if (!_webView) {
         
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 164)];
+        _webView.tag = 1001;
         _webView.delegate = self;
     }
     return _webView;

@@ -77,7 +77,7 @@ static CGFloat titleHeight = 25;
     withdraw.frame = CGRectMake(0, lineView.y+lineHeight, kDeviceWidth, titleHeight);
     [withdraw setTitle:@"提现" forState:UIControlStateNormal];
     [withdraw setTitleColor:[UIColor darkGrayColor] forState:0];
- withdraw.titleLabel.font = SXFont(15);
+    withdraw.titleLabel.font = SXFont(15);
     withdraw.titleLabel.textAlignment = NSTextAlignmentCenter;
     self.payButton = withdraw;
     
