@@ -36,6 +36,7 @@
         _mainTableView.delegate = self.viewModel;
         _mainTableView.dataSource = self.viewModel;
         _mainTableView.emptyDataSetSource = self.viewModel;
+        _mainTableView.emptyDataSetDelegate = self.viewModel;
         _mainTableView.tableFooterView = [[UIView alloc] init];
         _mainTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         _mainTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{

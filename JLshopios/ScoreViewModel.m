@@ -7,7 +7,9 @@
 //
 
 #import "ScoreViewModel.h"
-
+@interface ScoreViewModel()
+@property (nonatomic, assign) BOOL needEmpty;
+@end
 @implementation ScoreViewModel
 - (NSMutableArray<ScoreDetailModel *> *)scoreDetailData{
     if (!_scoreDetailData) {
@@ -31,6 +33,8 @@
         
         //计算数量
         } failure:^(NSError *error) {
+            self.needEmpty = YES;
+            [self.owner.mainTableView reloadData];
         [FYTXHub dismiss];
         //        TTAlert(@"网络请求出错");
     }];
@@ -99,7 +103,7 @@
                 return [ScoreDetailModel objectWithKeyValues:value];
             }] array];
             [self.scoreDetailData addObjectsFromArray:data];
-            
+            self.needEmpty = YES;
             [self.owner.mainTableView reloadData];
             
 
@@ -107,6 +111,8 @@
              [subscriber sendCompleted];
         } failure:^(NSError *error) {
             [FYTXHub dismiss];
+            self.needEmpty = YES;
+            [self.owner.mainTableView reloadData];
             NSLog(@"%@",error);
             [subscriber sendError:error];
             //        TTAlert(@"网络请求出错");
@@ -114,5 +120,11 @@
         return nil;
     }];
     return result;
+}
+- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
+    return[[NSAttributedString alloc] initWithString:@"对不起，目前无更多信息" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18]}];
+}
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    return self.needEmpty;
 }
 @end

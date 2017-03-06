@@ -63,40 +63,52 @@
         TTAlert(@"请填写银行卡");
         return;
     }
+    
     if (!_priceTextField.text.length||[_priceTextField.text floatValue]<[_canUseMoney floatValue]||[_priceTextField.text isEqualToString:@"0"]) {
        TTAlert(@"金额填写错误");
         return;
     }
-    
-    
-//    NSString * urlString = [NSString stringWithFormat:@"https://123.56.192.182:8443/app/Score/tomyDefaultbankcard?&userId=%@",[LoginStatus sharedManager].idStr];
-    /*
-     userId
-     userwithdraw提现金额
-     cardNo银行卡号
-     name持卡人姓名
-     province 省（规则例如吉林省传参时只传吉林）
-     city 市（同上）
-     bankName银行名
-     */
-    NSDictionary * para = @{@"userId":[LoginStatus sharedManager].idStr,@"userwithdraw":_priceTextField.text,@"cardNo":_mainModel.cardNo,@"name":_mainModel.name,@"province":_mainModel.province,@"city":_mainModel.city,@"bankName":_mainModel.bankName};
-    NSString * urlString = @"https://123.56.192.182:8443/app/Score/saveuserwithdraw?";
-    [FYTXHub progress:nil];
-    [QSCHttpTool get:urlString parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
-        [FYTXHub dismiss];
-        
-        
-        NSLog(@"json 9627 === %@",json);
-        TTAlert(json[@"msg"]);
-        
-    } failure:^(NSError *error) {
-        
-        
-        NSLog(@"/*****************************    **********************************/%@",error);
-        [FYTXHub dismiss];
+    NSString * tips = [NSString stringWithFormat:@"您本次提现金额为%@元，手续费为1元，实际到账金额为11元，24小时内到账",_priceTextField.text];
+    UIAlertView * av = [[UIAlertView alloc] initWithTitle:@"提示" message:@"tips" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [[av rac_buttonClickedSignal] subscribeNext:^(NSNumber* index) {
+        if ([index isEqualToNumber:@(1)]) {
+            //点击了确定
+            //    NSString * urlString = [NSString stringWithFormat:@"https://123.56.192.182:8443/app/Score/tomyDefaultbankcard?&userId=%@",[LoginStatus sharedManager].idStr];
+            /*
+             userId
+             userwithdraw提现金额
+             cardNo银行卡号
+             name持卡人姓名
+             province 省（规则例如吉林省传参时只传吉林）
+             city 市（同上）
+             bankName银行名
+             */
+            NSDictionary * para = @{@"userId":[LoginStatus sharedManager].idStr,@"userwithdraw":_priceTextField.text,@"cardNo":_mainModel.cardNo,@"name":_mainModel.name,@"province":_mainModel.province,@"city":_mainModel.city,@"bankName":_mainModel.bankName};
+            NSString * urlString = @"https://123.56.192.182:8443/app/Score/saveuserwithdraw?";
+            [FYTXHub progress:nil];
+            [QSCHttpTool get:urlString parameters:para isShowHUD:YES httpToolSuccess:^(id json) {
+                [FYTXHub dismiss];
+                
+                
+                NSLog(@"json 9627 === %@",json);
+                TTAlert(json[@"msg"]);
+                
+            } failure:^(NSError *error) {
+                
+                
+                NSLog(@"/*****************************    **********************************/%@",error);
+                [FYTXHub dismiss];
+            }];
+
+        }
     }];
+    [av show];
+    
 }
 - (void)pushBankList{
+   
+    
+    
     BankListViewController * list = [[BankListViewController alloc] init];
     list.result = ^(BankCardModel * card){
         self.mainModel = card;

@@ -7,8 +7,12 @@
 //
 #import "WithDrawBankViewController.h"
 #import "WalletViewModel.h"
+@interface WalletViewModel()
+@property (nonatomic,assign) BOOL needEmpty;
+@end
 
 @implementation WalletViewModel
+
 - (void)payAction{
     WithDrawBankViewController * WithDrawVC = [[WithDrawBankViewController alloc] init];
     WithDrawVC.canUseMoney = self.userablemoney;
@@ -47,6 +51,7 @@
 }
 - (RACSignal * )getTheScoreDetailWithPage:(NSInteger)page{
     RACSignal * result = [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
         [FYTXHub progress:@"正在加载"];
         
         NSString *  urlString = @"https://123.56.192.182:8443/app/Score/getUserFundEventdetailList?";
@@ -65,12 +70,14 @@
                 return [WallteDetailModel objectWithKeyValues:value];
             }] array];
             [self.walletDetailData addObjectsFromArray:data];
-           
+            self.needEmpty = YES;
             [self.owner.mainTableView reloadData];
             
             [subscriber sendCompleted];
         } failure:^(NSError *error) {
             [FYTXHub dismiss];
+             self.needEmpty = YES;
+            [self.owner.mainTableView reloadData];
             [self.owner.mainTableView.mj_header endRefreshing];
             [self.owner.mainTableView.mj_footer endRefreshing];
             NSLog(@"%@",error);
@@ -84,7 +91,10 @@
 }
 #pragma mark - delegate
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    return [[NSAttributedString alloc] initWithString:@"对不起，目前无更多信息"];
+   
+    NSAttributedString * str = [[NSAttributedString alloc] initWithString:@"对不起，目前无更多信息" attributes:@{NSFontAttributeName: [UIFont systemFontOfSize:18]}];
+
+    return str;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.walletDetailData.count;
@@ -101,5 +111,9 @@
     }
     
     return cell;
+}
+
+- (BOOL)emptyDataSetShouldDisplay:(UIScrollView *)scrollView {
+    return self.needEmpty;
 }
 @end

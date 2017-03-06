@@ -24,6 +24,7 @@
     if (!_service) {
         _service = [[ScoreUIService alloc] init];
         _service.mainTableView = self.mainTableView;
+        _service.viewModel = self.viewModel;
     }
     return _service;
 }
@@ -60,6 +61,8 @@
                 
             }];
         }];
+        _mainTableView.emptyDataSetDelegate = self.viewModel;
+        _mainTableView.emptyDataSetSource = self.viewModel;
     }
     return _mainTableView;
 }

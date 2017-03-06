@@ -48,7 +48,7 @@
     AFHTTPSessionManager *manager = [self getAFHTTPRequestOperationManager];
 //    
 //    [manager.requestSerializer willChangeValueForKey:@"timeoutInterval"];
-//    manager.requestSerializer.timeoutInterval = 3.f;
+    manager.requestSerializer.timeoutInterval = 10.f;
 //    [manager.requestSerializer didChangeValueForKey:@"timeoutInterval"];
     
     [manager GET:url parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

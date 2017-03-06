@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ScoreDetailModel.h"
 #import "ScoreViewController.h"
-@interface ScoreViewModel : NSObject
+@interface ScoreViewModel : NSObject<DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 @property (nonatomic, strong) NSMutableArray<ScoreDetailModel*> * scoreDetailData;
 @property (nonatomic, weak) ScoreViewController * owner;
 @property (nonatomic, copy) NSString *userusedScore;

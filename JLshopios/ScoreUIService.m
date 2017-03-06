@@ -7,19 +7,16 @@
 //
 
 #import "ScoreUIService.h"
-@interface ScoreUIService()<UITableViewDelegate,UITableViewDataSource,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
+@interface ScoreUIService()<UITableViewDelegate,UITableViewDataSource>
 @end
 
 @implementation ScoreUIService
-- (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView{
-    return [[NSAttributedString alloc] initWithString:@"对不起，目前无更多信息"];
-}
+
 - (void)setMainTableView:(UITableView *)mainTableView{
     _mainTableView = mainTableView;
     _mainTableView.delegate = self;
     _mainTableView.dataSource = self;
-    _mainTableView.emptyDataSetSource = self;
-    _mainTableView.emptyDataSetDelegate = self;
+    
    
     
 }
@@ -41,4 +38,5 @@
     
     return cell;
 }
+
 @end
