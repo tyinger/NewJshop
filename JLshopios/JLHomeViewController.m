@@ -313,7 +313,7 @@
             if (self.hotGoodsArray.count == 0) {
                 self.collectionHight = 238;
             }else
-                self.collectionHight = 270 + (self.view.frame.size.width*0.5 + 30)*self.hotGoodsArray.count/2;
+                self.collectionHight = 270 + (self.view.frame.size.width*0.5 + 50 + 30)*self.hotGoodsArray.count/2;
             
                 [self.collectionView reloadData];
             
