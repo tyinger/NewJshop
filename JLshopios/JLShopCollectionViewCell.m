@@ -76,9 +76,9 @@
             JLGoodModel *model = self.hotGoodsArray[i];
             tView.name.text = model.name;
             tView.priceLabel.text = [NSString stringWithFormat:@"¥%.1f",model.price];
-            NSArray *previewImage = model.previewImgs;
-            NSDictionary *dic = [previewImage firstObject];
-            NSString *imageURL_left = dic[@"path"];
+//            NSArray *previewImage = model.previewImgs;
+//            NSDictionary *dic = [previewImage firstObject];
+            NSString *imageURL_left = model.icon;
             self.tuijianLabel.hidden = NO;
             if (imageURL_left) {
                 
