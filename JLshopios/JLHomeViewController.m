@@ -66,7 +66,7 @@
     
 }
 
--(void)netWorkTest{
+-(void)netLoad{
     //获取验证码的
     //    NSDictionary *dic = @{@"phoneNum":@"18643212316"};
     //    //loginName=18643212316 password=
@@ -115,29 +115,6 @@
         });
     } failure:^(NSError *error) {
     }];
-    
-    
-    
-    //    //推荐商品接口 //begin=0
-    //    NSDictionary *dic1 = @{@"begin":@"0"};
-    //    //https://123.56.192.182:8443/app/product/recommendGoods?
-    //    [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/recommendGoods?" parameters:dic1 isShowHUD:YES httpToolSuccess:^(id json) {
-    //        NSArray *jsonArray = json;
-    //        NSMutableArray *marray = [[NSMutableArray alloc]init];
-    //        for (NSDictionary *dics in jsonArray) {
-    //            JLGoodModel *model = [JLGoodModel initWithDictionary:dics];
-    //            [marray addObject:model];
-    //        }
-    //        self.hotGoodsArray = [marray copy];
-    //
-    //            } failure:^(NSError *error) {
-    //    }];
-    
-    //分类列表接口
-    //    https://123.56.192.182:8443/app/product/listClass?arg0={"name":"","type":"1","id":"","level":"","firstSeplling":""}
-    
-    
-    
 }
 
 
@@ -147,7 +124,7 @@
     self.mainView.y = 64;
     self.mainView.height = self.mainView.height - 64;//防止遮挡住导航栏
     [self.view addSubview:self.mainView];
-    [self netWorkTest];
+    [self netLoad];
     self.topSearchView.layer.cornerRadius = 6;
     self.topSearchView.layer.borderColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1].CGColor;
     self.topSearchView.layer.borderWidth = 1;
@@ -160,6 +137,7 @@
 }
 
 -(void)loadCollectionView{
+    
     UICollectionViewFlowLayout *layout =[[UICollectionViewFlowLayout alloc] init];
     layout.minimumInteritemSpacing = 0;
     layout.minimumLineSpacing = 0;
@@ -284,18 +262,28 @@
 
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
+//    resourceType 0 商铺 1商品
     JLShopModel *model = self.bannerArray[index];
     
-    ShopDetailController *next = [[ShopDetailController alloc] init];
-    next.productIDStr = [NSString stringWithFormat:@"%lld",model.adId];
-    next.productIconStr = model.image;
-    next.tabbarNum = 1;
-    
-    self.navigationController.navigationBarHidden = NO;
-    
-    [self.navigationController pushViewController:next animated:YES];
-
-
+    if (model.resourceType == 0) {
+        
+        ShopDetailController *next = [[ShopDetailController alloc] init];
+        next.productIDStr = [NSString stringWithFormat:@"%lld",model.adId];
+        next.productIconStr = model.image;
+        next.tabbarNum = 1;
+        
+//        self.navigationController.navigationBarHidden = NO;
+        [self.navigationController pushViewController:next animated:YES];
+    }else if (model.resourceType == 1) {
+        
+        DetailsViewController *ctl = [[DetailsViewController alloc] init];
+        ctl.productIDStr = [NSString stringWithFormat:@"%lld",model.adId];
+        ctl.productIconStr = model.image;
+        ctl.tabbarNum = 1;
+        
+//        self.navigationController.navigationBarHidden = NO;
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
 }
 
 - (void)getCollectionHight{

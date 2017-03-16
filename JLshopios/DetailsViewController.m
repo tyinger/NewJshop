@@ -131,7 +131,7 @@
 //            [json writeToFile:fileName atomically:YES];
 
         } failure:^(NSError *error) {
-            [FYTXHub dismiss];
+//            [FYTXHub dismiss];
             [FYTXHub toast:@"网络错误!"];
             NSLog(@"错误返回%@",error);
     }];
@@ -421,9 +421,6 @@
     
     if (![LoginStatus sharedManager].status) {
         [FYTXHub toast:@"请先登录"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
         return;
     }
     btn.selected = !btn.selected;
@@ -435,10 +432,6 @@
                 [btn setImage:Image forState:UIControlStateNormal];
                 [btn setImage:[UIImage imageWithName:nil] forState:UIControlStateHighlighted];
                 [FYTXHub toast:@"关注成功"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [FYTXHub dismiss];
-                });
-
             }else{
                 UIImage *Image = [[UIImage imageWithName:@"wareb_focus"] scaleImageWithSize:CGSizeMake(35, 35)];
                 [btn setImage:Image forState:UIControlStateNormal];
@@ -483,9 +476,6 @@
     }else{
     
         [FYTXHub toast:@"请先登录"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
     }
 }
 
@@ -494,10 +484,6 @@
     if (![LoginStatus sharedManager].status){
         
         [FYTXHub toast:@"请先登录"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
-        
     }else{
     
     //TODO:要做登录判断
