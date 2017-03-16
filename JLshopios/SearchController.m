@@ -103,9 +103,6 @@ static const CGFloat kRightItemWidth = 40;
     MYLog(@"右侧搜索");
     if ([_textField.text isEqualToString:@""]) {
         [FYTXHub toast:@"请输入查询信息!"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
         return;
     }
     

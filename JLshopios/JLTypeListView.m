@@ -30,14 +30,14 @@ static CGFloat TypeListButtonWidth = 40;
     if (self) {
         [self setBackgroundColor:[UIColor whiteColor]];
         //        [self loadAllButtons];
-        self.typeArray = @[@"便利店",
-                               @"美食",
-                               @"购物",
-                               @"休闲娱乐",
-                               @"美容美发",
-                               @"网吧",
-                               @"KTV",
-                               @"FLAG"];
+//        self.typeArray = @[@"便利店",
+//                               @"美食",
+//                               @"购物",
+//                               @"休闲娱乐",
+//                               @"美容美发",
+//                               @"网吧",
+//                               @"KTV",
+//                               @"FLAG"];
         [self loadTypeListInfo];
         
     }

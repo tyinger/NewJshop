@@ -107,7 +107,7 @@
         //            [json writeToFile:fileName atomically:YES];
         
     } failure:^(NSError *error) {
-        [FYTXHub dismiss];
+        [FYTXHub toast:@"网络请求错误"];
         NSLog(@"错误返回%@",error);
     }];
 }
@@ -116,7 +116,12 @@
     self.navigationItem.title=@"商家";
     [self.navigationController.navigationBar setTranslucent:NO];
     self.navigationItem.rightBarButtonItems =@[[UIBarButtonItem BarButtonItemWithBackgroudImageName:@"ware_more" highBackgroudImageName:nil target:self action:@selector(wareMoreClick)], [UIBarButtonItem BarButtonItemWithBackgroudImageName:@"ware_histroy" highBackgroudImageName:nil target:self action:@selector(wareMoreClick)]];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
     
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 - (void)initView{
@@ -286,9 +291,6 @@
     
     if (![LoginStatus sharedManager].status) {
         [FYTXHub toast:@"请先登录"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
         return;
     }
     btn.selected = !btn.selected;
@@ -300,10 +302,6 @@
             [btn setImage:Image forState:UIControlStateNormal];
             [btn setImage:[UIImage imageWithName:nil] forState:UIControlStateHighlighted];
             [FYTXHub toast:@"关注成功"];
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [FYTXHub dismiss];
-            });
-            
         }else{
             UIImage *Image = [[UIImage imageWithName:@"wareb_focus"] scaleImageWithSize:CGSizeMake(35, 35)];
             [btn setImage:Image forState:UIControlStateNormal];
@@ -324,9 +322,6 @@
     if (![LoginStatus sharedManager].status){
     
         [FYTXHub toast:@"请先登录"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
         return;
     }
     
@@ -352,10 +347,6 @@
     if (![LoginStatus sharedManager].status){
         
         [FYTXHub toast:@"请先登录"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
-        
     }else{
         
         //TODO:要做登录判断
@@ -376,16 +367,5 @@
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didScrollToIndex:(NSInteger)index{
     _indexPage.text=[NSString stringWithFormat:@"%i/%i",(int)index+1,(int)_images.count];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

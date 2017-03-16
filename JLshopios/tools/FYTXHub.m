@@ -34,6 +34,7 @@ static UIImage *defaultInfoImage;
     
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
     [SVProgressHUD setOffsetFromCenter:UIOffsetMake(0, [UIScreen mainScreen].bounds.size.width * .4 )];
+    [SVProgressHUD setMinimumDismissTimeInterval:1.5];
     [SVProgressHUD setErrorImage:nil];
     [SVProgressHUD setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.7]];
     [SVProgressHUD setForegroundColor:[UIColor whiteColor]];

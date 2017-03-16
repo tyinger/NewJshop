@@ -35,7 +35,7 @@
         } failure:^(NSError *error) {
             self.needEmpty = YES;
             [self.owner.mainTableView reloadData];
-        [FYTXHub dismiss];
+        [FYTXHub toast:@"网络错误"];
         //        TTAlert(@"网络请求出错");
     }];
 
@@ -58,7 +58,7 @@
             self.canUseScore = [NSString stringWithFormat:@"%ld",(long)canuse];
         [subscriber sendCompleted];
     } failure:^(NSError *error) {
-        [FYTXHub dismiss];
+        [FYTXHub toast:@"网络错误"];
         [subscriber sendError:error];
         //        TTAlert(@"网络请求出错");
     }];
@@ -110,7 +110,7 @@
             [FYTXHub dismiss];
              [subscriber sendCompleted];
         } failure:^(NSError *error) {
-            [FYTXHub dismiss];
+            [FYTXHub toast:@"网络错误"];
             self.needEmpty = YES;
             [self.owner.mainTableView reloadData];
             NSLog(@"%@",error);

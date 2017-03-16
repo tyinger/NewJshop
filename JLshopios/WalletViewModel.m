@@ -41,7 +41,7 @@
             self.totalprofit = [NSString stringWithFormat:@"%@",json[@"totalprofit"]];
             [subscriber sendCompleted];
         } failure:^(NSError *error) {
-            [FYTXHub dismiss];
+            [FYTXHub toast:@"网络请求出错"];
             [subscriber sendError:error];
             //        TTAlert(@"网络请求出错");
         }];
@@ -75,7 +75,7 @@
             
             [subscriber sendCompleted];
         } failure:^(NSError *error) {
-            [FYTXHub dismiss];
+            [FYTXHub toast:@"网络请求出错"];
              self.needEmpty = YES;
             [self.owner.mainTableView reloadData];
             [self.owner.mainTableView.mj_header endRefreshing];

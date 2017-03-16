@@ -70,7 +70,7 @@
                 [self.owner.mainView.mj_footer endRefreshing];
                 
                    NSLog(@"/*****************************    **********************************/%@",error);
-                     [FYTXHub dismiss];
+                [FYTXHub toast:@"网络错误"];
             }];
             
        

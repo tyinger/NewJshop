@@ -39,9 +39,6 @@ static const CGFloat kBottomHeight = 60;
         
         MYLog(@"收货地址列表error = %@",error);
         [FYTXHub toast:@"加载失败"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
     }];
 }
 
@@ -171,9 +168,6 @@ static const CGFloat kBottomHeight = 60;
                 
                 MYLog(@"默认地址失败%@",error);
                 [FYTXHub toast:@"操作失败"];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [FYTXHub dismiss];
-                });
             }];
         }
             break;
@@ -217,9 +211,6 @@ static const CGFloat kBottomHeight = 60;
                         
                         MYLog(@"删除失败%@",error);
                         [FYTXHub toast:@"删除失败"];
-                        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                            [FYTXHub dismiss];
-                        });
                     }];
                 }
             }];

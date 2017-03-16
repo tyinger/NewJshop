@@ -174,17 +174,17 @@
     [mainView addSubview:tuichuButton];
     [tuichuButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.right.offset(8);
-        make.left.offset(-8);
+        make.bottom.offset(-10);
+        make.right.offset(-8);
+        make.left.offset(8);
         make.height.mas_equalTo(@30);
-        make.width.mas_equalTo(@180);
     }];
     
     return mainView;
 }
 - (UIView *)creatHeaderLoginView{
     
-    UIView *b = [[UIView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 180)];
+    UIView *b = [[UIView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 185)];
     b.backgroundColor = [UIColor whiteColor];
     
     CGFloat width = [UIScreen mainScreen].bounds.size.width/ 5 - 20;
@@ -197,7 +197,7 @@
     [topImage mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.left.right.offset(0);
-        make.bottom.offset(-width);
+        make.bottom.offset(-width-5);
     }];
     
     self.userImage = [[UIImageView alloc] init];
@@ -306,7 +306,8 @@
         
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.width.height.mas_equalTo(width);
+            make.width.mas_equalTo(width);
+            make.height.mas_equalTo(@(width+5));
             make.bottom.offset(0);
             
             if (lastView) {
@@ -392,7 +393,7 @@
 //init
 - (UIView*)creatHeaderView{
     
-    UIView *b = [[UIView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 180)];
+    UIView *b = [[UIView alloc] initWithFrame:CGRectMake(0, 64, [UIScreen mainScreen].bounds.size.width, 185)];
     b.backgroundColor = [UIColor whiteColor];
     
     CGFloat width = [UIScreen mainScreen].bounds.size.width/ 5 - 20;
@@ -405,7 +406,7 @@
     [topImage mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.left.right.offset(0);
-        make.bottom.offset(-width);
+        make.bottom.offset(-width-5);
     }];
     
     UILabel *titleLabel = [[UILabel alloc] init];
@@ -447,7 +448,8 @@
         
         [backView mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.width.height.mas_equalTo(width);
+            make.width.mas_equalTo(width);
+            make.height.mas_equalTo(@(width+5));
             make.bottom.offset(0);
             
             if (lastView) {

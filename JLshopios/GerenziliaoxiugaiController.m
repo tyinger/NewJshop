@@ -128,7 +128,6 @@
         
     } error:^(NSError *error) {
         
-        [FYTXHub dismiss];
         [FYTXHub toast:@"上传失败"];
     }];
 }

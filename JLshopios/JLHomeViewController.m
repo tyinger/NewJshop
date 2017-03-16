@@ -65,6 +65,10 @@
     UIView *citySelectWindow_;
     
 }
+- (void)dealloc{
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 -(void)netLoad{
     //获取验证码的
@@ -134,6 +138,30 @@
     [self loadCollectionView];
     //判断是否有选择过城市，有就加载之前的，没有就弹出选择器
     [self isSelectedCity];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notAction:) name:@"jumptoother" object:nil];
+}
+
+- (void)notAction:(NSNotification *) not{
+    
+    JLShopModel *model = (JLShopModel *)not.object;
+    if (model.resourceType == 0) {
+        
+        ShopDetailController *next = [[ShopDetailController alloc] init];
+        next.productIDStr = [NSString stringWithFormat:@"%lld",model.adId];
+        next.productIconStr = model.image;
+        next.tabbarNum = 1;
+        
+        [self.navigationController pushViewController:next animated:YES];
+    }else if (model.resourceType == 1) {
+        
+        DetailsViewController *ctl = [[DetailsViewController alloc] init];
+        ctl.productIDStr = [NSString stringWithFormat:@"%lld",model.adId];
+        ctl.productIconStr = model.image;
+        ctl.tabbarNum = 1;
+        
+        [self.navigationController pushViewController:ctl animated:YES];
+    }
 }
 
 -(void)loadCollectionView{

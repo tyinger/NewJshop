@@ -715,9 +715,6 @@ static const CGFloat kquyustartHeight = 44*4 + 1;
     
     if (![self isMobileNumber:textView4.text]) {
         [FYTXHub toast:@"请正确填写联系电话"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
         return;
     }
     
@@ -743,14 +740,8 @@ static const CGFloat kquyustartHeight = 44*4 + 1;
 //        [json[@"status"] integerValue] == 0
         [FYTXHub toast:json[@"msg"]];
         MYLog(@"上传商家json = %@",json);
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
     } failure:^(NSError *error) {
         [FYTXHub toast:@"提交失败"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [FYTXHub dismiss];
-        });
          MYLog(@"上传商家error = %@",error);
     }];
 }

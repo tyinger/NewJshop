@@ -121,7 +121,7 @@
         finish?finish():nil;
         
     } failure:^(NSError *error) {
-         [FYTXHub dismiss];
+         [FYTXHub toast:@"网络错误"];
 //        TTAlert(@"网络请求出错");
     }];
 }

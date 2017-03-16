@@ -2055,7 +2055,7 @@
 				TargetAttributes = {
 					3043B0971D02C55B00E97B82 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = DEVUC5SK24;
+						DevelopmentTeam = HKZ3V6JN2P;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -2588,7 +2588,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DEVUC5SK24;
+				DEVELOPMENT_TEAM = HKZ3V6JN2P;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2682,7 +2682,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = DEVUC5SK24;
+				DEVELOPMENT_TEAM = HKZ3V6JN2P;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

@@ -10,6 +10,8 @@
 
 #import "QSCHttpTool.h"
 
+#import "XiugaimimaViewController.h"
+
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *userImageView;
@@ -93,7 +95,9 @@
 }
 - (IBAction)foundoutPassword:(id)sender {
     
-    
+    XiugaimimaViewController *ctl = [[XiugaimimaViewController alloc] init];
+    ctl.title = @"找回密码";
+    [self.navigationController pushViewController:ctl animated:YES];
 }
 
 @end

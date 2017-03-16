@@ -15,7 +15,9 @@
 
 #import <BaiduMapAPI_Map/BMKMapComponent.h>
 
-@interface AppDelegate ()<BMKGeneralDelegate>
+#import "WXApi.h"
+
+@interface AppDelegate ()<BMKGeneralDelegate,WXApiDelegate>
 
 @end
 
@@ -29,6 +31,8 @@ BMKMapManager* _mapManager;
     [self loadAppGuide];
     
     [[LoginStatus sharedManager] start];
+    
+    [WXApi registerApp:@"wx3274f42d89d3c4d1"];
     
     // 要使用百度地图，请先启动BaiduMapManager
     _mapManager = [[BMKMapManager alloc]init];

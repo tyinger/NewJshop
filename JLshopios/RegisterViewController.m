@@ -20,7 +20,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextF;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextFT;
 @property (weak, nonatomic) IBOutlet UITextField *tuijianCode;
+@property (weak, nonatomic) IBOutlet UILabel *tuijianLabel;
+@property (weak, nonatomic) IBOutlet UILabel *xieyiLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *dagouButton;
 @property (weak, nonatomic) IBOutlet UILabel *tiaoliLabel;
 
 @property (weak, nonatomic) IBOutlet UIButton *agreeButton;
@@ -31,6 +34,8 @@
 
 @property (nonatomic,strong) NSString *tuijianCodeStr;
 
+@property (nonatomic,assign) BOOL bol;
+
 @end
 
 @implementation RegisterViewController
@@ -40,15 +45,16 @@
     self = [super init];
     if (self) {
         
-        self.tuijianCodeStr = code;
+        if (code != nil) {
+            
+            self.tuijianCodeStr = code;
+        }
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.title = @"注册";
     
     if (![self.tuijianCodeStr isEqualToString:@""] && self.tuijianCodeStr != nil) {
         
