@@ -29,7 +29,7 @@ static CGFloat const Wd = 28;
 }
 
 - (void)awakeFromNib{
-    [self awakeFromNib];
+    [super awakeFromNib];
     [self setUI];
     
 }

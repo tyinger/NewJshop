@@ -90,6 +90,9 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.webView.scrollView.hidden = YES;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     //设置导航栏
@@ -115,12 +118,14 @@
     NSLog(@" ------ %@ ------",dic);
     [QSCHttpTool get:@"https://123.56.192.182:8443/app/product/goodsDetail?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         NSLog(@"正确返回%@",json[@"goods"][@"goodsDetail"]);
-        [FYTXHub success:nil delayClose:0 compelete:^{
-                
+        [FYTXHub dismiss];
+//        self.webView.scrollView.hidden = NO;
+//        [FYTXHub success:nil delayClose:0 compelete:^{
+        
             _modelToShow = [[DetailsMode alloc] initWithDictionary:json];
             //初始化视图
             [self initView];
-        }];
+//        }];
 //            NSLog(@"%@",json[@"shop"][@"id"]);
 //            self.dataDic = [NSDictionary dictionaryWithDictionary:json];
 //            NSLog(@"dataDic%@",json);
@@ -178,7 +183,7 @@
 
 - (void)initView{
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height-100) style:UITableViewStyleGrouped];
-    
+    self.tableView.hidden = YES;
     [self.view addSubview:self.tableView];
     self.tableView.bounces = NO;
     self.tableView.backgroundColor = [UIColor whiteColor];
@@ -305,6 +310,8 @@
            _indexPage.font=[UIFont systemFontOfSize:24];
            _indexPage.textColor=[UIColor whiteColor];
            _indexPage.text=[NSString stringWithFormat:@"%i/%i",cycleScrollView.indexPage+1,(int)_images.count];
+            self.webView.scrollView.hidden = NO;
+           self.tableView.hidden = NO;
            [imageView addSubview:_indexPage];
         });
     });
@@ -327,7 +334,7 @@
 
 -(void)webViewDidFinishLoad:(UIWebView *)webView
 {
-    
+//    self.webView.scrollView.hidden = YES;
     if (webView.tag != 1001) {
         
         //    NSString *meta = [NSString stringWithFormat:@"document.getElementsByName(\"viewport\")[0].content = \"width=%f, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no\"",320.0];

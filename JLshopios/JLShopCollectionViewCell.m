@@ -68,16 +68,17 @@
     self.tuijianLabel.hidden = YES;
     for (int i = 0; i < self.hotGoodsArray.count; i++) {
         {
-            TuiJianView *tView = [[TuiJianView alloc] initWithFrame:CGRectMake((i%2)*self.frame.size.width*0.5, (self.frame.size.width*0.5 + 30)*(i/2)+47, self.frame.size.width*0.5, self.frame.size.width*0.5 + 30)];
+            TuiJianView *tView = [[TuiJianView alloc] initWithFrame:CGRectMake((i%2)*self.frame.size.width*0.5, (self.frame.size.width*0.5 + 50 + 30)*(i/2)+47, self.frame.size.width*0.5, self.frame.size.width*0.5 + 50 + 30)];
             UITapGestureRecognizer *jingxuantuijianGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(testAction1:)];
             tView.tag = i+100;
             [tView addGestureRecognizer:jingxuantuijianGes];
             [self.hotView addSubview:tView];
             JLGoodModel *model = self.hotGoodsArray[i];
             tView.name.text = model.name;
-            NSArray *previewImage = model.previewImgs;
-            NSDictionary *dic = [previewImage firstObject];
-            NSString *imageURL_left = dic[@"path"];
+            tView.priceLabel.text = [NSString stringWithFormat:@"¥%.1f",model.price];
+//            NSArray *previewImage = model.previewImgs;
+//            NSDictionary *dic = [previewImage firstObject];
+            NSString *imageURL_left = model.icon;
             self.tuijianLabel.hidden = NO;
             if (imageURL_left) {
                 

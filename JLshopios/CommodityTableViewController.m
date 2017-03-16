@@ -71,8 +71,10 @@
 -(void)refresh
 {
     NSLog(@"上啦刷新");
+     [_commodity removeAllObjects];
 //    if (_tabbarNum == 1) {
       if (self.searchNameStr) {
+         
         [self initData:self.secondMenuIDStr searchName:self.searchNameStr];
         [_tableView.mj_header endRefreshing];
     }else{
@@ -88,19 +90,24 @@
 {
     NSLog(@",下啦刷新");
     _pangoNum += 10;
+    if (self.searchNameStr) {
+        [self initData:self.secondMenuIDStr searchName:self.searchNameStr];
+        [_tableView.mj_header endRefreshing];
+    }else{
     [self loadDataFromClientWithMenuID:self.secondMenuIDStr andPageno:[NSString stringWithFormat:@"%ld",(long)_pangoNum] andOrderType:_OderTypeStr andOrderDes:_OderDesStr andIsMJRefleshHead:NO];
     [_tableView.mj_footer endRefreshing];
+    }
 }
 #pragma mark 加载数据
 -(void)initData:(NSString *)menuID searchName:(NSString *)name{
 
-    _pangoNum = 0;
+//    _pangoNum = 0;
     NSString *userid = [LoginStatus sharedManager].status ? [LoginStatus sharedManager].idStr :@"";
-    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"%@\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"0\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",name,menuID,userid];
+    NSString *parameterStr = [NSString stringWithFormat:@"{\"name\":\"%@\",\"goodsType\":\"2\",\"id\":\"%@\",\"pageno\":\"%@\",\"pagesize\":\"10\",\"orderType\":\"soldNum\",\"orderDes\":\"0\",\"userid\":\"%@\"}",name,menuID,@(_pangoNum),userid];
     NSDictionary *dic = _tabbarNum == 1 ? @{@"shopName":name,
                                             @"shopClass":menuID,
                                             @"nearby":@"",
-                                            @"pageBegin":@0,
+                                            @"pageBegin":@(_pangoNum),
                                             @"pageSize":@10,
                                             @"lat":@"114.058",
                                             @"lng":@"22.521"} : @{@"arg0":parameterStr};
@@ -115,16 +122,10 @@
     [QSCHttpTool post:Str parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
         [FYTXHub dismiss];
         NSLog(@" json------ %@ ",json);
-        [_commodity setArray:json];
-        _jsonCount = _commodity.count;
-        if (_jsonCount >= 10) {
-            [_commodity removeAllObjects];
-            for (int i = 0; i < 10; i++) {
-                [_commodity addObject:json[i]];
-            }
-        }else{
-            [_tableView.mj_footer setState:MJRefreshStateNoMoreData];
-        }
+      
+        [_commodity addObjectsFromArray:json];
+        
+      
         
         if (!_tableView) {
             //创建一个分组样式的UITableView
@@ -133,6 +134,7 @@
             _tableView.dataSource=self;
             //设置代理
             _tableView.delegate=self;
+            _tableView.tableFooterView = [UIView new];
             _tableView.rowHeight = 90;
             _tableView.backgroundColor=RGB(240, 243, 245);
             [self.view addSubview:_tableView];
@@ -141,6 +143,19 @@
             _tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refresh)];
             
             _tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMore)];
+        }else{
+           
+            [_tableView reloadData];
+        }
+        _jsonCount = [(NSArray*)json count];
+        if (_jsonCount >= 10) {
+            //            [_commodity removeAllObjects];
+            //            for (int i = 0; i < 10; i++) {
+            //                [_commodity addObject:json[i]];
+            [_tableView.mj_footer endRefreshing];
+            //            }
+        }else{
+            [_tableView.mj_footer endRefreshingWithNoMoreData];
         }
         
     } failure:^(NSError *error) {
@@ -314,71 +329,74 @@
         case 0:
         {
             CommodityTableViewCell * cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
-            
-            [cell.commodityImg sd_setImageWithURL:[NSURL URLWithString:commodity.commodityImageUrl] placeholderImage:[UIImage imageWithName:@"icon_loading5"]];
-            cell.commodityName.text=commodity.commodityName;
-            cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
-            [cell.commodityGoodNumer setTitle:commodity.commodityCartNum forState:UIControlStateNormal];
-            __weak typeof(cell) weakCell = cell;
-            
-//TODO:MARS加
-            cell.shopNameLabel.text = commodity.shopName;
-//            UILabel * shopName = [[UILabel alloc] initWithFrame:cell.numberButtonBgView.frame];
-//            shopName.font = [UIFont systemFontOfSize:13];
-//              shopName.text = commodity.shopName;
-//             [shopName sizeToFit];
-//            shopName.x = [UIScreen mainScreen].bounds.size.width - shopName.width - 10;
-//             [cell.contentView addSubview:shopName];
-          
-           
-            if (commodity.needShowShopName) {
-                cell.numberButtonBgView.hidden = YES;
-                cell.shopNameLabel.hidden = NO;
-//                [cell.contentView addSubview:shopName];
-            }else{
-                cell.numberButtonBgView.hidden = NO;
-                cell.shopNameLabel.hidden = YES;
-//                [shopName removeFromSuperview];
-            }
-            
-//            cell.numberButtonBgView.hidden = commodity.needShowShopName;
-            cell.addGoodsBtnAction = ^(NSInteger numberOne){
-                [weakCell.commodityGoodNumer setTitle:[NSString stringWithFormat:@"%ld",[cell.commodityGoodNumer.titleLabel.text integerValue] + numberOne] forState:UIControlStateNormal];
-                if (numberOne == 1) {
-                    
-                    NSDictionary *dic = @{
-                                          @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
-                                          @"num":@"1",
-                                          @"jsFlag":@"0",
-                                          @"Price":commodity.commodityPrice,
-                                          @"userid":[LoginStatus sharedManager].idStr,
-                                          @"goodName":commodity.commodityName,
-                                          @"goodImg":commodity.commodityImageUrl,
-                                          @"shopid":@"-1"
-                                          };
-                    
-                    [QSCHttpTool post:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-                        MYLog(@"5555%@",json);
-                        [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
-                    } failure:^(NSError *error) {
-                        MYLog(@"4444%@",error);
-                    }];
+            if (_commodity.count) {
+                CommodityModel *commodity = [[CommodityModel alloc] initWithDictionary:_commodity[indexPath.row]];
+                
+                [cell.commodityImg sd_setImageWithURL:[NSURL URLWithString:commodity.commodityImageUrl] placeholderImage:[UIImage imageWithName:@"icon_loading5"]];
+                cell.commodityName.text=commodity.commodityName;
+                cell.commodityPrice.text=[NSString stringWithFormat:@"￥%@",commodity.commodityPrice];
+                [cell.commodityGoodNumer setTitle:commodity.commodityCartNum forState:UIControlStateNormal];
+                __weak typeof(cell) weakCell = cell;
+                
+                //TODO:MARS加
+                cell.shopNameLabel.text = commodity.shopName;
+                //            UILabel * shopName = [[UILabel alloc] initWithFrame:cell.numberButtonBgView.frame];
+                //            shopName.font = [UIFont systemFontOfSize:13];
+                //              shopName.text = commodity.shopName;
+                //             [shopName sizeToFit];
+                //            shopName.x = [UIScreen mainScreen].bounds.size.width - shopName.width - 10;
+                //             [cell.contentView addSubview:shopName];
+                
+                
+                if (commodity.needShowShopName) {
+                    cell.numberButtonBgView.hidden = YES;
+                    cell.shopNameLabel.hidden = NO;
+                    //                [cell.contentView addSubview:shopName];
                 }else{
-                    NSDictionary *dic = @{
-                                          @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
-                                          @"userid":[LoginStatus sharedManager].idStr
-                                          };
-                    [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/deleteShopCartByGoodId?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
-                        MYLog(@"删除成功%@",json);
-                        [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
-                        
-                    } failure:^(NSError *error) {
-                        MYLog(@"删除商品失败%@",error);
-                    }];
+                    cell.numberButtonBgView.hidden = NO;
+                    cell.shopNameLabel.hidden = YES;
+                    //                [shopName removeFromSuperview];
                 }
                 
-            };
+                //            cell.numberButtonBgView.hidden = commodity.needShowShopName;
+                cell.addGoodsBtnAction = ^(NSInteger numberOne){
+                    [weakCell.commodityGoodNumer setTitle:[NSString stringWithFormat:@"%ld",[cell.commodityGoodNumer.titleLabel.text integerValue] + numberOne] forState:UIControlStateNormal];
+                    if (numberOne == 1) {
+                        
+                        NSDictionary *dic = @{
+                                              @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
+                                              @"num":@"1",
+                                              @"jsFlag":@"0",
+                                              @"Price":commodity.commodityPrice,
+                                              @"userid":[LoginStatus sharedManager].idStr,
+                                              @"goodName":commodity.commodityName,
+                                              @"goodImg":commodity.commodityImageUrl,
+                                              @"shopid":@"-1"
+                                              };
+                        
+                        [QSCHttpTool post:@"https://123.56.192.182:8443/app/shopCart/saveShopCart?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                            MYLog(@"5555%@",json);
+                            [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+                        } failure:^(NSError *error) {
+                            MYLog(@"4444%@",error);
+                        }];
+                    }else{
+                        NSDictionary *dic = @{
+                                              @"goodid":[NSString stringWithFormat:@"%lld",commodity.Id],
+                                              @"userid":[LoginStatus sharedManager].idStr
+                                              };
+                        [QSCHttpTool get:@"https://123.56.192.182:8443/app/shopCart/deleteShopCartByGoodId?" parameters:dic isShowHUD:YES httpToolSuccess:^(id json) {
+                            MYLog(@"删除成功%@",json);
+                            [CartManager sharedManager].totalNum = [NSNumber numberWithInteger:[[CartManager sharedManager].totalNum integerValue] + numberOne];
+                            
+                        } failure:^(NSError *error) {
+                            MYLog(@"删除商品失败%@",error);
+                        }];
+                    }
+                    
+                };
+            }
+           
             return cell;
         }
             break;
